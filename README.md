@@ -38,3 +38,15 @@ Website ini dibuat untuk menjadi wajah digital UKM Seni Musik, memudahkan mahasi
    ```bash
    git clone https://github.com/rezachairul/musikitera.git
    cd musikitera
+
+## 👥 Tim Pengembang
+
+Proyek ini dikembangkan oleh:
+- 🐍 [**CobraDev**](https://cobradev.vercel.app/)
+- 🌐 [**Sigawari**](https://sigawariweb.netlify.app/)
+Terima kasih untuk dukungan dan kontribusi mereka dalam membangun platform ini.
+
+## 📜 Lisensi
+
+Proyek ini dikembangkan untuk kebutuhan internal UKM Seni Musik ITERA.
+Segala bentuk penggunaan atau kontribusi luar silakan hubungi pengurus UKM terlebih dahulu.
