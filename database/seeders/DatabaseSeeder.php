@@ -6,6 +6,9 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,8 +19,11 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin UKMBSM',
+            'email' => 'admin@ukmbsm.itera.ac.id',
+            'email_verified_at' => now(),
+            'password' => bcrypt('musikitera2016'), // password default
+            'remember_token' => Str::random(10),
         ]);
     }
 }
