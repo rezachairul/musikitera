@@ -42,8 +42,10 @@ Website ini dibuat untuk menjadi wajah digital UKM Seni Musik, memudahkan mahasi
 ## 👥 Tim Pengembang
 
 Proyek ini dikembangkan oleh:
+
 - 🐍 [**CobraDev**](https://cobradev.vercel.app/)
 - 🌐 [**Sigawari**](https://sigawariweb.netlify.app/)
+
 Terima kasih untuk dukungan dan kontribusi mereka dalam membangun platform ini.
 
 ## 📜 Lisensi
