@@ -7,6 +7,9 @@
         <title>MusikITERA | {{ $title }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
+
+        <!-- Icons -->
+
     </head>
 
     <body>

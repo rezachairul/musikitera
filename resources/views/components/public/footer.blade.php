@@ -17,13 +17,16 @@
         </div>
 
         {{-- Sosial Media --}}
-        <div>
-            <h3 class="text-lg font-semibold text-white mb-3">Ikuti Kami</h3>
-            <div class="flex justify-center md:justify-start space-x-4">
-                <a href="#" class="hover:text-yellow-500">Instagram</a>
-                <a href="#" class="hover:text-yellow-500">YouTube</a>
-                <a href="#" class="hover:text-yellow-500">Facebook</a>
-            </div>
+        <div class="flex justify-center md:justify-start space-x-4">
+            <a href="https://instagram.com/musikitera" class="hover:text-yellow-500">
+                <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a href="https://www.youtube.com/@musikitera5519" class="hover:text-yellow-500">
+                <i class="fab fa-youtube fa-lg"></i>
+            </a>
+            <a href="#" class="hover:text-yellow-500">
+                <i class="fab fa-facebook fa-lg"></i>
+            </a>
         </div>
     </div>
 

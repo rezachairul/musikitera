@@ -32,7 +32,7 @@ use App\Http\Controllers\public\HomeController;
 
 // Public routes
 Route::prefix('/')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('public.index');
+    Route::get('/', [HomeController::class, 'index'])->name('public.index');
 });
 
 // Admin routes
