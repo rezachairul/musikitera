@@ -8,11 +8,13 @@
 
         {{-- Menu --}}
         <div class="hidden md:flex space-x-6 font-medium">
-            <a href="/" class="text-gray-700 hover:text-yellow-600">Beranda</a>
-            <a href="/profil" class="text-gray-700 hover:text-yellow-600">Profil</a>
-            <a href="/berita" class="text-gray-700 hover:text-yellow-600">Berita</a>
-            <a href="/galeri" class="text-gray-700 hover:text-yellow-600">Galeri</a>
-            <a href="/kontak" class="text-gray-700 hover:text-yellow-600">Kontak</a>
+            <a href="/" class="text-gray-700 hover:text-yellow-600">Home</a>
+            <a href="/profil" class="text-gray-700 hover:text-yellow-600">Profile</a>
+            <a href="/about" class="text-gray-700 hover:text-yellow-600">About Us</a>
+            <a href="/gallery" class="text-gray-700 hover:text-yellow-600">Gallery</a>
+            <a href="/announcement" class="text-gray-700 hover:text-yellow-600">Announcement</a>
+            <a href="/news" class="text-gray-700 hover:text-yellow-600">News</a>
+            <a href="/contact" class="text-gray-700 hover:text-yellow-600">Contact</a>
         </div>
     </div>
 </nav>

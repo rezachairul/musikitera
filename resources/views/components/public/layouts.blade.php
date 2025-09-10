@@ -20,7 +20,7 @@
             <!-- Main -->
             <main class="flex-grow">
                 <!-- Header -->
-                 <x-public.header>{{ $title }}</x-public.header>
+                <!-- <x-public.header>{{ $title }}</x-public.header> -->
                 <div class="max-w-7xl mx-auto px-6 py-10">
                     {{ $slot }}
                 </div>
