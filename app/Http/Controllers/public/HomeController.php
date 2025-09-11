@@ -15,7 +15,9 @@ class HomeController extends Controller
     public function index()
     {
         $title = 'Home Page';
-        return view('public.home.index', compact('title'));
+        $showHeader = false; // kasih flag biar header ngga muncul
+
+        return view('public.home.index', compact('title', 'showHeader'));
     }
 
     /**
