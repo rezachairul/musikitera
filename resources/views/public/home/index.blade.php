@@ -20,7 +20,7 @@
             </div>
             <div>
                 <h2 class="counter text-4xl font-bold text-green-600" data-target="15">0</h2>
-                <p class="text-gray-600">BPH</p>
+                <p class="text-gray-600">Badan Pengurus</p>
             </div>
             <div>
                 <h2 class="counter text-4xl font-bold text-green-600" data-target="30">0</h2>
@@ -78,7 +78,7 @@
                 <div class="p-6 bg-white rounded-lg shadow">
                     <img src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg" class="rounded-lg mb-4" alt="highlight2">
                     <h3 class="font-bold text-lg mb-2">Konser Akhir Tahun</h3>
-                    <p class="text-gray-600 text-sm">Penampilan spektakuler dari anggota UKM Musik ITERA dalam konser akhir tahun.</p>
+                    <p class="text-gray-600 text-sm">Penampilan spektakuler dari anggota UKM Bidang Musik ITERA dalam konser akhir tahun.</p>
                 </div>
                 <div class="p-6 bg-white rounded-lg shadow">
                     <img src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg" class="rounded-lg mb-4" alt="highlight2">
