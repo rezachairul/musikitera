@@ -12,22 +12,22 @@
     </section>
 
     {{-- COUNTER SECTION --}}
-    <section class="bg-white py-16">
+    <section id="counter" class="bg-white py-16">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-                <h2 class="text-4xl font-bold text-green-600">120+</h2>
+                <h2 class="counter text-4xl font-bold text-green-600" data-target="120">0</h2>
                 <p class="text-gray-600">Anggota Aktif</p>
             </div>
             <div>
-                <h2 class="text-4xl font-bold text-green-600">15</h2>
+                <h2 class="counter text-4xl font-bold text-green-600" data-target="15">0</h2>
                 <p class="text-gray-600">BPH</p>
             </div>
             <div>
-                <h2 class="text-4xl font-bold text-green-600">30+</h2>
+                <h2 class="counter text-4xl font-bold text-green-600" data-target="30">0</h2>
                 <p class="text-gray-600">Karya Musik</p>
             </div>
             <div>
-                <h2 class="text-4xl font-bold text-green-600">5+</h2>
+                <h2 class="counter text-4xl font-bold text-green-600" data-target="5">0</h2>
                 <p class="text-gray-600">Kolaborasi</p>
             </div>
         </div>
