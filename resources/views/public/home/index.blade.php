@@ -5,7 +5,7 @@
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">🎶 #AsikinAja 🎶</h2>
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Ruang Kreativitas & Harmoni</h2>
         <p class="text-gray-600 leading-relaxed">
-            Selamat datang di <span class="font-medium text-gray-800">UKM Seni Musik ITERA</span> 🎶  
+            Selamat datang di <span class="font-medium text-gray-800">UKM Bidang Seni Musik ITERA</span> 🎶  
             Sebuah ruang tempat nada, suara, dan rasa berpadu menjadi harmoni.  
             Di sini kami berkarya, berekspresi, dan berbagi cerita melalui musik,  
             galeri seni, hingga kisah perjalanan komunitas kami.  
