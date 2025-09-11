@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 // ==========================
 // Auths
 // ==========================
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 
 
 // ==========================
@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\RegisterController;
 // Publics
 // ==========================
 use App\Http\Controllers\public\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 /*
@@ -46,4 +47,7 @@ Route::middleware('guest')->prefix('/')->group(function () {
 });
 
 // Admin routes
-
+// Dashboard sederhana
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+});
