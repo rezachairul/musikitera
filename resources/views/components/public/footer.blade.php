@@ -28,9 +28,9 @@
                     <path d="M21.8 8s-.2-1.5-.8-2.2a3 3 0 00-2.2-.8C16.8 5 12 5 12 5s-4.8 0-6.8.2c-.8.1-1.6.3-2.2.8-.6.7-.8 2.2-.8 2.2S2 9.6 2 11.3v1.4c0 1.7.2 3.3.2 3.3s.2 1.5.8 2.2c.6.5 1.4.7 2.2.8C7.2 19 12 19 12 19s4.8 0 6.8-.2c.8-.1 1.6-.3 2.2-.8.6-.7.8-2.2.8-2.2s.2-1.6.2-3.3v-1.4c0-1.7-.2-3.3-.2-3.3zM10 9.8l5.2 3.2-5.2 3.2V9.8z"/>
                 </svg>
             </a>
-            <a href="#" class="hover:text-yellow-500" aria-label="Facebook">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22 12a10 10 0 10-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.2 3-3.2.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3h-1.8v7A10 10 0 0022 12z"/>
+            <a href="https://www.tiktok.com/@musikitera" class="hover:text-yellow-500" aria-label="Tiktok" target="_blank" rel="noopener noreferrer">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.44 2h3.21c.13 1.04.62 2 1.39 2.71.77.71 1.79 1.11 2.85 1.13v3.17a6.37 6.37 0 01-3.25-.9v6.58a6.5 6.5 0 11-6.5-6.5c.24 0 .47.02.7.05v3.29a3.27 3.27 0 103.27 3.27V2z"/>
                 </svg>
             </a>
         </div>
