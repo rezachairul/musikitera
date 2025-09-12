@@ -2,14 +2,91 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     {{-- HERO SECTION --}}
-    <section class="bg-gray-50 py-16 text-center">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">🎶 #AsikinAja 🎶</h1>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-            Ruang Kreativitas & Harmoni di 
-            <span class="font-medium text-gray-800">UKM Bidang Seni Musik ITERA</span> 🎶  
-            Tempat nada, suara, dan rasa berpadu jadi harmoni.
-        </p>
+    <section class="relative h-screen w-full">
+        <!-- Swiper Container -->
+        <div class="swiper heroSwiper h-full w-full">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="h-screen w-full bg-cover bg-center"
+                        style="background-image: url('https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg');">
+                        <div class="h-full w-full bg-black/50 flex flex-col items-center justify-center text-center px-6">
+                            <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6">
+                                🎶 #AsikinAja 🎶
+                            </h1>
+                            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+                                Ruang Kreativitas & Harmoni di 
+                                <span class="font-semibold text-yellow-400">UKM Bidang Seni Musik ITERA</span> 🎶  
+                                Tempat nada, suara, dan rasa berpadu jadi harmoni.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="h-screen w-full bg-cover bg-center"
+                        style="background-image: url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg');">
+                        <div class="h-full w-full bg-black/50 flex flex-col items-center justify-center text-center px-6">
+                            <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6">
+                                🎶 Musik untuk Semua 🎶
+                            </h1>
+                            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+                                Bersama menciptakan karya, menyalurkan bakat, dan merayakan musik.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="h-screen w-full bg-cover bg-center"
+                        style="background-image: url('https://images.pexels.com/photos/167446/pexels-photo-167446.jpeg');">
+                        <div class="h-full w-full bg-black/50 flex flex-col items-center justify-center text-center px-6">
+                            <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6">
+                                🎶 Harmoni & Kreativitas 🎶
+                            </h1>
+                            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+                                UKMBSM ITERA, tempat berkumpulnya jiwa-jiwa seni yang penuh semangat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination !bottom-8"></div>
+        </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".heroSwiper", {
+            loop: true, // biar muter terus
+            autoplay: {
+                delay: 3000, // ganti slide tiap 5 detik
+                disableOnInteraction: false,
+            },
+            effect: "fade", // bisa juga "slide"
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            });
+        });
+    </script>
+
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    main > .max-w-7xl {
+        padding: 0 !important; /* biar container lain gak ganggu hero */
+        max-width: 100% !important;
+    }
+    </style>
 
     {{-- COUNTER STATISTIK SECTION --}}
     <section id="counter" class="bg-white py-16">
