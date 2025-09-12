@@ -11,8 +11,12 @@
         </p>
     </section>
 
-    {{-- COUNTER SECTION --}}
+    {{-- COUNTER STATISTIK SECTION --}}
     <section id="counter" class="bg-white py-16">
+         <div class="max-w-6xl mx-auto text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800">Statistik UKMBSM ITERA</h2>
+            <p class="text-gray-600 mt-2">Beberapa pencapaian dan fakta tentang kami</p>
+        </div>
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
                 <h2 class="counter text-4xl font-bold text-green-600" data-target="120">0</h2>
@@ -29,6 +33,48 @@
             <div>
                 <h2 class="counter text-4xl font-bold text-green-600" data-target="5">0</h2>
                 <p class="text-gray-600">Kolaborasi</p>
+            </div>
+        </div>
+    </section>
+
+    {{-- LAYANAN SECTION --}}
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl font-semibold text-center mb-12">Layanan</h2>
+
+            <div class="grid gap-8 md:grid-cols-3">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 text-center">
+                    <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600">
+                        🎵
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Penyewaan Alat dan Studio Musik ITERA</h3>
+                    <p class="text-gray-600 text-sm">
+                        Menyediakan layanan sewa alat musik dan studio latihan dengan fasilitas lengkap untuk mahasiswa ITERA.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 text-center">
+                    <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-yellow-600">
+                        🎤
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Penampilan Performance UKMBSM ITERA</h3>
+                    <p class="text-gray-600 text-sm">
+                        Layanan penampilan musik dalam berbagai acara kampus maupun kegiatan eksternal.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 text-center">
+                    <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600">
+                        🎧
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Studio Records</h3>
+                    <p class="text-gray-600 text-sm">
+                        Fasilitas studio rekaman profesional untuk mendukung karya musik mahasiswa.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
