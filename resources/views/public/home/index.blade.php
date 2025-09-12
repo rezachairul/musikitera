@@ -71,20 +71,24 @@
     </section>
 
     {{-- ABOUT HIGHLIGHT SECTION --}}
-     <section class="py-12 bg-gray-100">
+    <section class="py-12 bg-gray-100">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-2xl font-semibold text-center mb-8">Highlight Kegiatan</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 bg-white rounded-lg shadow">
-                    <img src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg" class="rounded-lg mb-4" alt="highlight2">
-                    <h3 class="font-bold text-lg mb-2">Konser Akhir Tahun</h3>
-                    <p class="text-gray-600 text-sm">Penampilan spektakuler dari anggota UKM Bidang Musik ITERA dalam konser akhir tahun.</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow">
-                    <img src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg" class="rounded-lg mb-4" alt="highlight2">
-                    <h3 class="font-bold text-lg mb-2">Workshop Vokal</h3>
-                    <p class="text-gray-600 text-sm">Pelatihan vokal intensif bersama pelatih profesional untuk mengasah kemampuan anggota.</p>
-                </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+                @for ($i = 1; $i <= 12; $i++)
+                    <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                        <img src="https://picsum.photos/400/250?random={{ $i }}" 
+                            class="rounded-lg mb-4 w-full h-40 object-cover" 
+                            alt="highlight{{ $i }}">
+                        <h3 class="font-bold text-lg mb-2">Kegiatan {{ $i }}</h3>
+                        <p class="text-gray-600 text-sm">
+                        Deskripsi singkat kegiatan ke-{{ $i }} yang dilakukan UKM Musik ITERA.
+                        </p>
+                    </div>
+                @endfor
+
             </div>
         </div>
     </section>
