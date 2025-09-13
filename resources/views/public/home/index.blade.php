@@ -86,7 +86,6 @@
     </section>
 
     {{-- LAYANAN SECTION --}}
-    {{-- LAYANAN SECTION --}}
     <section class="py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-2xl font-semibold text-center mb-12">Layanan</h2>
@@ -96,14 +95,8 @@
                 <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition duration-300">
                         <!-- SVG Musik -->
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 19c-1.654 0-3-1.346-3-3s1.346-3 
-                            3-3 3 1.346 3 3-1.346 3-3 
-                            3zm0-4c-.551 0-1 .449-1 
-                            1s.449 1 1 1 1-.449 1-1-.449-1-1-1zm9-9v9c0 
-                            1.654-1.346 3-3 
-                            3s-3-1.346-3-3 1.346-3 3-3c.352 0 
-                            .686.072 1 .184V6H9v2H7V4h11z"/>
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
                         </svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Penyewaan Alat dan Studio Musik ITERA</h3>
@@ -114,15 +107,8 @@
                 <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-yellow-600 group-hover:bg-yellow-600 group-hover:text-white transition duration-300">
                         <!-- SVG Mic -->
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 14c1.654 0 3-1.346 
-                            3-3V5c0-1.654-1.346-3-3-3s-3 
-                            1.346-3 3v6c0 1.654 1.346 3 
-                            3 3zm5-3c0 2.757-2.243 
-                            5-5 5s-5-2.243-5-5H5c0 
-                            3.519 2.613 6.432 6 
-                            6.92V21h2v-3.08c3.387-.488 
-                            6-3.401 6-6.92h-2z"/>
+                         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
                         </svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Penampilan Performance UKMBSM ITERA</h3>
@@ -133,12 +119,8 @@
                 <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
                         <!-- SVG Headphone -->
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 1C6.486 1 2 5.486 2 
-                            11v9c0 1.654 1.346 3 3 
-                            3h2v-8H5v-4c0-3.859 3.141-7 
-                            7-7s7 3.141 7 7v4h-2v8h2c1.654 
-                            0 3-1.346 3-3v-9c0-5.514-4.486-10-10-10z"/>
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0115 0v6a2.25 2.25 0 01-2.25 2.25H16.5V15h3m-15 0h3v5.25H6.75A2.25 2.25 0 014.5 18v-6z" />
                         </svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Studio Records</h3>
