@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
-/* Import custom Swiper + CTA CSS */
+/* Import custom Swiper in CTA CSS */
 @import './public/swiper-CTA.css';
+
+/* Import Navbar CSS */
+@import './public/navbar.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
