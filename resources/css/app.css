@@ -1,13 +1,17 @@
 @import 'tailwindcss';
 
+/* Import Navbar CSS */
+@import './public/navbar.css';
+
 /* Import Hero */
 @import './public/hero.css';
+
+/* Import Hightlight CSS */
+@import './public/hightlight.css';
 
 /* Import custom Swiper in CTA CSS */
 @import './public/swiper-CTA.css';
 
-/* Import Navbar CSS */
-@import './public/navbar.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
