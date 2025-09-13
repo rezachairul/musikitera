@@ -21,6 +21,41 @@ use App\Http\Controllers\public\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
+// ==========================
+// TEST ERROR PAGES
+// ==========================
+
+Route::get('/test-error/401', function () {
+    $title = '401 Unauthorized';
+    return response()->view('errors.401', compact('title'), 401);
+})->name('errors.401');
+
+Route::get('/test-error/403', function () {
+    $title = '403 Forbidden';
+    return response()->view('errors.403', compact('title'), 403);
+})->name('errors.403');
+
+Route::get('/test-error/404', function () {
+    $title = '404 Not Found';
+    return response()->view('errors.404', compact('title'), 404);
+})->name('errors.404');
+
+Route::get('/test-error/419', function () {
+    $title = '419 Page Expired';
+    return response()->view('errors.419', compact('title'), 419);
+})->name('errors.419');
+
+Route::get('/test-error/429', function () {
+    $title = '429 Too Many Requests';
+    return response()->view('errors.429', compact('title'), 429);
+})->name('errors.429');
+
+Route::get('/test-error/500', function () {
+    $title = '500 Internal Server Error';
+    return response()->view('errors.500', compact('title'), 500);
+})->name('errors.500');
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
