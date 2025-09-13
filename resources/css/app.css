@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Import Hero */
+@import './public/hero.css';
+
 /* Import custom Swiper in CTA CSS */
 @import './public/swiper-CTA.css';
 

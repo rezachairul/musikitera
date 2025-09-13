@@ -199,9 +199,9 @@
             <h2 class="text-2xl font-semibold mb-8">Apa Kata Mereka?</h2>
 
             <!-- Wrapper -->
-            <div class="relative w-full overflow-x-hidden">
+            <div class="relative w-full overflow-hidden">
             <!-- Track yang bergerak -->
-            <div class="flex gap-6 animate-marquee whitespace-nowrap">
+            <div class="flex gap-6 animate-marquee">
                 
                 <!-- Card Dummy (10 data) -->
                 <div class="flex-shrink-0 w-64 bg-white border border-gray-300 shadow-lg rounded-xl p-4">
