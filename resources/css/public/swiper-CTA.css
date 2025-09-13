@@ -1,0 +1,20 @@
+/* HERO FIX */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+main > .max-w-7xl {
+    padding: 0 !important; /* biar container lain gak ganggu hero */
+    max-width: 100% !important;
+}
+
+/* CTA MARQUEE */
+@keyframes marquee {
+    0%   { transform: translateX(40%); }
+    100% { transform: translateX(-40%); }
+}
+.animate-marquee {
+    width: max-content;
+    animation: marquee 40s linear infinite;
+}

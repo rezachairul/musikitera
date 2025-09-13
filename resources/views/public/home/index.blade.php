@@ -55,38 +55,9 @@
             </div>
 
             <!-- Pagination -->
-            <div class="swiper-pagination !bottom-8"></div>
+            <div class="swiper-pagination hero-pagination !bottom-8"></div>
         </div>
     </section>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            new Swiper(".heroSwiper", {
-            loop: true, // biar muter terus
-            autoplay: {
-                delay: 3000, // ganti slide tiap 5 detik
-                disableOnInteraction: false,
-            },
-            effect: "fade", // bisa juga "slide"
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            });
-        });
-    </script>
-
-    <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    main > .max-w-7xl {
-        padding: 0 !important; /* biar container lain gak ganggu hero */
-        max-width: 100% !important;
-    }
-    </style>
 
     {{-- COUNTER STATISTIK SECTION --}}
     <section id="counter" class="bg-white py-16">
@@ -96,7 +67,7 @@
         </div>
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-                <h2 class="counter text-4xl font-bold text-green-600" data-target="120">0</h2>
+                <h2 class="counter text-4xl font-bold text-green-600" data-target="200">0</h2>
                 <p class="text-gray-600">Anggota Aktif</p>
             </div>
             <div>
@@ -194,7 +165,7 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <!-- Pagination -->
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination swiper-pagination gallery-pagination"></div>
             </div>
         </div>
     </section>
@@ -230,7 +201,7 @@
             <!-- Wrapper -->
             <div class="relative w-full overflow-x-hidden">
             <!-- Track yang bergerak -->
-            <div class="flex gap-6 animate-marquee">
+            <div class="flex gap-6 animate-marquee whitespace-nowrap">
                 
                 <!-- Card Dummy (10 data) -->
                 <div class="flex-shrink-0 w-64 bg-white border border-gray-300 shadow-lg rounded-xl p-4">
@@ -337,16 +308,5 @@
             </div>
         </div>
     </section>
-
-    <style>
-        @keyframes marquee {
-        0%   { transform: translateX(40%); }
-        100% { transform: translateX(-40%); }
-        }
-        .animate-marquee {
-        width: max-content;
-        animation: marquee 40s linear infinite;
-        }
-    </style>
 
 </x-public.layouts>

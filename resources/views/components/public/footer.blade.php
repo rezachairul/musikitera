@@ -14,7 +14,7 @@
             <h3 class="text-lg font-semibold text-white mb-3">Kontak</h3>
             <a href="https://maps.app.goo.gl/Yx3eQGQP61xPobyZ6">
                 <p class="text-sm">
-                    Ruang D301 Gedung D Lantai 3<br>
+                    Ruang D301 | Gedung D Lantai 3<br>
                     Jl. Terusan Ryacudu No.2, Way Huwi, Kec. Jati Agung, Kabupaten Lampung Selatan, Lampung 35365
                 </p>
             </a>

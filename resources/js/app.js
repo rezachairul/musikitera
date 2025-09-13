@@ -1,3 +1,5 @@
 import './bootstrap';
-import '../js/public/mySwiper';
+
+// Import custom script
 import '../js/public/countNumber';
+import './public/swiper-init.js';
