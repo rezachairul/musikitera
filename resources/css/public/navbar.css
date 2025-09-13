@@ -23,3 +23,14 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+.icon-active {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+.icon-inactive {
+  opacity: 0 !important;
+  transform: scale(0.75) rotate(90deg) !important;
+}
+
