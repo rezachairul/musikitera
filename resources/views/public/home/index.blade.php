@@ -175,9 +175,9 @@
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-2xl font-semibold text-center mb-8">Highlight Kegiatan</h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
-                @for ($i = 1; $i <= 12; $i++)
+                @for ($i = 1; $i <= 6; $i++)
                     <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
                         <img src="https://picsum.photos/400/250?random={{ $i }}" 
                             class="rounded-lg mb-4 w-full h-40 object-cover" 
