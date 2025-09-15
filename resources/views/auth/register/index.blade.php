@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusikITERA | {{ $title }}</title>
-    <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<x-auth.layouts>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
         
@@ -43,5 +35,4 @@
             <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login</a>
         </p>
     </div>
-</body>
-</html>
+</x-auth.layouts>

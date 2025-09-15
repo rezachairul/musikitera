@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\LoginController;
 // ==========================
 use App\Http\Controllers\public\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // ==========================
@@ -72,7 +73,12 @@ Route::prefix('auth')->group(function () {
     // Register
     Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
     Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+
+    // Forgot Password
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 });
+
 
 
 
