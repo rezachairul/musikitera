@@ -34,7 +34,7 @@
         </p>
         <p class="mt-4 text-center text-sm">
             Lupa Password? 
-            <a href="{{ route('password.request') }}" class="text-blue-500 hover:underline">Lupa Password</a>
+            <a href="{{ route('password.request') }}" class="text-blue-500 hover:underline">Reset</a>
         </p>
     </div>
 </x-auth.layouts>
