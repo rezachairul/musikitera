@@ -1,4 +1,4 @@
-{{-- LAYANAN SECTION --}}
+<!-- Layanan yang disediakan oleh UKMBSM ITERA -->
 <section class="py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-2xl font-semibold text-center mb-12">Layanan</h2>

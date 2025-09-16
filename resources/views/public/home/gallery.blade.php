@@ -1,4 +1,4 @@
-{{-- GALLERY SECTION --}}
+<!-- Galeri kegiatan UKMBSM ITERA -->
 <section class="py-12">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-2xl font-semibold text-center mb-8">Galeri Kegiatan</h2>

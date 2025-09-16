@@ -1,4 +1,4 @@
-{{-- HERO SECTION --}}
+<!-- Hero utama -->
 <section class="relative h-screen w-full">
     <!-- Swiper Container -->
     <div class="swiper heroSwiper h-full w-full">

@@ -1,6 +1,6 @@
-{{-- COUNTER STATISTIK SECTION --}}
+<!-- Section angka / statistik -->
 <section id="counter" class="bg-white py-16">
-        <div class="max-w-6xl mx-auto text-center mb-10">
+    <div class="max-w-6xl mx-auto text-center mb-10">
         <h2 class="text-3xl font-bold text-gray-800">Statistik UKMBSM ITERA</h2>
         <p class="text-gray-600 mt-2">Beberapa pencapaian dan fakta tentang kami</p>
     </div>

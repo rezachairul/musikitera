@@ -1,3 +1,5 @@
+<!-- Halaman home, include semua section -->
+
 <x-public.layouts>
     <x-slot:title>{{ $title }}</x-slot:title>
 
@@ -16,6 +18,6 @@
     {{-- Highlight Section --}}
     @include('public.home.highlight')
 
-    {{-- CTA Section --}}
-    @include('public.home.cta')
+    {{-- Testimonial Section --}}
+    @include('public.home.testimonial')
 </x-public.layouts>
