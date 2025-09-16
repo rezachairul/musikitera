@@ -1,9 +1,17 @@
 <nav class="bg-white shadow sticky top-0 z-50">
     <div class="w-full max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-        {{-- Logo + Nama --}}
+        {{-- Logo + Nama + Tagline --}}
         <div class="flex items-center space-x-3">
-            <img src="{{ asset('assets/img/logo/logo_ukm_bsm_itera.png') }}" alt="Logo UKMBSM" class="h-10 w-10 object-contain">
-            <a href="/" class="text-lg font-bold text-gray-800">UKMBSM ITERA</a>
+            <!-- Logo -->
+            <img src="{{ asset('assets/img/logo/logo_ukm_bsm_itera.png') }}" 
+                alt="Logo UKMBSM" 
+                class="h-12 w-12 object-contain">
+
+            <!-- Nama + Tagline -->
+            <div class="flex flex-col leading-tight">
+                <a href="/" class="text-xl font-bold text-gray-800">UKMBSM ITERA</a>
+                <a href="/" class="text-sm italic text-gray-600 tracking-wide">#AsikinAja</a>
+            </div>
         </div>
 
         {{-- Hamburger Button (mobile only) --}}
@@ -43,6 +51,7 @@
                     <a href="/sejarah" class="block px-4 py-2 hover:bg-yellow-100">Sejarah</a>
                     <a href="/pengurus" class="block px-4 py-2 hover:bg-yellow-100">Badan Pengurus</a>
                     <a href="/pengawas" class="block px-4 py-2 hover:bg-yellow-100">Dewan Pengawas</a>
+                    <a href="/alumni" class="block px-4 py-2 hover:bg-yellow-100">Alumni</a>
                     <a href="/studio" class="block px-4 py-2 hover:bg-yellow-100 last:rounded-b-lg">Studio Musik</a>
                 </div>
             </div>

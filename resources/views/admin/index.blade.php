@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MusikITERA | {{ $title }}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --green-dark: #1f2e2b;
-      --gold: #e1b21f;
-      --white-soft: #e2e9e9;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusikITERA | {{ $title }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+        --green-dark: #1f2e2b;
+        --gold: #e1b21f;
+        --white-soft: #e2e9e9;
+        }
+    </style>
 </head>
 <body class="bg-[var(--green-dark)] min-h-screen flex flex-col">
 
