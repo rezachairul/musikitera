@@ -23,9 +23,9 @@
                 <div>
                     <h5 class="text-sm font-medium text-center mb-4 text-gray-600 dark:text-gray-400">HMPS</h5>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/logo/internal/ormawa/hmps/logo-hmif.png') }}" alt="HMPS 1" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="HMPS 1" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="HMPS 1" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
                     </div>
                 </div>
 
@@ -33,9 +33,9 @@
                 <div>
                     <h5 class="text-sm font-medium text-center mb-4 text-gray-600 dark:text-gray-400">UKM</h5>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-kmpa-itera.png') }}" alt="KMPA ITERA" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="KMPA ITERA" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="KMPA ITERA" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />                        
                     </div>
                 </div>
 
@@ -50,18 +50,18 @@
                 <!-- UKMBS -->
                 <div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/logo/eksternal/ukmbs/logo_ukm_bsm_itera.png') }}"  alt="Itera" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/logo/eksternal/ukmbs/logo-ukmbs-malahayati.png') }}"  alt="FTI" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="FTIK" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
                     </div>
                 </div>
 
                 <!-- Komunitas Seni -->
                 <div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Itera" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="FTI" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="FTIK" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Dummy" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Dummy" class="partner-logo h-12 object-contain" />
                     </div>
                 </div>
 
