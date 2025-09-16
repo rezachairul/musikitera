@@ -13,33 +13,34 @@
         <div>
             <h3 class="text-lg font-semibold text-white mb-3">Kontak</h3>
 
-            <a href="https://maps.app.goo.gl/TQbgMF4HGSsdEwsY7"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-start gap-3 justify-center md:justify-start text-sm hover:text-yellow-500">
+            {{-- Lokasi --}}
+            <a href="https://maps.app.goo.gl/TQbgMF4HGSsdEwsY7" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-sm hover:text-yellow-500 md:flex-row md:items-start md:justify-start md:gap-2">
+
+                {{-- Ikon --}}
                 <svg class="w-5 h-5 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75  7-13c0-3.87-3.13-7-7-7zm0  9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
                 </svg>
-                <span>
-                Studio Musik ITERA <br>
-                Ruang D301 | Gedung D Lantai 3 <br>
-                Jl. Terusan Ryacudu No.2, Way Huwi, Jati Agung <br>
-                Lampung Selatan, Lampung 35365
-                </span>
+
+                {{-- Teks --}}
+                <div class="flex flex-col text-center md:text-left">
+                    <span class="font-medium">Studio Musik ITERA</span>
+                    <span class="hidden md:block text-gray-400 leading-relaxed">
+                        Ruang D301 | Gedung D Lantai 3 <br>
+                        Jl. Terusan Ryacudu No.2, Way Huwi, Jati Agung <br>
+                        Lampung Selatan, Lampung 35365
+                    </span>
+                </div>
             </a>
 
-            <a href="mailto:musikitera@gmail.com"
-                class="flex items-center gap-3 justify-center md:justify-start text-sm mt-2 hover:text-yellow-500">
-                <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 
-                        0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 
-                        0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 
-                        2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 
-                        1-1.07-1.916V6.75" />
+            {{-- Email --}}
+            <a href="mailto:musikitera@gmail.com" class="flex flex-col items-center text-sm mt-3 hover:text-yellow-500 md:flex-row md:items-start md:justify-start md:gap-2">
+
+                {{-- Ikon --}}
+                <svg class="w-5 h-5 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
-                <span>musikitera@gmail.com</span>
+
+                <span class="text-center md:text-left">musikitera@gmail.com</span>
             </a>
         </div>
 
