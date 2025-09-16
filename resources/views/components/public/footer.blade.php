@@ -13,7 +13,7 @@
         <div>
             <h3 class="text-lg font-semibold text-white mb-3">Kontak</h3>
 
-            <a href="https://maps.app.goo.gl/Yx3eQGQP61xPobyZ6"
+            <a href="https://maps.app.goo.gl/TQbgMF4HGSsdEwsY7"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-start gap-3 justify-center md:justify-start text-sm hover:text-yellow-500">
@@ -21,6 +21,7 @@
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
                 </svg>
                 <span>
+                Studio Musik ITERA <br>
                 Ruang D301 | Gedung D Lantai 3 <br>
                 Jl. Terusan Ryacudu No.2, Way Huwi, Jati Agung <br>
                 Lampung Selatan, Lampung 35365
