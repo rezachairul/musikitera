@@ -20,4 +20,10 @@
 
     {{-- Testimonial Section --}}
     @include('public.home.testimonial')
+
+    {{-- CTA Section --}}
+    @include('public.home.cta')
+
+    {{-- Partner Section --}}
+    @include('public.home.partners')
 </x-public.layouts>

@@ -10,8 +10,10 @@
 @import './public/hightlight.css';
 
 /* Import custom Swiper in CTA CSS */
-@import './public/swiper-CTA.css';
+@import './public/marquee.css';
 
+/* Import custom Gray Scale in Mitra CSS */
+@import './public/grayscale.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

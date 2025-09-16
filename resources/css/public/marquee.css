@@ -1,0 +1,11 @@
+/* MARQUEE */
+@keyframes marquee {
+    0%   { transform: translateX(40%); }
+    100% { transform: translateX(-40%); }
+}
+
+/* testimonial */
+.animate-marquee-testimonial {
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}

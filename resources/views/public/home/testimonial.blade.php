@@ -6,7 +6,7 @@
         <!-- Wrapper -->
         <div class="relative w-full overflow-hidden">
         <!-- Track yang bergerak -->
-        <div class="flex gap-6 animate-marquee">
+        <div class="flex gap-6 animate-marquee-testimonial">
             
             <!-- Card Dummy (10 data) -->
             <div class="flex-shrink-0 w-64 bg-white border border-gray-300 shadow-lg rounded-xl p-4">

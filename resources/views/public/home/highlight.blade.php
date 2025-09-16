@@ -1,5 +1,5 @@
 <!-- Highlight kegiatan UKMBSM ITERA -->
-<section class="py-12 bg-gray-100">
+<section class="py-12">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-2xl font-semibold text-center mb-8">Highlight Kegiatan</h2>
 
@@ -15,7 +15,7 @@
                         alt="highlight{{ $i }}">
 
                     {{-- Overlay dengan slide dari kiri --}}
-                    <div class="absolute inset-0 bg-green-700/85 flex flex-col justify-center items-center text-center px-4
+                    <div class="absolute inset-0 bg-black/85 flex flex-col justify-center items-center text-center px-4
                                 transform -translate-x-full opacity-0
                                 group-hover:translate-x-0 group-hover:opacity-100 
                                 transition duration-500 ease-in-out">
@@ -25,7 +25,7 @@
                             Deskripsi singkat kegiatan ke-{{ $i }} yang dilakukan UKMBSM ITERA.
                         </p>
                         <a href="#"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-green-700 text-sm font-medium hover:bg-gray-200 transition">
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition">
                             Selengkapnya 
                             <span>→</span>
                         </a>
