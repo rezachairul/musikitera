@@ -45,35 +45,56 @@
         {{-- Sosial Media --}}
         <div>
             <h3 class="text-lg font-semibold text-white mb-3">Sosial Media</h3>
-            <ul class="space-y-3">
+    
+            {{-- Versi full (desktop / md ke atas) --}}
+            <ul class="hidden md:flex flex-col gap-3">
                 <li>
                 <a href="https://instagram.com/musikitera" target="_blank"
-                    class="flex items-center gap-3 justify-center md:justify-start hover:text-yellow-500">
+                    class="flex items-center gap-3 hover:text-yellow-500">
                     <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9.75 1.25a.75.75 0 100 1.5.75.75 0 000-1.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+                        <path d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9.75 1.25a.75.75 0 100 1.5.75.75 0 000-1.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
                     </svg>
                     <span>musikitera</span>
                 </a>
                 </li>
                 <li>
                 <a href="https://www.youtube.com/@musikitera5519" target="_blank"
-                    class="flex items-center gap-3 justify-center md:justify-start hover:text-yellow-500">
+                    class="flex items-center gap-3 hover:text-yellow-500">
                     <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M21.8 8s-.2-1.5-.8-2.2a3 3 0 00-2.2-.8C16.8 5 12 5 12 5s-4.8 0-6.8.2c-.8.1-1.6.3-2.2.8-.6.7-.8 2.2-.8 2.2S2 9.6 2 11.3v1.4c0 1.7.2 3.3.2 3.3s.2 1.5.8 2.2c.6.5 1.4.7 2.2.8C7.2 19 12 19 12 19s4.8 0 6.8-.2c.8-.1 1.6-.3 2.2-.8.6-.7.8-2.2.8-2.2s.2-1.6.2-3.3v-1.4c0-1.7-.2-3.3-.2-3.3zM10 9.8l5.2 3.2-5.2 3.2V9.8z"/>
+                        <path d="M21.8 8s-.2-1.5-.8-2.2a3 3 0 00-2.2-.8C16.8 5 12 5 12 5s-4.8 0-6.8.2c-.8.1-1.6.3-2.2.8-.6.7-.8 2.2-.8 2.2S2 9.6 2 11.3v1.4c0 1.7.2 3.3.2 3.3s.2 1.5.8 2.2c.6.5 1.4.7 2.2.8C7.2 19 12 19 12 19s4.8 0 6.8-.2c.8-.1 1.6-.3 2.2-.8.6-.7.8-2.2.8-2.2s.2-1.6.2-3.3v-1.4c0-1.7-.2-3.3-.2-3.3zM10 9.8l5.2 3.2-5.2 3.2V9.8z"/>
                     </svg>
                     <span>musikitera</span>
                 </a>
                 </li>
                 <li>
                 <a href="https://www.tiktok.com/@musikitera" target="_blank"
-                    class="flex items-center gap-3 justify-center md:justify-start hover:text-yellow-500">
+                    class="flex items-center gap-3 hover:text-yellow-500">
                     <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.44 2h3.21c.13 1.04.62 2 1.39 2.71.77.71 1.79 1.11 2.85 1.13v3.17a6.37 6.37 0 01-3.25-.9v6.58a6.5 6.5 0 11-6.5-6.5c.24 0 .47.02.7.05v3.29a3.27 3.27 0 103.27 3.27V2z"/>
+                        <path d="M12.44 2h3.21c.13 1.04.62 2 1.39 2.71.77.71 1.79 1.11 2.85 1.13v3.17a6.37 6.37 0 01-3.25-.9v6.58a6.5 6.5 0 11-6.5-6.5c.24 0 .47.02.7.05v3.29a3.27 3.27 0 103.27 3.27V2z"/>
                     </svg>
                     <span>musikitera</span>
                 </a>
                 </li>
             </ul>
+        
+            {{-- Versi icon-only (mobile) --}}
+            <div class="flex md:hidden justify-center gap-6 text-xl">
+                <a href="https://instagram.com/musikitera" target="_blank" class="hover:text-yellow-500" aria-label="Instagram">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9.75 1.25a.75.75 0 100 1.5.75.75 0 000-1.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@musikitera5519" target="_blank" class="hover:text-yellow-500" aria-label="YouTube">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21.8 8s-.2-1.5-.8-2.2a3 3 0 00-2.2-.8C16.8 5 12 5 12 5s-4.8 0-6.8.2c-.8.1-1.6.3-2.2.8-.6.7-.8 2.2-.8 2.2S2 9.6 2 11.3v1.4c0 1.7.2 3.3.2 3.3s.2 1.5.8 2.2c.6.5 1.4.7 2.2.8C7.2 19 12 19 12 19s4.8 0 6.8-.2c.8-.1 1.6-.3 2.2-.8.6-.7.8-2.2.8-2.2s.2-1.6.2-3.3v-1.4c0-1.7-.2-3.3-.2-3.3zM10 9.8l5.2 3.2-5.2 3.2V9.8z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@musikitera" target="_blank" class="hover:text-yellow-500" aria-label="TikTok">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.44 2h3.21c.13 1.04.62 2 1.39 2.71.77.71 1.79 1.11 2.85 1.13v3.17a6.37 6.37 0 01-3.25-.9v6.58a6.5 6.5 0 11-6.5-6.5c.24 0 .47.02.7.05v3.29a3.27 3.27 0 103.27 3.27V2z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
 
     </div>
