@@ -16,14 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Admin UKMBSM',
-            'email' => 'admin@ukmbsm.itera.ac.id',
-            'email_verified_at' => now(),
-            'password' => bcrypt('musikitera2016'), // password default
-            'remember_token' => Str::random(10),
+        // Panggil UserSeeder
+        $this->call([
+            UserSeeder::class,
         ]);
+
+        // Kalau nanti ada seeder lain, tinggal tambah di array ini
+        // ExampleSeeder::class,
     }
 }
