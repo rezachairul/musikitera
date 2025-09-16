@@ -190,7 +190,7 @@
                             alt="highlight{{ $i }}">
 
                         {{-- Overlay dengan slide dari kiri --}}
-                        <div class="absolute inset-0 bg-green-700/80 flex flex-col justify-center items-center text-center px-4
+                        <div class="absolute inset-0 bg-green-700/85 flex flex-col justify-center items-center text-center px-4
                                     transform -translate-x-full opacity-0
                                     group-hover:translate-x-0 group-hover:opacity-100 
                                     transition duration-500 ease-in-out">
