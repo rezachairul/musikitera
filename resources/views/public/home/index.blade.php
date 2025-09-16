@@ -92,7 +92,10 @@
 
             <div class="grid gap-8 md:grid-cols-3">
                 <!-- Card 1 -->
-                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
+                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl 
+                    transition-all duration-300 ease-in-out p-6 text-center 
+                    transform hover:-translate-y-2 hover:scale-105 
+                    border-2 border-transparent hover:border-green-600">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition duration-300">
                         <!-- SVG Musik -->
                         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -104,7 +107,10 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
+                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl 
+                    transition-all duration-300 ease-in-out p-6 text-center 
+                    transform hover:-translate-y-2 hover:scale-105 
+                    border-2 border-transparent hover:border-yellow-500">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-yellow-600 group-hover:bg-yellow-600 group-hover:text-white transition duration-300">
                         <!-- SVG Mic -->
                          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -116,7 +122,10 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 text-center transform hover:-translate-y-2 hover:scale-105">
+                <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl 
+                    transition-all duration-300 ease-in-out p-6 text-center 
+                    transform hover:-translate-y-2 hover:scale-105 
+                    border-2 border-transparent hover:border-blue-600">
                     <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
                         <!-- SVG Headphone -->
                         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
