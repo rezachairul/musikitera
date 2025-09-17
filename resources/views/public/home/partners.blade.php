@@ -50,7 +50,6 @@
                 <!-- UKMBS -->
                 <div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/logo/eksternal/ukmbs/logo_ukm_bsm_itera.png') }}" alt="UKMBSM ITERA" class="partner-logo h-12 object-contain" />
                         <img src="{{ asset('assets/img/logo/eksternal/ukmbs/ukmbs-kombir.png') }}" alt="kombir" class="partner-logo h-12 object-contain" />
                         <img src="{{ asset('assets/img/logo/eksternal/ukmbs/ukmbs-malahayati.png') }}" alt="malahayati" class="partner-logo h-12 object-contain" />
                         <img src="{{ asset('assets/img/logo/eksternal/ukmbs/ukmbs-polinela.png') }}" alt="polinela" class="partner-logo h-12 object-contain" />
