@@ -49,6 +49,7 @@
                 
                 <!-- UKMBS -->
                 <div>
+                    <h5 class="text-sm font-medium text-center mb-4 text-gray-600 dark:text-gray-400">UKMBS</h5>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
                         <img src="{{ asset('assets/img/logo/eksternal/ukmbs/ukmbs-kombir.png') }}" alt="kombir" class="partner-logo h-12 object-contain" />
                         <img src="{{ asset('assets/img/logo/eksternal/ukmbs/ukmbs-malahayati.png') }}" alt="malahayati" class="partner-logo h-12 object-contain" />
@@ -61,6 +62,7 @@
 
                 <!-- Komunitas Seni -->
                 <div>
+                    <h5 class="text-sm font-medium text-center mb-4 text-gray-600 dark:text-gray-400">Komunitas Seni Lainnya</h5>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
                         <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Dummy" class="partner-logo h-12 object-contain" />
                         <img src="{{ asset('assets/img/dummy/dummy.png') }}"  alt="Dummy" class="partner-logo h-12 object-contain" />
