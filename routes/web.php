@@ -96,7 +96,7 @@ Route::middleware('guest')->prefix('/')->group(function () {
 
 // Admins Routes
 Route::middleware(['auth', 'role:admin'])->prefix('administrator')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.administrator.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.administrator.dashboard.index');
 });
 
 // Admins Badan Pengurus Routes
