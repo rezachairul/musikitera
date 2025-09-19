@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Daftarkan route middleware disini
         $middleware->alias([
             'role' => RoleMiddleware::class,
-            // 'prevent-back-history' => PreventBackHistory::class,
+            'prevent-back-history' => PreventBackHistory::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
