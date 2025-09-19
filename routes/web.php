@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 // Adnmins
 // ==========================
 use App\Http\Controllers\admin\administrator\DashboardController;
+use App\Http\Controllers\admin\administrator\ManageUserController;
 use App\Http\Controllers\admin\bph\DashboardBPHController;
 use App\Http\Controllers\admin\dpo\DashboardDPOController;
 use App\Http\Controllers\admin\pembina\DashboardPembinaController;
@@ -99,7 +100,19 @@ Route::middleware('guest')->prefix('/')->group(function () {
 
 // Admins Routes
 Route::middleware(['auth', 'role:admin'])->prefix('administrator')->group(function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.administrator.dashboard.index');
+
+    // Manage users
+    Route::controller(ManageUserController::class)->prefix('manage-user')->name('manage-user.')->group(function () {
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+
 });
 
 // Admins Badan Pengurus Routes
