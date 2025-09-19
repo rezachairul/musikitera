@@ -11,7 +11,8 @@
             <!-- Institusi -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-6 place-items-center">
                 <img src="{{ asset('assets/img/logo/internal/institusi/logo-itera.png') }}"  alt="Itera" class="partner-logo h-12 object-contain" />
-                <img src="{{ asset('assets/img/logo/internal/institusi/logo-fti-2.png') }}"  alt="FTI" class="partner-logo h-12 object-contain" />
+                <!-- FTI masih ada masalah sama UKMBSM -->
+                <!-- <img src="{{ asset('assets/img/logo/internal/institusi/logo-fti-2.png') }}"  alt="FTI" class="partner-logo h-12 object-contain" /> -->
                 <img src="{{ asset('assets/img/logo/internal/institusi/logo-ftik.png') }}"  alt="FTIK" class="partner-logo h-12 object-contain" />
                 <img src="{{ asset('assets/img/logo/internal/institusi/logo-fs-2.png') }}"  alt="FS" class="partner-logo h-12 object-contain" />
             </div>
