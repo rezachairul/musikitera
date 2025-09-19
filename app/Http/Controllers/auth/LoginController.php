@@ -29,7 +29,28 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('admin.administrator.index')->with('success', 'Login berhasil!');
+
+            $user = Auth::user();
+
+            // Cek role user dan redirect sesuai dashboard
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->route('admin.administrator.index')
+                                     ->with('success', 'Login berhasil sebagai Administrator!');
+                case 'bph':
+                    return redirect()->route('bph.dashboard')
+                                     ->with('success', 'Login berhasil sebagai Badan Pengurus!');
+                case 'dpo':
+                    return redirect()->route('dpo.dashboard')
+                                     ->with('success', 'Login berhasil sebagai Dewan Pengawas!');
+                case 'pembina':
+                    return redirect()->route('pembina.dashboard')
+                                     ->with('success', 'Login berhasil sebagai Pembina!');
+                default:
+                    Auth::logout();
+                    return redirect()->route('login')
+                                     ->withErrors(['email' => 'Role tidak dikenali.']);
+            }
         }
 
         return back()->withErrors([
