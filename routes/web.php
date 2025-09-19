@@ -107,7 +107,7 @@ Route::prefix('/')->group(function () {
 // Admins Routes
 Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(function () {
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.administrator.dashboard.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     // Manage users
     Route::controller(ManageUserController::class)->prefix('manage-user')->name('manage-user.')->group(function () {
