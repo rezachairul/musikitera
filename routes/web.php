@@ -5,13 +5,16 @@ use Illuminate\Support\Facades\Route;
 // ==========================
 // Auths
 // ==========================
-use App\Http\Controllers\admin\administrator\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 
 
 // ==========================
 // Adnmins
 // ==========================
+use App\Http\Controllers\admin\administrator\DashboardController;
+use App\Http\Controllers\admin\bph\DashboardBPHController;
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 
 
 // ==========================
@@ -101,15 +104,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('administrator')->group(functi
 
 // Admins Badan Pengurus Routes
 Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('admin.bph.dashboard.index');
 });
 
 // Admins Dewan Pengawas Routes
 Route::middleware(['auth', 'role:dpo'])->prefix('dewan-pengawas')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/dashboard', [DashboardDPOController::class, 'index'])->name('admin.dpo.dashboard.index');
 });
 
 // Admins Pembina Routes ( Soon )
 Route::middleware(['auth', 'role:pembina'])->prefix('pembina')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/dashboard', [DashboardPembinaController::class, 'index'])->name('admin.pembina.dashboard.index');
 });
