@@ -1,0 +1,11 @@
+.icon-transition {
+  transition: transform 0.6s ease-in-out;
+}
+.rotate-out {
+  transform: rotate(180deg) scale(0.8);
+  opacity: 0;
+}
+.rotate-in {
+  transform: rotate(-180deg) scale(0.8);
+  opacity: 0;
+}

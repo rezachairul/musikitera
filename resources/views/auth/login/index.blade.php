@@ -19,11 +19,11 @@
             @csrf
             <div>
                 <label class="block mb-1 font-medium">Email</label>
-                <input type="email" name="email" class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" required>
+                <input type="email" name="email" class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" required required autocomplete="email">
             </div>
             <div>
                 <label class="block mb-1 font-medium">Password</label>
-                <input type="password" name="password" class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" required>
+                <input type="password" name="password" class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" required autocomplete="current-password">
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Login</button>
         </form>

@@ -1,6 +1,10 @@
 import './bootstrap';
 
-// Import custom script
+// Import custom script in Public
 import '../js/public/countNumber';
 import '../js/public/navbar';
-import './public/swiper-init.js';
+import '../js/public/swiper-init.js';
+
+// Import custom script in Admin
+// Administrator
+import '../js/admin/theme-toogle.js';

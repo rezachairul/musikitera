@@ -71,25 +71,31 @@ Route::get('/test-error/500', function () {
 // Auths routes
 // ==========================
 Route::prefix('auth')->group(function () {
-    // Login
-    Route::get('login', [LoginController::class, 'login'])->name('login')->middleware('guest');
-    Route::post('login', [LoginController::class, 'authenticate'])->name('login.authenticate');
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    // Login & Register hanya untuk guest
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [LoginController::class, 'login'])->name('login');
+        Route::post('login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+        Route::get('register', [RegisterController::class, 'register'])->name('register');
+        Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+    });
 
-    // Register
-    Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
-    Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+    // Logout & dashboard hanya untuk auth
+    Route::middleware('auth')->group(function () {
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    });
 
-    // Forgot Password
-    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    // Forgot Password (guest juga biasanya)
+    Route::middleware('guest')->group(function () {
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
+        Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    });
 });
 
 
 // ==========================
 // Public routes
 // ==========================
-Route::middleware('guest')->prefix('/')->group(function () {
+Route::prefix('/')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('public.index');
 });
 
@@ -99,7 +105,7 @@ Route::middleware('guest')->prefix('/')->group(function () {
 // ==========================
 
 // Admins Routes
-Route::middleware(['auth', 'role:admin'])->prefix('administrator')->group(function () {
+Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.administrator.dashboard.index');
 
