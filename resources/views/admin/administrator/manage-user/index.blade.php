@@ -50,6 +50,6 @@
 
     <!-- Table -->
     <div class="p-8 rounded-xl shadow-md w-full max-w-screen text-center justify-center border border-gray-200">
-        
+        <h1>Table {{ $title }}</h1>
     </div>
 </x-admin.administrator.layouts>
