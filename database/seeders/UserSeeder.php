@@ -17,13 +17,15 @@ class UserSeeder extends Seeder
         $roles = [
             'Badan Pengurus' => 'bph',
             'Dewan Pengawas' => 'dpo',
-            'Admin'          => 'admin',
+            'Administrator'  => 'admin',
+            'Pembina'  => 'pembina',
         ];
 
         foreach ($roles as $roleName => $prefix) {
             User::create([
                 'name'              => strtoupper(str_replace(' ', '', $roleName)) . ' UKMBSM',
                 'email'             => "{$prefix}.{$prefix}@ukmbsm.itera.ac.id",
+                'role'              => $prefix,
                 'email_verified_at' => now(),
                 'password'          => Hash::make('musikitera2016'),
                 'remember_token'    => Str::random(10),

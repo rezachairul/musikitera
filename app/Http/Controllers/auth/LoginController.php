@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('admin.index')->with('success', 'Login berhasil!');
+            return redirect()->route('admin.administrator.index')->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors([
