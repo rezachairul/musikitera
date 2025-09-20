@@ -1,5 +1,5 @@
-<footer class="bg-gray-900 text-gray-300 py-4 mt-5">
-    <div class="text-center text-xs text-gray-500">
+<footer class="bg-white shadow text-gray-900 py-4 mt-5">
+    <div class="text-center text-xs text-gray-900">
         &copy; {{ date('Y') }} UKMBSM ITERA. All rights reserved.
 
         <div class="mt-1">
