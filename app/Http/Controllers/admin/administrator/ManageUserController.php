@@ -15,7 +15,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $title = 'Manage Users';
+        $title = 'Users';
         return view('admin.administrator.manage-user.index', compact('title'));
     }
 
