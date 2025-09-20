@@ -196,5 +196,61 @@
                 </div>
             </div>
         </div>
+
+        <!-- Pagination -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4 pt-4">
+            <!-- Info jumlah data -->
+            <div class="text-sm text-gray-500 text-center sm:text-left">
+                Menampilkan 1 sampai 10 dari 100 {{ $title }}
+            </div>
+
+            <!-- Tombol Pagination -->
+            <div class="flex justify-center sm:justify-end">
+                <nav class="inline-flex space-x-1 sm:space-x-2" aria-label="Pagination">
+                    <!-- Tombol Sebelumnya -->
+                    <span
+                        class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
+                        <!-- Icon: panah kiri -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <!-- Teks hanya di desktop -->
+                        <span class="hidden sm:inline">Sebelumnya</span>
+                    </span>
+                    <a href="#" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span class="hidden sm:inline">Sebelumnya</span>
+                    </a>
+
+                    {{-- Tombol Angka Halaman --}}
+                    {{-- Halaman aktif --}}
+                    <span
+                        class="px-3 py-2 text-sm font-semibold text-white bg-blue-600 border border-blue-600 rounded-lg">
+                        1
+                    </span>
+                    {{-- Halaman lain (indikator saja, tidak bisa diklik) --}}
+                    <span
+                        class="px-3 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed">
+                        1
+                    </span>
+
+                    <!-- Tombol Selanjutnya -->
+                    <a href="#" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                        <span class="hidden sm:inline">Selanjutnya</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <span class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
+                        <span class="hidden sm:inline">Selanjutnya</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </nav>
+            </div>
+        </div>
     </div>
 </x-admin.administrator.layouts>
