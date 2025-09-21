@@ -9,3 +9,4 @@ import '../js/public/swiper-init.js';
 // Administrator
 import '../js/admin/theme-toogle.js';
 import '../js/admin/AJAX-search-filter.js';
+import '../js/admin/modals.js';

@@ -130,19 +130,43 @@ class ManageUserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all()); // Debug: tampilkan semua data request
+
+        // Validasi Input Data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required|string|in:admin,bph,dpo,pembina',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // Ambil nama depan dari inputan name (nama lengkap)
+        $firstName = strtolower(strtok($request->name,''));
+        $role = $request->role;
+
+        // Buat email secara otomatis
+        $email = "{$firstName}.{$role}@ukmbsm.itera.ac.id";
+
+        // Validasi agar email juga unik
+        if (User::where('email', $email)->exists()){
+            return back()->withErrors(['email' => 'Email sudah digunakan. Silakan coba lagi.'])->withInput();
+        }
+
+        // Simpan user baru ke database
+        User::create([
+            'name' => $request->name,
+            'email' => $email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('manage-user.index')->with('success', 'User berhasil ditambahkan.');
+
     }
 
     /**
@@ -152,27 +176,88 @@ class ManageUserController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all()); // Debug: tampilkan semua data request
+        
+        // Cari data berdasarkan ID
+        $user = User::findOrFail($id);
+
+        // Jika data tidak ditemukan, akan otomatis menampilkan 404
+        if (!$user) {
+            return redirect()->route('manage-user.index')->with('error', 'User tidak ditemukan.');
+        }
+
+        // Validasi Input Data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required|string|in:admin,bph,dpo,pembina',
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        // Ambil nama depan dari inputan name (nama lengkap)
+        $firstName = strtolower(strtok($request->name,''));
+        $role = $request->role;
+
+        // Buat Ulang Email secara otomatiss
+        $email = "{$firstName}.{$role}@ukmbsm.itera.ac.id";
+
+        // Validasi agar email juga unik
+        if (User::where('email', $email)->exists()){
+            return back()->withErrors(['email' => 'Email sudah digunakan. Silakan coba lagi.'])->withInput();
+        }
+
+        // Update data
+        $user->name = $request->name;
+        $user->role = $request->role;
+
+        // Optional: Auto-generate email (kalau kamu gak ambil dari input)
+        $firstName = strtolower(strtok($request->name, ' '));
+        $user->email = $firstName . '.' . $request->role . '@ukmbsm.itera.ac.id';
+
+        // Password hanya diubah kalau diisi
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // Simpan perubahan
+        $user->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('manage-user.index')->with('succes', 'User Berhasil Diperbaharui');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+        // dd($id); // Debug: tampilkan ID user yang akan dihapus
+
+        // Cari data berdasarkan ID
+        $user = User::findOrFail($id);
+
+        // Jika data tidak ditemukan, akan otomatis menampilkan 404
+        if (!$user) {
+            return redirect()->route('manage-user.index')->with('error', 'User tidak ditemukan.');
+        }
+        // Hapus data user
+        $user->delete();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('manage-user.index')->with('success', 'User berhasil dihapus.');
+    }
+
+    /**
+     * Export the specified resource from storage.
+     */
+    public function export(string $id)
     {
         //
     }

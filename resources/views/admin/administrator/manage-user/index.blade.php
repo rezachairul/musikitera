@@ -63,7 +63,7 @@
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-2">
                 <!-- Create -->
-                <button class="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
+                <button onclick="openAddModal()" class="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
@@ -243,4 +243,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Modals -->
+    @include('admin.administrator.manage-user.create')
+    @include('admin.administrator.manage-user.update')
+    @include('admin.administrator.manage-user.delete')
+    
 </x-admin.administrator.layouts>
