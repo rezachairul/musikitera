@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
         foreach ($roles as $roleName => $prefix) {
             User::create([
-                'name'              => strtoupper(str_replace(' ', '', $roleName)) . ' UKMBSM',
+                'name'              => ucwords($roleName) . ' UKMBSM',
                 'email'             => "{$prefix}.{$prefix}@ukmbsm.itera.ac.id",
                 'role'              => $prefix,
                 'email_verified_at' => now(),
@@ -31,5 +31,6 @@ class UserSeeder extends Seeder
                 'remember_token'    => Str::random(10),
             ]);
         }
+
     }
 }
