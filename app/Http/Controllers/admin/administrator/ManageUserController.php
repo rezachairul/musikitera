@@ -145,7 +145,8 @@ class ManageUserController extends Controller
         ]);
 
         // Ambil nama depan dari inputan name (nama lengkap)
-        $firstName = strtolower(strtok($request->name,''));
+        $firstName = strtolower(strtok($request->name, ' '));
+
         $role = $request->role;
 
         // Buat email secara otomatis
@@ -201,7 +202,7 @@ class ManageUserController extends Controller
         ]);
 
         // Ambil nama depan dari inputan name (nama lengkap)
-        $firstName = strtolower(strtok($request->name,''));
+        $firstName = strtolower(strtok($request->name,' '));
         $role = $request->role;
 
         // Buat Ulang Email secara otomatiss
