@@ -123,15 +123,15 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
 
 // Admins Badan Pengurus Routes
 Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(function () {
-    Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('admin.bph.dashboard.index');
+    Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('bph.dashboard.index');
 });
 
 // Admins Dewan Pengawas Routes
 Route::middleware(['auth', 'role:dpo'])->prefix('dewan-pengawas')->group(function () {
-    Route::get('/dashboard', [DashboardDPOController::class, 'index'])->name('admin.dpo.dashboard.index');
+    Route::get('/dashboard', [DashboardDPOController::class, 'index'])->name('dpo.dashboard.index');
 });
 
 // Admins Pembina Routes ( Soon )
 Route::middleware(['auth', 'role:pembina'])->prefix('pembina')->group(function () {
-    Route::get('/dashboard', [DashboardPembinaController::class, 'index'])->name('admin.pembina.dashboard.index');
+    Route::get('/dashboard', [DashboardPembinaController::class, 'index'])->name('pembina.dashboard.index');
 });

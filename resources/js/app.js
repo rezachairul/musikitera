@@ -10,3 +10,5 @@ import '../js/public/swiper-init.js';
 import '../js/admin/theme-toogle.js';
 import '../js/admin/AJAX-search-filter.js';
 import '../js/admin/modals.js';
+import '../js/admin/swiper-bundle.min.js';
+import '../js/admin/cdn.min.js';
