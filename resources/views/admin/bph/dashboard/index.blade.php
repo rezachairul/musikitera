@@ -1,68 +1,71 @@
 <x-admin.bph.layouts>
     <x-slot:title>Dashboard {{ $title }}</x-slot:title>
 
-    <div class="p-8 rounded-xl shadow-md w-full max-w-screen text-center justify-center border border-gray-200 mb-8">
+    <!-- Header Section -->
+    <div class="p-8 rounded-2xl shadow-md w-full max-w-screen text-center justify-center border border-gray-200 mb-8 bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
         <h2 class="text-3xl font-bold mb-4">
             Selamat datang, {{ auth()->user()->name }}
         </h2>
-        <p class="leading-relaxed">
+        <p class="leading-relaxed max-w-2xl mx-auto">
             Dashboard ini adalah ruang untuk berkarya.  
             Dengan semangat <span class="font-semibold">keharmonisan</span>, mari terus menciptakan musik yang menyatukan perbedaan.  
         </p>
     </div>
 
-    <!-- Dummy Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
 
-        <!-- Card 1 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Kegiatan Mendatang</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Latihan rutin bulan ini akan diadakan setiap hari Sabtu, pukul 16.00 di Gedung Serbaguna.
-            </p>
+        <!-- Anggota Aktif -->
+        <div class="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center
+                    transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="bg-red-100 text-red-500 p-3 rounded-full mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5V4H2v16h5v2h10v-2z"/>
+                </svg>
+            </div>
+            <h2 class="text-lg font-semibold text-gray-800">Total Anggota Aktif</h2>
+            <p class="text-gray-700 font-bold text-3xl mt-2">120</p>
         </div>
 
-        <!-- Card 2 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Data Anggota</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Total Anggota Aktif: <span class="font-bold">120</span><br>
-                Anggota Baru Semester Ini: <span class="font-bold">15</span>
-            </p>
+        <!-- Alumni -->
+        <div class="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center
+                    transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="bg-blue-100 text-blue-500 p-3 rounded-full mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 2.21-1.79 4-4 4s-4-1.79-4-4 
+                    1.79-4 4-4 4 1.79 4 4zm0 0h0a4 4 0 100-8 4 4 0 000 8z"/>
+                </svg>
+            </div>
+            <h2 class="text-lg font-semibold text-gray-800">Total Alumni</h2>
+            <p class="text-gray-700 font-bold text-3xl mt-2">85</p>
         </div>
 
-        <!-- Card 3 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Pengumuman</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Rekruitmen panitia acara Dies Natalis UKMBSM dibuka mulai minggu depan.
-            </p>
+        <!-- Badan Pengurus -->
+        <div class="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center
+                    transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="bg-green-100 text-green-500 p-3 rounded-full mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.21 0 4.293.573 
+                    6.121 1.573M15 11a3 3 0 100-6 3 3 0 000 6z"/>
+                </svg>
+            </div>
+            <h2 class="text-lg font-semibold text-gray-800">Total Badan Pengurus</h2>
+            <p class="text-gray-700 font-bold text-3xl mt-2">25</p>
         </div>
 
-        <!-- Card 4 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Statistik Kegiatan</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Jumlah Kegiatan Semester Ini: <span class="font-bold">8</span><br>
-                Rata-rata Kehadiran: <span class="font-bold">85%</span>
-            </p>
+        <!-- Kegiatan -->
+        <div class="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center
+                    transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="bg-yellow-100 text-yellow-500 p-3 rounded-full mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 
+                    9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h2 class="text-lg font-semibold text-gray-800">Total Kegiatan</h2>
+            <p class="text-gray-700 font-bold text-3xl mt-2">32</p>
         </div>
 
-        <!-- Card 5 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Keuangan</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Saldo Kas Saat Ini: <span class="font-bold">Rp 5.200.000</span><br>
-                Pemasukan Terakhir: Sponsorship Event Akustik.
-            </p>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200">
-            <h3 class="text-lg font-semibold mb-2">Inspirasi Musik</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm italic">
-                "Musik adalah bahasa universal yang mampu menyatukan hati manusia."
-            </p>
-        </div>
+        <!-- tambahin juga untuk pendaftar, karya, penyewa, mitra -->
     </div>
 </x-admin.bph.layouts>
