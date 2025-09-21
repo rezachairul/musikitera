@@ -1,6 +1,6 @@
 <div class="w-64 bg-white shadow-lg text-gray-800 flex flex-col h-screen">
     {{-- Header (Logo + Nama + Tagline) --}}
-    <div class="p-5 shrink-0 border-b">
+    <div class="p-5 shrink-0">
         <div class="flex items-center space-x-3">
             <img src="{{ asset('assets/img/logo/logo_ukm_bsm_itera.png') }}" 
                  alt="Logo UKMBSM" 
