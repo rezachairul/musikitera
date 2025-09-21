@@ -11,12 +11,19 @@ use App\Http\Controllers\Auth\LoginController;
 // ==========================
 // Adnmins
 // ==========================
+// Administrator
 use App\Http\Controllers\admin\administrator\DashboardController;
 use App\Http\Controllers\admin\administrator\ManageUserController;
-use App\Http\Controllers\admin\bph\DashboardBPHController;
-use App\Http\Controllers\admin\dpo\DashboardDPOController;
-use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 
+// Badan Pengurus
+use App\Http\Controllers\admin\bph\DashboardBPHController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+
+// Dewan Pengawas
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
+
+// Pembina
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 
 // ==========================
 // Publics
@@ -123,7 +130,44 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
 
 // Admins Badan Pengurus Routes
 Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('bph.dashboard.index');
+
+    // Manajemen Anggota Aktif
+    Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Manajemen Badan Pengurus
+    // Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
+    //     Route::get('/','index')->name('index');
+    //     Route::post('/','store')->name('store');
+    //     Route::put('/{id}','update')->name('update');
+    //     Route::delete('/{id}','destroy')->name('destroy');
+    //     Route::get('/export',  'export')->name('export');
+    // });
+
+    // Manajemen Alumni
+    // Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
+    //     Route::get('/','index')->name('index');
+    //     Route::post('/','store')->name('store');
+    //     Route::put('/{id}','update')->name('update');
+    //     Route::delete('/{id}','destroy')->name('destroy');
+    //     Route::get('/export',  'export')->name('export');
+    // });
+
+    // Manajemen Pembina
+    // Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
+    //     Route::get('/','index')->name('index');
+    //     Route::post('/','store')->name('store');
+    //     Route::put('/{id}','update')->name('update');
+    //     Route::delete('/{id}','destroy')->name('destroy');
+    //     Route::get('/export',  'export')->name('export');
+    // });
 });
 
 // Admins Dewan Pengawas Routes
