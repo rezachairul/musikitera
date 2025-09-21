@@ -51,13 +51,13 @@ class LoginController extends Controller
                     return redirect()->route('dashboard.index')
                                      ->with('success', 'Login berhasil sebagai Administrator!');
                 case 'bph':
-                    return redirect()->route('admin.bph.dashboard.index')
+                    return redirect()->route('bph.dashboard.index')
                                      ->with('success', 'Login berhasil sebagai Badan Pengurus!');
                 case 'dpo':
-                    return redirect()->route('admin.dpo.dashboard.index')
+                    return redirect()->route('dpo.dashboard.index')
                                      ->with('success', 'Login berhasil sebagai Dewan Pengawas!');
                 case 'pembina':
-                    return redirect()->route('admin.pembina.dashboard.index')
+                    return redirect()->route('pembina.dashboard.index')
                                      ->with('success', 'Login berhasil sebagai Pembina!');
                 default:
                     Auth::logout();
