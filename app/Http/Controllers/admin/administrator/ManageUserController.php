@@ -97,14 +97,7 @@ class ManageUserController extends Controller
         // Total keseluruhan
         $totals['all'] = array_sum($totals);
 
-        // AJAX response
-        if ($request->ajax()) {
-            return view(
-                'admin.administrator.manage-user.partials.table_body',
-                array_merge(compact('title', 'users', 'keywords', 'filter'), $results)
-            )->render();
-        }
-
+        // Label dan warna untuk tiap role
         $roleLabels = [
             'admin'   => [
                 'label' => 'Administrator',
@@ -123,6 +116,14 @@ class ManageUserController extends Controller
                 'color' => 'bg-yellow-100 text-yellow-700 border border-yellow-300',
             ],
         ];
+
+        // AJAX response
+        if ($request->ajax()) {
+            return view(
+                'admin.administrator.manage-user.partials.table_body',
+                array_merge(compact('title', 'users', 'keywords', 'filter', 'roleLabels'), $results)
+            )->render();
+        }
 
         // Normal response
         return view('admin.administrator.manage-user.index', compact('title', 'users', 'totals', 'roleLabels'));

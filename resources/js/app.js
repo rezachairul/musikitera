@@ -8,3 +8,4 @@ import '../js/public/swiper-init.js';
 // Import custom script in Admin
 // Administrator
 import '../js/admin/theme-toogle.js';
+import '../js/admin/AJAX-search-filter.js';

@@ -92,32 +92,47 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0 A7.5 7.5 0 1 0 5.196 5.196 a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </div>
-                    <input type="text" placeholder="Search {{ $title }}..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input 
+                        type="search" 
+                        id="search-input"
+                        value="{{ request('search') }}"
+                        data-url="{{ route('manage-user.index') }}"
+                        data-target="userTableBody"
+                        placeholder="Search {{ $title }}..." 
+                        class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <!-- Filters -->
                 <div class="flex gap-3 w-full sm:w-2/3">
                     <!-- By Role -->
                     <select
+                        id="filter-select"
+                        name="filter"
+                        data-url="{{ route('manage-user.index') }}"
+                        data-target="userTableBody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option class="hover:bg-yellow-100 first:rounded-t-lg" value="">-- All Role --</option>
-                        <option class="hover:bg-yellow-100" value="admin">Administrator</option>
-                        <option class="hover:bg-yellow-100" value="pengurus">Badan Pengurus</option>
-                        <option class="hover:bg-yellow-100" value="pengawas">Dewan Pengawas</option>
-                        <option class="hover:bg-yellow-100 last:rounded-t-lg" value="pembina">Pembina</option>
+                        <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- All Role --</option>
+                        <option value="admin" {{ request('filter') == 'admin' ? 'selected' : '' }}>Administrator</option>
+                        <option value="bph" {{ request('filter') == 'bph' ? 'selected' : '' }}>Badan Pengurus</option>
+                        <option value="dpo" {{ request('filter') == 'dpo ' ? 'selected' : '' }}>Dewan Pengawas</option>
+                        <option value="pembina" {{ request('filter') == 'pembina' ? 'selected' : '' }}>Pembina</option>
                     </select>
 
                     <!-- By Per-Page -->
-                    <select class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option class="hover:bg-yellow-100 first:rounded-t-lg" value="">-- All Page --</option>
-                        <option class="hover:bg-yellow-100" value="10">10 per page</option>
-                        <option class="hover:bg-yellow-100" value="25">25 per page</option>
-                        <option class="hover:bg-yellow-100" value="50">50 per page</option>
-                        <option class="hover:bg-yellow-100 last:rounded-t-lg" value="100">100 per page</option>
+                    <select
+                        id="perpage-select"
+                        name="perPage"
+                        data-url="{{ route('manage-user.index') }}"
+                        data-target="userTableBody"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- All {{ $title }} Page --</option>
+                        <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 {{ $title }} per page</option>
+                        <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 {{ $title }} per page</option>
+                        <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 {{ $title }} per page</option>
+                        <option alue="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100 {{ $title }} per page</option>
                     </select>
                 </div>
             </div>
-
         </div>
 
         <!-- Table -->
@@ -144,7 +159,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tbody id="userTableBody" class="bg-white divide-y divide-gray-200">
                             @include ('admin.administrator.manage-user.partials.table_body')
                         </tbody>
                         <tfoot class="bg-gray-50">
