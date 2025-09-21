@@ -34,9 +34,13 @@
                 <div>
                     <h5 class="text-sm font-medium text-center mb-4 text-gray-600 dark:text-gray-400">UKM</h5>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />
-                        <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy" class="partner-logo h-12 object-contain" />                        
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-kmpa-itera.png') }}" alt="KMPA" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-himalaya.png') }}" alt="Himalaya" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-ikm.png') }}" alt="IKM" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-umpasa.png') }}" alt="UPASA" class="partner-logo h-12 object-contain" />                        
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-batavia.png') }}" alt="Batavia" class="partner-logo h-12 object-contain" />
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-lancang-kuning.png') }}" alt="Lancang Kuning" class="partner-logo h-12 object-contain" />                        
+                        <img src="{{ asset('assets/img/logo/internal/ormawa/ukm/logo-sriwijaya.png') }}" alt="Sriwijaya" class="partner-logo h-12 object-contain" />                        
                     </div>
                 </div>
 
