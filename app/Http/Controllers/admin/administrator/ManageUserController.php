@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\administrator;
 
 use App\Models\User;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -258,8 +259,15 @@ class ManageUserController extends Controller
     /**
      * Export the specified resource from storage.
      */
-    public function export(string $id)
+    public function export(Request $request)
     {
-        //
+        $role = $request->query('filter'); // admin / user_public / all
+        $search = $request->query('search'); // kalau mau dipakai buat filter nama/email
+
+        if ($role === 'all' || empty($role)) {
+            $role = null;
+        }
+
+        return (new UsersExport($role, $search))->export();
     }
 }
