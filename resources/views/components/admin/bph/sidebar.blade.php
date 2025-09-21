@@ -1,25 +1,26 @@
-<div class="w-64 bg-white shadow-lg text-gray-800 flex flex-col p-5 h-screen">
-    {{-- Logo + Nama + Tagline --}}
-    <div class="flex items-center space-x-3 mb-8">
-        <!-- Logo -->
-        <img src="{{ asset('assets/img/logo/logo_ukm_bsm_itera.png') }}" 
-             alt="Logo UKMBSM" 
-             class="h-12 w-12 object-contain">
-
-        <!-- Nama + Tagline -->
-        <div class="flex flex-col leading-tight">
-            <a href="/" class="text-xl font-bold text-gray-800">UKMBSM ITERA</a>
-            <a href="/" class="text-sm italic text-gray-600 tracking-wide">#AsikinAja</a>
+<div class="w-64 bg-white shadow-lg text-gray-800 flex flex-col h-screen">
+    {{-- Header (Logo + Nama + Tagline) --}}
+    <div class="p-5 shrink-0 border-b">
+        <div class="flex items-center space-x-3">
+            <img src="{{ asset('assets/img/logo/logo_ukm_bsm_itera.png') }}" 
+                 alt="Logo UKMBSM" 
+                 class="h-12 w-12 object-contain">
+            <div class="flex flex-col leading-tight">
+                <a href="/" class="text-xl font-bold text-gray-800">UKMBSM ITERA</a>
+                <a href="/" class="text-sm italic text-gray-600 tracking-wide">#AsikinAja</a>
+            </div>
         </div>
     </div>
 
-    {{-- Navigation BPH --}}
-    <nav class="flex flex-col gap-2" x-data="{ openMenu: null }">
-
+    {{-- Navigation (scrollable) --}}
+    <nav class="flex-1 overflow-y-auto p-5 space-y-2" x-data="{ openMenu: null }">
         <!-- Dashboard -->
-        <a href="{{ route('bph.dashboard.index') }}" class="relative flex items-center gap-3 px-3 py-2 rounded-md transition-colors
-            {{ request()->routeIs('bph.dashboard.index') ? 'bg-gray-200 text-amber-600' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
-            <span class="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md {{ request()->routeIs('bph.dashboard.index') ? 'bg-amber-600' : '' }}"></span>
+        <a href="{{ route('bph.dashboard.index') }}" 
+           class="relative flex items-center gap-3 px-3 py-2 rounded-md transition-colors
+           {{ request()->routeIs('bph.dashboard.index') ? 'bg-gray-200 text-amber-600' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
+            <span class="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md 
+                {{ request()->routeIs('bph.dashboard.index') ? 'bg-amber-600' : '' }}">
+            </span>
             <!-- Heroicon: Home -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75M4.5 10.5v9a1.5 1.5 0 001.5 1.5H9V15h6v6h3a1.5 1.5 0 001.5-1.5v-9"/>
@@ -34,20 +35,22 @@
             <button @click="openMenu = (openMenu === 'anggota' ? null : 'anggota')"
                 class="w-full flex items-center justify-between px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-amber-600 transition-colors">
                 <div class="flex items-center gap-3">
+                    <!-- icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
                     <span class="font-medium text-left">Manajemen Anggota</span>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform" :class="{ 'rotate-180': openMenu === 'anggota' }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform" 
+                     :class="{ 'rotate-180': openMenu === 'anggota' }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </button>
             <div x-show="openMenu === 'anggota'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 hover:text-amber-600">Anggota Aktif</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Badan Pengurus</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Alumni</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Pembina</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Anggota Aktif</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Badan Pengurus</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Alumni</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Pembina</a>
             </div>
         </div>
 
@@ -66,14 +69,14 @@
                 </svg>
             </button>
             <div x-show="openMenu === 'konten'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 hover:text-amber-600">Hero</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Profil Organisasi</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Layanan</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Statistik Publik</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Galeri Kegiatan</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Highlight Kegiatan</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Apa Kata Mereka</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">CTA Oprec</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Hero</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Profil Organisasi</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Layanan</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Statistik Publik</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Galeri Kegiatan</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Highlight Kegiatan</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Apa Kata Mereka</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">CTA Oprec</a>
             </div>
         </div>
         
@@ -92,9 +95,9 @@
                 </svg>
             </button>
             <div x-show="openMenu === 'publikasi'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 hover:text-amber-600">Dokumen</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Kegiatan</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Pengumuman Penting</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Dokumen</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Kegiatan</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Pengumuman Penting</a>
             </div>
         </div>
         
@@ -113,10 +116,9 @@
                 </svg>
             </button>
             <div x-show="openMenu === 'mitra'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 hover:text-amber-600">Eksternal</a>
-                <a href="#" class="text-gray-600 hover:text-amber-600">Internal</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Eksternal</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Internal</a>
             </div>
         </div>
     </nav>
-
 </div>
