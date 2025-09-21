@@ -9,7 +9,7 @@ class DashboardBPHController extends Controller
 {
     public function index()
     {
-        $title = 'Dashboard Badan Pengurus';
+        $title = 'Badan Pengurus';
         return view('admin.bph.dashboard.index', compact('title'));
     }
 }

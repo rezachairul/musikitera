@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UKMBSM ITERA | {{ $title }}</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UKMBSM ITERA | {{ $title }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
 
-        <!-- SwiperJS CDN -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    </head>
+    <!-- SwiperJS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
 
-    <body>
-        <div class="flex flex-col min-h-screen">
-            {{-- Isi Halaman --}}
+<body class="h-screen overflow-hidden">
+    <div class="flex h-screen">
+        {{-- Sidebar --}}
+        <x-admin.bph.sidebar></x-admin.bph.sidebar>
 
-            <!-- Navbar -->
-             <x-public.navbar></x-public.navbar>
+        {{-- Right content (navbar + main + footer) --}}
+        <div class="flex flex-col flex-1 overflow-hidden">
+            
+            {{-- Navbar --}}
+            <x-admin.bph.navbar></x-admin.bph.navbar>
 
-            <!-- Main -->
-            <main class="flex-grow">
-                <!-- Header -->
-                @if(!request()->routeIs('public.index'))
-                    <x-public.header>{{ $title }}</x-public.header>
-                @endif
-                <!-- Pages -->
-                <div class="max-w-7xl mx-auto px-6 py-10">
+            {{-- Main --}}
+            <main class="flex-1 overflow-y-auto p-6">
+                {{-- Header --}}
+                <x-admin.bph.header>{{ $title }}</x-admin.bph.header>
+
+                {{-- Pages --}}
+                <div class="mt-6">
                     {{ $slot }}
                 </div>
             </main>
-            <!-- Footer -->
-            <x-public.footer></x-public.footer>
+
+            {{-- Footer --}}
+            <x-admin.bph.footer></x-admin.bph.footer>
         </div>
-    </body>
+    </div>
+</body>
 
 </html>
