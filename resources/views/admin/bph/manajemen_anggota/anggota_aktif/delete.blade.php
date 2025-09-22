@@ -1,6 +1,6 @@
 <!-- Modal Delete -->
-
-    <div id="DeleteModal-" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
+@foreach($anggota_aktifs as $anggota_aktif)
+    <div id="DeleteModal-{{ $anggota_aktif->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-lg p-6 max-w-md w-full text-center relative">
             <div class="flex flex-col items-center space-y-4">
                 <!-- Header dengan Icon -->
@@ -21,20 +21,20 @@
                     </div>
                 </div>
 
-                <!-- Detail User -->
+                <!-- Detail Anggota -->
                 <div class="bg-gray-50 w-full border-2 border-red-500 rounded-lg p-4 text-sm text-left italic text-gray-500 space-y-1">
-                    <p><span class="font-lg">Nama:</span></p>
-                    <p><span class="font-lg">Email:</span></p>
-                    <p><span class="font-lg">Role:</span></p>
+                    <p><span class="font-lg">Nama: </span>{{ $anggota_aktif->nama }}</p>
+                    <p><span class="font-lg">NIA: </span>{{ $anggota_aktif->nia }}</p>
+                    <p><span class="font-lg">Angkatan: </span>{{ $anggota_aktif->angkatan }}</p>
                 </div>
 
                 <!-- Form Hapus -->
-                <form id="deleteForm-" method="POST" action="#">
+                <form id="deleteForm-{{ $anggota_aktif->id }}" method="POST" action="{{ route('anggota-aktif.destroy', $anggota_aktif->id ) }}">
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-center space-x-3 mt-4">
                         <!-- Tombol Batal -->
-                        <button type="button" onclick="closeDeleteModal()"
+                        <button type="button" onclick="closeDeleteModal('{{ $anggota_aktif->id }}')"
                             class="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                             <!-- Icon X -->
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,11 +59,11 @@
                 </form>
             </div>
             <!-- Tombol X -->
-            <button onclick="closeDeleteModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+            <button onclick="closeDeleteModal('{{ $anggota_aktif->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
     </div>
-
+@endforeach

@@ -204,7 +204,25 @@ class AnggotaAktifController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AnggotaAktif $anggotaAktif)
+    public function destroy(string $id)
+    {
+        // dd($id); // Debug: tampilkan ID Anggota yang akan dihapus
+
+        // Cari data berdasarkan ID
+        $anggota_aktif = AnggotaAktif::findOrFail($id);
+
+        // Jika data tidak ditemukan, akan otomatis menampilkan 404
+        if (!$anggota_aktif) {
+            return redirect()->route('anggota-aktif.index')->with('error', 'Anggota tidak ditemukan.');
+        }
+        // Hapus data anggota
+        $anggota_aktif->delete();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('anggota-aktif.index')->with('success', 'Anggota berhasil dihapus.');
+    }
+
+    public function export(Request $request)
     {
         //
     }
