@@ -24,81 +24,41 @@ class AnggotaAktifController extends Controller
         // Pisahkan multi keyword search
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
 
-        // Status yang digunakan
-        $statuss = ['graduate', 'on_going', 'drop_out', 'exit'];
+        $query = AnggotaAktif::query();
 
-        // Build query untuk tiap status
-        $queries = [];
-        foreach ($statuss as $status) {
-            $queries[$status] = AnggotaAktif::where('status', $status);
-
-            if ($search) {
-                $queries[$status]->where(function ($q) use ($keywords) {
-                    foreach ($keywords as $word) {
-                        $q->where(function ($q) use ($word) {
-                            $q->where('nama', 'like', "%{$word}%")
-                            ->orWhere('nim', 'like', "%{$word}%")
-                            ->orWhere('nia', 'like', "%{$word}%")
-                            ->orWhere('prodi', 'like', "%{$word}%");
-                        });
-                    }
-                });
-            }
-            // urutan: pendiri dulu, lalu berdasarkan nomor urut
-            $queries[$status]
-                ->orderByDesc('pendiri')
-                ->orderBy('nomor_urut');
+        if ($search) {
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $q->where(function ($q) use ($word) {
+                        $q->where('nama', 'like', "%{$word}%")
+                        ->orWhere('nim', 'like', "%{$word}%")
+                        ->orWhere('nia', 'like', "%{$word}%")
+                        ->orWhere('prodi', 'like', "%{$word}%");
+                    });
+                }
+            });
         }
 
-        // Ambil data sesuai filter
-        $results = [];
-        foreach ($statuss as $status) {
-            if ($filter === $status) {
-                $results[$status] = $queries[$status]->get();
-            } elseif ($filter === 'all') {
-                $results[$status] = $queries[$status]->get();
-            } else {
-                $results[$status] = collect(); // kosong
-            }
+        // filter status kalau bukan all
+        if ($filter !== 'all') {
+            $query->where('status', $filter);
         }
 
-        // Merge semua hasil
-        $merged = collect([]);
-        foreach ($statuss as $status) {
-            $merged = $merged->merge($results[$status]);
-        }
+        // urutan: pendiri dulu, lalu nomor urut
+        $query->orderByDesc('pendiri')
+            ->orderBy('nomor_urut', 'asc');
 
-        // Pagination manual
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-
-        if ($perPage === 'all') {
-            $perPage = max(1, $merged->count());
-        } else {
-            $perPage = max(1, (int) $perPage);
-        }
-
-        if ($merged->isEmpty()) {
-            $anggota_aktifs = new LengthAwarePaginator([], 0, $perPage, $currentPage, [
-                'path'  => $request->url(),
-                'query' => $request->query(),
-            ]);
-        } else {
-            $currentItems = $merged->slice(($currentPage - 1) * $perPage, $perPage)->values();
-            $total = $merged->count();
-
-            $anggota_aktifs = new LengthAwarePaginator($currentItems, $total, $perPage, $currentPage, [
-                'path'  => $request->url(),
-                'query' => $request->query(),
-            ]);
-        }
+        // paginate
+        $anggota_aktifs = $query->paginate(
+            $perPage === 'all' ? $query->count() : (int) $perPage
+        );
 
         // Hitung total anggota sesuai status
+        $statuss = ['graduate', 'on_going', 'drop_out', 'exit'];
         $totals = [];
         foreach ($statuss as $status) {
             $totals[$status] = AnggotaAktif::where('status', $status)->count();
         }
-
-        // Total keseluruhan
         $totals['all'] = array_sum($totals);
 
         // Label dan warna untuk tiap status
