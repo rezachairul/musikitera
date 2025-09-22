@@ -32,8 +32,7 @@
 
         <!-- Manajemen Anggota -->
         <div>
-            <button @click="openMenu = (openMenu === 'anggota' ? null : 'anggota')"
-                class="w-full flex items-center justify-between px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-amber-600 transition-colors">
+            <button @click="openMenu = (openMenu === 'anggota' ? null : 'anggota')" class="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors{{ request()->routeIs('anggota-*') ? 'bg-gray-100 text-amber-600 font-semibold' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
                 <div class="flex items-center gap-3">
                     <!-- icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -42,18 +41,27 @@
                     <span class="font-medium text-left">Manajemen Anggota</span>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform" 
-                     :class="{ 'rotate-180': openMenu === 'anggota' }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    :class="{ 'rotate-180': openMenu === 'anggota' }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </button>
+
             <div x-show="openMenu === 'anggota'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="{{ route('anggota-aktif.index') }}" class="text-gray-600 px-3 py-1 hover:text-amber-600">Anggota Aktif</a>
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Badan Pengurus</a>
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Alumni</a>
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Pembina</a>
+                <a href="{{ route('anggota-aktif.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('anggota-aktif.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                    Anggota Aktif
+                </a>
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('bph.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                    Badan Pengurus
+                </a>
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('alumni.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                    Alumni
+                </a>
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('pembina.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                    Pembina
+                </a>
             </div>
         </div>
-
+        
         <!-- Manajemen Konten -->
         <div>
             <button @click="openMenu = (openMenu === 'konten' ? null : 'konten')"
