@@ -15,7 +15,7 @@ class AnggotaAktifController extends Controller
 
     public function index(Request $request)
     {
-        $title   = 'Anggota Aktif';
+        $title   = 'Anggota';
         $search  = $request->input('search', '');
         $filter  = $request->query('filter', 'all');
         $perPage = $request->query('perPage', 10);

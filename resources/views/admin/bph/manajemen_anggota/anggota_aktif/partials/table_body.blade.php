@@ -70,7 +70,7 @@
 
 @empty
 <tr class="hover:bg-gray-50">
-    <td colspan="6" class="px-6 py-4 text-center text-gray-500 italic">
+    <td colspan="8" class="px-6 py-4 text-center text-gray-500 italic">
         <div class="flex flex-col items-center justify-center text-sm text-gray-500 space-y-1">
             @if ($anggota_aktifs->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
                 <!-- Icon Data Kosong -->

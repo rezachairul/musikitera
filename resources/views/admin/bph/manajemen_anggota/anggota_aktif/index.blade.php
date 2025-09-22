@@ -203,8 +203,11 @@
             <!-- Info jumlah data -->
             <div class="text-sm text-gray-500 text-center sm:text-left">
                 Menampilkan 
+                <span class="font-medium">{{ $anggota_aktifs->firstItem() ?? 0 }}</span> 
                 sampai 
-                dari
+                <span class="font-medium">{{ $anggota_aktifs->lastItem() ?? 0 }}</span> 
+                dari 
+                <span class="font-medium">{{ $anggota_aktifs->total() }}</span> {{ $title }}
             </div>
 
             <!-- Tombol Pagination -->
@@ -212,34 +215,45 @@
                 <nav class="inline-flex space-x-1 sm:space-x-2" aria-label="Pagination">
 
                     {{-- Tombol Sebelumnya --}}
+                    @if ($anggota_aktifs->onFirstPage())
                         <span
                             class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
                             <span class="hidden sm:inline">Sebelumnya</span>
                         </span>
-                        <a href="#" 
+                    @else
+                        <a href="{{ $anggota_aktifs->previousPageUrl() }}" 
                         class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
                             <span class="hidden sm:inline">Sebelumnya</span>
                         </a>
+                    @endif
 
                     {{-- Tombol Angka Halaman --}}
+                    @foreach ($anggota_aktifs->links()->elements[0] ?? [] as $page => $url)
+                        @if ($page == $anggota_aktifs->currentPage())
                             <span
                                 class="px-3 py-2 text-sm font-semibold text-white bg-blue-600 border border-blue-600 rounded-lg">
-                                
+                                {{ $page }}
                             </span>
-                            <a href="#" 
+                        @else
+                            <a href="{{ $url }}" 
                             class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                                
+                                {{ $page }}
                             </a>
+                        @endif
+                    @endforeach
 
                     {{-- Tombol Selanjutnya --}}
-                        <a href="#" 
+                    @if ($anggota_aktifs->hasMorePages())
+                        <a href="{{ $anggota_aktifs->nextPageUrl() }}" 
                         class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
                             <span class="hidden sm:inline">Selanjutnya</span>
                         </a>
+                    @else
                         <span
                             class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
                             <span class="hidden sm:inline">Selanjutnya</span>
                         </span>
+                    @endif
                 </nav>
             </div>
         </div>
