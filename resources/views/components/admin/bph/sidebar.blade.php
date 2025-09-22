@@ -48,15 +48,15 @@
 
             <div x-show="openMenu === 'anggota'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
                 <a href="{{ route('anggota-aktif.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('anggota-aktif.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
-                    Anggota Aktif
+                    Anggota
                 </a>
-                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('bph.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('badan-pengurus.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
                     Badan Pengurus
                 </a>
-                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('alumni.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('alumni.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
                     Alumni
                 </a>
-                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('pembina.')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                <a href="#" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('pembina.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
                     Pembina
                 </a>
             </div>

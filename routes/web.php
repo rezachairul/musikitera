@@ -134,7 +134,7 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('bph.dashboard.index');
 
     // Manajemen Anggota Aktif
-    Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
+    Route::controller(AnggotaAktifController::class)->prefix('anggota')->name('anggota-aktif.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');

@@ -47,6 +47,7 @@ Dashboard Pengawas
 Laporan & Monitoring
     Laporan Keuangan (view + download)
     Laporan Kegiatan (view + download)
+    Kolom Aspirasi
     Laporan Anggota (rekap anggota & alumni)
 Monitoring Publikasi
     Berita & Pengumuman

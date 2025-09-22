@@ -7,6 +7,81 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnggotaAktif extends Model
 {
-    /** @use HasFactory<\Database\Factories\AnggotaAktifFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nama',
+        'nim',
+        'angkatan',
+        'prodi',
+        'nomor_urut',
+        'organisasi',     // misalnya BSM
+        'angkatan_ukm',   // integer, nanti diubah ke romawi
+        'pendiri',        // boolean (1 = pendiri, 0 = bukan)
+        'status',
+    ];
+    
+    protected $attributes = [
+        'organisasi' => 'BSM',
+    ];
+
+    /**
+     * Konversi angka ke romawi
+     */
+    private function toRoman($number)
+    {
+        $map = [
+            'M'  => 1000,
+            'CM' => 900,
+            'D'  => 500,
+            'CD' => 400,
+            'C'  => 100,
+            'XC' => 90,
+            'L'  => 50,
+            'XL' => 40,
+            'X'  => 10,
+            'IX' => 9,
+            'V'  => 5,
+            'IV' => 4,
+            'I'  => 1,
+        ];
+
+        $returnValue = '';
+        while ($number > 0) {
+            foreach ($map as $roman => $int) {
+                if ($number >= $int) {
+                    $number -= $int;
+                    $returnValue .= $roman;
+                    break;
+                }
+            }
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Accessor: format nomor urut dengan leading zero
+     * contoh: 1 -> 001, 12 -> 012, 123 -> 123
+     */
+    public function getNomorUrutFormattedAttribute()
+    {
+        return str_pad($this->nomor_urut, 3, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Accessor: hasilkan NIA gabungan
+     */
+    public function getNiaAttribute()
+    {
+        $nomorUrut = $this->nomor_urut_formatted;
+
+        if ($this->pendiri) {
+            // khusus pendiri: tanpa angkatan romawi
+            return "{$nomorUrut}/{$this->organisasi}/P";
+        }
+
+        // default: pakai angkatan romawi
+        $angkatanRomawi = $this->toRoman($this->angkatan_ukm);
+        return "{$nomorUrut}/{$this->organisasi}/{$angkatanRomawi}";
+    }
 }

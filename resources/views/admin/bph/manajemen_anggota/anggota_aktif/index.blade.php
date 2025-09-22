@@ -3,56 +3,55 @@
 
     <!-- Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
-        <!-- Admin -->
+        <!-- Graduate -->
         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 
                     flex flex-col items-center text-center transition-all duration-300 
-                    hover:scale-105 hover:shadow-lg hover:border-amber-600">
-            <!-- Icon: Computer-Dekstop -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-amber-500 mb-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    hover:scale-105 hover:shadow-lg hover:border-emerald-600">
+            <!-- Icon: Graduation Cap -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-emerald-500 mb-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
             </svg>
-
-            <h2 class="text-lg font-semibold text-gray-800">Admin</h2>
-            <p class="text-sm text-gray-500">Jumlah <strong>1</strong></p>
+            <h2 class="text-lg font-semibold text-gray-800">Graduate</h2>
+            <p class="text-sm text-gray-500">Lulus dari ITERA: </p>
         </div>
 
-        <!-- Badan Pengurus -->
+        <!-- On Going -->
         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 
                     flex flex-col items-center text-center transition-all duration-300 
                     hover:scale-105 hover:shadow-lg hover:border-blue-600">
-            <!-- Icon: Home-Modern -->
+            <!-- Icon: Book Open -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-blue-500 mb-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
             </svg>
-            <h2 class="text-lg font-semibold text-gray-800">Badan Pengurus</h2>
-            <p class="text-sm text-gray-500">Jumlah <strong>1</strong></p>
+            <h2 class="text-lg font-semibold text-gray-800">On Going</h2>
+            <p class="text-sm text-gray-500">Masih Aktif Perkuliahan</p>
         </div>
 
-        <!-- Dewan Pengawas -->
+        <!-- Drop Out -->
         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 
                     flex flex-col items-center text-center transition-all duration-300 
-                    hover:scale-105 hover:shadow-lg hover:border-green-600">
-            <!-- Icon: Eye -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-green-500 mb-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    hover:scale-105 hover:shadow-lg hover:border-red-600">
+            <!-- Icon: Out -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-red-500 mb-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
             </svg>
-            <h2 class="text-lg font-semibold text-gray-800">Dewan Pengawas</h2>
-            <p class="text-sm text-gray-500">Jumlah <strong>1</strong></p>
+            <h2 class="text-lg font-semibold text-gray-800">Drop Out</h2>
+            <p class="text-sm text-gray-500">Keluar dari ITERA</p>
         </div>
 
-        <!-- Pembina -->
+        <!-- Exit -->
         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 
                     flex flex-col items-center text-center transition-all duration-300 
-                    hover:scale-105 hover:shadow-lg hover:border-purple-600">
-            <!-- Icon: Building-Library -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-purple-600 mb-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                    hover:scale-105 hover:shadow-lg hover:border-amber-600">
+            <!-- Icon: exclamation-triangle -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-amber-500 mb-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
             </svg>
-            <h2 class="text-lg font-semibold text-gray-800">Pembina</h2>
-            <p class="text-sm text-gray-500">Jumlah <strong>1</strong></p>
+            <h2 class="text-lg font-semibold text-gray-800">Exit</h2>
+            <p class="text-sm text-gray-500">Dikeluarkan dari UKMBSM</p>
         </div>
     </div>
+
 
     <!-- Table Management Area -->
     <div class="bg-white rounded-xl border border-gray-200 p-3 sm:p-6 m-3 sm:m-6 shadow-sm">
@@ -154,13 +153,22 @@
                                     No
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Name
+                                    Nama
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Email
+                                    NIM
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Role
+                                    Angkatan
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Program Studi
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    NIA
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status Perkuliahan
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -168,12 +176,13 @@
                             </tr>
                         </thead>
                         <tbody id="anggotaAktifTableBody" class="bg-white divide-y divide-gray-200">
+                            @include ('admin.bph.manajemen_anggota.anggota_aktif.partials.table_body')
                         </tbody>
                         <tfoot class="bg-gray-50">
                             <tr>
                                 <td colspan="5" class="px-6 py-3 text-sm text-gray-700">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                                        <span>Total anggotaAktifs: <span class="font-semibold">1</span></span>
+                                        <span>Total anggota Aktif: <span class="font-semibold">1</span></span>
                                         <div class="flex flex-wrap gap-4 text-sm">
                                             <span>Administrator: <span class="font-semibold">1</span></span>
                                             <span>BPH: <span class="font-semibold">1</span></span>
@@ -231,13 +240,15 @@
                             class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
                             <span class="hidden sm:inline">Selanjutnya</span>
                         </span>
-
                 </nav>
             </div>
         </div>
     </div>
 
     <!-- Modals -->
+     @include('admin.bph.manajemen_anggota.anggota_aktif.create')
+     @include('admin.bph.manajemen_anggota.anggota_aktif.update')
+     @include('admin.bph.manajemen_anggota.anggota_aktif.delete')
     
 
 </x-admin.bph.layouts>
