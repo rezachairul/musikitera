@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 
-use App\Models\admin\bph\AnggotaAktif;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Exports\AnggotaExport;
+use App\Http\Controllers\Controller;
+use App\Models\admin\bph\AnggotaAktif;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class AnggotaAktifController extends Controller
@@ -41,9 +42,9 @@ class AnggotaAktifController extends Controller
                             ->orWhere('prodi', 'like', "%{$word}%");
                         });
                     }
-                    // urutan: pendiri dulu, lalu berdasarkan nomor urut
                 });
             }
+            // urutan: pendiri dulu, lalu berdasarkan nomor urut
             $queries[$status]
                 ->orderByDesc('pendiri')
                 ->orderBy('nomor_urut');
@@ -138,14 +139,6 @@ class AnggotaAktifController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -224,6 +217,13 @@ class AnggotaAktifController extends Controller
 
     public function export(Request $request)
     {
-        //
+        $status = $request->query('filter'); // admin / user_public / all
+        $search = $request->query('search'); // kalau mau dipakai buat filter nama/email
+
+        if ($status === 'all' || empty($status)) {
+            $status = null;
+        }
+
+        return (new AnggotaExport($status, $search))->export();
     }
 }

@@ -19,6 +19,7 @@ class AnggotaAktif extends Model
         'angkatan_ukm',   // integer, nanti diubah ke romawi
         'pendiri',        // boolean (1 = pendiri, 0 = bukan)
         'status',
+        'nia',
     ];
     
     protected $attributes = [
