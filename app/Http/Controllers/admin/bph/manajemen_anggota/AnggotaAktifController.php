@@ -189,9 +189,36 @@ class AnggotaAktifController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AnggotaAktif $anggotaAktif)
+    public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
+        // 1. cari data anggota
+        $anggota = AnggotaAktif::findOrFail($id);
+
+        // 2. validasi input
+        $validated = $request->validate([
+            'nama'         => 'required|string|max:255',
+            'nim'          => 'required|string|max:15|unique:anggota_aktifs,nim,' . $anggota->id,
+            'angkatan'     => 'required|integer|min:2000|max:' . date('Y'),
+            'prodi'        => 'required|string|max:255',
+            'nomor_urut'   => 'required|integer',
+            'angkatan_ukm' => 'required|integer|min:1',
+            'pendiri'      => 'nullable|boolean',
+            'status'       => 'required|in:graduate,on_going,drop_out,exit',
+        ]);
+
+        // 3. update data sementara (supaya bisa generate NIA lagi)
+        $anggota->fill($validated);
+
+        // 4. regenerasi NIA otomatis dari accessor
+        $nia = $anggota->nia;
+
+        // 5. simpan
+        $anggota->nia = $nia;
+        $anggota->save();
+
+        return redirect()->route('anggota-aktif.index')
+            ->with('success', 'Data anggota berhasil diperbarui.');
     }
 
     /**
