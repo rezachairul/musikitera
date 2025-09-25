@@ -12,12 +12,52 @@ class ManagePembinaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title   = 'Pembina';
-        $manage_pembinas = ManagePembina::latest()->paginate(10);
+        $title    = 'Pembina';
+        $search   = $request->input('search', '');
+        $filter   = $request->query('filter', 'all');
+        $perPage  = $request->query('perPage', 10); // ✅ perbaikan
 
-        return view('admin.bph.manajemen_anggota.pembina.index', compact('title', 'manage_pembinas'));
+        // Pisahkan multi keyword search
+        $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
+
+        $query = ManagePembina::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $q->where(function ($q) use ($word) {
+                        $q->where('nama', 'like', "%{$word}%")
+                            ->orWhere('nip_nidn', 'like', "%{$word}%") // ✅ fix typo
+                            ->orWhere('jabatan', 'like', "%{$word}%")
+                            ->orWhere('awal_periode', 'like', "%{$word}%")
+                            ->orWhere('akhir_periode', 'like', "%{$word}%")
+                            ->orWhere('program_studi', 'like', "%{$word}%");
+                    });
+                }
+            });
+        }
+
+        $query->orderBy('awal_periode', 'asc'); // ✅ tambah titik koma
+
+        // Paginate
+        $manage_pembinas = $query->paginate(
+            $perPage === 'all' ? $query->count() : (int) $perPage
+        );
+
+        // Hitung total pembina
+        $totalPembina = $query->count();
+        // AJAX response
+        if ($request->ajax()) {
+            return view(
+                'admin.bph.manajemen_anggota.pembina.partials.table_body',
+                compact('title', 'manage_pembinas', 'totalPembina')
+            )->render();
+        }
+
+        // Return ke halaman index
+        return view('admin.bph.manajemen_anggota.pembina.index', compact('title', 'manage_pembinas', 'totalPembina'));
     }
 
     /**
@@ -112,6 +152,7 @@ class ManagePembinaController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         $pembina = ManagePembina::findOrFail($id);
         $pembina->delete();
 
