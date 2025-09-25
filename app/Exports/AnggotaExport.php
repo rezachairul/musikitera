@@ -9,7 +9,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class AnggotaExport
 {
-     protected $status;
+    protected $status;
     protected $search;
 
     public function __construct($status = null, $search= null)
@@ -142,7 +142,7 @@ class AnggotaExport
 
         $tempFile = $tempDir . '/Export-Data-Anggota-' . $statusName . $searchLabel . '-' . $dateFormatted . '.xlsx';
 
-         // Simpan file
+        // Simpan file
         $writer = new Xlsx($spreadsheet);
         $writer->save($tempFile);
 

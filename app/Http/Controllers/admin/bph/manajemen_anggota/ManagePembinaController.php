@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 
 use Illuminate\Http\Request;
+use App\Exports\ManagePembinaExport;
 use App\Http\Controllers\Controller;
 use App\Models\admin\bph\ManagePembina;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +40,7 @@ class ManagePembinaController extends Controller
             });
         }
 
-        $query->orderBy('awal_periode', 'asc'); // ✅ tambah titik koma
+        $query->orderBy('awal_periode', 'asc');
 
         // Paginate
         $manage_pembinas = $query->paginate(
@@ -171,5 +172,12 @@ class ManagePembinaController extends Controller
         $pembina->delete();
 
         return redirect()->back()->with('success', 'Data pembina beserta foto berhasil dihapus.');
+    }
+
+     public function export(Request $request)
+    {
+        $search = $request->query('search'); // kalau mau dipakai buat filter nama/email
+
+        return (new ManagePembinaExport( $search))->export();
     }
 }
