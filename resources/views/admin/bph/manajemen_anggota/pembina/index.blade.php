@@ -201,6 +201,7 @@
 
     <!-- Modals -->
     @include('admin.bph.manajemen_anggota.pembina.create')
+    @include('admin.bph.manajemen_anggota.pembina.update')
     @include('admin.bph.manajemen_anggota.pembina.delete')
 
 </x-admin.bph.layouts>

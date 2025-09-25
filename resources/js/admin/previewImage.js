@@ -58,39 +58,64 @@ function previewImage(input) {
     }
 }
 
+// =============================
+// Preview Edit Image (pakai data-id)
+// =============================
 function previewEditImage(event, id) {
     const file = event.target.files[0];
     const previewContainer = document.getElementById(`currentImagePreview-${id}`);
+    const errorMsg = document.getElementById("foto-error"); // <p id="foto-error">
 
     if (file) {
-        // ✅ Validasi ukuran
+        // ✅ Validasi ukuran (max 2MB)
         if (file.size > 2 * 1024 * 1024) {
-            alert("Foto lebih dari 2MB, silakan pilih ulang.");
+            errorMsg.textContent = "Foto lebih dari 2MB, silakan pilih ulang.";
+            errorMsg.classList.remove("hidden");
+
             event.target.value = ""; // reset input
-            previewContainer.innerHTML = `<p class="text-red-500 text-sm">Tidak ada gambar</p>`;
+            previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
             return;
         }
 
         // ✅ Validasi format
         const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
         if (!allowedTypes.includes(file.type)) {
-            alert("Format tidak valid! Hanya JPG, JPEG, PNG.");
-            event.target.value = ""; // reset input
-            previewContainer.innerHTML = `<p class="text-red-500 text-sm">Tidak ada gambar</p>`;
+            errorMsg.textContent = "Format tidak valid! Hanya JPG, JPEG, PNG.";
+            errorMsg.classList.remove("hidden");
+
+            event.target.value = "";
+            previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
             return;
         }
 
+        // ✅ Bersihkan error kalau valid
+        errorMsg.textContent = "";
+        errorMsg.classList.add("hidden");
+
+        // ✅ Preview gambar baru
         const reader = new FileReader();
         reader.onload = function (e) {
-            previewContainer.innerHTML = `<img src="${e.target.result}" 
-                                              alt="Preview" 
-                                              class="w-32 h-32 object-cover rounded">`;
+            previewContainer.innerHTML = `
+                <img src="${e.target.result}" 
+                     alt="Preview" 
+                     class="w-24 h-24 object-cover rounded-lg border shadow-sm">`;
         };
         reader.readAsDataURL(file);
     } else {
         previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
     }
 }
+
+// =============================
+// Binding event listener (biar tanpa inline onchange)
+// =============================
+document.querySelectorAll('.preview-edit-input').forEach(input => {
+    input.addEventListener('change', (event) => {
+        const id = event.target.dataset.id;
+        previewEditImage(event, id);
+    });
+});
+
 
 window.previewImage = previewImage;
 window.previewEditImage = previewEditImage;

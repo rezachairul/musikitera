@@ -88,8 +88,11 @@ class ManagePembinaController extends Controller
 
         // Simpan foto jika ada
         if ($request->hasFile('foto')) {
-            // simpan ke storage/app/public/pembina
-            $validated['foto'] = $request->file('foto')->store('pembina', 'public');
+            $ext = $request->file('foto')->getClientOriginalExtension();
+            $filename = \Illuminate\Support\Str::slug($request->nama) . '.' . $ext;
+
+            $path = $request->file('foto')->storeAs('pembina', $filename, 'public');
+            $validated['foto'] = $path;
         }
 
         ManagePembina::create($validated);
@@ -116,8 +119,9 @@ class ManagePembinaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
+        // dd($request->all(), $request->file('foto'));
         $pembina = ManagePembina::findOrFail($id);
 
         $validated = $request->validate([
@@ -138,8 +142,11 @@ class ManagePembinaController extends Controller
                 Storage::disk('public')->delete($pembina->foto);
             }
 
-            // simpan foto baru
-            $validated['foto'] = $request->file('foto')->store('pembina', 'public');
+            $ext = $request->file('foto')->getClientOriginalExtension();
+            $filename = \Illuminate\Support\Str::slug($request->nama) . '.' . $ext;
+
+            $path = $request->file('foto')->storeAs('pembina', $filename, 'public');
+            $validated['foto'] = $path;
         }
 
         $pembina->update($validated);
@@ -150,12 +157,19 @@ class ManagePembinaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy($id)
     {
-        dd($id);
         $pembina = ManagePembina::findOrFail($id);
+
+        // Hapus foto kalau ada
+        if ($pembina->foto && Storage::exists($pembina->foto)) {
+            Storage::delete($pembina->foto);
+        }
+
+        // Hapus data pembina
         $pembina->delete();
 
-        return redirect()->back()->with('success', 'Data pembina berhasil dihapus.');
+        return redirect()->back()->with('success', 'Data pembina beserta foto berhasil dihapus.');
     }
 }

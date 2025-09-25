@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\ManagePembina;
+use App\Models\admin\bph\ManagePembina;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
