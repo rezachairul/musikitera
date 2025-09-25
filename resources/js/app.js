@@ -12,3 +12,4 @@ import '../js/admin/AJAX-search-filter.js';
 import '../js/admin/modals.js';
 import '../js/admin/swiper-bundle.min.js';
 import '../js/admin/cdn.min.js';
+import '../js/admin/previewImage.js';

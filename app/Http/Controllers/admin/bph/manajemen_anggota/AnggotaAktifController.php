@@ -89,13 +89,7 @@ class AnggotaAktifController extends Controller
             )->render();
         }
 
-        return view('admin.bph.manajemen_anggota.anggota_aktif.index', compact(
-            'title',
-            'anggota_aktifs',
-            'statusLabels',
-            'totals',
-            'filter'
-        ));
+        return view('admin.bph.manajemen_anggota.anggota_aktif.index', compact( 'title', 'anggota_aktifs', 'statusLabels', 'totals', 'filter'));
     }
 
     /**

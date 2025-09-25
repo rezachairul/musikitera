@@ -12,25 +12,26 @@ use App\Http\Controllers\Auth\LoginController;
 // Adnmins
 // ==========================
 // Administrator
-use App\Http\Controllers\admin\administrator\DashboardController;
-use App\Http\Controllers\admin\administrator\ManageUserController;
+use App\Http\Controllers\public\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // Badan Pengurus
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\admin\bph\DashboardBPHController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 
 // Dewan Pengawas
 use App\Http\Controllers\admin\dpo\DashboardDPOController;
 
 // Pembina
-use App\Http\Controllers\admin\pembina\DashboardPembinaController;
+use App\Http\Controllers\admin\administrator\DashboardController;
 
 // ==========================
 // Publics
 // ==========================
-use App\Http\Controllers\public\HomeController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\admin\administrator\ManageUserController;
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 
 
 // ==========================
@@ -161,13 +162,13 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     // });
 
     // Manajemen Pembina
-    // Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
-    //     Route::get('/','index')->name('index');
-    //     Route::post('/','store')->name('store');
-    //     Route::put('/{id}','update')->name('update');
-    //     Route::delete('/{id}','destroy')->name('destroy');
-    //     Route::get('/export',  'export')->name('export');
-    // });
+    Route::controller(ManagePembinaController::class)->prefix('manage-pembina')->name('manage-pembina.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 });
 
 // Admins Dewan Pengawas Routes

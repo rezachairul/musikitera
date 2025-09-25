@@ -1,41 +1,54 @@
-@forelse ($anggota_aktifs as $key => $anggota_aktif)
+@forelse ($manage_pembinas as $key => $manage_pembina)
 <tr class="hover:bg-gray-50 text-left text-xs">
     <!-- No -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktifs->firstItem() + $key }}
+        {{ $manage_pembinas->firstItem() + $key }}
+    </td>
+
+    <!-- Foto -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        @if ($manage_pembina->foto)
+            <img src="{{ asset('storage/' . $manage_pembina->foto) }}" 
+                alt="Foto {{ $manage_pembina->nama }}" 
+                class="w-12 h-12 rounded-full object-cover">
+        @else
+            <span class="text-gray-400 italic">No Image</span>
+        @endif
     </td>
 
     <!-- Nama -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktif->nama }}
+        {{ $manage_pembina->nama }}
     </td>
 
-    <!-- NIM -->
+    <!-- Periode Awal -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktif->nim }}
+        {{ $manage_pembina->awal_periode ? \Carbon\Carbon::parse($manage_pembina->awal_periode)->format('d M Y') : '-' }}
     </td>
 
-    <!-- Angkatan Kampus -->
+    <!-- Periode Akhir -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktif->angkatan }}
+        {{ $manage_pembina->akhir_periode ? \Carbon\Carbon::parse($manage_pembina->akhir_periode)->format('d M Y') : '-' }}
     </td>
 
-    <!-- Prodi -->
+    <!-- NIP -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktif->prodi }}
+        {{ $manage_pembina->nip_nidn }}
     </td>
 
-    <!-- NIA -->
+    <!-- Jabatan -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $anggota_aktif->nia }}
+        {{ $manage_pembina->jabatan }}
     </td>
 
-    <!-- Status -->
+    <!-- Program Studi -->
     <td class="px-6 py-4 whitespace-nowrap">
-       @php $status = $statusLabels[$anggota_aktif->status]; @endphp
-        <span class="px-2 py-1 text-xs rounded-lg {{ $status['color'] }}">
-            {{ $status['label'] }}
-        </span>
+        {{ $manage_pembina->program_studi }}
+    </td>
+
+    <!-- Kontak -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        {{ $manage_pembina->kontak }}
     </td>
 
     <!-- Aksi -->
@@ -43,7 +56,7 @@
         <div class="flex justify-center items-center h-full space-x-2">
             <!-- Edit Button -->
             <button
-                onclick="openUpdateModal('{{ $anggota_aktif->id }}')"
+                onclick="openUpdateModal('{{ $manage_pembina->id }}')"
                 class="text-amber-600 hover:text-amber-900 p-1 rounded hover:bg-amber-50" 
                 title="Edit">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
@@ -55,7 +68,7 @@
 
             <!-- Delete Button -->
             <button
-                onclick="openDeleteModal('{{ $anggota_aktif->id }}')"
+                onclick="openDeleteModal('{{ $manage_pembina->id }}')"
                 class="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
                 title="Delete">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
@@ -70,23 +83,23 @@
 
 @empty
 <tr class="hover:bg-gray-50">
-    <td colspan="8" class="px-6 py-4 text-center text-gray-500 italic">
+    <td colspan="10" class="px-6 py-4 text-center text-gray-500 italic">
         <div class="flex flex-col items-center justify-center text-sm text-gray-500 space-y-1">
-            @if ($anggota_aktifs->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
+            @if ($manage_pembinas->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
                 <!-- Icon Data Kosong -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-400 mb-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                 </svg>
                 <span class="text-blue-500 font-medium">Belum ada data yang tersedia di sini.</span>
 
-            @elseif ($anggota_aktifs->isEmpty() && request()->filled('search'))
+            @elseif ($manage_pembinas->isEmpty() && request()->filled('search'))
                 <!-- Icon Pencarian -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-4.35-4.35M10.5 17a6.5 6.5 0 100-13 6.5 6.5 0 000 13z" />
                 </svg>
                 <span class="text-yellow-600 font-medium">Tidak ditemukan hasil pencarian yang cocok.</span>
 
-            @elseif ($anggota_aktifs->isEmpty() && request()->filled('filter'))
+            @elseif ($manage_pembinas->isEmpty() && request()->filled('filter'))
                 <!-- Icon Filter -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2l-7 8v5a1 1 0 01-2 0v-5l-7-8V4z" />
