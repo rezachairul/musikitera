@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Exports\AnggotaExport;
 use App\Models\admin\bph\Hero;
+use App\Exports\ManageHeroExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -162,8 +163,10 @@ class HeroController extends Controller
         return redirect()->back()->with('success', 'Hero berhasil dihapus.');
     }
 
-    public function export()
+    public function export(Request $request)
     {
+        $search = $request->query('search'); // kalau mau dipakai buat filter nama/email
 
+        return (new ManageHeroExport( $search))->export();
     }
 }

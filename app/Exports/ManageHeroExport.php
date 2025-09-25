@@ -2,14 +2,14 @@
 
 namespace App\Exports;
 
-use App\Models\admin\bph\ManagePembina;
+use App\Models\admin\bph\Hero;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 
-class ManagePembinaExport
+class ManageHeroExport
 {
     protected $search;
 
@@ -21,7 +21,7 @@ class ManagePembinaExport
     public function export()
     {
         // Path ke tempate
-        $templatePath = storage_path('app/templates/temp-export-pembina.xlsx');
+        $templatePath = storage_path('app/templates/temp-export-hero.xlsx');
         if (!file_exists($templatePath)) {
             throw new \Exception('Template file not found: ' . $templatePath);
         }
@@ -30,16 +30,11 @@ class ManagePembinaExport
         $sheet       = $spreadsheet->getActiveSheet();
 
         // Base query
-        $query = ManagePembina::select(
+        $query = Hero::select(
             'id',
-            'nama',
-            'foto',
-            'nip_nidn',
-            'jabatan',
-            'awal_periode',
-            'akhir_periode',
-            'program_studi',
-            'kontak',
+            'quote_1',
+            'quote_2',
+            'image',
         );
 
         // Filter Search
@@ -48,37 +43,31 @@ class ManagePembinaExport
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $word) {
                     $q->where(function ($q) use ($word) {
-                        $q->where('nama', 'like', "%{$word}%")
-                        ->orWhere('nip_nidn', 'like', "%{$word}%")
-                        ->orWhere('jabatan', 'like', "%{$word}%")
-                        ->orWhere('awal_periode', 'like', "%{$word}%")
-                        ->orWhere('akhir_periode', 'like', "%{$word}%")
-                        ->orWhere('program_studi', 'like', "%{$word}%")
-                        ->orWhere('kontak', 'like', "%{$word}%");
+                        $q->where('quote_1', 'like', "%{$word}%")
+                        ->orWhere('quote_1', 'like', "%{$word}%");
                     });
                 }
             });
         }
 
-        $query->orderBy('awal_periode', 'asc');
+        $query->orderBy('created_at', 'asc');
 
-        $manage_pembinas = $query->get();
-        // dd($manage_pembinas);
-
-        // ================== 📝 Isi data ==================
+        $heroes = $query->get();
+        // dd($heroes);
+    
+    // ================== 📝 Isi data ==================
         $startRow = 8;
         $sheet->getColumnDimension('B')->setWidth(15); 
-        foreach ($manage_pembinas as $i => $manage_pembina) {
+        foreach ($heroes as $i => $hero) {
             $row = $startRow + $i;
             $sheet->setCellValue('A' . $row, $i + 1); // NO urut (bukan ID langsung)
 
-            // Foto (jika ada)
-            if ($manage_pembina->foto) {
-                $fotoPath = storage_path('app/public/' . $manage_pembina->foto);
+            // Image (jika ada)
+            if ($hero->image) {
+                $fotoPath = storage_path('app/public/' . $hero->image);
                 if (file_exists($fotoPath)) {
                     $drawing = new Drawing();
-                    $drawing->setName($manage_pembina->nama);
-                    $drawing->setDescription("Foto Pembina" . $manage_pembina->nama);
+                    $drawing->setDescription("Foto Hero");
                     $drawing->setPath($fotoPath);
 
                     $drawing->setCoordinates("B{$row}");
@@ -97,27 +86,12 @@ class ManagePembinaExport
                     $sheet->setCellValue("B{$row}",  'No Image');
                 }
             } else {
-                $sheet->setCellValue("B{$row}", $manage_pembina->nama);
+                $sheet->setCellValue("B{$row}", '');
             }
 
-            $sheet->setCellValue('C' . $row, $manage_pembina->nama);
-            
-            $sheet->setCellValueExplicit(
-                'D' . $row, 
-                $manage_pembina->nip_nidn, 
-                DataType::TYPE_STRING
-            );
+            $sheet->setCellValue('C' . $row, $hero->quote_1);
+            $sheet->setCellValue('D' . $row, $hero->quote_2);
 
-            $sheet->setCellValue('E' . $row, $manage_pembina->jabatan);
-
-             // Periode (format dd-mm-yyyy)
-            $awalPeriode = $manage_pembina->awal_periode ? Carbon::parse($manage_pembina->awal_periode)->format('d-m-Y') : '-';
-            $akhirPeriode = $manage_pembina->akhir_periode ? Carbon::parse($manage_pembina->akhir_periode)->format('d-m-Y') : '-';
-
-             $sheet->setCellValue('F' . $row, $awalPeriode);
-            $sheet->setCellValue('G' . $row, $akhirPeriode);
-            $sheet->setCellValue('H' . $row, $manage_pembina->program_studi);
-            $sheet->setCellValue('I' . $row, $manage_pembina->kontak);          
         }
 
         // ================== 💾 Save & Download ==================
@@ -133,7 +107,7 @@ class ManagePembinaExport
 
         $dateFormatted = Carbon::now()->format('Ymd_His');
 
-        $tempFile = $tempDir . '/Export-Pembina' . $searchLabel . '-' . $dateFormatted . '.xlsx';
+        $tempFile = $tempDir . '/Export-Hero' . $searchLabel . '-' . $dateFormatted . '.xlsx';
 
         // Simpan file
         $writer = new Xlsx($spreadsheet);

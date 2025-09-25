@@ -174,7 +174,7 @@ class ManagePembinaController extends Controller
         return redirect()->back()->with('success', 'Data pembina beserta foto berhasil dihapus.');
     }
 
-     public function export(Request $request)
+    public function export(Request $request)
     {
         $search = $request->query('search'); // kalau mau dipakai buat filter nama/email
 

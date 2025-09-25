@@ -196,23 +196,8 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     // Apa Kata Mereka
     // CTA (Oprec)
 
-    // Manajemen Konten
-    // Hero
-    Route::controller(HeroController::class)->prefix('hero')->name('manage-hero.')->group(function(){
-        Route::get('/','index')->name('index');
-        Route::post('/','store')->name('store');
-        Route::put('/{id}','update')->name('update');
-        Route::delete('/{id}','destroy')->name('destroy');
-        Route::get('/export',  'export')->name('export');
-    });
+    // Publikasi dan Dokumentasi
 
-    // Profil Organisasi
-    // Layanan
-    // Statistik Publik
-    // Galeri
-    // Highlight Kegiatan
-    // Apa Kata Mereka
-    // CTA (Oprec)
 
 
     // Kerjasama dan Mitara
@@ -220,7 +205,7 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
 
     // Mitra
     // Internal
-    Route::controller(ManageMitraController::class)->prefix('hero')->name('manage-mitra.')->group(function(){
+    Route::controller(ManageMitraController::class)->prefix('mitra')->name('manage-mitra.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
