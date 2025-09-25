@@ -6,23 +6,30 @@ use Illuminate\Support\Facades\Route;
 // Auths
 // ==========================
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // ==========================
 // Adnmins
 // ==========================
 // Administrator
-use App\Http\Controllers\public\HomeController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\admin\administrator\DashboardController;
+use App\Http\Controllers\admin\administrator\ManageUserController;
 
 // Badan Pengurus
-use App\Http\Controllers\Auth\ForgotPasswordController;
+// Dashboard
+// BPH
 use App\Http\Controllers\admin\bph\DashboardBPHController;
-use App\Http\Controllers\admin\dpo\DashboardDPOController;
-use App\Http\Controllers\admin\administrator\DashboardController;
+use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+
+
 
 // Dewan Pengawas
-use App\Http\Controllers\admin\administrator\ManageUserController;
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
 
 // Pembina
 use App\Http\Controllers\admin\pembina\DashboardPembinaController;
@@ -30,9 +37,7 @@ use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 // ==========================
 // Publics
 // ==========================
-use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\public\HomeController;
 
 
 // ==========================
@@ -128,6 +133,7 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
     });
 
 
+
 });
 
 // Admins Badan Pengurus Routes
@@ -189,6 +195,41 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     // Highlight Kegiatan
     // Apa Kata Mereka
     // CTA (Oprec)
+
+    // Manajemen Konten
+    // Hero
+    Route::controller(HeroController::class)->prefix('hero')->name('manage-hero.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Profil Organisasi
+    // Layanan
+    // Statistik Publik
+    // Galeri
+    // Highlight Kegiatan
+    // Apa Kata Mereka
+    // CTA (Oprec)
+
+
+    // Kerjasama dan Mitara
+    // Kerjasama
+
+    // Mitra
+    // Internal
+    Route::controller(ManageMitraController::class)->prefix('hero')->name('manage-mitra.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Eksternal
+
 });
 
 // Admins Dewan Pengawas Routes
