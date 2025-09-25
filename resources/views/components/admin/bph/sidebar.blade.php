@@ -77,7 +77,7 @@
                 </svg>
             </button>
             <div x-show="openMenu === 'konten'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Hero</a>
+                <a href="{{ route('manage-hero.index')}}" class="text-gray-600 px-3 py-1 hover:text-amber-600">Hero</a>
                 <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Profil Organisasi</a>
                 <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Layanan</a>
                 <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Statistik Publik</a>

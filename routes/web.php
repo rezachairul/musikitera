@@ -18,20 +18,21 @@ use App\Http\Controllers\Auth\RegisterController;
 // Badan Pengurus
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\admin\bph\DashboardBPHController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\admin\administrator\DashboardController;
 
 // Dewan Pengawas
-use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\admin\administrator\ManageUserController;
 
 // Pembina
-use App\Http\Controllers\admin\administrator\DashboardController;
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 
 // ==========================
 // Publics
 // ==========================
-use App\Http\Controllers\admin\administrator\ManageUserController;
-use App\Http\Controllers\admin\pembina\DashboardPembinaController;
+use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 
 
 // ==========================
@@ -135,6 +136,7 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     Route::get('/dashboard', [DashboardBPHController::class, 'index'])->name('bph.dashboard.index');
 
     // Manajemen Anggota Aktif
+    // Anggota
     Route::controller(AnggotaAktifController::class)->prefix('anggota')->name('anggota-aktif.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
@@ -169,6 +171,24 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
+
+    // Manajemen Konten
+    // Hero
+    Route::controller(HeroController::class)->prefix('hero')->name('manage-hero.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Profil Organisasi
+    // Layanan
+    // Statistik Publik
+    // Galeri
+    // Highlight Kegiatan
+    // Apa Kata Mereka
+    // CTA (Oprec)
 });
 
 // Admins Dewan Pengawas Routes
