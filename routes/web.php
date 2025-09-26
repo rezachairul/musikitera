@@ -204,7 +204,6 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     // Kerjasama
 
     // Mitra
-    // Internal
     Route::controller(ManageMitraController::class)->prefix('mitra')->name('manage-mitra.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
@@ -212,8 +211,6 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
-    // Eksternal
 
 });
 

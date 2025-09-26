@@ -9,7 +9,8 @@ class ManagePembina extends Model
 {
     /** @use HasFactory<\Database\Factories\ManagePembinaFactory> */
     use HasFactory;
-    
+
+    protected $table = 'manage_pembinas';    
     protected $fillable = [
         'nama',
         'nip_nidn',

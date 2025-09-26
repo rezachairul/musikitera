@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('manage_mitras', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->enum('type', ['internal', 'eksternal']);
+            $table->enum('sub_type', ['institusi', 'ormawa_hmps', 'ormawa_ukm', 'komunitas', 'ukmbs']);
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

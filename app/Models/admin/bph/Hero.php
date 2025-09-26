@@ -10,6 +10,7 @@ class Hero extends Model
     /** @use HasFactory<\Database\Factories\HeroFactory> */
     use HasFactory;
 
+    protected $table = 'heroes';
     protected $fillable = [
         'image',
         'quote_1',

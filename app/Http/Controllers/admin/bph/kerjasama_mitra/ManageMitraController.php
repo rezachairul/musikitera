@@ -2,68 +2,108 @@
 
 namespace App\Http\Controllers\admin\bph\kerjasama_mitra;
 
+use App\Http\Controllers\Controller;
 use App\Models\admin\bph\ManageMitra;
 use Illuminate\Http\Request;
-
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class ManageMitraController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Tampilkan semua mitra (internal/eksternal)
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $type = $request->query('type'); // optional filter
+        
+        $query = ManageMitra::query();
+
+        if ($type) {
+            $query->where('type', $type); // type = internal / eksternal
+        }
+
+        $mitras = $query->latest()->paginate(10);
+
+        return view('admin.bph.kerjasama_mitra.index', compact('mitras', 'type'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Simpan mitra baru
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'type'          => 'required|in:internal,eksternal',
+            'sub_type'      => 'nullable|in:institusi,ormawa_hmps,ormawa_ukm,komunitas,ukmbs',
+            'logo'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description'   => 'required|string|max:255',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $validated['logo'] = $request->file('logo')->store('mitra', 'public');
+        }
+
+        ManageMitra::create($validated);
+
+        return redirect()->back()->with('success', 'Mitra berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Update mitra
      */
-    public function show(ManageMitra $manageMitra)
+    public function update(Request $request, $id)
     {
-        //
+        $mitra = ManageMitra::findOrFail($id);
+
+        $validated = $request->validate([
+            'name'           => 'required|string|max:255',
+            'type'           => 'required|in:internal,eksternal',
+            'sub_type'       => 'nullable|in:institusi,ormawa_hmps,ormawa_ukm,komunitas,ukmbs',
+            'logo'           => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description'    => 'required|string|max:255',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            // hapus logo lama
+            if ($mitra->logo && Storage::disk('public')->exists($mitra->logo)) {
+                Storage::disk('public')->delete($mitra->logo);
+            }
+
+            $validated['logo'] = $request->file('logo')->store('mitra', 'public');
+        }
+
+        $mitra->update($validated);
+
+        return redirect()->back()->with('success', 'Mitra berhasil diperbarui.');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Hapus mitra
      */
-    public function edit(ManageMitra $manageMitra)
+    public function destroy($id)
     {
-        //
+        $mitra = ManageMitra::findOrFail($id);
+
+        if ($mitra->logo && Storage::disk('public')->exists($mitra->logo)) {
+            Storage::disk('public')->delete($mitra->logo);
+        }
+
+        $mitra->delete();
+
+        return redirect()->back()->with('success', 'Mitra berhasil dihapus.');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Export mitra (contoh: CSV/Excel/PDF)
      */
-    public function update(Request $request, ManageMitra $manageMitra)
+    public function export()
     {
-        //
-    }
+        $mitras = ManageMitra::all();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ManageMitra $manageMitra)
-    {
-        //
+        // sementara dump json dulu
+        return response()->json($mitras);
+
+        // nanti bisa diubah pakai Excel::download / dompdf
     }
 }
