@@ -124,8 +124,8 @@
                 </svg>
             </button>
             <div x-show="openMenu === 'mitra'" x-cloak class="ml-10 flex flex-col gap-1 mt-1">
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Eksternal</a>
-                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Internal</a>
+                <a href="#" class="text-gray-600 px-3 py-1 hover:text-amber-600">Kerjasama</a>
+                <a href="{{ route('manage-mitra.index') }}" class="text-gray-600 px-3 py-1 hover:text-amber-600">Mitra</a>
             </div>
         </div>
     </nav>

@@ -14,6 +14,7 @@ class ManageMitraController extends Controller
      */
     public function index(Request $request)
     {
+        $title = 'Mitra';
         $type = $request->query('type'); // optional filter
         
         $query = ManageMitra::query();
@@ -23,8 +24,9 @@ class ManageMitraController extends Controller
         }
 
         $mitras = $query->latest()->paginate(10);
+        $totalMitras = $query->count();
 
-        return view('admin.bph.kerjasama_mitra.index', compact('mitras', 'type'));
+        return view('admin.bph.kerjasama_mitra.mitra.index', compact('title', 'mitras', 'type', 'totalMitras'));
     }
 
     /**
@@ -32,14 +34,28 @@ class ManageMitraController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        // validasi awal
         $validated = $request->validate([
-            'name'          => 'required|string|max:255',
-            'type'          => 'required|in:internal,eksternal',
-            'sub_type'      => 'nullable|in:institusi,ormawa_hmps,ormawa_ukm,komunitas,ukmbs',
-            'logo'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'description'   => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
+            'type'        => 'required|in:internal,eksternal',
+            'sub_type'    => 'nullable|string',
+            'logo'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description' => 'required|string|max:255',
         ]);
 
+        // validasi lanjutan sub_type sesuai type
+        if ($validated['type'] === 'internal') {
+            $request->validate([
+                'sub_type' => 'required|in:institusi,ormawa_hmps,ormawa_ukm',
+            ]);
+        } elseif ($validated['type'] === 'eksternal') {
+            $request->validate([
+                'sub_type' => 'required|in:komunitas,ukmbs',
+            ]);
+        }
+
+        // simpan logo jika ada
         if ($request->hasFile('logo')) {
             $validated['logo'] = $request->file('logo')->store('mitra', 'public');
         }
@@ -56,20 +72,32 @@ class ManageMitraController extends Controller
     {
         $mitra = ManageMitra::findOrFail($id);
 
+        // validasi awal
         $validated = $request->validate([
-            'name'           => 'required|string|max:255',
-            'type'           => 'required|in:internal,eksternal',
-            'sub_type'       => 'nullable|in:institusi,ormawa_hmps,ormawa_ukm,komunitas,ukmbs',
-            'logo'           => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'description'    => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
+            'type'        => 'required|in:internal,eksternal',
+            'sub_type'    => 'nullable|string',
+            'logo'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description' => 'required|string|max:255',
         ]);
 
+        // validasi lanjutan sub_type sesuai type
+        if ($validated['type'] === 'internal') {
+            $request->validate([
+                'sub_type' => 'required|in:institusi,ormawa_hmps,ormawa_ukm',
+            ]);
+        } elseif ($validated['type'] === 'eksternal') {
+            $request->validate([
+                'sub_type' => 'required|in:komunitas,ukmbs',
+            ]);
+        }
+
+        // update logo kalau ada file baru
         if ($request->hasFile('logo')) {
             // hapus logo lama
             if ($mitra->logo && Storage::disk('public')->exists($mitra->logo)) {
                 Storage::disk('public')->delete($mitra->logo);
             }
-
             $validated['logo'] = $request->file('logo')->store('mitra', 'public');
         }
 

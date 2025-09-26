@@ -13,3 +13,4 @@ import '../js/admin/modals.js';
 import '../js/admin/swiper-bundle.min.js';
 import '../js/admin/cdn.min.js';
 import '../js/admin/previewImage.js';
+import '../js/admin/sub_type_mitras.js';
