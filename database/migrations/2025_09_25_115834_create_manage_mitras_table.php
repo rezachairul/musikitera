@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('sub_type', ['institusi', 'ormawa_hmps', 'ormawa_ukm', 'komunitas', 'ukmbs']);
             $table->string('logo')->nullable();
             $table->text('description')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

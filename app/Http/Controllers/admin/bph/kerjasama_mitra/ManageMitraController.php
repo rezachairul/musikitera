@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\bph\ManageMitra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Str;
 
 class ManageMitraController extends Controller
 {
@@ -35,16 +36,16 @@ class ManageMitraController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        // validasi awal
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'type'        => 'required|in:internal,eksternal',
             'sub_type'    => 'nullable|string',
             'logo'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description' => 'required|string|max:255',
+            'url'         => 'nullable|url|max:255',
         ]);
 
-        // validasi lanjutan sub_type sesuai type
+        // validasi lanjutan sub_type
         if ($validated['type'] === 'internal') {
             $request->validate([
                 'sub_type' => 'required|in:institusi,ormawa_hmps,ormawa_ukm',
@@ -55,33 +56,39 @@ class ManageMitraController extends Controller
             ]);
         }
 
-        // simpan logo jika ada
+        // simpan logo dengan nama sesuai name
         if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('mitra', 'public');
+            $file      = $request->file('logo');
+            $ext       = $file->getClientOriginalExtension();
+            $fileName  = Str::slug($validated['name'], '-') . '.' . $ext;
+
+            // simpan ke storage/app/public/mitra
+            $path = $file->storeAs('mitra', $fileName, 'public');
+            $validated['logo'] = $path;
         }
 
         ManageMitra::create($validated);
 
         return redirect()->back()->with('success', 'Mitra berhasil ditambahkan.');
     }
-
+    
     /**
      * Update mitra
-     */
+    */
     public function update(Request $request, $id)
     {
         $mitra = ManageMitra::findOrFail($id);
 
-        // validasi awal
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'type'        => 'required|in:internal,eksternal',
             'sub_type'    => 'nullable|string',
             'logo'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description' => 'required|string|max:255',
+            'url'         => 'nullable|url|max:255',
         ]);
 
-        // validasi lanjutan sub_type sesuai type
+        // validasi lanjutan sub_type
         if ($validated['type'] === 'internal') {
             $request->validate([
                 'sub_type' => 'required|in:institusi,ormawa_hmps,ormawa_ukm',
@@ -98,7 +105,13 @@ class ManageMitraController extends Controller
             if ($mitra->logo && Storage::disk('public')->exists($mitra->logo)) {
                 Storage::disk('public')->delete($mitra->logo);
             }
-            $validated['logo'] = $request->file('logo')->store('mitra', 'public');
+
+            $file      = $request->file('logo');
+            $ext       = $file->getClientOriginalExtension();
+            $fileName  = Str::slug($validated['name'], '-') . '.' . $ext;
+
+            $path = $file->storeAs('mitra', $fileName, 'public');
+            $validated['logo'] = $path;
         }
 
         $mitra->update($validated);

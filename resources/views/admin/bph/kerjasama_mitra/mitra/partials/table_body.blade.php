@@ -10,7 +10,7 @@
         @if ($mitra->logo)
             <img src="{{ asset('storage/' . $mitra->logo) }}" 
                 alt="logo mitra" 
-                class="w-12 h-12 rounded-full object-cover">
+                class="w-16 h-12 object-cover">
         @else
             <span class="text-gray-400 italic">No Image</span>
         @endif
@@ -33,7 +33,9 @@
 
     <!-- URL -->
     <td class="px-6 py-4 whitespace-nowrap">
-        -
+        <a href="{{ $mitra->url }}">
+            {{ $mitra->url }}
+        </a>
     </td>
 
     <!-- Aksi -->

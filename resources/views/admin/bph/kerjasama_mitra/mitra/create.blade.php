@@ -16,7 +16,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Nama Mitra -->
-                    <div class="col-span-1 md:col-span-2">
+                    <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                             Nama Mitra
                         </label>
@@ -24,6 +24,18 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                             placeholder="Masukan nama mitra" required>
                         @error('name')
+                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- URL -->
+                    <div>
+                        <label for="url" class="block text-sm font-medium text-gray-700 mb-2">URL</label>
+                        <input type="url" name="url" id="url"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
+                                focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                            placeholder="https://example.com">
+                        @error('url')
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                         @enderror
                     </div>

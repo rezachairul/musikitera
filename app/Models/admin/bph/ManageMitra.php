@@ -12,10 +12,11 @@ class ManageMitra extends Model
     protected $table = 'manage_mitras';
 
     protected $fillable = [
-        'name',       // nama mitra
-        'type',       // internal / eksternal
-        'sub_type',   // institusi, ormawa, komunitas, dll
-        'logo',       // file logo/foto
-        'description' // deskripsi tambahan
+        'name',         // nama mitra
+        'type',         // internal / eksternal
+        'sub_type',     // institusi, ormawa, komunitas, dll
+        'logo',         // file logo/foto
+        'description',  // deskripsi tambahan
+        'url'           // url
     ];
 }
