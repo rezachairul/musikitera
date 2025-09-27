@@ -16,6 +16,8 @@
 @import './admin/theme-toogle.css';
 @import './admin/swiper-bundle.min.css';
 
+/* Auth */
+@import './auth/navy.css';
 
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
