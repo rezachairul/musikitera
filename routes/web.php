@@ -41,10 +41,11 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 // Publics
 // ==========================
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
 
 // ==========================
 // TEST ERROR PAGES
