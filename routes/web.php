@@ -132,8 +132,6 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
         Route::get('/export',  'export')->name('export');
     });
 
-
-
 });
 
 // Admins Badan Pengurus Routes
