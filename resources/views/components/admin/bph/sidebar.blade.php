@@ -94,7 +94,7 @@
                     Layanan
                 </a>
 
-                <a href="{{ route('statistik.index') }}"
+                <a href="{{ route('manage-statistik.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('statistik.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Statistik Publik
                 </a>

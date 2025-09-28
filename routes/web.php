@@ -45,6 +45,7 @@ use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 // ==========================
@@ -210,8 +211,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
+    
     // Statistik Publik
+    Route::controller(ManageStatistikController::class)->prefix('manage-statistik')->name('manage-statistik.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
     // Galeri
 
