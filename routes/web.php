@@ -50,6 +50,7 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 // ==========================
