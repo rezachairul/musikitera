@@ -24,6 +24,7 @@
     
                 <!-- Export -->
                  <a href="{{ route('manage-mitra.export', [
+                        'filter' => request()->get('filter', 'all'),
                         'search' => request()->get('search')
                     ]) }}" class="w-full sm:w-auto bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors duration-200 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 mr-2">
@@ -34,19 +35,15 @@
             </div>
         </div>
 
-        <!-- Search & Per Page -->
-        <div class="mb-4">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                
+        <!-- Filter dan Search -->
+        <div>
+            <div class="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
                 <!-- Search -->
-                <div class="relative w-full sm:w-2/3">
+                <div class="relative w-full sm:w-1/3">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0 
-                                A7.5 7.5 0 1 0 5.196 5.196 
-                                a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0 A7.5 7.5 0 1 0 5.196 5.196 a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </div>
                     <input 
@@ -55,26 +52,50 @@
                         value="{{ request('search') }}"
                         data-url="{{ route('manage-mitra.index') }}"
                         data-target="ManageMitraTableBody"
-                        placeholder="Cari {{ $title }}..." 
+                        placeholder="Search {{ $title }}..." 
                         class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
-                <!-- Per Page -->
-                <div class="w-full sm:w-1/4">
+                <!-- Filters -->
+                <div class="flex gap-3 w-full sm:w-2/3">
+                    <!-- By Tyep -->
+                    <select
+                        id="filter-select"
+                        name="filter"
+                        data-url="{{ route('manage-mitra.index') }}"
+                        data-target="ManageMitraTableBody"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                        <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- Semua Mitra --</option>
+
+                        <optgroup label="Internal">
+                            <option value="internal" {{ request('filter') == 'internal' ? 'selected' : '' }}>Semua Internal</option>
+                            <option value="institusi" {{ request('filter') == 'institusi' ? 'selected' : '' }}>Institusi</option>
+                            <option value="ormawa_hmps" {{ request('filter') == 'ormawa_hmps' ? 'selected' : '' }}>Ormawa HMPS</option>
+                            <option value="ormawa_ukm" {{ request('filter') == 'ormawa_ukm' ? 'selected' : '' }}>Ormawa UKM</option>
+                        </optgroup>
+
+                        <optgroup label="Eksternal">
+                            <option value="eksternal" {{ request('filter') == 'eksternal' ? 'selected' : '' }}>Semua Eksternal</option>
+                            <option value="ukmbs" {{ request('filter') == 'ukmbs' ? 'selected' : '' }}>UKMBS</option>
+                            <option value="komunitas" {{ request('filter') == 'komunitas' ? 'selected' : '' }}>Komunitas</option>
+                        </optgroup>
+                    </select>
+
+                    <!-- By Per-Page -->
                     <select
                         id="perpage-select"
                         name="perPage"
-                        data-url="{{ route('manage-hero.index') }}"
+                        data-url="{{ route('manage-mitra.index') }}"
                         data-target="ManageMitraTableBody"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>Semua Halaman {{ $title }}</option>
-                        <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 / halaman</option>
-                        <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 / halaman</option>
-                        <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 / halaman</option>
-                        <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100 / halaman</option>
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- All {{ $title }} Page --</option>
+                        <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 {{ $title }} per page</option>
+                        <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 {{ $title }} per page</option>
+                        <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 {{ $title }} per page</option>
+                        <option alue="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100 {{ $title }} per page</option>
                     </select>
                 </div>
-
             </div>
         </div>
 
@@ -115,7 +136,13 @@
                             <tr>
                                 <td colspan="7" class="px-6 py-3 text-sm text-gray-700">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                                        <span>Total {{$title}}: <span class="font-semibold">{{ $totalMitras }}</span></span>
+                                        <span>
+                                            Total {{ $title }}: <span class="font-semibold">{{ $totalMitras }}</span>
+                                        </span>
+                                        <div class="flex flex-wrap gap-4">
+                                            <span>Internal: <span class="font-semibold text-blue-600">{{ $internalMitras }}</span></span>
+                                            <span>Eksternal: <span class="font-semibold text-green-600">{{ $eksternalMitras }}</span></span>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

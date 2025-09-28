@@ -21,20 +21,59 @@
         {{ $mitra->name }}
     </td>
 
-    <!-- Kategori -->
+    <!-- Type (Kategori) -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $mitra->type }}
+        <span class="px-2 py-1 text-xs rounded-full {{ $mitra->type_badge }}">
+            {{ $mitra->type_label }}
+        </span>
     </td>
 
-    <!-- Sub Kategori -->
+    <!-- Sub Type (Sub-Kategori) -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $mitra->sub_type }}
+        <span class="px-2 py-1 text-xs rounded-full {{ $mitra->sub_badge }}">
+            {{ $mitra->sub_label }}
+        </span>
     </td>
 
     <!-- URL -->
     <td class="px-6 py-4 whitespace-nowrap">
-        <a href="{{ $mitra->url }}">
-            {{ $mitra->url }}
+        <a href="{{ $mitra->url }}" target="_blank" 
+        class="flex items-center space-x-1 font-medium {{ $mitra->social['color'] }}">
+        
+        {{-- SVG icon (pakai switch case) --}}
+        @switch($mitra->social['icon'])
+            @case('instagram')
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.75 2a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+                </svg>
+                @break
+
+            @case('youtube')
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a2.974 2.974 0 00-2.095-2.103C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.403.583a2.974 2.974 0 00-2.095 2.103C0 8.098 0 12 0 12s0 3.902.502 5.814a2.974 2.974 0 002.095 2.103C4.5 20.5 12 20.5 12 20.5s7.5 0 9.403-.583a2.974 2.974 0 002.095-2.103C24 15.902 24 12 24 12s0-3.902-.502-5.814zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/>
+                </svg>
+                @break
+
+            @case('tiktok')
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.75 2a1 1 0 011 1v.25c0 2.071 1.679 3.75 3.75 3.75h.25a1 1 0 011 1V9c0 6.075-4.925 11-11 11S2 15.075 2 9a1 1 0 011-1h.25C5.321 8 7 6.321 7 4.25V4a1 1 0 011-1h4.75z"/>
+                </svg>
+                @break
+
+            @case('whatsapp')
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.52 3.48A11.87 11.87 0 0012 0C5.38 0 0 5.38 0 12c0 2.12.55 4.18 1.6 6L0 24l6.22-1.6A11.93 11.93 0 0012 24c6.62 0 12-5.38 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.5c-1.96 0-3.88-.52-5.56-1.5l-.4-.23-3.68.95.98-3.58-.25-.43A9.45 9.45 0 012.5 12c0-5.25 4.25-9.5 9.5-9.5s9.5 4.25 9.5 9.5-4.25 9.5-9.5 9.5zm4.48-7.22c-.25-.13-1.48-.73-1.71-.82-.23-.08-.4-.12-.57.13s-.65.82-.8.99c-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.2-.74-.65-1.25-1.46-1.4-1.71-.15-.25-.02-.38.11-.5.12-.12.25-.3.37-.45.12-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.07-.13-.57-1.37-.78-1.87-.2-.48-.41-.42-.57-.43h-.48c-.17 0-.45.06-.68.32-.23.26-.9.88-.9 2.15s.92 2.49 1.05 2.67c.13.17 1.8 2.75 4.38 3.85.61.26 1.08.42 1.45.54.61.19 1.16.16 1.6.1.49-.07 1.48-.6 1.69-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29z"/>
+                </svg>
+                @break
+
+            @case('globe')
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.93 6h-3.31a15.26 15.26 0 010 8h3.31a7.963 7.963 0 000-8zm-5.93 0h-2.02a13.27 13.27 0 000 8h2.02a13.27 13.27 0 000-8zM8.38 8H5.07a7.963 7.963 0 000 8h3.31a15.26 15.26 0 010-8z"/>
+                </svg>
+                @break
+        @endswitch
+
+        <span>{{ $mitra->social['name'] }}</span>
         </a>
     </td>
 
