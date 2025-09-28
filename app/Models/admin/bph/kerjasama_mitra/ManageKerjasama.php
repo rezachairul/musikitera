@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin\bph;
+namespace App\Models\admin\bph\kerjasama_mitra;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

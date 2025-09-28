@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\ManageMitraExport;
 use App\Http\Controllers\Controller;
-use App\Models\admin\bph\ManageMitra;
+use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use Illuminate\Support\Facades\Storage;
 
 class ManageMitraController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\admin\bph\ManageMitra;
+use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

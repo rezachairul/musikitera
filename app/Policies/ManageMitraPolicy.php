@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\ManageMitra;
+use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

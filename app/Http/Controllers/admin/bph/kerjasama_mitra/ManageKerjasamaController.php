@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin\bph\kerjasama_mitra;
 
-use App\Models\admin\bph\ManageKerjasama;
+use App\Models\admin\bph\kerjasama_mitra\ManageKerjasama;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

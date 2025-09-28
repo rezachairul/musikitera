@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\bph\ManageMitra>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\bph\kerjasama_mitra\ManageMitra>
  */
 class ManageMitraFactory extends Factory
 {
