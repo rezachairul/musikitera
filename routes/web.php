@@ -35,11 +35,12 @@ use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 
 // Pembina
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
 
 // ==========================
 // Publics
 // ==========================
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
@@ -220,8 +221,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
+    
     // Galeri
+    Route::controller(ManageGaleriController::class)->prefix('manage-galeri')->name('manage-galeri.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
     // Highlight Kegiatan
 

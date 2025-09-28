@@ -99,7 +99,7 @@
                     Statistik Publik
                 </a>
 
-                <a href="{{ route('galeri.index') }}"
+                <a href="{{ route('manage-galeri.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('galeri.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Galeri Kegiatan
                 </a>
