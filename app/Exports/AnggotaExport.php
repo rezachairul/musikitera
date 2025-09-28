@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\admin\bph\AnggotaAktif;
+use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

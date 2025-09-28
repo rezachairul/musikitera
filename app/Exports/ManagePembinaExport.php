@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\admin\bph\ManagePembina;
+use App\Models\admin\bph\manajemen_anggota\ManagePembina;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

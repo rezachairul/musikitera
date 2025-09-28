@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageAlumni;
+use App\Models\admin\bph\manajemen_anggota\ManageAlumni;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

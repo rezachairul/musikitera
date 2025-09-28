@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 use Illuminate\Http\Request;
 use App\Exports\AnggotaExport;
 use App\Http\Controllers\Controller;
-use App\Models\admin\bph\AnggotaAktif;
+use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class AnggotaAktifController extends Controller

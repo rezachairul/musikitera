@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 
-use App\Models\admin\bph\ManageBadanPengurus;
+use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;

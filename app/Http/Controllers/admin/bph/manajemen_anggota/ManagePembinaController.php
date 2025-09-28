@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 use Illuminate\Http\Request;
 use App\Exports\ManagePembinaExport;
 use App\Http\Controllers\Controller;
-use App\Models\admin\bph\ManagePembina;
+use App\Models\admin\bph\manajemen_anggota\ManagePembina;
 use Illuminate\Support\Facades\Storage;
 
 class ManagePembinaController extends Controller

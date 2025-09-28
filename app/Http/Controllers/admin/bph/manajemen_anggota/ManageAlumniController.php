@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 
-use App\Models\admin\bph\ManageAlumni;
+use App\Models\admin\bph\manajemen_anggota\ManageAlumni;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
