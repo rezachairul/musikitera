@@ -53,7 +53,7 @@
                 <a href="{{ route('manage-badan-pengurus.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-badan-pengurus.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
                     Badan Pengurus
                 </a>
-                <a href="{{ route('manage-alumni.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('alumni.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
+                <a href="{{ route('manage-alumni.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-alumni.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
                     Alumni
                 </a>
                 <a href="{{ route('manage-pembina.index') }}" class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-pembina.*')  ? 'bg-gray-200 text-amber-600 font-medium'  : 'text-gray-600 hover:text-amber-600' }}">
