@@ -22,9 +22,12 @@ use App\Http\Controllers\admin\administrator\ManageUserController;
 // BPH
 use App\Http\Controllers\admin\bph\DashboardBPHController;
 use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
-use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+
+
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 
 
 
@@ -200,6 +203,13 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
 
     // Kerjasama dan Mitara
     // Kerjasama
+    Route::controller(ManageKerjasamaController::class)->prefix('kerjasama')->name('manage-kerjasama.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
     // Mitra
     Route::controller(ManageMitraController::class)->prefix('mitra')->name('manage-mitra.')->group(function(){
