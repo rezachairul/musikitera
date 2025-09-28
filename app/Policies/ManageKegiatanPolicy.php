@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageKegiatan;
+use App\Models\admin\bph\publikasi_informasi\ManageKegiatan;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

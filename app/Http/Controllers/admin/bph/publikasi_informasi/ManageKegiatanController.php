@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\bph\publikasi_informasi;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\ManageKegiatan;
+use App\Models\admin\bph\publikasi_informasi\ManageKegiatan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
