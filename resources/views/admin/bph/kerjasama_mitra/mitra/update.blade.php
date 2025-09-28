@@ -109,7 +109,7 @@
                                     class="hidden preview-edit-input" 
                                     data-id="{{ $mitra->id }}">
                             </div>
-                            <p id="image-error" class="mt-2 text-sm text-red-600 hidden"></p>
+                            <p id="image-error-{{ $mitra->id }}" class="mt-2 text-sm text-red-600 hidden"></p>
                         </div>
 
                         <!-- Deskripsi -->

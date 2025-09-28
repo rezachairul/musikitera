@@ -1,6 +1,4 @@
 /* Enhanced custom styles untuk desktop responsiveness dan navy denim theme */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 * {
     font-family: 'Inter', sans-serif;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -12,6 +10,7 @@
         min-height: 100vh;
     }
 
+    /* Scroll bar */
     ::-webkit-scrollbar {
         width: 10px;
     }

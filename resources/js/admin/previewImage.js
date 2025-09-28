@@ -64,12 +64,12 @@ function previewImage(input) {
 function previewEditImage(event, id) {
     const file = event.target.files[0];
     const previewContainer = document.getElementById(`currentImagePreview-${id}`);
-    const errorMsg = document.getElementById("foto-error"); // <p id="foto-error">
+    const errorMsg = document.getElementById(`image-error-${id}`);
 
     if (file) {
         // ✅ Validasi ukuran (max 2MB)
         if (file.size > 2 * 1024 * 1024) {
-            errorMsg.textContent = "Foto lebih dari 2MB, silakan pilih ulang.";
+            errorMsg.innerHTML = `<span class="text-red-500">Foto lebih dari 2MB, silakan pilih ulang.</span>`;
             errorMsg.classList.remove("hidden");
 
             event.target.value = ""; // reset input
@@ -80,7 +80,7 @@ function previewEditImage(event, id) {
         // ✅ Validasi format
         const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
         if (!allowedTypes.includes(file.type)) {
-            errorMsg.textContent = "Format tidak valid! Hanya JPG, JPEG, PNG.";
+            errorMsg.innerHTML = `<span class="text-red-500">Format tidak valid! Hanya JPG, JPEG, PNG.</span>`;
             errorMsg.classList.remove("hidden");
 
             event.target.value = "";
