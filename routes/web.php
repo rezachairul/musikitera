@@ -52,6 +52,7 @@ use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
 use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
 use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManagePengumumanController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 // ==========================
