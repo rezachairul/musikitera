@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_anggota;
 
-use App\Models\admin\bph\ManageBadanPengurus;
+use App\Models\admin\bph\ManageAlumni;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ManageBadanPengurusController extends Controller
+class ManageAlumniController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class ManageBadanPengurusController extends Controller
     {
         $title = "Badan Pengurus";
 
-        return view('admin.bph.manajemen_anggota.badan_pengurus.index', compact( 'title'));
+        return view('admin.bph.manajemen_anggota.alumni.index', compact( 'title'));
     }
 
     /**
@@ -38,7 +39,7 @@ class ManageBadanPengurusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ManageBadanPengurus $manageBadanPengurus)
+    public function show(ManageAlumni $manageAlumni)
     {
         //
     }
@@ -46,7 +47,7 @@ class ManageBadanPengurusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ManageBadanPengurus $manageBadanPengurus)
+    public function edit(ManageAlumni $manageAlumni)
     {
         //
     }
@@ -54,7 +55,7 @@ class ManageBadanPengurusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ManageBadanPengurus $manageBadanPengurus)
+    public function update(Request $request, ManageAlumni $manageAlumni)
     {
         //
     }
@@ -62,7 +63,7 @@ class ManageBadanPengurusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ManageBadanPengurus $manageBadanPengurus)
+    public function destroy(ManageAlumni $manageAlumni)
     {
         //
     }

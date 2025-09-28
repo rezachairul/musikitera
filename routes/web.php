@@ -15,7 +15,6 @@ use App\Http\Controllers\Auth\RegisterController;
 // ==========================
 // Administrator
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\ManageBadanPengurusController;
 
 // Badan Pengurus
 // Dashboard
@@ -41,8 +40,10 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 // ==========================
 // Publics
 // ==========================
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 
 // ==========================
@@ -164,13 +165,13 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     });
 
     // Manajemen Alumni
-    // Route::controller(AnggotaAktifController::class)->prefix('anggota-aktif')->name('anggota-aktif.')->group(function(){
-    //     Route::get('/','index')->name('index');
-    //     Route::post('/','store')->name('store');
-    //     Route::put('/{id}','update')->name('update');
-    //     Route::delete('/{id}','destroy')->name('destroy');
-    //     Route::get('/export',  'export')->name('export');
-    // });
+    Route::controller(ManageAlumniController::class)->prefix('manage-alumni')->name('manage-alumni.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
     // Manajemen Pembina
     Route::controller(ManagePembinaController::class)->prefix('manage-pembina')->name('manage-pembina.')->group(function(){
