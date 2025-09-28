@@ -114,7 +114,7 @@
                     Apa Kata Mereka
                 </a>
 
-                <a href="{{ route('cta-oprec.index') }}"
+                <a href="{{ route('manage-cta.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('cta-oprec.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     CTA Oprec
                 </a>

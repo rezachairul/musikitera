@@ -48,6 +48,7 @@ use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 // ==========================
@@ -242,15 +243,22 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     });
     
     // Apa Kata Mereka
-    Route::controller(ManageGaleriController::class)->prefix('manage-testimoni')->name('manage-testimoni.')->group(function(){
+    Route::controller(ManageTestimoniController::class)->prefix('manage-testimoni')->name('manage-testimoni.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
+    
     // CTA (Oprec)
+    Route::controller(ManageCTAController::class)->prefix('manage-cta')->name('manage-cta.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
 
     // Publikasi dan Dokumentasi
