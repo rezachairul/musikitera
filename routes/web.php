@@ -32,14 +32,15 @@ use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
 
 
 // Dewan Pengawas
-use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
 
 // Pembina
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 
 // ==========================
 // Publics
 // ==========================
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
