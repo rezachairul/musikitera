@@ -44,7 +44,7 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
-
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
 
 // ==========================
 // TEST ERROR PAGES
@@ -191,14 +191,35 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
+    
     // Profil Organisasi
+    Route::controller(ManageProfileController::class)->prefix('manage-profile')->name('manage-profile.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+    
     // Layanan
+    Route::controller(ManageLayananController::class)->prefix('manage-layanan')->name('manage-layanan.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
     // Statistik Publik
+
     // Galeri
+
     // Highlight Kegiatan
+
     // Apa Kata Mereka
+
     // CTA (Oprec)
+
 
     // Publikasi dan Dokumentasi
 

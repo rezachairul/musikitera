@@ -84,12 +84,12 @@
                     Hero
                 </a>
 
-                <a href="{{ route('profil.index') }}"
+                <a href="{{ route('manage-profile.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('profil.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Profil Organisasi
                 </a>
 
-                <a href="{{ route('layanan.index') }}"
+                <a href="{{ route('manage-layanan.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('layanan.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Layanan
                 </a>
