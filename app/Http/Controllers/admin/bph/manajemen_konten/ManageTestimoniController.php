@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_konten;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\ManageTestimoni;
+use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;

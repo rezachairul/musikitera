@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageHighlight;
+use App\Models\admin\bph\manajemen_konten\ManageHighlight;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

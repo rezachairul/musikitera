@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageCTA;
+use App\Models\admin\bph\manajemen_konten\ManageCTA;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

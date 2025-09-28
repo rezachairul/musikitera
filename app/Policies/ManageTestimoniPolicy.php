@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageTestimoni;
+use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

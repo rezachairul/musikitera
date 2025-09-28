@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\Hero;
+use App\Models\admin\bph\manajemen_konten\Hero;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_konten;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\ManageGaleri;
+use App\Models\admin\bph\manajemen_konten\ManageGaleri;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;

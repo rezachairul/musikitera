@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageGaleri;
+use App\Models\admin\bph\manajemen_konten\ManageGaleri;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

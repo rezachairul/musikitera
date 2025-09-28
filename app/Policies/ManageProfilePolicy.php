@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageProfile;
+use App\Models\admin\bph\manajemen_konten\ManageProfile;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

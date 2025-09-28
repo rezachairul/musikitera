@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_konten;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\Hero;
+use App\Models\admin\bph\manajemen_konten\Hero;
 use App\Exports\ManageHeroExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;

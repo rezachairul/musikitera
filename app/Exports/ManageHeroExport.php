@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\admin\bph\Hero;
+use App\Models\admin\bph\manajemen_konten\Hero;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

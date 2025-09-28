@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\ManageLayanan;
+use App\Models\admin\bph\manajemen_konten\ManageLayanan;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

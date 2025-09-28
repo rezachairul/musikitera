@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\bph\ManageLayanan>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\bph\manajemen_konten\ManageLayanan>
  */
 class ManageLayananFactory extends Factory
 {

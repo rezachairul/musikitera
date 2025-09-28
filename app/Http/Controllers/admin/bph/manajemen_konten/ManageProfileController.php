@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\bph\manajemen_konten;
 use Illuminate\Http\Request;
 
 
-use App\Models\admin\bph\ManageProfile;
+use App\Models\admin\bph\manajemen_konten\ManageProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
