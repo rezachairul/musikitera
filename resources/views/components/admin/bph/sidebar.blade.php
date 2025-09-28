@@ -109,7 +109,7 @@
                     Highlight Kegiatan
                 </a>
 
-                <a href="{{ route('testimoni.index') }}"
+                <a href="{{ route('manage-testimoni.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('testimoni.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Apa Kata Mereka
                 </a>
