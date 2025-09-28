@@ -32,7 +32,7 @@
 
         <!-- Manajemen Anggota -->
         <div>
-            <button @click="openMenu = (openMenu === 'anggota' ? null : 'anggota')" class="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors{{ request()->routeIs('anggota-*') || request()->routeIs('manage-badan-pengurus.*') || request()->routeIs('alumni.*') || request()->routeIs('manage-pembina.*') ? 'bg-gray-100 text-amber-600 font-semibold' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
+            <button @click="openMenu = (openMenu === 'anggota' ? null : 'anggota')" class="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors{{ request()->routeIs('anggota-*') || request()->routeIs('manage-badan-pengurus.*') || request()->routeIs('manage-alumni.*') || request()->routeIs('manage-pembina.*') ? 'bg-gray-100 text-amber-600 font-semibold' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
                 <div class="flex items-center gap-3">
                     <!-- icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
