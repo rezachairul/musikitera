@@ -188,6 +188,7 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::get('/export',  'export')->name('export');
     });
 
+
     // Manajemen Konten
     // Hero
     Route::controller(HeroController::class)->prefix('hero')->name('manage-hero.')->group(function(){
@@ -260,9 +261,35 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-
-
+    
+    
     // Publikasi dan Dokumentasi
+    // Dokumen
+    Route::controller(ManageDokumenController::class)->prefix('manage-dokumen')->name('manage-dokumen.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+    
+    // Kegiatan
+    Route::controller(ManageKegiatanController::class)->prefix('manage-kegiatan')->name('manage-kegiatan.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+    
+    // Pengumuman
+    Route::controller(ManagePengumumanController::class)->prefix('manage-pengumuman')->name('manage-pengumuman.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
 
 
 
