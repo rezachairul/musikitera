@@ -104,7 +104,7 @@
                     Galeri Kegiatan
                 </a>
 
-                <a href="{{ route('highlight.index') }}"
+                <a href="{{ route('manage-highlight.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('highlight.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Highlight Kegiatan
                 </a>
