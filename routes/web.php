@@ -6,54 +6,54 @@ use Illuminate\Support\Facades\Route;
 // Auths
 // ==========================
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\public\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // ==========================
 // Adnmins
 // ==========================
 // Administrator
-use App\Http\Controllers\Auth\ForgotPasswordController;
-
-// Badan Pengurus
-// Dashboard
-// BPH
-use App\Http\Controllers\admin\bph\DashboardBPHController;
-use App\Http\Controllers\admin\dpo\DashboardDPOController;
-
 use App\Http\Controllers\admin\administrator\DashboardController;
 use App\Http\Controllers\admin\administrator\ManageUserController;
 
+// Badan Pengurus
+// BPH
+use App\Http\Controllers\admin\bph\DashboardBPHController;
 
-use App\Http\Controllers\admin\pembina\DashboardPembinaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
+
 use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
 
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManagePengumumanController;
 
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 
 // Dewan Pengawas
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
 
 // Pembina
-use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
+
 
 // ==========================
 // Publics
 // ==========================
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
-use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManagePengumumanController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
+use App\Http\Controllers\public\HomeController;
+
 
 // ==========================
 // TEST ERROR PAGES
