@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('manage_galeris', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->text('image');
+            $table->date('kegiatan_date')->nullable();
             $table->timestamps();
         });
     }

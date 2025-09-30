@@ -9,4 +9,13 @@ class ManageGaleri extends Model
 {
     /** @use HasFactory<\Database\Factories\ManageGaleriFactory> */
     use HasFactory;
+
+    protected $table = 'manage_galeris';
+
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+        'kegiatan_date',
+    ];
 }
