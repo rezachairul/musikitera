@@ -48,7 +48,7 @@ class ManageDokumenController extends Controller
         }
 
         // urutkan dokumen terbaru dulu
-        $dokumens = $query->orderBy('created_at', 'desc')
+        $manage_dokumens = $query->orderBy('created_at', 'desc')
             ->paginate($perPage === 'all' ? $query->count() : (int) $perPage);
 
         // Total dokumen dan total dokumen per kategori
@@ -57,7 +57,7 @@ class ManageDokumenController extends Controller
         foreach ($KategoriDokumen as $dokumenKategori) {
             $totals[$dokumenKategori] = ManageDokumen::where('kategori', $dokumenKategori)->count();
         }
-        $totals['all'] = array_sum($totals);
+        $totalAlls = array_sum($totals);
 
         // label kategori
         $kategoriLabels = [
@@ -68,11 +68,11 @@ class ManageDokumenController extends Controller
 
         // kalau request AJAX, return partial table aja
         if ($request->ajax()) {
-            return view('admin.bph.publikasi_informasi.dokumen.partials.table_body', compact('title','totals', 'kategoriLabels', 'dokumens', 'kategoriLabels'))->render();
+            return view('admin.bph.publikasi_informasi.dokumen.partials.table_body', compact('title','totals', 'totalAlls', 'kategoriLabels', 'manage_dokumens', 'kategoriLabels'))->render();
         }
 
         // return ke view utama
-        return view('admin.bph.publikasi_informasi.dokumen.index', compact('title', 'dokumens', 'kategoriLabels', 'filter', 'totals'));
+        return view('admin.bph.publikasi_informasi.dokumen.index', compact('title', 'manage_dokumens', 'kategoriLabels', 'filter', 'totals', 'totalAlls'));
     }
 
     /**

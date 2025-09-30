@@ -9,96 +9,68 @@
             <h2 id="modalTitle" class="text-lg font-semibold text-gray-800">Tambah {{ $title }}</h2>
         </div>
 
-        <!-- Form Create Anggota Aktif -->
+        <!-- Form Create Dokumen -->
         <form id="addForm" method="POST" action="{{ route('manage-dokumen.store') }}">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Nama -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Judul -->
                 <div>
-                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                    <input type="text" name="nama" id="nama"
+                    <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">Judul Dokumen</label>
+                    <input type="text" name="judul" id="judul"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukan Nama" required>
+                        placeholder="Masukan judul dokumen" required>
                 </div>
 
-                <!-- NIM -->
+                <!-- Kategori -->
                 <div>
-                    <label for="nim" class="block text-sm font-medium text-gray-700 mb-2">NIM</label>
-                    <input type="text" name="nim" id="nim"
+                    <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                    <select name="kategori" id="kategori"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="SOP">SOP</option>
+                        <option value="MoU">MoU</option>
+                        <option value="Format">Format</option>
+                    </select>
+                </div>
+
+                <!-- Tahun Terbit -->
+                <div>
+                    <label for="year_published" class="block text-sm font-medium text-gray-700 mb-2">Tahun Terbit</label>
+                    <input type="number" name="year_published" id="year_published"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukan NIM" required>
-                </div>
-
-                <!-- Angkatan Kampus -->
-                <div>
-                    <label for="angkatan" class="block text-sm font-medium text-gray-700 mb-2">Angkatan Kampus</label>
-                    <input type="number" name="angkatan" id="angkatan"
-                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="contoh: 2023" required>
-                </div>
-
-                <!-- Prodi -->
-                <div>
-                    <label for="prodi" class="block text-sm font-medium text-gray-700 mb-2">Program Studi</label>
-                    <input type="text" name="prodi" id="prodi"
-                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukan Prodi" required>
-                </div>
-
-                <!-- Nomor Urut -->
-                <div>
-                    <label for="nomor_urut" class="block text-sm font-medium text-gray-700 mb-2">Nomor Urut</label>
-                    <input type="number" name="nomor_urut" id="nomor_urut"
-                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="Nomor urut di UKM" required>
-                </div>
-
-                <!-- Angkatan UKM -->
-                <div>
-                    <label for="angkatan_ukm" class="block text-sm font-medium text-gray-700 mb-2">Angkatan UKM</label>
-                    <input type="number" name="angkatan_ukm" id="angkatan_ukm"
-                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="contoh: 6">
-                    <small class="text-gray-500">Akan otomatis jadi romawi</small>
-                </div>
-
-                <!-- Pendiri -->
-                <div>
-                <span class="block text-sm font-medium text-gray-700 mb-2">Pendiri</span>
-                <div class="flex items-center gap-6">
-                    
-                    <!-- Ya -->
-                    <label class="flex items-center cursor-pointer">
-                    <input type="radio" name="pendiri" value="1"
-                            class="hidden peer">
-                    <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                peer-checked:border-blue-600 peer-checked:bg-blue-600 transition"></span>
-                    <span class="ml-2 text-sm text-gray-700">Ya</span>
-                    </label>
-
-                    <!-- Tidak -->
-                    <label class="flex items-center cursor-pointer">
-                    <input type="radio" name="pendiri" value="0"
-                            class="hidden peer">
-                    <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                peer-checked:border-red-600 peer-checked:bg-red-600 transition"></span>
-                    <span class="ml-2 text-sm text-gray-700">Tidak</span>
-                    </label>
-
-                </div>
+                        placeholder="contoh: 2023" min="1900" max="{{ date('Y') }}">
                 </div>
 
                 <!-- Status -->
                 <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Status Perkuliahan</label>
-                    <select name="status" id="status"
-                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm">
-                        <option value="on_going">On Going</option>
-                        <option value="graduate">Graduate</option>
-                        <option value="drop_out">Drop Out</option>
-                        <option value="exit">Exit</option>
+                    <label for="is_active" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                    <select name="is_active" id="is_active"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option value="1">Aktif</option>
+                        <option value="0">Nonaktif</option>
                     </select>
+                </div>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="mt-6">
+                <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                <textarea name="deskripsi" id="deskripsi" rows="3"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    placeholder="Masukan deskripsi singkat dokumen"></textarea>
+            </div>
+
+            <!-- Upload File -->
+            <div class="mt-6">
+                <label for="file" class="block text-sm font-medium text-gray-700 mb-2">Upload File</label>
+                <input type="file" name="file" id="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                
+                <!-- Preview -->
+                <div id="filePreview" class="mt-4 hidden">
+                    <p class="text-sm text-gray-600 mb-2 font-semibold">Preview:</p>
+                    <div id="previewContent" class="border rounded-lg p-3 bg-gray-50"></div>
                 </div>
             </div>
 

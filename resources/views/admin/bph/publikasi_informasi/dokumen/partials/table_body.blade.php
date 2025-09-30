@@ -5,37 +5,47 @@
         {{ $manage_dokumens->firstItem() + $key }}
     </td>
 
-    <!-- Nama -->
+    <!-- Judul -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->nama }}
+        {{ $manage_dokumen->judul }}
     </td>
 
-    <!-- NIM -->
+    <!-- Kategori -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->nim }}
+        {{ $manage_dokumen->kategori }}
     </td>
 
-    <!-- Angkatan Kampus -->
+    <!-- Deskripsi -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->angkatan }}
+        {{ $manage_dokumen->deskripsi }}
     </td>
 
-    <!-- Prodi -->
+    <!-- File -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->prodi }}
-    </td>
-
-    <!-- NIA -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->nia }}
+        @if($manage_dokumen->file_name)
+            <div class="flex flex-col">
+                <span class="font-semibold">{{ $manage_dokumen->file_name }}</span>
+                <span class="text-xs text-gray-500">
+                    {{ $manage_dokumen->file_type }} · 
+                    {{ number_format($manage_dokumen->file_size / 1024, 2) }} KB
+                </span>
+            </div>
+        @else
+            <span class="text-gray-400 italic">Tidak ada file</span>
+        @endif
     </td>
 
     <!-- Status -->
     <td class="px-6 py-4 whitespace-nowrap">
-       @php $status = $statusLabels[$manage_dokumen->status]; @endphp
-        <span class="px-2 py-1 text-xs rounded-lg {{ $status['color'] }}">
-            {{ $status['label'] }}
-        </span>
+        @if($manage_dokumen->is_active)
+            <span class="px-2 py-1 text-xs rounded-lg bg-green-100 text-green-700 border border-green-300">
+                Aktif
+            </span>
+        @else
+            <span class="px-2 py-1 text-xs rounded-lg bg-red-100 text-red-700 border border-red-300">
+                Tidak Aktif
+            </span>
+        @endif
     </td>
 
     <!-- Aksi -->
