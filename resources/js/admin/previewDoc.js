@@ -60,10 +60,43 @@ document.getElementById('file').addEventListener('change', function (e) {
 
 // Untuk EDIT (bisa banyak form, cukup panggil fungsi ini di onchange)
 function EditPreviewDoc(id) {
-    handlePreview(
-        document.getElementById(`file-${id}`),
-        document.getElementById(`filePreview-${id}`),
-        document.getElementById(`previewContent-${id}`),
-        document.getElementById(`fileError-${id}`)
-    );
+    const input = document.getElementById(`edit_file-${id}`);
+    const preview = document.getElementById(`filePreview-${id}`);
+    const previewContent = document.getElementById(`previewContent-${id}`);
+    const error = document.getElementById(`edit_fileError-${id}`);
+
+    if (!input || !preview || !previewContent || !error) return;
+
+    const file = input.files[0];
+    if (!file) return;
+
+    const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        error.textContent = "Hanya file PDF, Word, Excel, dan PowerPoint yang diperbolehkan.";
+        error.classList.remove("hidden");
+        preview.classList.add("hidden");
+        return;
+    }
+
+    error.classList.add("hidden");
+    preview.classList.remove("hidden");
+
+    if (file.type === "application/pdf") {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            previewContent.innerHTML = `<iframe src="${e.target.result}" class="w-full h-96 border rounded-lg"></iframe>`;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        previewContent.innerHTML = `<p class="text-sm text-gray-700">${file.name}</p>`;
+    }
 }

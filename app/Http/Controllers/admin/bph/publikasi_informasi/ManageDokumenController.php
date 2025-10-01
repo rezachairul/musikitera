@@ -131,7 +131,7 @@ class ManageDokumenController extends Controller
             'is_active'         => $validated['is_active'] ?? true,
         ]);
 
-        return redirect()->route('admin.bph.publikasi_informasi.dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.');
+        return redirect()->route('manage-dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.');
     }
 
     /**
@@ -204,15 +204,25 @@ class ManageDokumenController extends Controller
             'is_active'         => $validated['is_active'] ?? true,
         ]);
 
-        return redirect()->route('admin.bph.publikasi_informasi.dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
+        return redirect()->route('manage-dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ManageDokumen $manageDokumen)
-    {
-        //
+    public function destroy($id)
+    {   
+        $dokumen = ManageDokumen::findOrFail($id);
+
+        // Hapus file_path kalau ada
+        if ($dokumen->file_path && Storage::disk('public')->exists($dokumen->file_path)) {
+            Storage::disk('public')->delete($dokumen->file_path);
+        }
+
+        // Hapus data dokumen
+        $dokumen->delete();
+
+        return redirect()->back()->with('success', 'Data dokumen beserta file berhasil dihapus.');
     }
 
     /**

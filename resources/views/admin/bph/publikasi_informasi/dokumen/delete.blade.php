@@ -23,9 +23,22 @@
 
                 <!-- Detail Anggota -->
                 <div class="bg-gray-50 w-full border-2 border-red-500 rounded-lg p-4 text-sm text-left italic text-gray-500 space-y-1">
-                    <p><span class="font-lg">Nama: </span>{{ $manage_dokumen->nama }}</p>
-                    <p><span class="font-lg">NIA: </span>{{ $manage_dokumen->nia }}</p>
-                    <p><span class="font-lg">Angkatan: </span>{{ $manage_dokumen->angkatan }}</p>
+                    <p><span class="font-lg">Judul      : </span>{{ $manage_dokumen->judul }}</p>
+                    <p><span class="font-lg">deskripsi  : </span>{{ $manage_dokumen->deskripsi }}</p>
+                    <p>
+                        <span class="font-lg">File      : </span>
+                        @if($manage_dokumen->original_filename)
+                            <div class="flex flex-col">
+                                <span class="font-semibold">{{ $manage_dokumen->original_filename }}</span>
+                                <span class="text-xs text-gray-500">
+                                    {{ $manage_dokumen->file_type }} · 
+                                    {{ number_format($manage_dokumen->file_size / 1024, 2) }} KB
+                                </span>
+                            </div>
+                        @else
+                            <span class="text-gray-400 italic">Tidak ada file</span>
+                        @endif
+                    </p>
                 </div>
 
                 <!-- Form Hapus -->

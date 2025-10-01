@@ -21,8 +21,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Judul -->
                     <div>
-                        <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">Judul Dokumen</label>
-                        <input type="text" name="judul" id="judul"
+                        <label for="edit_judul-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">Judul Dokumen</label>
+                        <input type="text" name="judul" id="edit_judul-{{ $manage_dokumen->id }}"
                             value="{{ $manage_dokumen->judul }}"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
                             placeholder="Masukan judul dokumen" required>
@@ -30,8 +30,8 @@
 
                     <!-- Kategori -->
                     <div>
-                        <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-                        <select name="kategori" id="kategori"
+                        <label for="edit_kategori-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select name="kategori" id="edit_kategori-{{ $manage_dokumen->id }}"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
                             <option value="">-- Pilih Kategori --</option>
                             <option value="SOP" {{ $manage_dokumen->kategori == 'SOP' ? 'selected' : '' }}>SOP</option>
@@ -42,8 +42,8 @@
 
                     <!-- Tahun Terbit -->
                     <div>
-                        <label for="year_published" class="block text-sm font-medium text-gray-700 mb-2">Tahun Terbit</label>
-                        <input type="number" name="year_published" id="year_published"
+                        <label for="edit_year_published-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">Tahun Terbit</label>
+                        <input type="number" name="year_published" id="edit_year_published-{{ $manage_dokumen->id }}"
                             value="{{ $manage_dokumen->year_published }}"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
                             placeholder="contoh: 2023" min="1900" max="{{ date('Y') }}">
@@ -51,8 +51,8 @@
 
                     <!-- Status -->
                     <div>
-                        <label for="is_active" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                        <select name="is_active" id="is_active"
+                        <label for="edit_is_active-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <select name="is_active" id="edit_is_active-{{ $manage_dokumen->id }}"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
                             <option value="1" {{ $manage_dokumen->is_active ? 'selected' : '' }}>Aktif</option>
                             <option value="0" {{ !$manage_dokumen->is_active ? 'selected' : '' }}>Nonaktif</option>
@@ -60,32 +60,32 @@
                     </div>
                 </div>
 
-                <!-- Deskripsi -->
+                <!-- Deskripsi --> 
                 <div class="mt-6">
-                    <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
-                    <textarea name="deskripsi" id="deskripsi" rows="3"
+                    <label for="edit_deskripsi-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                    <textarea name="deskripsi" id="edit_deskripsi-{{ $manage_dokumen->id }}" rows="3"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
                         placeholder="Masukan deskripsi singkat dokumen">{{ $manage_dokumen->deskripsi }}</textarea>
                 </div>
 
                 <!-- Upload File -->
                 <div class="mt-6">
-                    <label for="file-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="edit_file-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">
                         Upload File (opsional)
                     </label>
-                    <input type="file" name="file" id="file-{{ $manage_dokumen->id }}" 
+                    <input type="file" name="file" id="edit_file-{{ $manage_dokumen->id }}" 
                         accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
                         onchange="EditPreviewDoc('{{ $manage_dokumen->id }}')">
 
                     <!-- Pesan error -->
-                    <p id="fileError-{{ $manage_dokumen->id }}" class="mt-2 text-sm text-red-500 hidden"></p>
+                    <p id="edit_fileError-{{ $manage_dokumen->id }}" class="mt-2 text-sm text-red-500 hidden"></p>
                     
                     <!-- Preview -->
                     <div id="filePreview-{{ $manage_dokumen->id }}" class="mt-4 {{ $manage_dokumen->file ? '' : 'hidden' }}">
                         <p class="text-sm text-gray-600 mb-2 font-semibold">Preview:</p>
                         <div id="previewContent-{{ $manage_dokumen->id }}" class="border rounded-lg p-3 bg-gray-50">
-                            @if($manage_dokumen->file && Str::endsWith($manage_dokumen->file, '.pdf'))
+                            @if($manage_dokumen->file && pathinfo($manage_dokumen->file, PATHINFO_EXTENSION) === 'pdf')
                                 <iframe src="{{ asset('storage/dokumen/'.$manage_dokumen->file) }}" class="w-full h-96 border rounded-lg"></iframe>
                             @elseif($manage_dokumen->file)
                                 <p class="text-sm text-gray-700">{{ $manage_dokumen->file }}</p>
