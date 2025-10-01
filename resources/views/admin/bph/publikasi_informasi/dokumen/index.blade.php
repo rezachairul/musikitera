@@ -66,10 +66,9 @@
                         data-target="manageDokumenTableBody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- All Status --</option>
-                        <option value="graduate" {{ request('filter') == 'graduate' ? 'selected' : '' }}>Graduate</option>
-                        <option value="on_going" {{ request('filter') == 'on_going' ? 'selected' : '' }}>Aktif Perkuliahan</option>
-                        <option value="drop_out" {{ request('filter') == 'drop_out ' ? 'selected' : '' }}>Drop Out</option>
-                        <option value="exit" {{ request('filter') == 'exit' ? 'selected' : '' }}>Exit</option>
+                        <option value="SOP" {{ request('filter') == 'SOP' ? 'selected' : '' }}>SOP</option>
+                        <option value="MoU" {{ request('filter') == 'MoU' ? 'selected' : '' }}>MoU</option>
+                        <option value="Format" {{ request('filter') == 'Format ' ? 'selected' : '' }}>Format</option>
                     </select>
 
                     <!-- By Per-Page -->
@@ -100,22 +99,19 @@
                                     No
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Nama
+                                    Judul
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    NIM
+                                    Kategori
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Angkatan
+                                    Deskripsi
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Program Studi
+                                    File
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    NIA
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Status Perkuliahan
+                                    Status Dokumen
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -127,7 +123,7 @@
                         </tbody>
                         <tfoot class="bg-gray-50">
                             <tr>
-                                <td colspan="8" class="px-6 py-3 text-sm text-gray-700">
+                                <td colspan="7" class="px-6 py-3 text-sm text-gray-700">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                                         <span>Total Dokumen: {{ $totalAlls }}<span class="font-semibold"></span></span>
                                         <div class="flex flex-wrap gap-4 text-sm">

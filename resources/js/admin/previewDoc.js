@@ -1,21 +1,31 @@
-document.getElementById('file').addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    const previewWrapper = document.getElementById('filePreview');
-    const previewContent = document.getElementById('previewContent');
+function handlePreview(fileInput, previewWrapper, previewContent, errorMsg) {
+    const file = fileInput.files[0];
+
+    // Reset dulu
+    errorMsg.classList.add('hidden');
+    errorMsg.textContent = "";
 
     if (file) {
+        // Validasi ukuran file (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            errorMsg.textContent = "🎵 File ini terlalu 'berat nadanya'... Maksimal 5MB biar harmoninya tetap pas!";
+            errorMsg.classList.remove('hidden');
+            fileInput.value = ""; // reset input
+            previewWrapper.classList.add('hidden');
+            previewContent.innerHTML = "";
+            return;
+        }
+
         const fileType = file.type;
         previewWrapper.classList.remove('hidden');
         previewContent.innerHTML = "";
 
-        // Preview PDF langsung
         if (fileType === "application/pdf") {
             const fileURL = URL.createObjectURL(file);
             previewContent.innerHTML = `
                 <iframe src="${fileURL}" class="w-full h-96 border rounded-lg"></iframe>
             `;
         } else {
-            // Untuk file Word, Excel, PPT: tampilkan nama & size saja
             previewContent.innerHTML = `
                 <div class="flex items-center gap-3">
                     <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
@@ -36,4 +46,24 @@ document.getElementById('file').addEventListener('change', function (e) {
         previewWrapper.classList.add('hidden');
         previewContent.innerHTML = "";
     }
+}
+
+// Untuk CREATE (default 1 input)
+document.getElementById('file').addEventListener('change', function (e) {
+    handlePreview(
+        e.target,
+        document.getElementById('filePreview'),
+        document.getElementById('previewContent'),
+        document.getElementById('fileError')
+    );
 });
+
+// Untuk EDIT (bisa banyak form, cukup panggil fungsi ini di onchange)
+function EditPreviewDoc(id) {
+    handlePreview(
+        document.getElementById(`file-${id}`),
+        document.getElementById(`filePreview-${id}`),
+        document.getElementById(`previewContent-${id}`),
+        document.getElementById(`fileError-${id}`)
+    );
+}

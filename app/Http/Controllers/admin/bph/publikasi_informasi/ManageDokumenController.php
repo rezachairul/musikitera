@@ -88,6 +88,7 @@ class ManageDokumenController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         // validasi input
         $validated = $request->validate([
             'judul'          => 'required|string|max:255',
@@ -130,7 +131,7 @@ class ManageDokumenController extends Controller
             'is_active'         => $validated['is_active'] ?? true,
         ]);
 
-        return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.');
+        return redirect()->route('admin.bph.publikasi_informasi.dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.');
     }
 
     /**
@@ -203,7 +204,7 @@ class ManageDokumenController extends Controller
             'is_active'         => $validated['is_active'] ?? true,
         ]);
 
-        return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
+        return redirect()->route('admin.bph.publikasi_informasi.dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
     }
 
     /**

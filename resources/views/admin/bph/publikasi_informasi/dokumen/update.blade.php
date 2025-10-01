@@ -1,7 +1,7 @@
 <!-- Modal Edit Data -->
 @foreach ($manage_dokumens as $manage_dokumen)
     <div id="UpdateModal-{{ $manage_dokumen->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl p-6 relative">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl p-6 relative max-h-screen overflow-y-auto">
             <!-- Header -->
             <div class="flex items-center gap-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -10,100 +10,87 @@
                 <h2 class="text-lg font-semibold text-gray-800">Edit {{ $title }}</h2>
             </div>
 
-           <!-- Form Update Anggota Aktif -->
-            <form id="editForm-{{ $manage_dokumen->id }}" method="POST" action="{{ route('manage-dokumen.update', $manage_dokumen->id) }}">
+            <!-- Form Update Dokumen -->
+            <form id="editForm-{{ $manage_dokumen->id }}" method="POST" 
+                action="{{ route('manage-dokumen.update', $manage_dokumen->id) }}" 
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Nama -->
+                <!-- Grid 2 Kolom -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Judul -->
                     <div>
-                        <label for="edit_nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                        <input type="text" name="nama" id="edit_nama"
-                            value="{{ old('nama', $manage_dokumen->nama) }}"
+                        <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">Judul Dokumen</label>
+                        <input type="text" name="judul" id="judul"
+                            value="{{ $manage_dokumen->judul }}"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
+                            placeholder="Masukan judul dokumen" required>
                     </div>
 
-                    <!-- NIM -->
+                    <!-- Kategori -->
                     <div>
-                        <label for="edit_nim" class="block text-sm font-medium text-gray-700 mb-2">NIM</label>
-                        <input type="text" name="nim" id="edit_nim"
-                            value="{{ old('nim', $manage_dokumen->nim) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Angkatan Kampus -->
-                    <div>
-                        <label for="edit_angkatan" class="block text-sm font-medium text-gray-700 mb-2">Angkatan Kampus</label>
-                        <input type="number" name="angkatan" id="edit_angkatan"
-                            value="{{ old('angkatan', $manage_dokumen->angkatan) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Prodi -->
-                    <div>
-                        <label for="edit_prodi" class="block text-sm font-medium text-gray-700 mb-2">Program Studi</label>
-                        <input type="text" name="prodi" id="edit_prodi"
-                            value="{{ old('prodi', $manage_dokumen->prodi) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Nomor Urut -->
-                    <div>
-                        <label for="edit_nomor_urut" class="block text-sm font-medium text-gray-700 mb-2">Nomor Urut</label>
-                        <input type="number" name="nomor_urut" id="edit_nomor_urut"
-                            value="{{ old('nomor_urut', $manage_dokumen->nomor_urut) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Angkatan UKM -->
-                    <div>
-                        <label for="edit_angkatan_ukm" class="block text-sm font-medium text-gray-700 mb-2">Angkatan UKM</label>
-                        <input type="number" name="angkatan_ukm" id="edit_angkatan_ukm"
-                            value="{{ old('angkatan_ukm', $manage_dokumen->angkatan_ukm) }}"
+                        <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select name="kategori" id="kategori"
                             class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="SOP" {{ $manage_dokumen->kategori == 'SOP' ? 'selected' : '' }}>SOP</option>
+                            <option value="MoU" {{ $manage_dokumen->kategori == 'MoU' ? 'selected' : '' }}>MoU</option>
+                            <option value="Format" {{ $manage_dokumen->kategori == 'Format' ? 'selected' : '' }}>Format</option>
+                        </select>
                     </div>
 
-                    <!-- Pendiri -->
+                    <!-- Tahun Terbit -->
                     <div>
-                        <span class="block text-sm font-medium text-gray-700 mb-2">Pendiri</span>
-                        <div class="flex items-center gap-6">
-                            <!-- Ya -->
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="pendiri" value="1" id="edit_pendiri_yes"
-                                    class="hidden peer"
-                                    {{ old('pendiri', $manage_dokumen->pendiri) == 1 ? 'checked' : '' }}>
-                                <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                            peer-checked:border-blue-600 peer-checked:bg-blue-600 transition"></span>
-                                <span class="ml-2 text-sm text-gray-700">Ya</span>
-                            </label>
-                            <!-- Tidak -->
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="pendiri" value="0" id="edit_pendiri_no"
-                                    class="hidden peer"
-                                    {{ old('pendiri', $manage_dokumen->pendiri) == 0 ? 'checked' : '' }}>
-                                <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                            peer-checked:border-red-600 peer-checked:bg-red-600 transition"></span>
-                                <span class="ml-2 text-sm text-gray-700">Tidak</span>
-                            </label>
-                        </div>
+                        <label for="year_published" class="block text-sm font-medium text-gray-700 mb-2">Tahun Terbit</label>
+                        <input type="number" name="year_published" id="year_published"
+                            value="{{ $manage_dokumen->year_published }}"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            placeholder="contoh: 2023" min="1900" max="{{ date('Y') }}">
                     </div>
 
                     <!-- Status -->
                     <div>
-                        <label for="edit_status" class="block text-sm font-medium text-gray-700 mb-2">Status Perkuliahan</label>
-                        <select name="status" id="edit_status"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm">
-                            <option value="on_going" {{ old('status', $manage_dokumen->status) == 'on_going' ? 'selected' : '' }}>On Going</option>
-                            <option value="graduate" {{ old('status', $manage_dokumen->status) == 'graduate' ? 'selected' : '' }}>Graduate</option>
-                            <option value="drop_out" {{ old('status', $manage_dokumen->status) == 'drop_out' ? 'selected' : '' }}>Drop Out</option>
-                            <option value="exit" {{ old('status', $manage_dokumen->status) == 'exit' ? 'selected' : '' }}>Exit</option>
+                        <label for="is_active" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <select name="is_active" id="is_active"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="1" {{ $manage_dokumen->is_active ? 'selected' : '' }}>Aktif</option>
+                            <option value="0" {{ !$manage_dokumen->is_active ? 'selected' : '' }}>Nonaktif</option>
                         </select>
+                    </div>
+                </div>
+
+                <!-- Deskripsi -->
+                <div class="mt-6">
+                    <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                    <textarea name="deskripsi" id="deskripsi" rows="3"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Masukan deskripsi singkat dokumen">{{ $manage_dokumen->deskripsi }}</textarea>
+                </div>
+
+                <!-- Upload File -->
+                <div class="mt-6">
+                    <label for="file-{{ $manage_dokumen->id }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        Upload File (opsional)
+                    </label>
+                    <input type="file" name="file" id="file-{{ $manage_dokumen->id }}" 
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        onchange="EditPreviewDoc('{{ $manage_dokumen->id }}')">
+
+                    <!-- Pesan error -->
+                    <p id="fileError-{{ $manage_dokumen->id }}" class="mt-2 text-sm text-red-500 hidden"></p>
+                    
+                    <!-- Preview -->
+                    <div id="filePreview-{{ $manage_dokumen->id }}" class="mt-4 {{ $manage_dokumen->file ? '' : 'hidden' }}">
+                        <p class="text-sm text-gray-600 mb-2 font-semibold">Preview:</p>
+                        <div id="previewContent-{{ $manage_dokumen->id }}" class="border rounded-lg p-3 bg-gray-50">
+                            @if($manage_dokumen->file && Str::endsWith($manage_dokumen->file, '.pdf'))
+                                <iframe src="{{ asset('storage/dokumen/'.$manage_dokumen->file) }}" class="w-full h-96 border rounded-lg"></iframe>
+                            @elseif($manage_dokumen->file)
+                                <p class="text-sm text-gray-700">{{ $manage_dokumen->file }}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
 
@@ -119,7 +106,6 @@
                     </button>
                 </div>
             </form>
-
 
             <!-- Tombol X di pojok -->
             <button onclick="closeUpdateModal('{{ $manage_dokumen->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">

@@ -1,6 +1,6 @@
 <!-- Modal Tambah Data -->
 <div id="AddModal" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
-    <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl p-6 relative">
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl p-6 relative max-h-screen overflow-y-auto">
         <!-- Header -->
         <div class="flex items-center gap-2 mb-4">
             <svg  xmlns="http://www.w3.org/2000/svg"  fill="none"  viewBox="0 0 24 24"  stroke-width="1.5"  stroke="currentColor"  class="size-6 text-gray-500">
@@ -10,7 +10,7 @@
         </div>
 
         <!-- Form Create Dokumen -->
-        <form id="addForm" method="POST" action="{{ route('manage-dokumen.store') }}">
+        <form id="addForm" method="POST" action="{{ route('manage-dokumen.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -64,8 +64,12 @@
             <!-- Upload File -->
             <div class="mt-6">
                 <label for="file" class="block text-sm font-medium text-gray-700 mb-2">Upload File</label>
-                <input type="file" name="file" id="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+                <input type="file" name="file" id="file" 
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
                     class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+
+                <!-- Pesan error -->
+                <p id="fileError" class="mt-2 text-sm text-red-500 hidden"></p>
                 
                 <!-- Preview -->
                 <div id="filePreview" class="mt-4 hidden">

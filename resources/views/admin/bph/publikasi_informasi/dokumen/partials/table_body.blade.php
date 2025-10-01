@@ -22,9 +22,9 @@
 
     <!-- File -->
     <td class="px-6 py-4 whitespace-nowrap">
-        @if($manage_dokumen->file_name)
+        @if($manage_dokumen->original_filename)
             <div class="flex flex-col">
-                <span class="font-semibold">{{ $manage_dokumen->file_name }}</span>
+                <span class="font-semibold">{{ $manage_dokumen->original_filename }}</span>
                 <span class="text-xs text-gray-500">
                     {{ $manage_dokumen->file_type }} · 
                     {{ number_format($manage_dokumen->file_size / 1024, 2) }} KB
@@ -80,7 +80,7 @@
 
 @empty
 <tr class="hover:bg-gray-50">
-    <td colspan="8" class="px-6 py-4 text-center text-gray-500 italic">
+    <td colspan="7" class="px-6 py-4 text-center text-gray-500 italic">
         <div class="flex flex-col items-center justify-center text-sm text-gray-500 space-y-1">
             @if ($manage_dokumens->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
                 <!-- Icon Data Kosong -->
