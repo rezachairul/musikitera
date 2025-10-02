@@ -98,16 +98,10 @@
                                     Kategori
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Tanggal Mulai
+                                    Tanggal
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Tanggal Selesai
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Jam Mulai
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Jam Selesai
+                                    Waktu
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Lokasi
@@ -134,7 +128,7 @@
                         </tbody>
                         <tfoot class="bg-gray-50">
                             <tr>
-                                <td colspan="14" class="px-6 py-3 text-sm text-gray-700">
+                                <td colspan="12" class="px-6 py-3 text-sm text-gray-700">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                                         <span>Total {{$title}}: <span class="font-semibold">{{ $totalKegiatan }}</span></span>
                                     </div>

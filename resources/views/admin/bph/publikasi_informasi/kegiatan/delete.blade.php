@@ -62,14 +62,27 @@
 
                     <!-- Info tambahan -->
                     <div class="grid grid-cols-2 gap-2 pt-2">
-                        <p><span class="font-light">Tanggal Mulai:</span> 
-                            {{ $kegiatan->tanggal_mulai ? \Carbon\Carbon::parse($kegiatan->tanggal_mulai)->format('d M Y') : '-' }}
+                        <p>
+                            <span class="font-light">Tanggal:</span>
+                            @if($kegiatan->tanggal_mulai && $kegiatan->tanggal_selesai)
+                                {{ \Carbon\Carbon::parse($kegiatan->tanggal_mulai)->translatedFormat('d M Y') }}
+                                @if($kegiatan->tanggal_mulai != $kegiatan->tanggal_selesai)
+                                    - {{ \Carbon\Carbon::parse($kegiatan->tanggal_selesai)->translatedFormat('d M Y') }}
+                                @endif
+                            @else
+                                -
+                            @endif
                         </p>
-                        <p><span class="font-light">Tanggal Selesai:</span> 
-                            {{ $kegiatan->tanggal_selesai ? \Carbon\Carbon::parse($kegiatan->tanggal_selesai)->format('d M Y') : '-' }}
+
+                        <p>
+                            <span class="font-light">Waktu:</span>
+                            @if($kegiatan->jam_mulai && $kegiatan->jam_selesai)
+                                {{ \Carbon\Carbon::parse($kegiatan->jam_mulai)->format('H:i') }} -
+                                {{ \Carbon\Carbon::parse($kegiatan->jam_selesai)->format('H:i') }} WIB
+                            @else
+                                -
+                            @endif
                         </p>
-                        <p><span class="font-light">Jam Mulai:</span> {{ $kegiatan->jam_mulai ?? '-' }}</p>
-                        <p><span class="font-light">Jam Selesai:</span> {{ $kegiatan->jam_selesai ?? '-' }}</p>
                         <p class="col-span-2"><span class="font-semibold">Lokasi:</span> {{ $kegiatan->lokasi ?? '-' }}</p>
 
                         <p class="col-span-2"><span class="font-semibold">Lampiran:</span> 

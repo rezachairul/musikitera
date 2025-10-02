@@ -20,24 +20,14 @@
         {{ $kegiatan->kategori ?? '-' }}
     </td>
 
-    <!-- Tanggal Mulai -->
+    <!-- Tanggal -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->tanggal_mulai }}
+        {{ $kegiatan->tanggal_mulai }} - {{ $kegiatan->tanggal_selesai }}
     </td>
 
-    <!-- Tanggal Selesai -->
+    <!-- Waktu -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->tanggal_selesai }}
-    </td>
-
-    <!-- Jam Mulai -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->jam_mulai }}
-    </td>
-
-    <!-- Jam Selesai -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->jam_selesai }}
+        {{ $kegiatan->jam_mulai }} - {{ $kegiatan->jam_selesai }}
     </td>
 
     <!-- Lokasi -->
@@ -120,7 +110,7 @@
 
 @empty
 <tr class="hover:bg-gray-50">
-    <td colspan="14" class="px-6 py-4 text-center text-gray-500 italic">
+    <td colspan="12" class="px-6 py-4 text-center text-gray-500 italic">
         <div class="flex flex-col items-center justify-center text-sm text-gray-500 space-y-1">
             @if ($kegiatans->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
                 <!-- Icon Data Kosong -->
