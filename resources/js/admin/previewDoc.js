@@ -58,18 +58,41 @@ document.getElementById('file').addEventListener('change', function (e) {
     );
 });
 
-// Untuk EDIT (bisa banyak form, cukup panggil fungsi ini di onchange)
 function EditPreviewDoc(id) {
     const input = document.getElementById(`edit_file-${id}`);
-    const preview = document.getElementById(`filePreview-${id}`);
+    const previewWrapper = document.getElementById(`filePreview-${id}`);
     const previewContent = document.getElementById(`previewContent-${id}`);
-    const error = document.getElementById(`edit_fileError-${id}`);
+    const oldPreview = document.getElementById(`oldPreviewContent-${id}`);
+    const errorMsg = document.getElementById(`edit_fileError-${id}`);
 
-    if (!input || !preview || !previewContent || !error) return;
+    if (!input || !previewWrapper || !previewContent || !errorMsg) return;
 
     const file = input.files[0];
-    if (!file) return;
 
+    // Reset error & preview baru
+    errorMsg.classList.add("hidden");
+    errorMsg.textContent = "";
+    previewContent.innerHTML = "";   // <<< selalu kosongkan dulu
+    previewContent.classList.add("hidden");
+
+    if (!file) {
+        if (oldPreview) oldPreview.classList.remove("hidden");
+        return;
+    }
+
+    // Ada file baru → sembunyikan preview lama
+    if (oldPreview) oldPreview.classList.add("hidden");
+
+    // Validasi ukuran (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        errorMsg.textContent = "File terlalu besar, maksimal 5MB.";
+        errorMsg.classList.remove("hidden");
+        input.value = "";
+        if (oldPreview) oldPreview.classList.remove("hidden");
+        return;
+    }
+
+    // Validasi tipe
     const allowedTypes = [
         "application/pdf",
         "application/msword",
@@ -81,22 +104,38 @@ function EditPreviewDoc(id) {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-        error.textContent = "Hanya file PDF, Word, Excel, dan PowerPoint yang diperbolehkan.";
-        error.classList.remove("hidden");
-        preview.classList.add("hidden");
+        errorMsg.textContent = "Hanya file PDF, Word, Excel, dan PowerPoint yang diperbolehkan.";
+        errorMsg.classList.remove("hidden");
+        if (oldPreview) oldPreview.classList.remove("hidden");
         return;
     }
 
-    error.classList.add("hidden");
-    preview.classList.remove("hidden");
+    // Kalau valid → tampilkan preview baru
+    previewWrapper.classList.remove("hidden");
+
+    const fileURL = URL.createObjectURL(file); // <<< langsung pakai URL.createObjectURL lebih cepat
 
     if (file.type === "application/pdf") {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            previewContent.innerHTML = `<iframe src="${e.target.result}" class="w-full h-96 border rounded-lg"></iframe>`;
-        };
-        reader.readAsDataURL(file);
+        previewContent.innerHTML = `
+            <iframe src="${fileURL}" class="w-full h-96 border rounded-lg"></iframe>
+        `;
     } else {
-        previewContent.innerHTML = `<p class="text-sm text-gray-700">${file.name}</p>`;
+        previewContent.innerHTML = `
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M4 2a2 2 0 00-2 2v12a2
+                    2 0 002 2h12a2 2 0 002-2V7.414a2 2 0
+                    00-.586-1.414l-4.414-4.414A2 2 0
+                    0011.586 1H4zm5 9l-1.5 4-1.5-4H4l2.5
+                    7h2L11 11H9z"/>
+                </svg>
+                <div>
+                    <p class="text-sm font-medium text-gray-800">${file.name}</p>
+                    <p class="text-xs text-gray-500">${(file.size / 1024).toFixed(2)} KB</p>
+                </div>
+            </div>
+        `;
     }
+
+    previewContent.classList.remove("hidden");
 }

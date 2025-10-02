@@ -195,19 +195,19 @@
                             <div id="filePreview-{{ $kegiatan->id }}" 
                                 class="mt-2 border rounded-lg p-2 {{ $kegiatan->lampiran ? '' : 'hidden' }}">
                                 <div id="previewContent-{{ $kegiatan->id }}">
-                                    @if($kegiatan->lampiran)
+                                    @if($kegiatan->lampiran_path_path)
                                         @php
-                                            $ext = pathinfo($kegiatan->lampiran, PATHINFO_EXTENSION);
+                                            $ext = pathinfo($kegiatan->lampiran_path, PATHINFO_EXTENSION);
                                         @endphp
 
                                         @if(strtolower($ext) === 'pdf')
-                                            <iframe src="{{ asset('storage/'.$kegiatan->lampiran) }}" 
+                                            <iframe src="{{ asset('storage/'.$kegiatan->lampiran_path) }}" 
                                                     class="w-full h-96 border rounded-lg"></iframe>
                                         @else
-                                            <a href="{{ asset('storage/'.$kegiatan->lampiran) }}" 
+                                            <a href="{{ asset('storage/'.$kegiatan->lampiran_path) }}" 
                                             target="_blank" 
                                             class="text-blue-600 hover:underline">
-                                                {{ basename($kegiatan->lampiran) }}
+                                                {{ basename($kegiatan->lampiran_path) }}
                                             </a>
                                         @endif
                                     @endif

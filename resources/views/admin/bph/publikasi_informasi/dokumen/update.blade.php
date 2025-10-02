@@ -82,15 +82,26 @@
                     <p id="edit_fileError-{{ $manage_dokumen->id }}" class="mt-2 text-sm text-red-500 hidden"></p>
                     
                     <!-- Preview -->
-                    <div id="filePreview-{{ $manage_dokumen->id }}" class="mt-4 {{ $manage_dokumen->file ? '' : 'hidden' }}">
+                    <div id="filePreview-{{ $manage_dokumen->id }}" 
+                        class="mt-4 {{ $manage_dokumen->file_path ? '' : 'hidden' }}">
                         <p class="text-sm text-gray-600 mb-2 font-semibold">Preview:</p>
-                        <div id="previewContent-{{ $manage_dokumen->id }}" class="border rounded-lg p-3 bg-gray-50">
-                            @if($manage_dokumen->file && pathinfo($manage_dokumen->file, PATHINFO_EXTENSION) === 'pdf')
-                                <iframe src="{{ asset('storage/dokumen/'.$manage_dokumen->file) }}" class="w-full h-96 border rounded-lg"></iframe>
-                            @elseif($manage_dokumen->file)
-                                <p class="text-sm text-gray-700">{{ $manage_dokumen->file }}</p>
+
+                        <!-- Preview lama (dari DB) -->
+                        <div id="oldPreviewContent-{{ $manage_dokumen->id }}" 
+                            class="border rounded-lg p-3 bg-gray-50 {{ $manage_dokumen->file_path ? '' : 'hidden' }}">
+                            @if($manage_dokumen->file_path && pathinfo($manage_dokumen->file_path, PATHINFO_EXTENSION) === 'pdf')
+                                <iframe src="{{ asset('storage/'.$manage_dokumen->file_path) }}" 
+                                        class="w-full h-96 border rounded-lg"></iframe>
+                            @elseif($manage_dokumen->file_path)
+                                <p class="text-sm text-gray-700">
+                                    {{ $manage_dokumen->original_filename ?? basename($manage_dokumen->file_path) }}
+                                </p>
                             @endif
                         </div>
+
+                        <!-- Preview baru (JS overwrite di sini) -->
+                        <div id="previewContent-{{ $manage_dokumen->id }}" 
+                            class="border rounded-lg p-3 bg-gray-50 hidden"></div>
                     </div>
                 </div>
 
