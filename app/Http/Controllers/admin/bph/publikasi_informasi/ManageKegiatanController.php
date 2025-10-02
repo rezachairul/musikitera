@@ -153,6 +153,7 @@ class ManageKegiatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, ManageKegiatan $manageKegiatan)
     {
         $validated = $request->validate([
@@ -164,31 +165,56 @@ class ManageKegiatanController extends Controller
             'jam_mulai'       => 'nullable|date_format:H:i',
             'jam_selesai'     => 'nullable|date_format:H:i|after_or_equal:jam_mulai',
             'lokasi'          => 'nullable|string|max:255',
-            'poster'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'lampiran'        => 'nullable|file|max:4096',
-            'status'          => 'required|in:draft,published,done',
-            'is_highlight'    => 'nullable|boolean',
+
+            // file
+            'poster'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'lampiran' => 'nullable|file|max:4096',
+
+            // status
+            'status'       => 'required|in:draft,published,done',
+            'is_highlight' => 'nullable|boolean',
         ]);
 
-        // Poster update
+        // === Poster Update ===
         if ($request->hasFile('poster')) {
-            if ($manageKegiatan->poster) {
+            // hapus poster lama
+            if ($manageKegiatan->poster && Storage::disk('public')->exists($manageKegiatan->poster)) {
                 Storage::disk('public')->delete($manageKegiatan->poster);
             }
-            $validated['poster'] = $request->file('poster')->store('kegiatan/poster', 'public');
+
+            $file = $request->file('poster');
+            $ext = $file->getClientOriginalExtension();
+
+            $fileName = 'poster_' . Str::slug($validated['nama_kegiatan'], '-') . '_' . time() . '.' . $ext;
+            $path = $file->storeAs('kegiatan/poster', $fileName, 'public');
+
+            $validated['poster'] = $path;
         }
 
-        // Lampiran update
+        // === Lampiran Update ===
         if ($request->hasFile('lampiran')) {
-            if ($manageKegiatan->lampiran) {
-                Storage::disk('public')->delete($manageKegiatan->lampiran);
+            // hapus lampiran lama
+            if ($manageKegiatan->lampiran_path && Storage::disk('public')->exists($manageKegiatan->lampiran_path)) {
+                Storage::disk('public')->delete($manageKegiatan->lampiran_path);
             }
-            $validated['lampiran'] = $request->file('lampiran')->store('kegiatan/lampiran', 'public');
+
+            $file = $request->file('lampiran');
+            $ext  = $file->getClientOriginalExtension();
+
+            $fileName = 'lampiran_' . Str::slug($validated['nama_kegiatan'], '-') . '_' . time() . '.' . $ext;
+            $filePath = $file->storeAs('kegiatan/lampiran', $fileName, 'public');
+
+            $validated['lampiran_path']     = $filePath;
+            $validated['lampiran_original'] = $file->getClientOriginalName();
+            $validated['lampiran_size']     = $file->getSize();
+            $validated['lampiran_type']     = $ext;
         }
 
+        // Update DB
         $manageKegiatan->update($validated);
 
-        return redirect()->route('manage-kegiatan.index')->with('success', 'Kegiatan berhasil diperbarui.');
+        return redirect()->route('manage-kegiatan.index')
+            ->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
     /**

@@ -140,43 +140,79 @@
                             @enderror
                         </div>
 
-                        <!-- Poster -->
-                        <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Poster
-                            </label>
-                            <div class="flex items-center space-x-4">
-                                @if($kegiatan->poster)
-                                    <img src="{{ asset('storage/'.$kegiatan->poster) }}" 
-                                        class="w-24 h-24 object-cover rounded-lg border shadow-sm">
-                                @else
-                                    <p class="text-gray-500 text-sm">Belum ada poster</p>
-                                @endif
-                                <input type="file" name="poster" accept=".jpg,.jpeg,.png"
-                                    class="w-full text-sm text-gray-700">
+                        <!-- Poster (Image) -->
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Poster / Foto</label>
+
+                            <div class="flex items-center gap-4">
+                                <!-- Upload Box -->
+                                <div class="flex flex-col items-center justify-center w-40 h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 transition">
+                                    <label for="poster-{{ $kegiatan->id }}" class="cursor-pointer flex flex-col items-center">
+                                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                        </svg>
+                                        <span id="upload-text-{{ $kegiatan->id }}" class="text-xs text-gray-500">Klik untuk update poster</span>
+                                    </label>
+                                </div>
+
+                                <!-- Preview Box -->
+                                <div id="currentImagePreview-{{ $kegiatan->id }}">
+                                    @if($kegiatan->poster)
+                                        <img src="{{ asset('storage/'.$kegiatan->poster) }}" 
+                                            class="w-40 h-28 object-cover rounded-lg shadow-md border" />
+                                    @else
+                                        <p class="text-gray-500 text-sm">Belum ada poster</p>
+                                    @endif
+                                </div>
                             </div>
-                            @error('poster')
-                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                            @enderror
+
+                            <input 
+                                id="poster-{{ $kegiatan->id }}" 
+                                type="file" 
+                                name="poster" 
+                                class="hidden preview-edit-input" 
+                                data-id="{{ $kegiatan->id }}" 
+                                accept=".jpg,.jpeg,.png">
+
+                            <p id="image-error-{{ $kegiatan->id }}" class="text-sm text-red-600 hidden mt-1"></p>
                         </div>
 
-                        <!-- Lampiran -->
-                        <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Lampiran (Proposal / Rundown)
-                            </label>
-                            <input type="file" name="lampiran" accept=".pdf,.doc,.docx"
-                                class="w-full text-sm text-gray-700">
-                            @if($kegiatan->lampiran)
-                                <p class="text-xs text-gray-500 mt-1">File saat ini: 
-                                    <a href="{{ asset('storage/'.$kegiatan->lampiran) }}" target="_blank" class="text-blue-600 hover:underline">
-                                        {{ basename($kegiatan->lampiran) }}
-                                    </a>
-                                </p>
-                            @endif
-                            @error('lampiran')
-                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                            @enderror
+
+                        <!-- Lampiran (File) -->
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Lampiran (PDF/Word/Excel/PPT)</label>
+                            <input 
+                                type="file" 
+                                id="edit_file-{{ $kegiatan->id }}" 
+                                name="lampiran" 
+                                class="w-full border rounded-lg px-3 py-2" 
+                                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" 
+                                onchange="EditPreviewDoc('{{ $kegiatan->id }}')">
+
+                            <p id="edit_fileError-{{ $kegiatan->id }}" class="text-sm text-red-600 hidden mt-1"></p>
+
+                            <!-- PREVIEW AREA -->
+                            <div id="filePreview-{{ $kegiatan->id }}" 
+                                class="mt-2 border rounded-lg p-2 {{ $kegiatan->lampiran ? '' : 'hidden' }}">
+                                <div id="previewContent-{{ $kegiatan->id }}">
+                                    @if($kegiatan->lampiran)
+                                        @php
+                                            $ext = pathinfo($kegiatan->lampiran, PATHINFO_EXTENSION);
+                                        @endphp
+
+                                        @if(strtolower($ext) === 'pdf')
+                                            <iframe src="{{ asset('storage/'.$kegiatan->lampiran) }}" 
+                                                    class="w-full h-96 border rounded-lg"></iframe>
+                                        @else
+                                            <a href="{{ asset('storage/'.$kegiatan->lampiran) }}" 
+                                            target="_blank" 
+                                            class="text-blue-600 hover:underline">
+                                                {{ basename($kegiatan->lampiran) }}
+                                            </a>
+                                        @endif
+                                    @endif
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Status -->
