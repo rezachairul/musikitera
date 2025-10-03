@@ -29,7 +29,9 @@
                         <span class="font-lg">File      : </span>
                         @if($manage_dokumen->original_filename)
                             <div class="flex flex-col">
-                                <span class="font-semibold">{{ $manage_dokumen->original_filename }}</span>
+                                <a href="{{ asset('storage/' . $manage_dokumen->file_path) }}" target="_blank" class="text-blue-600 underline">
+                                    <span class="font-semibold">{{ $manage_dokumen->original_filename }}</span>
+                                </a>
                                 <span class="text-xs text-gray-500">
                                     {{ $manage_dokumen->file_type }} · 
                                     {{ number_format($manage_dokumen->file_size / 1024, 2) }} KB

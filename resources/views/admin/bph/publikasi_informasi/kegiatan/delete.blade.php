@@ -88,7 +88,7 @@
                         <p class="col-span-2"><span class="font-semibold">Lampiran:</span> 
                             @if ($kegiatan->lampiran_original)
                                 <a href="{{ asset('storage/' . $kegiatan->lampiran_path) }}" target="_blank" class="text-blue-600 underline">
-                                    {{ $kegiatan->lampiran_original }}
+                                    <span class="font-semibold">{{ $kegiatan->lampiran_original }}</span>
                                 </a>
                             @else
                                 <span class="text-gray-500">Tidak ada</span>
