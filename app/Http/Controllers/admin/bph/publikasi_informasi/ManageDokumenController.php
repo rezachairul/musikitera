@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\bph\publikasi_informasi;
 use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
+use App\Exports\ManageDokumenExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -235,7 +236,23 @@ class ManageDokumenController extends Controller
     /**
      * Export dokumen (kosong dulu).
     */
-    public function export() {
-        return response()->json(['message' => 'Fitur export belum diimplementasikan.']);
+    public function export(Request $request)
+    {
+        $filterKategori = $request->query('filterKategori');
+        $filterStatus = $request->query('filterStatus');
+        $search = $request->query('search');
+
+        // Normalisasi filter kategori
+        if ($filterKategori === 'all' || empty($filterKategori)) {
+            $filterKategori = null;
+        }
+
+        // Normalisasi filter status
+        if ($filterStatus === 'all' || empty($filterStatus)) {
+            $filterStatus = null;
+        }
+
+        // Kirim ke export class
+        return (new ManageDokumenExport($filterKategori, $filterStatus, $search))->export();
     }
 }
