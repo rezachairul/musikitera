@@ -15,7 +15,7 @@ class ManageAlumniController extends Controller
      */
     public function index()
     {
-        $title = "Badan Pengurus";
+        $title = "Alumni";
 
         return view('admin.bph.manajemen_anggota.alumni.index', compact( 'title'));
     }
