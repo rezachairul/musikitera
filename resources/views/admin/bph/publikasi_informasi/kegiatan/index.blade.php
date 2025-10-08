@@ -23,7 +23,7 @@
                 </button>
     
                 <!-- Export -->
-                 <a href="{{ route('manage-galeri.export', [
+                 <a href="{{ route('manage-kegiatan.export', [
                         'search' => request()->get('search')
                     ]) }}" class="w-full sm:w-auto bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors duration-200 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 mr-2">

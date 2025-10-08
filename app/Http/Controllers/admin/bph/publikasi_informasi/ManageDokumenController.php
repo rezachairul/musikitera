@@ -23,6 +23,8 @@ class ManageDokumenController extends Controller
         $title   = 'Dokumen';
         $search  = $request->input('search', '');
         $filter  = $request->query('filter', 'all');
+        $filterKategori = $request->query('filterKategori', 'all');
+        $filterStatus   = $request->query('filterStatus', 'all');
         $perPage = $request->query('perPage', 10);
 
         // pisahkan keyword jika lebih dari 1 kata
@@ -42,9 +44,14 @@ class ManageDokumenController extends Controller
             });
         }
 
-        // filter kategori (kalau bukan all)
-        if ($filter !== 'all') {
-            $query->where('kategori', $filter);
+        // 🗂 Filter kategori
+        if ($filterKategori !== 'all') {
+            $query->where('kategori', $filterKategori);
+        }
+
+        // ⚙️ Filter status
+        if ($filterStatus !== 'all') {
+            $query->where('is_active', $filterStatus);
         }
 
         // urutkan dokumen terbaru dulu
@@ -68,11 +75,11 @@ class ManageDokumenController extends Controller
 
         // kalau request AJAX, return partial table aja
         if ($request->ajax()) {
-            return view('admin.bph.publikasi_informasi.dokumen.partials.table_body', compact('title','totals', 'totalAlls', 'kategoriLabels', 'manage_dokumens', 'kategoriLabels'))->render();
+            return view('admin.bph.publikasi_informasi.dokumen.partials.table_body', compact('title','totals', 'totalAlls', 'kategoriLabels', 'manage_dokumens', 'kategoriLabels', 'filterKategori', 'filterStatus'))->render();
         }
 
         // return ke view utama
-        return view('admin.bph.publikasi_informasi.dokumen.index', compact('title', 'manage_dokumens', 'kategoriLabels', 'filter', 'totals', 'totalAlls'));
+        return view('admin.bph.publikasi_informasi.dokumen.index', compact('title', 'manage_dokumens', 'kategoriLabels', 'filterKategori', 'filterStatus', 'totals', 'totalAlls'));
     }
 
     /**

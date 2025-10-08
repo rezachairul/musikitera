@@ -239,4 +239,11 @@ class ManageKegiatanController extends Controller
 
         return redirect()->route('manage-kegiatan.index')->with('success', 'Kegiatan berhasil dihapus.');
     }
+
+    /**
+     * Export dokumen (kosong dulu).
+    */
+    public function export() {
+        return response()->json(['message' => 'Fitur export belum diimplementasikan.']);
+    }
 }

@@ -58,17 +58,29 @@
 
                 <!-- Filters -->
                 <div class="flex gap-3 w-full sm:w-2/3">
-                    <!-- By Role -->
+                    <!-- By Kategori -->
                     <select
                         id="filter-select"
-                        name="filter"
+                        name="filterKategori"
                         data-url="{{ route('manage-dokumen.index') }}"
                         data-target="manageDokumenTableBody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- All Status --</option>
-                        <option value="SOP" {{ request('filter') == 'SOP' ? 'selected' : '' }}>SOP</option>
-                        <option value="MoU" {{ request('filter') == 'MoU' ? 'selected' : '' }}>MoU</option>
-                        <option value="Format" {{ request('filter') == 'Format ' ? 'selected' : '' }}>Format</option>
+                        <option value="all" {{ request('filterKategori') == 'all' ? 'selected' : '' }}>-- All Kategori --</option>
+                        <option value="SOP" {{ request('filterKategori') == 'SOP' ? 'selected' : '' }}>SOP</option>
+                        <option value="MoU" {{ request('filterKategori') == 'MoU' ? 'selected' : '' }}>MoU</option>
+                        <option value="Format" {{ request('filterKategori') == 'Format ' ? 'selected' : '' }}>Format</option>
+                    </select>
+
+                    <!-- By Status -->
+                    <select
+                        id="filter-select"
+                        name="filterStatus"
+                        data-url="{{ route('manage-dokumen.index') }}"
+                        data-target="manageDokumenTableBody"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterStatus') == 'all' ? 'selected' : '' }}>-- All Status --</option>
+                        <option value="1" {{ request('filterStatus') == '1' ? 'selected' : '' }}>Aktif</option>
+                        <option value="0" {{ request('filterStatus') == '0' ? 'selected' : '' }}>Non-Aktif</option>
                     </select>
 
                     <!-- By Per-Page -->
@@ -78,7 +90,7 @@
                         data-url="{{ route('manage-dokumen.index') }}"
                         data-target="manageDokumenTableBody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- All {{ $title }} Page --</option>
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- All Page --</option>
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 {{ $title }} per page</option>
                         <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 {{ $title }} per page</option>
                         <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 {{ $title }} per page</option>
