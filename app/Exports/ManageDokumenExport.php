@@ -23,7 +23,7 @@ class ManageDokumenExport
     public function export()
     {
         // Path ke template
-        $templatePath = storage_path('app/templates/temp-export-dokumen.xlsx');
+        $templatePath = storage_path('app/templates/publikasi_informasi/temp-export-dokumen.xlsx');
         if (!file_exists($templatePath)) {
             throw new \Exception('Template file not found: ' . $templatePath);
         }

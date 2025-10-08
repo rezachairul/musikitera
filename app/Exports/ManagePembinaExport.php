@@ -21,7 +21,7 @@ class ManagePembinaExport
     public function export()
     {
         // Path ke tempate
-        $templatePath = storage_path('app/templates/temp-export-pembina.xlsx');
+        $templatePath = storage_path('app/templates/manajemen_anggota/temp-export-pembina.xlsx');
         if (!file_exists($templatePath)) {
             throw new \Exception('Template file not found: ' . $templatePath);
         }

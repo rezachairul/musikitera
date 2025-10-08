@@ -26,7 +26,7 @@ class ManageGaleriExport
     public function export()
     {
         // Path ke tempate
-        $templatePath = storage_path('app/templates/temp-export-galeri.xlsx');
+        $templatePath = storage_path('app/templates/manajemen_konten/temp-export-galeri.xlsx');
         if (!file_exists($templatePath)) {
             throw new \Exception('Template file not found: ' . $templatePath);
         }

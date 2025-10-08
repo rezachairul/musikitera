@@ -25,7 +25,7 @@ class ManageKegiatanExport
     public function export()
     {
         // ================== 📄 Path Template ==================
-        $templatePath = storage_path('app/templates/temp-export-kegiatan.xlsx');
+        $templatePath = storage_path('app/templates/publikasi_informasi/temp-export-kegiatan.xlsx');
         if (!file_exists($templatePath)) {
             throw new \Exception('Template file tidak ditemukan: ' . $templatePath);
         }
