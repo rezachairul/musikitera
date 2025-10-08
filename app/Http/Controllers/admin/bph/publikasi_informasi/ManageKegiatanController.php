@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Exports\ManageKegiatanExport;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\admin\bph\publikasi_informasi\ManageKegiatan;
@@ -19,15 +20,16 @@ class ManageKegiatanController extends Controller
     {
         $title   = "Kegiatan";
         $search  = $request->input('search', '');
-        $filter  = $request->query('filter', 'all');
+        $filterKategori = $request->query('filterKategori', 'all');
+        $filterStatus   = $request->query('filterStatus', 'all');
         $perPage = $request->query('perPage', 10);
 
-        // pisahkan keyword jika lebih dari 1 kata
+        // ================== 🔍 Pencarian ==================
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
 
         $query = ManageKegiatan::query();
 
-        // search judul, kategori, status, deskripsi, dll.
+        // Search berdasarkan beberapa kolom
         if ($search) {
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $word) {
@@ -40,40 +42,45 @@ class ManageKegiatanController extends Controller
                         ->orWhere('jam_selesai', 'like', "%{$word}%")
                         ->orWhere('lokasi', 'like', "%{$word}%")
                         ->orWhere('poster', 'like', "%{$word}%")
-                        ->orWhere('lampiran', 'like', "%{$word}%")
+                        ->orWhere('lampiran_path', 'like', "%{$word}%")
                         ->orWhere('status', 'like', "%{$word}%");
                 }
             });
         }
 
-        // filter kategori (kalau bukan all)
-        if ($filter !== 'all') {
-            $query->where('kategori', $filter);
+        // ================== 🧩 Filter Kategori ==================
+        if ($filterKategori !== 'all') {
+            $query->where('kategori', $filterKategori);
         }
 
-        // Sort kegiatan terbaru (berdasarkan created_at atau tanggal mulai)
+        // ================== 🧩 Filter Status ==================
+        if ($filterStatus !== 'all') {
+            $query->where('status', $filterStatus);
+        }
+
+        // ================== 🔢 Urutan & Pagination ==================
         $query->orderByDesc('created_at');
-
-        // Pagination
-        $kegiatans = $query->paginate($perPage)->withQueryString();
-
-        // Total kegiatan sesuai filter
+        $kegiatans = $query->orderBy('created_at', 'desc')
+            ->paginate($perPage === 'all' ? $query->count() : (int) $perPage);
         $totalKegiatan = $query->count();
 
-        // Label status (untuk badge di view misalnya)
+        // ================== 🏷️ Label Status ==================
         $statusLabels = [
             'draft'     => 'Draft',
             'published' => 'Dipublikasikan',
             'done'      => 'Selesai',
         ];
 
-        // Kalau request AJAX (misal untuk load tabel aja)
-        if ($request->ajax()) {
-            return view('admin.bph.publikasi_informasi.kegiatan.partials.table', compact('kegiatans', 'statusLabels'))->render();
+        // ================== 🔁 AJAX Partial View ==================
+        if ($request->AJAX()) {
+            return view('admin.bph.publikasi_informasi.kegiatan.partials.table_body', compact('title', 'kegiatans', 'statusLabels', 'totalKegiatan', 'filterKategori', 'filterStatus', 'perPage', 'search'))->render();
         }
 
-        // Return full page
-        return view('admin.bph.publikasi_informasi.kegiatan.index', compact( 'title', 'kegiatans', 'statusLabels', 'totalKegiatan', 'filter', 'perPage', 'search'));
+        // ================== 📄 Full Page View ==================
+        return view(
+            'admin.bph.publikasi_informasi.kegiatan.index',
+            compact('title', 'kegiatans', 'statusLabels', 'totalKegiatan', 'filterKategori', 'filterStatus', 'perPage', 'search')
+        );
     }
 
     /**
@@ -243,7 +250,21 @@ class ManageKegiatanController extends Controller
     /**
      * Export dokumen (kosong dulu).
     */
-    public function export() {
-        return response()->json(['message' => 'Fitur export belum diimplementasikan.']);
+    public function export(Request $request)
+    {
+        $filterKategori = $request->query('filterKategori');
+        $filterStatus   = $request->query('filterStatus');
+        $search         = $request->query('search');
+
+        // Normalisasi filter
+        if ($filterKategori === 'all' || empty($filterKategori)) {
+            $filterKategori = null;
+        }
+        if ($filterStatus === 'all' || empty($filterStatus)) {
+            $filterStatus = null;
+        }
+
+        return (new ManageKegiatanExport($filterKategori, $filterStatus, $search))->export();
     }
+
 }

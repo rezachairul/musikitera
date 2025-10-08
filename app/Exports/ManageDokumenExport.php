@@ -31,10 +31,6 @@ class ManageDokumenExport
         $spreadsheet = IOFactory::load($templatePath);
         $sheet       = $spreadsheet->getActiveSheet();
 
-        // 🔧 Kategori yang digunakan
-
-        // Status yang digunakan
-
         // Base query
         $query = ManageDokumen::select('id', 'judul', 'kategori', 'file_path', 'is_active', 'deskripsi', 'year_published');
 

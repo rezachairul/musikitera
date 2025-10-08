@@ -34,12 +34,12 @@
             </div>
         </div>
 
-        <!-- Search & Per Page -->
+        <!-- Search, Filter & Per Page -->
         <div class="mb-4">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                
+
                 <!-- Search -->
-                <div class="relative w-full sm:w-2/3">
+                <div class="relative w-full sm:w-1/3">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
@@ -53,10 +53,40 @@
                         type="search" 
                         id="search-input"
                         value="{{ request('search') }}"
-                        data-url="{{ route('manage-galeri.index') }}"
-                        data-target="ManageGaleriTableBody"
+                        data-url="{{ route('manage-kegiatan.index') }}"
+                        data-target="ManageKegiatanTableBody"
                         placeholder="Cari {{ $title }}..." 
                         class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Filter Kategori -->
+                <div class="w-full sm:w-1/4">
+                    <select
+                        id="filter-select"
+                        name="filterKategori"
+                        data-url="{{ route('manage-kegiatan.index') }}"
+                        data-target="ManageKegiatanTableBody"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterKategori') == 'all' ? 'selected' : '' }}>Semua Kategori</option>
+                        <option value="internal" {{ request('filterKategori') == 'internal' ? 'selected' : '' }}>Internal</option>
+                        <option value="eksternal" {{ request('filterKategori') == 'eksternal' ? 'selected' : '' }}>Eksternal</option>
+                        <option value="latihan rutin" {{ request('filterKategori') == 'latihan rutin' ? 'selected' : '' }}>Latihan Rutin</option>
+                    </select>
+                </div>
+
+                <!-- Filter Status -->
+                <div class="w-full sm:w-1/4">
+                    <select
+                        id="filter-select"
+                        name="filterStatus"
+                        data-url="{{ route('manage-kegiatan.index') }}"
+                        data-target="ManageKegiatanTableBody"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterStatus') == 'all' ? 'selected' : '' }}>Semua Status</option>
+                        <option value="draft" {{ request('filterStatus') == 'draft' ? 'selected' : '' }}>Draft</option>
+                        <option value="published" {{ request('filterStatus') == 'published' ? 'selected' : '' }}>Dipublikasikan</option>
+                        <option value="done" {{ request('filterStatus') == 'done' ? 'selected' : '' }}>Selesai</option>
+                    </select>
                 </div>
 
                 <!-- Per Page -->
@@ -64,10 +94,10 @@
                     <select
                         id="perpage-select"
                         name="perPage"
-                        data-url="{{ route('manage-galeri.index') }}"
-                        data-target="ManageGaleriTableBody"
+                        data-url="{{ route('manage-kegiatan.index') }}"
+                        data-target="ManageKegiatanTableBody"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>Semua Halaman {{ $title }}</option>
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>Semua Halaman</option>
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 / halaman</option>
                         <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 / halaman</option>
                         <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 / halaman</option>
@@ -123,7 +153,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="ManageGaleriTableBody" class="bg-white divide-y divide-gray-200">
+                        <tbody id="ManageKegiatanTableBody" class="bg-white divide-y divide-gray-200">
                             @include('admin.bph.publikasi_informasi.kegiatan.partials.table_body')
                         </tbody>
                         <tfoot class="bg-gray-50">
