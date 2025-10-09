@@ -2,8 +2,9 @@
 
 namespace App\Models\admin\bph\kerjasama_mitra;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\admin\bph\kerjasama_mitra\ManageKerjasama;
 
 class ManageMitra extends Model
 {
@@ -19,4 +20,9 @@ class ManageMitra extends Model
         'description',  // deskripsi tambahan
         'url'           // url
     ];
+
+    public function kerjasamas()
+    {
+        return $this->hasMany(ManageKerjasama::class, 'mitra_id');
+    }
 }

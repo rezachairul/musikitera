@@ -161,8 +161,10 @@ class ManageKegiatanController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, ManageKegiatan $manageKegiatan)
+    public function update(Request $request, $id)
     {
+        dd($id);
+        $manageKegiatan = ManageKegiatan::findOrFail($id);
         $validated = $request->validate([
             'nama_kegiatan'   => 'required|string|max:255',
             'deskripsi'       => 'nullable|string',
