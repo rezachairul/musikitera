@@ -1,6 +1,6 @@
 <!-- Modal Delete -->
-@foreach($mitras as $mitra)
-    <div id="DeleteModal-{{ $mitra->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
+@foreach($kerjasamas as $kerjasama)
+    <div id="DeleteModal-{{ $kerjasama->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-lg p-6 max-w-md w-full text-center relative">
             <div class="flex flex-col items-center space-y-4">
                 <!-- Header dengan Icon -->
@@ -21,36 +21,81 @@
                     </div>
                 </div>
 
-                <!-- Detail mitra -->
-                <div class="bg-gray-50 w-full border-2 border-red-500 rounded-lg p-4 text-sm text-gray-700 space-y-3">
-                    <!-- Foto -->
-                    <div class="flex items-center space-x-4">
-                        <div class="w-20 h-20 rounded-lg overflow-hidden border">
-                            @if ($mitra->logo)
-                                <img src="{{ asset('storage/' . $mitra->logo) }}" 
-                                    alt="Gambar mitra" 
+                <!-- Detail kerjasama -->
+                <div class="bg-red-50 w-full border-2 border-red-500 rounded-lg p-4 text-sm text-red-700 space-y-4">
+
+                    <!-- Bagian atas: Poster & Info utama -->
+                    <div class="flex items-start text-left gap-4">
+                        <!-- Poster -->
+                        <div class="w-20 h-20 rounded-lg overflow-hidden border border-gray-300 flex-shrink-0">
+                            @if ($kerjasama->poster)
+                                <img src="{{ asset('storage/kerjasama/poster/' . $kerjasama->poster) }}" 
+                                    alt="Poster kerjasama" 
                                     class="w-full h-full object-cover">
                             @else
-                                <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 text-xs">
-                                    No Image
+                                <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400 text-xs">
+                                    No Poster
                                 </div>
                             @endif
                         </div>
-                        <div class="text-left">
-                            <p><span class="font-semibold">Nama Mitra:</span> {{ $mitra->name }}</p>
-                            <p><span class="font-semibold">Kategori:</span> {{ $mitra->type }}</p>
-                            <p><span class="font-semibold">Sub Kategori:</span> {{ $mitra->sub_type }}</p>
+
+                        <!-- Info utama -->
+                        <div class="flex flex-col space-y-1 leading-relaxed">
+                            <p><span class="font-semibold text-gray-800">Judul:</span> {{ $kerjasama->judul_kerjasama ?? '-' }}</p>
+                            <p><span class="font-semibold text-gray-800">Jenis Kerjasama:</span> {{ $kerjasama->jenis_kerjasama ?? '-' }}</p>
+                            <p><span class="font-semibold text-gray-800">Nama Organisasi:</span> {{ $kerjasama->nama_organisasi ?? '-' }}</p>
+                            
+                            <p>
+                                <span class="font-semibold text-gray-800">Status:</span>
+                                <span class="px-2 py-0.5 rounded text-white text-xs 
+                                    {{ $kerjasama->status === 'rencana' ? 'bg-gray-500' : '' }}
+                                    {{ $kerjasama->status === 'berjalan' ? 'bg-green-600' : '' }}
+                                    {{ $kerjasama->status === 'selesai' ? 'bg-blue-600' : '' }}">
+                                    {{ ucfirst($kerjasama->status) }}
+                                </span>
+                            </p>
                         </div>
+                    </div>
+
+                    <!-- Garis pembatas halus -->
+                    <div class="border-t border-red-200"></div>
+
+                    <!-- Info tambahan -->
+                    <div class="grid grid-cols-2 gap-y-2">
+                        <p class="col-span-2">
+                            <span class="font-semibold text-gray-800">Tanggal:</span>
+                            @if($kerjasama->tanggal_mulai && $kerjasama->tanggal_selesai)
+                                {{ \Carbon\Carbon::parse($kerjasama->tanggal_mulai)->translatedFormat('d M Y') }}
+                                @if($kerjasama->tanggal_mulai != $kerjasama->tanggal_selesai)
+                                    - {{ \Carbon\Carbon::parse($kerjasama->tanggal_selesai)->translatedFormat('d M Y') }}
+                                @endif
+                            @else
+                                <span class="text-gray-500">-</span>
+                            @endif
+                        </p>
+
+                        <p class="col-span-2">
+                            <span class="font-semibold text-gray-800">Dokumen:</span>
+                            @if ($kerjasama->file_dokumen)
+                                <a href="{{ asset('storage/' . $kerjasama->file_dokumen_path) }}" 
+                                target="_blank" 
+                                class="text-blue-600 hover:underline font-medium">
+                                    {{ $kerjasama->file_dokumen }}
+                                </a>
+                            @else
+                                <span class="text-gray-500">Tidak ada</span>
+                            @endif
+                        </p>
                     </div>
                 </div>
 
                 <!-- Form Hapus -->
-                <form id="deleteForm-{{ $mitra->id }}" method="POST" action="{{ route('manage-mitra.destroy', $mitra->id ) }}">
+                <form id="deleteForm-{{ $kerjasama->id }}" method="POST" action="{{ route('manage-kerjasama.destroy', $kerjasama->id ) }}">
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-center space-x-3 mt-4">
                         <!-- Tombol Batal -->
-                        <button type="button" onclick="closeDeleteModal('{{ $mitra->id }}')"
+                        <button type="button" onclick="closeDeleteModal('{{ $kerjasama->id }}')"
                             class="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                             <!-- Icon X -->
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +120,7 @@
                 </form>
             </div>
             <!-- Tombol X -->
-            <button onclick="closeDeleteModal('{{ $mitra->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+            <button onclick="closeDeleteModal('{{ $kerjasama->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
