@@ -64,29 +64,6 @@
 
                 <!-- Filters -->
                 <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-2/3">
-                    <!-- By Mitra Type -->
-                    <select
-                        id="filter-select"
-                        name="filter"
-                        data-url="{{ route('manage-kerjasama.index') }}"
-                        data-target="ManageKerjasamaTablebody"
-                        class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- Semua Mitra --</option>
-
-                        <optgroup label="Internal">
-                            <option value="internal" {{ request('filter') == 'internal' ? 'selected' : '' }}>Semua Internal</option>
-                            <option value="institusi" {{ request('filter') == 'institusi' ? 'selected' : '' }}>Institusi</option>
-                            <option value="ormawa_hmps" {{ request('filter') == 'ormawa_hmps' ? 'selected' : '' }}>Ormawa HMPS</option>
-                            <option value="ormawa_ukm" {{ request('filter') == 'ormawa_ukm' ? 'selected' : '' }}>Ormawa UKM</option>
-                        </optgroup>
-
-                        <optgroup label="Eksternal">
-                            <option value="eksternal" {{ request('filter') == 'eksternal' ? 'selected' : '' }}>Semua Eksternal</option>
-                            <option value="ukmbs" {{ request('filter') == 'ukmbs' ? 'selected' : '' }}>UKMBS</option>
-                            <option value="komunitas" {{ request('filter') == 'komunitas' ? 'selected' : '' }}>Komunitas</option>
-                        </optgroup>
-                    </select>
-
                     <!-- By Jenis Kerjasama -->
                     <select
                         id="filter-select"
@@ -123,6 +100,7 @@
                         data-url="{{ route('manage-kerjasama.index') }}"
                         data-target="ManageKerjasamaTablebody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- Semua Halaman --</option>
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 / halaman</option>
                         <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 / halaman</option>
                         <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 / halaman</option>
