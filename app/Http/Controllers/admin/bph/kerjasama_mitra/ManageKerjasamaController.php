@@ -187,7 +187,8 @@ class ManageKerjasamaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $manageKerjasama = ManageKerjasama::findOrFail($id);
+        // dd($id);
+        $kerjasama = ManageKerjasama::findOrFail($id);
 
         $validated = $request->validate([
             'is_from_mitra'     => 'required|boolean',
@@ -204,43 +205,58 @@ class ManageKerjasamaController extends Controller
             'link_dokumentasi'  => 'nullable|string|max:255',
         ]);
 
+        // Atur nilai organisasi/mitra agar tidak bentrok
         if ($validated['is_from_mitra']) {
             $validated['nama_organisasi'] = null;
         } else {
             $validated['mitra_id'] = null;
         }
 
-        $data = $validated;
-
+        // ==========================
         // Update file dokumen
+        // ==========================
         if ($request->hasFile('file_dokumen')) {
-            if ($manageKerjasama->file_dokumen) {
-                Storage::disk('public')->delete('kerjasama/dokumen/' . $manageKerjasama->file_dokumen);
+            // Hapus file lama (jika ada)
+            if ($kerjasama->file_dokumen_path && Storage::disk('public')->exists($kerjasama->file_dokumen_path)) {
+                Storage::disk('public')->delete($kerjasama->file_dokumen_path);
             }
 
             $file = $request->file('file_dokumen');
-            $path = $file->storeAs('kerjasama/dokumen', $file->getClientOriginalName(), 'public');
+            $ext  = $file->getClientOriginalExtension();
+            $size = $file->getSize();
 
-            $data['file_dokumen'] = $file->getClientOriginalName();
-            $data['file_dokumen_size'] = $file->getSize();
-            $data['file_dokumen_type'] = $file->getClientMimeType();
+            $fileName = 'kerjasama_' . Str::slug($validated['judul_kerjasama']) . '_' . time() . '.' . $ext;
+            $filePath = $file->storeAs('kerjasama/dokumen', $fileName, 'public');
+
+            $validated['file_dokumen_path'] = $filePath;
+            $validated['file_dokumen'] = $file->getClientOriginalName();
+            $validated['file_dokumen_size'] = $size;
+            $validated['file_dokumen_type'] = $ext;
         }
 
+        // ==========================
         // Update poster
+        // ==========================
         if ($request->hasFile('poster')) {
-            if ($manageKerjasama->poster) {
-                Storage::disk('public')->delete('kerjasama/poster/' . $manageKerjasama->poster);
+            // Hapus poster lama (jika ada)
+            if ($kerjasama->poster && Storage::disk('public')->exists('kerjasama/poster/' . $kerjasama->poster)) {
+                Storage::disk('public')->delete('kerjasama/poster/' . $kerjasama->poster);
             }
 
             $poster = $request->file('poster');
+            $posterSize = $poster->getSize();
+
             $path = $poster->storeAs('kerjasama/poster', $poster->getClientOriginalName(), 'public');
 
-            $data['poster'] = $poster->getClientOriginalName();
-            $data['poster_size'] = $poster->getSize();
-            $data['poster_type'] = $poster->getClientMimeType();
+            $validated['poster'] = $poster->getClientOriginalName();
+            $validated['poster_size'] = $posterSize;
+            $validated['poster_type'] = $poster->getClientMimeType();
         }
 
-        $manageKerjasama->update($data);
+        // ==========================
+        // Update ke database
+        // ==========================
+        $kerjasama->update($validated);
 
         return redirect()->back()->with('success', 'Data kerjasama berhasil diperbarui.');
     }
@@ -250,7 +266,7 @@ class ManageKerjasamaController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        // dd($id);
         $manageKerjasama = ManageKerjasama::findOrFail($id);
         if ($manageKerjasama->file_dokumen) {
             Storage::disk('public')->delete($manageKerjasama->file_dokumen);
