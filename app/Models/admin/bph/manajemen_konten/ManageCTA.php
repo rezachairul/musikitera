@@ -9,4 +9,20 @@ class ManageCTA extends Model
 {
     /** @use HasFactory<\Database\Factories\ManageCTAFactory> */
     use HasFactory;
+
+    protected $table = 'manage_c_t_a_s';
+
+    protected $fillable = [
+        'foto_pendaftar',
+        'nama_lengkap',
+        'nim',
+        'angkatan',
+        'program_studi',
+        'alamat_asli',
+        'alamat_domisili',
+        'nomor_telepon',
+        'instagram',
+        'alasan_gabung',
+        'minat',
+    ];
 }
