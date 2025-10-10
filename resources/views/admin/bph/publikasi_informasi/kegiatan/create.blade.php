@@ -9,7 +9,7 @@
             <h2 id="modalTitle" class="text-lg font-semibold text-gray-800">Tambah {{ $title }}</h2>
         </div>
 
-        <!-- Form Create Galeri -->
+        <!-- Form Create Kegiatan -->
         <div class="max-h-[80vh] overflow-y-auto px-4 py-2">
             <form method="POST" action="{{ route('manage-kegiatan.store') }}" enctype="multipart/form-data">
                 @csrf

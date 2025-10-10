@@ -10,13 +10,14 @@ use App\Exports\ManagePengumumanExport;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\admin\bph\publikasi_informasi\ManagePengumuman;
+use Illuminate\Support\Facades\Auth;
 
 class ManagePengumumanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-     public function index(Request $request)
+    public function index(Request $request)
     {
         $title = "Pengumuman";
         $search = $request->input('search', '');
@@ -26,7 +27,7 @@ class ManagePengumumanController extends Controller
 
         // 🔍 Pencarian
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
-        $query = ManagePengumuman::query();
+        $query = ManagePengumuman::with('user');
 
         if ($search) {
             $query->where(function ($q) use ($keywords) {
@@ -127,7 +128,7 @@ class ManagePengumumanController extends Controller
             $validated['gambar_type'] = $ext;
         }
 
-        // === Upload File Dokumen ===
+        // === Upload File Dokumen (Lampiran) ===
         if ($request->hasFile('file_dokumen')) {
             $file = $request->file('file_dokumen');
             $ext = $file->getClientOriginalExtension();
@@ -141,9 +142,14 @@ class ManagePengumumanController extends Controller
             $validated['file_dokumen_type'] = $ext;
         }
 
+        // === Simpan user yang sedang login ===
+        $validated['user_id'] = Auth::id();
+
+        // === Simpan ke database ===
         ManagePengumuman::create($validated);
 
-        return redirect()->route('manage-pengumuman.index')->with('success', 'Pengumuman berhasil ditambahkan.');
+        return redirect()->route('manage-pengumuman.index')
+            ->with('success', 'Pengumuman berhasil ditambahkan.');
     }
 
     /**
@@ -208,7 +214,7 @@ class ManagePengumumanController extends Controller
             $file = $request->file('file_dokumen');
             $ext = $file->getClientOriginalExtension();
 
-            $fileName = 'lampiran_' . Str::slug($validated['judul']) . '_' . time() . '.' . $ext;
+            $fileName = 'pengumuman_' . Str::slug($validated['judul']) . '_' . time() . '.' . $ext;
             $filePath = $file->storeAs('pengumuman/dokumen', $fileName, 'public');
 
             $validated['file_dokumen'] = $fileName;
@@ -216,6 +222,9 @@ class ManagePengumumanController extends Controller
             $validated['file_dokumen_size'] = $file->getSize();
             $validated['file_dokumen_type'] = $ext;
         }
+
+        // === Simpan user yang sedang login ===
+        $validated['user_id'] = Auth::id();
 
         $managePengumuman->update($validated);
 
