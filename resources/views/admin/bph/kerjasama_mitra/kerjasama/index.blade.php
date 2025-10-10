@@ -28,7 +28,7 @@
                 <a href="{{ route('manage-kerjasama.export', [
                         'filter' => request()->get('filter', 'all'),
                         'search' => request()->get('search')
-                    ]) }}" 
+                    ]) }}"
                 class="w-full sm:w-auto bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors duration-200 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
                         stroke-width="1.5" stroke="currentColor" class="size-4 mr-2">
@@ -48,7 +48,8 @@
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0 A7.5 7.5 0 1 0 5.196 5.196 a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0 A7.5 7.5 0 1 0 5.196 5.196 a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </div>
                     <input 
@@ -62,15 +63,14 @@
                 </div>
 
                 <!-- Filters -->
-                <div class="flex gap-3 w-full sm:w-2/3">
-                    <!-- By Tyep -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-2/3">
+                    <!-- By Mitra Type -->
                     <select
                         id="filter-select"
                         name="filter"
                         data-url="{{ route('manage-kerjasama.index') }}"
                         data-target="ManageKerjasamaTablebody"
                         class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-
                         <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>-- Semua Mitra --</option>
 
                         <optgroup label="Internal">
@@ -87,18 +87,46 @@
                         </optgroup>
                     </select>
 
-                    <!-- By Per-Page -->
+                    <!-- By Jenis Kerjasama -->
+                    <select
+                        id="filter-select"
+                        name="filterJenis"
+                        data-url="{{ route('manage-kerjasama.index') }}"
+                        data-target="ManageKerjasamaTablebody"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterJenis') == 'all' ? 'selected' : '' }}>-- Semua Jenis --</option>
+                        <option value="MoU" {{ request('filterJenis') == 'MoU' ? 'selected' : '' }}>MoU</option>
+                        <option value="MoA" {{ request('filterJenis') == 'MoA' ? 'selected' : '' }}>MoA</option>
+                        <option value="Event" {{ request('filterJenis') == 'Event' ? 'selected' : '' }}>Event</option>
+                        <option value="Proyek" {{ request('filterJenis') == 'Proyek' ? 'selected' : '' }}>Proyek</option>
+                        <option value="Sponsorship" {{ request('filterJenis') == 'Sponsorship' ? 'selected' : '' }}>Sponsorship</option>
+                        <option value="lainnya" {{ request('filterJenis') == 'lainnya' ? 'selected' : '' }}>Lainnya</option>
+                    </select>
+
+                    <!-- By Status -->
+                    <select
+                        id="filter-select"
+                        name="filterStatus"
+                        data-url="{{ route('manage-kerjasama.index') }}"
+                        data-target="ManageKerjasamaTablebody"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterStatus') == 'all' ? 'selected' : '' }}>-- Semua Status --</option>
+                        <option value="rencana" {{ request('filterStatus') == 'rencana' ? 'selected' : '' }}>Rencana</option>
+                        <option value="berjalan" {{ request('filterStatus') == 'berjalan' ? 'selected' : '' }}>Berjalan</option>
+                        <option value="selesai" {{ request('filterStatus') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                    </select>
+
+                    <!-- Per Page -->
                     <select
                         id="perpage-select"
                         name="perPage"
                         data-url="{{ route('manage-kerjasama.index') }}"
                         data-target="ManageKerjasamaTablebody"
-                        class="border border-gray-300 rounded-lg px-3 py-2 w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>-- All Halaman --</option>
-                        <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 {{ $title }} per page</option>
-                        <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 {{ $title }} per page</option>
-                        <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 {{ $title }} per page</option>
-                        <option alue="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100 {{ $title }} per page</option>
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 / halaman</option>
+                        <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 / halaman</option>
+                        <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 / halaman</option>
+                        <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100 / halaman</option>
                     </select>
                 </div>
             </div>
@@ -123,6 +151,7 @@
                                     Tanggal
                                 </th>
 
+                                <th rowspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
                                 <th rowspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Dokumen</th>
                                 <th rowspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">URL</th>
                                 <th rowspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -139,7 +168,7 @@
                         </tbody>
                         <tfoot class="bg-gray-50">
                             <tr>
-                                <td colspan="7" class="px-6 py-3 text-sm text-gray-700">
+                                <td colspan="11" class="px-6 py-3 text-sm text-gray-700">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                                         <span>
                                             Total {{ $title }}: <span class="font-semibold">{{ $totalKerjasama }}</span>

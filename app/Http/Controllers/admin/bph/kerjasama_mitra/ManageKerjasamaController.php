@@ -64,6 +64,9 @@ class ManageKerjasamaController extends Controller
             'selesai'  => 'Selesai',
         ];
 
+        // Ambil list mitra untuk dropdown di form create/edit
+        $mitras = ManageMitra::all();
+
         // Jika request via AJAX (misal filter / search)
         if ($request->AJAX()) {
             return view('admin.bph.kerjasama_mitra.kerjasama.partials.table_body', compact(
@@ -78,9 +81,6 @@ class ManageKerjasamaController extends Controller
                 'mitras'
             ))->render();
         }
-
-        // Ambil list mitra untuk dropdown di form create/edit
-        $mitras = ManageMitra::all();
 
         return view('admin.bph.kerjasama_mitra.kerjasama.index', compact(
             'title',

@@ -92,6 +92,10 @@
         {{ ucfirst($kerjasama->tanggal_selesai) }}
     </td>
 
+    <td class="px-6 py-4 whitespace-nowrap">
+        {{ ($kerjasama->deskripsi) }}
+    </td>
+
     <!-- Dokumen -->
     <td class="px-6 py-4 whitespace-nowrap">
         @if ($kerjasama->file_dokumen)
@@ -220,7 +224,7 @@
 
 @empty
 <tr class="hover:bg-gray-50">
-    <td colspan="7" class="px-6 py-4 text-center text-gray-500 italic">
+    <td colspan="11" class="px-6 py-4 text-center text-gray-500 italic">
         <div class="flex flex-col items-center justify-center text-sm text-gray-500 space-y-1">
             @if ($kerjasamas->isEmpty() && !request()->filled('search') && !request()->filled('filter'))
                 <!-- Icon Data Kosong -->
