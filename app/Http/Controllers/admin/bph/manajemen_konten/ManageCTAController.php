@@ -17,7 +17,7 @@ class ManageCTAController extends Controller
      */
     public function index(Request $request)
     {
-        $title   = 'Data Pendaftar CTA';
+        $title   = 'Data Pendaftar';
         $search  = $request->input('search', '');
         $filterProdi = $request->query('filterProdi', 'all');
         $perPage = $request->query('perPage', 10);
@@ -26,6 +26,8 @@ class ManageCTAController extends Controller
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
 
         $query = ManageCTA::query();
+        $totalAll = ManageCTA::count();
+        $totalFiltered = $query->count();
 
         // Search (multi kolom)
         if ($search) {
@@ -59,10 +61,10 @@ class ManageCTAController extends Controller
 
         // AJAX response (untuk dynamic filter / search)
         if ($request->ajax()) {
-            return view('admin.bph.manajemen_konten.cta.partials.table_body', compact('ctas'))->render();
+            return view('admin.bph.manajemen_konten.cta.partials.table_body', compact('title', 'ctas', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'))->render();
         }
 
-        return view('admin.bph.manajemen_konten.cta.index', compact('title', 'ctas', 'programStudis', 'filterProdi'));
+        return view('admin.bph.manajemen_konten.cta.index', compact('title', 'ctas', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'));
     }
 
     /**
@@ -78,6 +80,7 @@ class ManageCTAController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'foto_pendaftar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'nama_lengkap'   => 'required|string|max:255',
@@ -97,7 +100,7 @@ class ManageCTAController extends Controller
             $file = $request->file('foto_pendaftar');
             $namaBersih = str_replace([' ', '/', '\\'], '_', $validated['nama_lengkap']);
             $namaFile = 'Foto_' . $namaBersih . '_' . $validated['nim'] . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('foto_pendaftar', $namaFile, 'public');
+            $path = $file->storeAs('cta', $namaFile, 'public');
             $validated['foto_pendaftar'] = $path;
         }
 
@@ -127,6 +130,7 @@ class ManageCTAController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $cta = ManageCTA::findOrFail($id);
 
         $validated = $request->validate([
@@ -152,7 +156,7 @@ class ManageCTAController extends Controller
             $file = $request->file('foto_pendaftar');
             $namaBersih = str_replace([' ', '/', '\\'], '_', $validated['nama_lengkap']);
             $namaFile = 'Foto_' . $namaBersih . '_' . $validated['nim'] . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('foto_pendaftar', $namaFile, 'public');
+            $path = $file->storeAs('cta', $namaFile, 'public');
             $validated['foto_pendaftar'] = $path;
         }
 
@@ -166,6 +170,7 @@ class ManageCTAController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $cta = ManageCTA::findOrFail($id);
 
         // hapus foto jika ada
