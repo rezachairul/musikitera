@@ -3,15 +3,24 @@
 namespace App\Exports;
 
 use App\Models\admin\bph\manajemen_konten\ManageCTA;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 
-class ManageCTAExport implements FromCollection
+class ManageCTAExport 
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $filterProdi;
+    protected $search;
+
+    public function __construct($filterProdi = 'all', $search = '')
     {
-        return ManageCTA::all();
+        $this->filterProdi = $filterProdi;
+        $this->search = $search;
+    }
+
+    public function export()
+    {
+        // 
     }
 }
