@@ -128,6 +128,10 @@ Route::prefix('/')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('public.index');
 });
 
+// Route Public Form CTA (Oprec)
+Route::get('/oprec', [ManageCTAController::class, 'form'])->name('cta.form');
+Route::post('/oprec', [ManageCTAController::class, 'submit'])->name('cta.submit');
+
 
 // ==========================
 // Admin routes
