@@ -59,10 +59,10 @@ class ManageCTAController extends Controller
 
         // AJAX response (untuk dynamic filter / search)
         if ($request->ajax()) {
-            return view('admin.bph.cta.partials.table_body', compact('ctas'))->render();
+            return view('admin.bph.manajemen_konten.cta.partials.table_body', compact('ctas'))->render();
         }
 
-        return view('admin.bph.cta.index', compact('title', 'ctas', 'programStudis', 'filterProdi'));
+        return view('admin.bph.manajemen_konten.cta.index', compact('title', 'ctas', 'programStudis', 'filterProdi'));
     }
 
     /**
@@ -103,7 +103,7 @@ class ManageCTAController extends Controller
 
         ManageCTA::create($validated);
 
-        return redirect()->route('manage-cta.index')->with('success', 'Data pendaftar berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Data pendaftar berhasil ditambahkan.');
     }
 
     /**
@@ -158,7 +158,7 @@ class ManageCTAController extends Controller
 
         $cta->update($validated);
 
-        return redirect()->route('manage-cta.index')->with('success', 'Data pendaftar berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Data pendaftar berhasil diperbarui.');
     }
 
     /**
@@ -175,7 +175,7 @@ class ManageCTAController extends Controller
 
         $cta->delete();
 
-        return redirect()->route('manage-cta.index')->with('success', 'Data pendaftar berhasil dihapus.');
+        return redirect()->back()->with('success', 'Data pendaftar berhasil dihapus.');
     }
 
     public function export(Request $request)
