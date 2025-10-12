@@ -78,7 +78,7 @@
                                     data-id="{{ $hero->id }}"
                                     >
                             </div>
-                            <p id="image-error-{{ $ehro->id }}" class="mt-2 text-sm text-red-600 hidden"></p>
+                            <p id="image-error-{{ $hero->id }}" class="mt-2 text-sm text-red-600 hidden"></p>
                         </div>
                     </div>
 
