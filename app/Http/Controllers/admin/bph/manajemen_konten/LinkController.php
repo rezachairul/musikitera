@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_konten;
 
-use App\Models\admin\bph\manajemen_konten\Link;
 use Illuminate\Http\Request;
+use App\Exports\ManageLinkExport;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use App\Models\admin\bph\manajemen_konten\Link;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class LinkController extends Controller
@@ -152,4 +153,13 @@ class LinkController extends Controller
 
         return redirect()->back()->with('success', 'Data link berhasil dihapus.');
     }
+
+    public function export(Request $request)
+    {
+        $search = $request->query('search', '');
+        $filterKategori = $request->query('filterKategori', 'all');
+
+        return (new ManageLinkExport($search, $filterKategori))->export();
+    }
+
 }

@@ -35,12 +35,12 @@
             </div>
         </div>
 
-        <!-- Search & Per Page -->
+        <!-- Search, Filter & Per Page -->
         <div class="mb-4">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                
-                <!-- Search -->
-                <div class="relative w-full sm:w-2/3">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+
+                <!-- Kolom 1: Search -->
+                <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
@@ -60,15 +60,34 @@
                         class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
-                <!-- Per Page -->
-                <div class="w-full sm:w-1/4">
+                <!-- Kolom 2: Filter Kategori -->
+                <div class="w-full">
+                    <select
+                        id="filter-input"
+                        name="filterKategori"
+                        data-url="{{ route('manage-link.index') }}"
+                        data-target="ManageLinkTableBody"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {{ request('filterKategori') == 'all' ? 'selected' : '' }}>
+                            Semua Kategori
+                        </option>
+                        @foreach ($kategoriList as $key => $label)
+                            <option value="{{ $key }}" {{ request('filterKategori') == $key ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Kolom 3: Per Page -->
+                <div class="w-full">
                     <select
                         id="perpage-select"
                         name="perPage"
                         data-url="{{ route('manage-link.index') }}"
                         data-target="ManageLinkTableBody"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>Semua Halaman {{ $title }}</option>
+                        <option value="all" {{ request('perPage') == 'all' ? 'selected' : '' }}>Semua {{ $title }}</option>
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10 / halaman</option>
                         <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25 / halaman</option>
                         <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50 / halaman</option>
