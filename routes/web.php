@@ -20,20 +20,20 @@ use App\Http\Controllers\admin\administrator\ManageUserController;
 // Badan Pengurus
 // BPH
 use App\Http\Controllers\admin\bph\DashboardBPHController;
-
 use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
+use App\Http\Controllers\admin\bph\manajemen_konten\LinkController;
 
 use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
 use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
@@ -262,6 +262,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     
     // CTA (Oprec)
     Route::controller(ManageCTAController::class)->prefix('manage-cta')->name('manage-cta.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+    
+    // Links
+    Route::controller(LinkController::class)->prefix('manage-link')->name('manage-link.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
