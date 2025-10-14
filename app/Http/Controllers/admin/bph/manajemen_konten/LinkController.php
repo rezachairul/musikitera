@@ -154,6 +154,10 @@ class LinkController extends Controller
         return redirect()->back()->with('success', 'Data link berhasil dihapus.');
     }
 
+    /**
+     * Export data to Excel.
+     */
+
     public function export(Request $request)
     {
         $search = $request->query('search', '');

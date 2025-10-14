@@ -4,6 +4,7 @@ import './bootstrap';
 import '../js/public/countNumber';
 import '../js/public/navbar';
 import '../js/public/swiper-init.js';
+import '../js/public/previewImagePublic.js';
 
 // Import custom script in Admin
 // Administrator

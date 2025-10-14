@@ -130,6 +130,7 @@ Route::prefix('/')->group(function () {
 
 // Route Public Form CTA (Oprec)
 Route::get('/oprec', [ManageCTAController::class, 'form'])->name('cta.form');
+Route::get('/thanks', [ManageCTAController::class, 'thanks'])->name('cta.thanks');
 Route::post('/oprec', [ManageCTAController::class, 'submit'])->name('cta.submit');
 
 

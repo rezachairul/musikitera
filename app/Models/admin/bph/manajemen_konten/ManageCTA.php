@@ -25,4 +25,10 @@ class ManageCTA extends Model
         'alasan_gabung',
         'minat',
     ];
+
+    public function link()
+    {
+        return $this->belongsTo(Link::class, 'link_id');
+    }
+
 }

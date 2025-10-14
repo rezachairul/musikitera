@@ -123,5 +123,9 @@ class Link extends Model
         return self::getKategoriList()[$this->kategori] ?? ucfirst(str_replace('_', ' ', $this->kategori));
     }
 
+    public function ctaPendaftar()
+    {
+        return $this->hasMany(ManageCTA::class, 'link_id');
+    }
 
 }

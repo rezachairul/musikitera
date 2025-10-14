@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exports\ManageCTAExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Models\admin\bph\manajemen_konten\Link;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\admin\bph\manajemen_konten\ManageCTA;
 
@@ -106,7 +107,7 @@ class ManageCTAController extends Controller
 
         ManageCTA::create($validated);
 
-        return redirect()->back()->with('success', 'Data pendaftar berhasil ditambahkan.');
+        return redirect()->route('cta.thanks')->with('success', 'Data pendaftar berhasil ditambahkan.');
     }
 
     /**
@@ -183,12 +184,43 @@ class ManageCTAController extends Controller
         return redirect()->back()->with('success', 'Data pendaftar berhasil dihapus.');
     }
 
+    /**
+     * Export data to Excel.
+     */
+
     public function export(Request $request)
     {
         $filterProdi = $request->query('filterProdi', 'all');
         $search = $request->query('search', '');
 
         return (new ManageCTAExport($filterProdi, $search))->export();
+    }
+
+    
+    /**
+        * Form Oprec Public
+    */
+    public function form()
+    {
+        $title = 'Form Open Recruitment Calon Anggota UKMBSM ITERA';
+        return view('admin.bph.manajemen_konten.cta.form', compact('title'));
+    }
+
+    /**
+        * Form Oprec Public
+    */
+    public function thanks()
+    {
+        $title = 'Terima Kasih Calon Anggota UKMBSM ITERA';
+
+        // Ambil link Grup WA Calon Anggota dari database
+        $grupWA = Link::where('nama_link', 'Grup WA Calon Anggota')
+            ->where('kategori', 'whatsapp')
+            ->where('url', 'like', 'https://chat.whatsapp.com/%')
+            ->where('status', 1)
+            ->first();
+
+        return view('admin.bph.manajemen_konten.cta.thanks', compact('title', 'grupWA'));
     }
 
 }

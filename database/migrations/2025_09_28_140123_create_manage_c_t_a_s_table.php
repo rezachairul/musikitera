@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('manage_c_t_a_s', function (Blueprint $table) {
             $table->id();
             $table->string('foto_pendaftar')->nullable(); // path foto pendaftar
+            $table->unsignedBigInteger('link_id')->nullable();
             $table->string('nama_lengkap');
             $table->string('nim')->unique();
             $table->year('angkatan'); // tahun masuk
@@ -25,6 +26,9 @@ return new class extends Migration
             $table->text('alasan_gabung');
             $table->string('minat'); // alat musik / vokal / soundman / lainnya
             $table->timestamps();
+
+            // foreign key
+            $table->foreign('link_id')->references('id')->on('links')->onDelete('set null');
         });
     }
 
