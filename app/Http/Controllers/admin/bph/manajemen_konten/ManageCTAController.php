@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Exports\ManageCTAExport;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\admin\bph\manajemen_konten\Link;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -107,6 +108,9 @@ class ManageCTAController extends Controller
 
         ManageCTA::create($validated);
 
+        // Set flag agar bisa akses halaman thanks
+        session(['allow_thanks' => true]);
+
         return redirect()->route('cta.thanks')->with('success', 'Data pendaftar berhasil ditambahkan.');
     }
 
@@ -207,13 +211,27 @@ class ManageCTAController extends Controller
     }
 
     /**
-        * Form Oprec Public
+        * Thanks Oprec Public
     */
     public function thanks()
     {
+        $user = Auth::user(); // null kalau belum login
+
+        // Jika tidak login → wajib punya session flag
+        if (!$user && !session('allow_thanks')) {
+            return redirect()->route('cta.form');
+        }
+
+        // Kalau login dan role termasuk bph, dpo, pembina, administrator → boleh langsung
+        if ($user && in_array($user->role, ['bph', 'dpo', 'pembina', 'administrator'])) {
+            // biarkan lanjut
+        } else {
+            // Kalau user publik → hapus session biar tidak bisa akses ulang
+            session()->forget('allow_thanks');
+        }
+
         $title = 'Terima Kasih Calon Anggota UKMBSM ITERA';
 
-        // Ambil link Grup WA Calon Anggota dari database
         $grupWA = Link::where('nama_link', 'Grup WA Calon Anggota')
             ->where('kategori', 'whatsapp')
             ->where('url', 'like', 'https://chat.whatsapp.com/%')
