@@ -19,24 +19,25 @@ class ManageTestimoniController extends Controller
      */
     public function index(Request $request)
     {
-        $title      = 'Apa Kata Mereka?';
-        $search     = $request->input('search', '');
+        $title       = 'Apa Kata Mereka?';
+        $search      = $request->input('search', '');
         $filterProdi = $request->query('filterProdi', 'all');
-        $perPage    = $request->query('perPage', 10);
+        $perPage     = $request->query('perPage', 10);
+        $anggotaAktif = AnggotaAktif::orderBy('nama', 'asc')->get();
 
-        // ➤ Pisahkan search menjadi multi keyword
+        // Pisahkan search menjadi array kata
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
 
-        $query = ManageTestimoni::with('anggotaAktif'); // relasi ke anggota aktif
-        $totalAll = ManageTestimoni::count();            // total semua data
+        $query = ManageTestimoni::with('anggotaAktif');
+        $totalAll = ManageTestimoni::count();
 
-        // ➤ Search berdasarkan nama, prodi, kesan & pesan
+        // Search multi kolom (nama, prodi, kesan, pesan)
         if ($search) {
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $word) {
                     $q->whereHas('anggotaAktif', function ($q2) use ($word) {
-                        $q2->where('nama_lengkap', 'like', "%{$word}%")
-                           ->orWhere('program_studi', 'like', "%{$word}%");
+                        $q2->where('nama', 'like', "%{$word}%")
+                        ->orWhere('prodi', 'like', "%{$word}%");
                     })
                     ->orWhere('kesan', 'like', "%{$word}%")
                     ->orWhere('pesan', 'like', "%{$word}%");
@@ -44,35 +45,37 @@ class ManageTestimoniController extends Controller
             });
         }
 
-        // ➤ Filter berdasarkan Program Studi
+        // Filter berdasarkan program studi
         if ($filterProdi !== 'all') {
             $query->whereHas('anggotaAktif', function ($q) use ($filterProdi) {
-                $q->where('program_studi', $filterProdi);
+                $q->where('prodi', $filterProdi);
             });
         }
 
-        // ➤ Urut terbaru
-        $query->orderBy('created_at', 'desc');
-
-        // ➤ Pagination
-        $testimonis = $query->paginate(
-            $perPage === 'all' ? $query->count() : (int) $perPage
-        );
+        // Hitung data setelah filter/search
         $totalFiltered = $query->count();
 
-        // ➤ Daftar Program Studi unik (untuk dropdown)
-        $programStudis = AnggotaAktif::select('program_studi')->distinct()->pluck('program_studi');
+        // Urutan terbaru
+        $query->orderBy('created_at', 'desc');
 
-        // ➤ Jika AJAX (untuk update table saja)
-        if ($request->ajax()) {
+        // Pagination
+        $testimonis = $query->paginate(
+            $perPage === 'all' ? $totalFiltered : (int) $perPage
+        );
+
+        // Daftar Prodi unik (untuk filter dropdown)
+        $programStudis = AnggotaAktif::select('prodi')->distinct()->pluck('prodi');
+
+        // Jika AJAX request → hanya render bagian tabel
+        if ($request->AJAX()) {
             return view('admin.bph.manajemen_konten.testimoni.partials.table_body', compact(
-                'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'
+                'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'anggotaAktif', 'totalAll', 'totalFiltered'
             ))->render();
         }
 
-        // ➤ Return full page
+        // Return full view
         return view('admin.bph.manajemen_konten.testimoni.index', compact(
-            'title', 'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'
+            'title', 'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'anggotaAktif', 'totalAll', 'totalFiltered'
         ));
     }
 
@@ -87,7 +90,7 @@ class ManageTestimoniController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'anggota_id' => 'required|exists:anggota_aktifs,id',
@@ -153,7 +156,7 @@ class ManageTestimoniController extends Controller
                 Storage::delete('public/' . $manageTestimoni->foto);
             }
 
-            $anggotaName = Str::slug($manageTestimoni->anggotaAktif->nama_lengkap);
+            $anggotaName = Str::slug($manageTestimoni->anggotaAktif->nama);
             $fileName = 'Testimoni_' . $anggotaName . '_' . Carbon::now()->format('Ymd_His') . '.' . $request->file('foto')->getClientOriginalExtension();
             $pathFoto = $request->file('foto')->storeAs('public/testimoni', $fileName);
 
