@@ -94,4 +94,9 @@ class AnggotaAktif extends Model
         return $this->hasMany(ManageTestimoni::class, 'anggota_id');
     }
 
+    public function alumnis()
+    {
+        return $this->hasMany(ManageAlumni::class, 'anggota_id');
+    }
+
 }
