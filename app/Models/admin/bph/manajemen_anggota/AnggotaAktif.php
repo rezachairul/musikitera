@@ -2,8 +2,9 @@
 
 namespace App\Models\admin\bph\manajemen_anggota;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 
 class AnggotaAktif extends Model
 {
@@ -86,4 +87,11 @@ class AnggotaAktif extends Model
         $angkatanRomawi = $this->toRoman($this->angkatan_ukm);
         return "{$nomorUrut}/{$this->organisasi}/{$angkatanRomawi}";
     }
+
+
+    public function testimonis()
+    {
+        return $this->hasMany(ManageTestimoni::class, 'anggota_id');
+    }
+
 }
