@@ -15,6 +15,7 @@ class ManageAlumni extends Model
         'foto',          // path foto alumni
         'pekerjaan',     // opsional
         'quote',         // opsional
+        'tahun_lulus',   // opsional
     ];
 
     public function anggota()

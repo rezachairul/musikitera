@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('foto')->nullable(); // simpan path foto
             $table->string('pekerjaan')->nullable();
             $table->text('quote')->nullable();
+            $table->year('tahun_lulus')->nullable();
             $table->timestamps();
 
             $table->foreign('anggota_id')->references('id')->on('anggota_aktifs')->onDelete('cascade');
