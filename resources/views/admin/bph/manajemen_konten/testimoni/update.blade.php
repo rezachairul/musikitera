@@ -12,7 +12,7 @@
 
             <!-- Form Update Testimoni -->
             <div class="max-h-[80vh] overflow-y-auto px-4 py-2">
-                <form id="updateForm" method="POST" action="{{ route('manage-testimoni.update', $manageTestimoni->id) }}" enctype="multipart/form-data">
+                <form id="updateForm" method="POST" action="{{ route('manage-testimoni.update', $testimoni->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -28,7 +28,7 @@
                                 <option value="">-- Pilih Anggota --</option>
                                 @foreach ($anggotaAktif as $anggota)
                                     <option value="{{ $anggota->id }}"
-                                        {{ (old('anggota_id', $manageTestimoni->anggota_id) == $anggota->id) ? 'selected' : '' }}>
+                                        {{ (old('anggota_id', $testimoni->anggota_id) == $anggota->id) ? 'selected' : '' }}>
                                         {{ $anggota->nama }} - {{ $anggota->prodi }}
                                     </option>
                                 @endforeach
@@ -48,9 +48,9 @@
                                 accept="image/*">
 
                             <!-- Tampilkan foto lama -->
-                            @if ($manageTestimoni->foto)
+                            @if ($testimoni->foto)
                                 <p class="text-sm text-gray-600 mt-2">Foto saat ini:</p>
-                                <img src="{{ asset('storage/' . $manageTestimoni->foto) }}"
+                                <img src="{{ asset('storage/' . $testimoni->foto) }}"
                                     alt="Foto Testimoni"
                                     class="w-24 h-24 object-cover rounded-lg mt-1 border">
                             @endif
@@ -67,7 +67,7 @@
                             </label>
                             <textarea name="kesan" id="kesan" rows="3"
                                 class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0"
-                                required>{{ old('kesan', $manageTestimoni->kesan) }}</textarea>
+                                required>{{ old('kesan', $testimoni->kesan) }}</textarea>
                             @error('kesan')
                                 <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                             @enderror
@@ -79,7 +79,7 @@
                                 Pesan
                             </label>
                             <textarea name="pesan" id="pesan" rows="3"
-                                class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0">{{ old('pesan', $manageTestimoni->pesan) }}</textarea>
+                                class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0">{{ old('pesan', $testimoni->pesan) }}</textarea>
                             @error('pesan')
                                 <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                             @enderror

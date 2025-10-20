@@ -28,14 +28,14 @@ class ManageTestimoniController extends Controller
         // Pisahkan search menjadi array kata
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
 
-        $query = ManageTestimoni::with('anggotaAktif');
+        $query = ManageTestimoni::with('anggota');
         $totalAll = ManageTestimoni::count();
 
         // Search multi kolom (nama, prodi, kesan, pesan)
         if ($search) {
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $word) {
-                    $q->whereHas('anggotaAktif', function ($q2) use ($word) {
+                    $q->whereHas('anggota', function ($q2) use ($word) {
                         $q2->where('nama', 'like', "%{$word}%")
                         ->orWhere('prodi', 'like', "%{$word}%");
                     })
@@ -47,7 +47,7 @@ class ManageTestimoniController extends Controller
 
         // Filter berdasarkan program studi
         if ($filterProdi !== 'all') {
-            $query->whereHas('anggotaAktif', function ($q) use ($filterProdi) {
+            $query->whereHas('anggota', function ($q) use ($filterProdi) {
                 $q->where('prodi', $filterProdi);
             });
         }
@@ -102,6 +102,7 @@ class ManageTestimoniController extends Controller
         $pathFoto = null;
 
         if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
             $anggotaName = Str::slug($request->anggota_nama ?? 'anggota');
             $fileName = 'Testimoni_' . $anggotaName . '_' . Carbon::now()->format('Ymd_His') . '.' . $request->file('foto')->getClientOriginalExtension();
             $pathFoto = $request->file('foto')->storeAs('public/testimoni', $fileName);

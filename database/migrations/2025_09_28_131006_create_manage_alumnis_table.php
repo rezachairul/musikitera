@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('manage_alumnis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('anggota_id')->unique(); // setiap alumni 1x data
+            $table->string('foto')->nullable(); // simpan path foto
+            $table->string('pekerjaan')->nullable();
+            $table->text('quote')->nullable();
             $table->timestamps();
+
+            $table->foreign('anggota_id')->references('id')->on('anggota_aktifs')->onDelete('cascade');
         });
     }
 

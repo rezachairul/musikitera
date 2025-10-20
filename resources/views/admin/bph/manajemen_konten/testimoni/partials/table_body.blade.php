@@ -9,7 +9,7 @@
     <td class="px-6 py-4 whitespace-nowrap">
         @if($testimoni->foto)
             <img src="{{ asset('storage/' . $testimoni->foto) }}"
-                 alt="Foto {{ $testimoni->anggotaAktif->nama }}"
+                 alt="Foto {{ $testimoni->anggota->nama }}"
                  class="w-12 h-12 rounded-lg object-cover border border-gray-300">
         @else
             <span class="text-gray-400">-</span>
@@ -18,11 +18,11 @@
 
     <!-- Nama + Prodi + Angkatan + NIA -->
     <td class="px-6 py-4 whitespace-nowrap">
-        <div class="font-semibold text-gray-900">{{ $testimoni->anggotaAktif->nama }}</div>
+        <div class="font-semibold text-gray-900">{{ $testimoni->anggota->nama }}</div>
         <div class="text-gray-600 text-[11px]">
-            {{ $testimoni->anggotaAktif->prodi }} • 
-            Angkatan {{ $testimoni->anggotaAktif->angkatan ?? '-' }} <br>
-            NIA: {{ $testimoni->anggotaAktif->nia ?? '-' }}
+            {{ $testimoni->anggota->prodi }} • 
+            Angkatan {{ $testimoni->anggota->angkatan ?? '-' }} <br>
+            NIA: {{ $testimoni->anggota->nia ?? '-' }}
         </div>
     </td>
 

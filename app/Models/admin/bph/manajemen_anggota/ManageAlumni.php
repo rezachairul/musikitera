@@ -9,4 +9,16 @@ class ManageAlumni extends Model
 {
     /** @use HasFactory<\Database\Factories\ManageAlumniFactory> */
     use HasFactory;
+    protected $table = 'manage_alumnis';
+    protected $fillable = [
+        'anggota_id',    // relasi ke anggota_aktifs
+        'foto',          // path foto alumni
+        'pekerjaan',     // opsional
+        'quote',         // opsional
+    ];
+
+    public function anggota()
+    {
+        return $this->belongsTo(AnggotaAktif::class, 'anggota_id');
+    }
 }
