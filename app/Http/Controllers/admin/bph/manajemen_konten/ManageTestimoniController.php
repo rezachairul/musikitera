@@ -2,23 +2,78 @@
 
 namespace App\Http\Controllers\admin\bph\manajemen_konten;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
+use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 
 class ManageTestimoniController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = "Apa Kata Mereka?";
+        $title      = 'Apa Kata Mereka?';
+        $search     = $request->input('search', '');
+        $filterProdi = $request->query('filterProdi', 'all');
+        $perPage    = $request->query('perPage', 10);
 
-        return view('admin.bph.manajemen_konten.testimoni.index', compact( 'title'));
+        // ➤ Pisahkan search menjadi multi keyword
+        $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
+
+        $query = ManageTestimoni::with('anggotaAktif'); // relasi ke anggota aktif
+        $totalAll = ManageTestimoni::count();            // total semua data
+
+        // ➤ Search berdasarkan nama, prodi, kesan & pesan
+        if ($search) {
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $q->whereHas('anggotaAktif', function ($q2) use ($word) {
+                        $q2->where('nama_lengkap', 'like', "%{$word}%")
+                           ->orWhere('program_studi', 'like', "%{$word}%");
+                    })
+                    ->orWhere('kesan', 'like', "%{$word}%")
+                    ->orWhere('pesan', 'like', "%{$word}%");
+                }
+            });
+        }
+
+        // ➤ Filter berdasarkan Program Studi
+        if ($filterProdi !== 'all') {
+            $query->whereHas('anggotaAktif', function ($q) use ($filterProdi) {
+                $q->where('program_studi', $filterProdi);
+            });
+        }
+
+        // ➤ Urut terbaru
+        $query->orderBy('created_at', 'desc');
+
+        // ➤ Pagination
+        $testimonis = $query->paginate(
+            $perPage === 'all' ? $query->count() : (int) $perPage
+        );
+        $totalFiltered = $query->count();
+
+        // ➤ Daftar Program Studi unik (untuk dropdown)
+        $programStudis = AnggotaAktif::select('program_studi')->distinct()->pluck('program_studi');
+
+        // ➤ Jika AJAX (untuk update table saja)
+        if ($request->ajax()) {
+            return view('admin.bph.manajemen_konten.testimoni.partials.table_body', compact(
+                'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'
+            ))->render();
+        }
+
+        // ➤ Return full page
+        return view('admin.bph.manajemen_konten.testimoni.index', compact(
+            'title', 'testimonis', 'programStudis', 'filterProdi', 'search', 'perPage', 'totalAll', 'totalFiltered'
+        ));
     }
 
     /**
@@ -32,9 +87,31 @@ class ManageTestimoniController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'anggota_id' => 'required|exists:anggota_aktifs,id',
+            'kesan'      => 'nullable|string',
+            'pesan'      => 'nullable|string',
+            'foto'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $pathFoto = null;
+
+        if ($request->hasFile('foto')) {
+            $anggotaName = Str::slug($request->anggota_nama ?? 'anggota');
+            $fileName = 'Testimoni_' . $anggotaName . '_' . Carbon::now()->format('Ymd_His') . '.' . $request->file('foto')->getClientOriginalExtension();
+            $pathFoto = $request->file('foto')->storeAs('public/testimoni', $fileName);
+        }
+
+        ManageTestimoni::create([
+            'anggota_id' => $request->anggota_id,
+            'kesan'      => $request->kesan,
+            'pesan'      => $request->pesan,
+            'foto'       => $pathFoto ? str_replace('public/', '', $pathFoto) : null,
+        ]);
+
+        return redirect()->back()->with('success', 'Testimoni berhasil ditambahkan.');
     }
 
     /**
@@ -58,7 +135,34 @@ class ManageTestimoniController extends Controller
      */
     public function update(Request $request, ManageTestimoni $manageTestimoni)
     {
-        //
+        $request->validate([
+            'kesan' => 'nullable|string',
+            'pesan' => 'nullable|string',
+            'foto'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $data = [
+            'kesan' => $request->kesan,
+            'pesan' => $request->pesan,
+        ];
+
+        // Jika upload foto baru
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama dari storage jika ada
+            if ($manageTestimoni->foto && Storage::exists('public/' . $manageTestimoni->foto)) {
+                Storage::delete('public/' . $manageTestimoni->foto);
+            }
+
+            $anggotaName = Str::slug($manageTestimoni->anggotaAktif->nama_lengkap);
+            $fileName = 'Testimoni_' . $anggotaName . '_' . Carbon::now()->format('Ymd_His') . '.' . $request->file('foto')->getClientOriginalExtension();
+            $pathFoto = $request->file('foto')->storeAs('public/testimoni', $fileName);
+
+            $data['foto'] = str_replace('public/', '', $pathFoto);
+        }
+
+        $manageTestimoni->update($data);
+
+        return redirect()->back()->with('success', 'Testimoni berhasil diperbarui.');
     }
 
     /**
@@ -66,6 +170,12 @@ class ManageTestimoniController extends Controller
      */
     public function destroy(ManageTestimoni $manageTestimoni)
     {
-        //
+        if ($manageTestimoni->foto && Storage::exists('public/' . $manageTestimoni->foto)) {
+            Storage::delete('public/' . $manageTestimoni->foto);
+        }
+
+        $manageTestimoni->delete();
+
+        return redirect()->back()->with('success', 'Testimoni berhasil dihapus.');
     }
 }
