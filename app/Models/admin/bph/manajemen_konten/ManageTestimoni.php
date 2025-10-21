@@ -4,7 +4,7 @@ namespace App\Models\admin\bph\manajemen_konten;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
+use App\Models\admin\bph\manajemen_anggota\ManageAlumni;
 
 class ManageTestimoni extends Model
 {
@@ -13,18 +13,18 @@ class ManageTestimoni extends Model
     protected $table = 'manage_testimonis';
 
     protected $fillable = [
-        'anggota_id',
+        'alumni_id',
         'foto',
         'kesan',
         'pesan',
     ];
 
     /**
-     * Relasi ke AnggotaAktif
+     * Relasi ke ManageAlumni
      * Satu testimoni dimiliki oleh satu alumni
      */
-    public function anggota()
+    public function alumni()
     {
-        return $this->belongsTo(AnggotaAktif::class, 'anggota_id');
+        return $this->belongsTo(ManageAlumni::class, 'alumni_id');
     }
 }

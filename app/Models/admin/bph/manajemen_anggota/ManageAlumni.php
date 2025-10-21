@@ -2,8 +2,9 @@
 
 namespace App\Models\admin\bph\manajemen_anggota;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 
 class ManageAlumni extends Model
 {
@@ -21,5 +22,10 @@ class ManageAlumni extends Model
     public function anggota()
     {
         return $this->belongsTo(AnggotaAktif::class, 'anggota_id');
+    }
+
+    public function testimoni()
+    {
+        return $this->hasMany(ManageTestimoni::class, 'anggota_id');
     }
 }

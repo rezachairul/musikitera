@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('manage_testimonis', function (Blueprint $table) {
             $table->id();
-            // Relasi ke AnggotaAktif
-            $table->unsignedBigInteger('anggota_id')->index(); // Foreign Key
-
-            $table->string('foto')->nullable();   // Path gambar/foto opsional
+            // Relasi ke Alumni
+            $table->unsignedBigInteger('alumni_id')->index(); // Foreign Key
             $table->text('kesan')->nullable();    // Kolom kesan
             $table->text('pesan')->nullable();    // Kolom pesan
 
-            $table->foreign('anggota_id')
+            $table->foreign('alumni_id')
                 ->references('id')
-                ->on('anggota_aktifs')
+                ->on('manage_alumnis')
                 ->onDelete('cascade'); // kalau data alumni dihapus, testimoninya ikut hilang
             $table->timestamps();
         });
