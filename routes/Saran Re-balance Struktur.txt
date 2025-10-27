@@ -10,7 +10,9 @@ Badan Pengurus
 Alumni
 
 ✅ Konten Tunggal (Single Form)
-Profil Organisasi (isi juga Sejarah di sini)
+Profil Organisasi
+Sejarah
+Visi Misi
 Layanan (isi juga Studio Musik di sini, bisa jadi tab “Studio”)
 Statistik Publik
 CTA Oprec

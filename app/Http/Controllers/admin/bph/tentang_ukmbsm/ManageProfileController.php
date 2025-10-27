@@ -19,7 +19,10 @@ class ManageProfileController extends Controller
     {
         $title = "Profile";
 
-        return view('admin.bph.tentang_ukmbsm.profil_organisasi.index', compact( 'title'));
+        // Ambil record pertama (single form). Jika belum ada, $profile = null
+        $profile = ManageProfile::first();
+
+        return view('admin.bph.tentang_ukmbsm.profil_organisasi.index', compact( 'title', 'profile'));
     }
 
     /**
