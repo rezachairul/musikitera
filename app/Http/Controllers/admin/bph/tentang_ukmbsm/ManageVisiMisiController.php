@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\admin\bph\manajemen_konten;
+namespace App\Http\Controllers\admin\bph\tentang_ukmbsm;
 
 use Illuminate\Http\Request;
 
-
-use App\Models\admin\bph\manajemen_konten\ManageProfile;
+use App\Models\admin\bph\tentang_ukmbsm\ManageVisiMisi;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ManageProfileController extends Controller
+class ManageVisiMisiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $title = "Profile";
+        $title = "Visi & Misi";
 
-        return view('admin.bph.manajemen_konten.profil_organisasi.index', compact( 'title'));
+        return view('admin.bph.tentang_ukmbsm.visi_misi.index', compact( 'title'));
     }
 
     /**
@@ -41,7 +40,7 @@ class ManageProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ManageProfile $manageProfile)
+    public function show(ManageVisiMisi $manageVisiMisi)
     {
         //
     }
@@ -49,7 +48,7 @@ class ManageProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ManageProfile $manageProfile)
+    public function edit(ManageVisiMisi $manageVisiMisi)
     {
         //
     }
@@ -57,7 +56,7 @@ class ManageProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ManageProfile $manageProfile)
+    public function update(Request $request, ManageVisiMisi $manageVisiMisi)
     {
         //
     }
@@ -65,7 +64,7 @@ class ManageProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ManageProfile $manageProfile)
+    public function destroy(ManageVisiMisi $manageVisiMisi)
     {
         //
     }

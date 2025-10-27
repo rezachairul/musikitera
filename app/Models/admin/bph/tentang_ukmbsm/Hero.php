@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin\bph\manajemen_konten;
+namespace App\Models\admin\bph\tentang_ukmbsm;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

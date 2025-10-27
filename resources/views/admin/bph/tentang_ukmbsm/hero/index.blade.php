@@ -104,7 +104,7 @@
                             </tr>
                         </thead>
                         <tbody id="ManageHeroTableBody" class="bg-white divide-y divide-gray-200">
-                            @include('admin.bph.manajemen_konten.hero.partials.table_body')
+                            @include('admin.bph.tentang_ukmbsm.hero.partials.table_body')
                         </tbody>
                         <tfoot class="bg-gray-50">
                             <tr>
@@ -179,8 +179,8 @@
     </div>
 
     <!-- Modals -->
-    @include('admin.bph.manajemen_konten.hero.create')
-    @include('admin.bph.manajemen_konten.hero.update')
-    @include('admin.bph.manajemen_konten.hero.delete')
+    @include('admin.bph.tentang_ukmbsm.hero.create')
+    @include('admin.bph.tentang_ukmbsm.hero.update')
+    @include('admin.bph.tentang_ukmbsm.hero.delete')
 
 </x-admin.bph.layouts>

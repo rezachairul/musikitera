@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\bph\manajemen_konten;
+namespace App\Http\Controllers\admin\bph\tentang_ukmbsm;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\manajemen_konten\Hero;
+use App\Models\admin\bph\tentang_ukmbsm\Hero;
 use App\Exports\ManageHeroExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -61,12 +61,12 @@ class HeroController extends Controller
         // AJAX response (table body partial)
         if ($request->ajax()) {
             return view(
-                'admin.bph.manajemen_konten.hero.partials.table_body',
+                'admin.bph.tentang_ukmbsm.hero.partials.table_body',
                 compact('heroes', 'totalHeroes')
             )->render();
         }
 
-        return view('admin.bph.manajemen_konten.hero.index', compact('title', 'heroes', 'totalHeroes'));
+        return view('admin.bph.tentang_ukmbsm.hero.index', compact('title', 'heroes', 'totalHeroes'));
     }
 
     /**
@@ -151,8 +151,10 @@ class HeroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hero $hero)
+    public function destroy($id)
     {
+        // dd($id);
+        $hero = Hero::findOrFail($id);
         if ($hero->image && Storage::disk('public')->exists($hero->image)) {
             Storage::disk('public')->delete($hero->image);
         }

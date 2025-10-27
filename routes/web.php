@@ -25,10 +25,11 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusControll
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 
-use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageVisiMisiController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageSejarahController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\HeroController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageVisiMisiController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
+
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
@@ -198,8 +199,7 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::get('/export',  'export')->name('export');
     });
 
-
-    // Manajemen Konten
+    // Tentang UKMBSM ITERA
     // Hero
     Route::controller(HeroController::class)->prefix('hero')->name('manage-hero.')->group(function(){
         Route::get('/','index')->name('index');
@@ -235,7 +235,8 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
-    
+
+    // Manajemen Konten    
     // Layanan
     Route::controller(ManageLayananController::class)->prefix('manage-layanan')->name('manage-layanan.')->group(function(){
         Route::get('/','index')->name('index');

@@ -1,0 +1,17 @@
+Saran Re-balance Struktur
+Jadi dari mapping di atas, struktur Admin BPH menurutku lebih ideal kayak gini:
+
+✅ Kumpulan Data (CRUD Table)
+Hero (banner carousel) ✅
+Galeri Kegiatan ✅
+Highlight Kegiatan
+Apa Kata Mereka (Testimoni)
+Badan Pengurus
+Alumni
+
+✅ Konten Tunggal (Single Form)
+Profil Organisasi (isi juga Sejarah di sini)
+Layanan (isi juga Studio Musik di sini, bisa jadi tab “Studio”)
+Statistik Publik
+CTA Oprec
+Dewan Pengawas (kalau cuma 1–3 orang tetap → Single Form, kalau banyak → pindah ke CRUD Table)

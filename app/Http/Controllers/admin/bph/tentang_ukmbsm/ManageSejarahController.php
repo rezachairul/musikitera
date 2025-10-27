@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\bph\manajemen_konten;
+namespace App\Http\Controllers\admin\bph\tentang_ukmbsm;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\manajemen_konten\ManageSejarah;
+use App\Models\admin\bph\tentang_ukmbsm\ManageSejarah;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -18,7 +18,7 @@ class ManageSejarahController extends Controller
     {
         $title = "Sejarah";
 
-        return view('admin.bph.manajemen_konten.sejarah.index', compact( 'title'));
+        return view('admin.bph.tentang_ukmbsm.sejarah.index', compact( 'title'));
     }
 
     /**
