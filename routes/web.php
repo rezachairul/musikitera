@@ -27,6 +27,7 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 
 use App\Http\Controllers\admin\bph\manajemen_konten\HeroController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageProfileController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageVisiMisiController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
@@ -209,6 +210,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     
     // Profil Organisasi
     Route::controller(ManageProfileController::class)->prefix('manage-profile')->name('manage-profile.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+    
+    // Visi Misi
+    Route::controller(ManageVisiMisiController::class)->prefix('manage-visi-misi')->name('manage-visi-misi.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
