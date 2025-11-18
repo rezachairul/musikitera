@@ -315,7 +315,7 @@
             const handleScroll = () => {
                 const y = window.scrollY || window.pageYOffset;
 
-                if (y > 300) {
+                if (y > 100) {
                     // Change to dark gradient background
                     section.classList.remove('bg-white');
                     section.classList.add('bg-gradient-to-b', 'from-slate-950', 'via-slate-900',
