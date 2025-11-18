@@ -18,14 +18,14 @@
             {{-- Isi Halaman --}}
 
             <!-- Navbar -->
-             <x-public.navbar></x-public.navbar>
+            <x-public.navbar></x-public.navbar>
 
             <!-- Main -->
             <main class="flex-grow">
                 <!-- Header -->
-                @if(!request()->routeIs('public.index'))
+                {{-- @if (!request()->routeIs('public.index'))
                     <x-public.header>{{ $title }}</x-public.header>
-                @endif
+                @endif --}}
                 <!-- Pages -->
                 <div class="max-w-7xl mx-auto px-6 py-10">
                     {{ $slot }}

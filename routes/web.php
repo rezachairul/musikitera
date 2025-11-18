@@ -6,56 +6,59 @@ use Illuminate\Support\Facades\Route;
 // Auths
 // ==========================
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\public\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // ==========================
 // Adnmins
 // ==========================
 // Administrator
-use App\Http\Controllers\admin\administrator\DashboardController;
-use App\Http\Controllers\admin\administrator\ManageUserController;
+use App\Http\Controllers\Public\StudioController;
+use App\Http\Controllers\public\HistoryController;
 
 // Badan Pengurus
 // BPH
+use App\Http\Controllers\public\ProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\admin\bph\DashboardBPHController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\admin\administrator\DashboardController;
 
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\HeroController;
-use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
-use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageVisiMisiController;
-use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
-
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
+use App\Http\Controllers\admin\administrator\ManageUserController;
+use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 use App\Http\Controllers\admin\bph\manajemen_konten\LinkController;
 
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
-use App\Http\Controllers\admin\bph\publikasi_informasi\ManagePengumumanController;
-
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageVisiMisiController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
+
 // Dewan Pengawas
-use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 
 // Pembina
-use App\Http\Controllers\admin\pembina\DashboardPembinaController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
 
 
 // ==========================
 // Publics
 // ==========================
-use App\Http\Controllers\public\HomeController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManageKegiatanController;
+use App\Http\Controllers\admin\bph\publikasi_informasi\ManagePengumumanController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageBadanPengurusController;
 
 
 // ==========================
@@ -130,6 +133,12 @@ Route::prefix('auth')->group(function () {
 Route::prefix('/')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('public.index');
 });
+
+Route::get('/profil', [ProfileController::class, 'index'])->name('profile');
+
+Route::get('/sejarah', [HistoryController::class, 'index'])->name('history');
+
+Route::get('/studio', [StudioController::class, 'index'])->name('studio');
 
 // Route Public Form CTA (Oprec)
 Route::get('/oprec', [ManageCTAController::class, 'form'])->name('cta.form');
