@@ -1,5 +1,5 @@
 <x-public.layouts>
-    <x-slot:title>Announcement</x-slot:title>
+    <x-slot:title>Pengumuman</x-slot:title>
 
     @php
         // Dummy data
