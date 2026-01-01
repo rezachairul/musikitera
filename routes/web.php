@@ -7,54 +7,57 @@ use Illuminate\Support\Facades\Route;
 // ==========================
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\public\HomeController;
-use App\Http\Controllers\Auth\RegisterController;
 
 
 // ==========================
 // Adnmins
 // ==========================
 // Administrator
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Public\AlumniController;
-use App\Http\Controllers\Public\StudioController;
 
 // Badan Pengurus
 // BPH
+use App\Http\Controllers\Public\StudioController;
 use App\Http\Controllers\Public\GalleryController;
 use App\Http\Controllers\public\HistoryController;
 use App\Http\Controllers\public\ProfileController;
+use App\Http\Controllers\Public\DocumentController;
+
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Public\AnnouncementController;
-
 use App\Http\Controllers\admin\bph\DashboardBPHController;
 use App\Http\Controllers\admin\dpo\DashboardDPOController;
+use App\Http\Controllers\Public\ContactExternalController;
+
+use App\Http\Controllers\Public\ContactInternalController;
 use App\Http\Controllers\admin\administrator\DashboardController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\HeroController;
-
 use App\Http\Controllers\admin\administrator\ManageUserController;
 use App\Http\Controllers\admin\pembina\DashboardPembinaController;
 use App\Http\Controllers\admin\bph\manajemen_konten\LinkController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
+
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
 
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageVisiMisiController;
-use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
-
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 
 // Dewan Pengawas
-use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
 
 // Pembina
-use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 
 
 // ==========================
 // Publics
 // ==========================
+use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
+use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
@@ -145,6 +148,9 @@ Route::get('/studio', [StudioController::class, 'index'])->name('studio');
 Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni');
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('announcement');
+Route::get('/dokumen', [DocumentController::class, 'index'])->name('document');
+Route::get('/kontak/internal', [ContactInternalController::class, 'index'])->name('internal');
+Route::get('/kontak/eksternal', [ContactExternalController::class, 'index'])->name('external');
 
 // Route Public Form CTA (Oprec)
 Route::get('/oprec', [ManageCTAController::class, 'form'])->name('cta.form');
