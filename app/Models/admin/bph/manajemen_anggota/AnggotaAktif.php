@@ -5,21 +5,23 @@ namespace App\Models\admin\bph\manajemen_anggota;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
+use App\Models\admin\bph\manajemen_anggota\ManageAlumni;
 
 class AnggotaAktif extends Model
 {
     use HasFactory;
 
     protected $table = 'anggota_aktifs';
+
     protected $fillable = [
         'nama',
         'nim',
         'angkatan',
         'prodi',
         'nomor_urut',
-        'organisasi',     // misalnya BSM
-        'angkatan_ukm',   // integer, nanti diubah ke romawi
-        'pendiri',        // boolean (1 = pendiri, 0 = bukan)
+        'organisasi',
+        'angkatan_ukm',
+        'pendiri',
         'status',
         'nia',
     ];
@@ -28,9 +30,10 @@ class AnggotaAktif extends Model
         'organisasi' => 'BSM',
     ];
 
-    /**
-     * Konversi angka ke romawi
-     */
+    /* -----------------------------
+     * Utility NIA & nomor urut
+     * ----------------------------- */
+
     private function toRoman($number)
     {
         $map = [
@@ -62,36 +65,50 @@ class AnggotaAktif extends Model
         return $returnValue;
     }
 
-    /**
-     * Accessor: format nomor urut dengan leading zero
-     * contoh: 1 -> 001, 12 -> 012, 123 -> 123
-     */
     public function getNomorUrutFormattedAttribute()
     {
         return str_pad($this->nomor_urut, 3, '0', STR_PAD_LEFT);
     }
 
-    /**
-     * Accessor: hasilkan NIA gabungan
-     */
     public function getNiaAttribute()
     {
         $nomorUrut = $this->nomor_urut_formatted;
 
         if ($this->pendiri) {
-            // khusus pendiri: tanpa angkatan romawi
             return "{$nomorUrut}/{$this->organisasi}/P";
         }
 
-        // default: pakai angkatan romawi
         $angkatanRomawi = $this->toRoman($this->angkatan_ukm);
         return "{$nomorUrut}/{$this->organisasi}/{$angkatanRomawi}";
     }
 
+    /* -----------------------------
+     * Relasi
+     * ----------------------------- */
 
-    public function alumnis()
+    // 1 anggota = 1 alumni (karena anggota_id di manage_alumnis itu unique)
+    public function alumni()
     {
-        return $this->hasMany(ManageAlumni::class, 'anggota_id');
+        return $this->hasOne(ManageAlumni::class, 'anggota_id');
     }
 
+    // ALIAS buat kompatibel dengan kode lama (supaya whereDoesntHave('alumnis') tetap jalan)
+    public function alumnis()
+    {
+        return $this->hasOne(ManageAlumni::class, 'anggota_id');
+    }
+
+    public function testimonis()
+    {
+        return $this->hasMany(ManageTestimoni::class, 'anggota_id');
+    }
+
+    /* -----------------------------
+     * Scope helper
+     * ----------------------------- */
+
+    public function scopeGraduate($query)
+    {
+        return $query->where('status', 'graduate');
+    }
 }

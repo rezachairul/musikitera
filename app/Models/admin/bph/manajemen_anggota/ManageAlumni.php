@@ -2,30 +2,36 @@
 
 namespace App\Models\admin\bph\manajemen_anggota;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
 use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 
 class ManageAlumni extends Model
 {
-    /** @use HasFactory<\Database\Factories\ManageAlumniFactory> */
     use HasFactory;
+
     protected $table = 'manage_alumnis';
+
     protected $fillable = [
         'anggota_id',    // relasi ke anggota_aktifs
-        'foto',          // path foto alumni
-        'pekerjaan',     // opsional
         'quote',         // opsional
         'tahun_lulus',   // opsional
     ];
 
-    public function anggota()
+    public function anggota(): BelongsTo
     {
         return $this->belongsTo(AnggotaAktif::class, 'anggota_id');
     }
 
-    public function testimoni()
+    /**
+     * Asumsi: tabel manage_testimonis punya kolom anggota_id.
+     * Kalau nantinya kolomnya beda, foreignKey/localKey tinggal disesuaikan.
+     */
+    public function testimoni(): HasMany
     {
-        return $this->hasMany(ManageTestimoni::class, 'anggota_id');
+        return $this->hasMany(ManageTestimoni::class, 'anggota_id', 'anggota_id');
     }
 }
