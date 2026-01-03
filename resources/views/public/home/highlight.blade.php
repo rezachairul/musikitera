@@ -1,34 +1,70 @@
-<!-- Highlight kegiatan UKMBSM ITERA -->
-<section class="py-12">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-2xl font-semibold text-center mb-8">Highlight Kegiatan</h2>
+<section class="py-16 bg-white relative overflow-hidden">
+    {{-- Background Texture --}}
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: url('https://www.transparenttextures.com/patterns/denim.png');"></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        {{-- Header Section --}}
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center gap-3 mb-2">
+                <span class="h-[1px] w-6 bg-[#E63946]"></span>
+                <span class="text-[#457B9D] text-[9px] font-black uppercase tracking-[0.4em]">The Spotlight</span>
+                <span class="h-[1px] w-6 bg-[#E63946]"></span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-[#0A192F] uppercase tracking-tighter">
+                Highlight <span class="text-[#457B9D]">Kegiatan</span>
+            </h2>
+        </div>
+
+        {{-- Grid Highlights - Kompak --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @for ($i = 1; $i <= 6; $i++)
-                <div 
-                    class="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 hover:scale-105 animate-fade-up"
-                    style="animation-delay: {{ $i * 0.1 }}s; animation-fill-mode: both;"
-                >
-                    {{-- Background Image --}}
-                    <img src="https://picsum.photos/400/250?random={{ $i }}" 
-                        class="w-full h-56 object-cover" 
-                        alt="highlight{{ $i }}">
+                <div class="group relative bg-[#0A192F] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 h-[280px] animate-fade-up"
+                    style="animation-delay: {{ $i * 0.1 }}s; animation-fill-mode: both;">
 
-                    {{-- Overlay dengan slide dari kiri --}}
-                    <div class="absolute inset-0 bg-black/85 flex flex-col justify-center items-center text-center px-4
-                                transform -translate-x-full opacity-0
-                                group-hover:translate-x-0 group-hover:opacity-100 
-                                transition duration-500 ease-in-out">
-                        
-                        <h3 class="text-white font-bold text-lg mb-2">Kegiatan {{ $i }}</h3>
-                        <p class="text-white text-sm mb-4">
-                            Deskripsi singkat kegiatan ke-{{ $i }} yang dilakukan UKMBSM ITERA.
+                    {{-- Image --}}
+                    <img src="https://picsum.photos/600/400?random={{ $i }}"
+                        class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0"
+                        alt="Highlight {{ $i }}">
+
+                    {{-- Denim Overlay --}}
+                    <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity"
+                        style="background-image: url('https://www.transparenttextures.com/patterns/denim.png');"></div>
+
+                    {{-- Gradient Overlay --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/40 to-transparent"></div>
+
+                    {{-- Content --}}
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div class="overflow-hidden mb-2">
+                            <span
+                                class="inline-block px-2 py-0.5 bg-[#E63946] text-white text-[8px] font-black tracking-widest uppercase transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500">
+                                Feature
+                            </span>
+                        </div>
+
+                        <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none mb-2">
+                            Kegiatan <span class="text-[#457B9D]">{{ $i }}</span>
+                        </h3>
+
+                        {{-- Deskripsi pendek --}}
+                        <p
+                            class="text-slate-300 text-[11px] leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 mb-4">
+                            Eksplorasi kreativitas tanpa batas di setiap kegiatan UKMBSM.
                         </p>
+
+                        {{-- Link --}}
                         <a href="#"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition">
-                            Selengkapnya 
-                            <span>→</span>
+                            class="inline-flex items-center gap-2 text-white text-[9px] font-black uppercase tracking-widest hover:text-[#E63946] transition-colors opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            View Event
+                            <span class="w-4 h-[1px] bg-current"></span>
                         </a>
+                    </div>
+
+                    {{-- Decorative Number (Lebih kecil) --}}
+                    <div
+                        class="absolute top-2 right-4 text-white/5 font-black text-5xl select-none group-hover:text-[#E63946]/10 transition-colors">
+                        0{{ $i }}
                     </div>
                 </div>
             @endfor
