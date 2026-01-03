@@ -2,12 +2,17 @@
 <x-public.layouts>
     <x-slot:title>Badan Pengurus</x-slot:title>
 
-    <section class="bg-white py-16 md:py-24 relative overflow-hidden">
-        {{-- Music Staff Background Decoration --}}
-        <div class="absolute top-0 right-0 w-1/4 h-full opacity-[0.03] pointer-events-none">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-[#0A192F]">
-                <path d="M0 10 L100 10 M0 20 L100 20 M0 30 L100 30 M0 40 L100 40 M0 50 L100 50" fill="none"
-                    stroke="currentColor" stroke-width="0.5" />
+    <section class="bg-white py-16 md:py-24 relative overflow-hidden font-sans">
+        {{-- BACKGROUND ELEMENT: Full Music Staff Lines (Consistent with History/Alumni) --}}
+        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="execStaff" width="100" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 8 L100 8 M0 16 L100 16 M0 24 L100 24 M0 32 L100 32 M0 40 L100 40" stroke="#0A192F"
+                            stroke-width="0.5" fill="none" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#execStaff)" />
             </svg>
         </div>
 
@@ -34,7 +39,7 @@
             </div>
 
             @php
-                // Logika data tetap sama sesuai permintaan Anda
+                // Data tetap sama sesuai permintaan Anda
                 $currentKabinet = [
                     'id' => 1,
                     'nama' => 'Kabinet Daniswara 2025/2026',
@@ -71,56 +76,51 @@
                 ];
             @endphp
 
-            {{-- CURRENT KABINET (HIGHLIGHT) --}}
+            {{-- CURRENT KABINET (HIGHLIGHT with Glassmorphism) --}}
             <div class="relative group">
                 <div
-                    class="absolute -inset-1 bg-gradient-to-r from-[#457B9D] to-[#E63946] rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000">
+                    class="absolute -inset-1 bg-gradient-to-r from-[#457B9D] to-[#E63946] rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000">
                 </div>
 
-                <div class="relative bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-2xl">
+                <div
+                    class="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] overflow-hidden border border-white shadow-2xl">
                     <div class="grid lg:grid-cols-2">
                         {{-- Image Part --}}
-                        <div class="relative h-[300px] lg:h-auto overflow-hidden">
+                        <div class="relative h-[350px] lg:h-auto overflow-hidden">
                             <img src="{{ $currentKabinet['cover'] }}" alt="{{ $currentKabinet['nama'] }}"
-                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
 
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent lg:bg-gradient-to-r">
+                                class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/20 to-transparent lg:bg-gradient-to-r">
                             </div>
 
-                            <div class="absolute top-6 left-6 flex flex-col gap-2">
+                            <div class="absolute top-8 left-8 flex flex-col gap-3">
                                 <span
-                                    class="w-fit text-[10px] font-black px-3 py-1 rounded-full bg-[#E63946] text-white uppercase tracking-widest shadow-lg">
+                                    class="w-fit text-[10px] font-black px-4 py-1.5 rounded-full bg-[#E63946] text-white uppercase tracking-widest shadow-xl">
                                     Active Cabinet
                                 </span>
                                 <span
-                                    class="w-fit text-[10px] font-black px-3 py-1 rounded-full bg-white/90 text-[#0A192F] border border-slate-200 uppercase tracking-widest">
+                                    class="w-fit text-[10px] font-black px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#0A192F] border border-white/50 uppercase tracking-widest shadow-sm">
                                     {{ $currentKabinet['periode'] }}
                                 </span>
                             </div>
                         </div>
 
                         {{-- Content Part --}}
-                        <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                        <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
                             <h2
-                                class="text-3xl md:text-5xl font-black text-[#0A192F] tracking-tighter leading-none mb-3">
+                                class="text-4xl md:text-5xl font-black text-[#0A192F] tracking-tighter leading-none mb-4">
                                 {{ $currentKabinet['nama'] }}
                             </h2>
                             <p class="text-[#E63946] font-bold text-base md:text-lg uppercase tracking-[0.2em] mb-8">
                                 "{{ $currentKabinet['tagline'] }}"
                             </p>
 
-                            <div class="h-[2px] w-12 bg-slate-200 mb-8"></div>
+                            <div class="h-[3px] w-16 bg-[#457B9D] mb-8 rounded-full"></div>
 
                             <p class="text-slate-600 leading-relaxed mb-10 font-medium text-base md:text-lg">
                                 {{ $currentKabinet['deskripsi'] }}
                             </p>
-
-                            @php
-                                $detailUrl = \Illuminate\Support\Facades\Route::has($currentKabinet['route_detail'])
-                                    ? route($currentKabinet['route_detail'], $currentKabinet['id'])
-                                    : '#';
-                            @endphp
 
                             <a href="/pengurus/kabinet"
                                 class="group/btn inline-flex items-center justify-between rounded-2xl bg-[#0A192F] text-white px-8 py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-[#E63946] transition-all duration-300 shadow-xl shadow-blue-900/20">
@@ -138,9 +138,9 @@
             </div>
 
             {{-- PAST KABINETS (ARCHIVE) --}}
-            <div class="mt-24">
+            <div class="mt-28">
                 <div
-                    class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-slate-100 pb-6">
+                    class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 border-b border-slate-100 pb-8">
                     <div>
                         <span class="text-[#E63946] text-[10px] font-black uppercase tracking-[0.4em]">Historical
                             Archive</span>
@@ -150,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     @foreach ($pastKabinets as $kabinet)
                         @php
                             $pastDetailUrl = \Illuminate\Support\Facades\Route::has($kabinet['route_detail'])
@@ -159,32 +159,38 @@
                         @endphp
 
                         <div
-                            class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                            <div class="relative h-56 overflow-hidden">
+                            class="group bg-white/60 backdrop-blur-md rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative">
+                            {{-- Hover Accent Line --}}
+                            <div
+                                class="absolute left-0 top-0 bottom-0 w-0 group-hover:w-2 bg-[#E63946] transition-all duration-300 z-20">
+                            </div>
+
+                            <div class="relative h-64 overflow-hidden">
                                 <img src="{{ $kabinet['cover'] }}" alt="{{ $kabinet['nama'] }}"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors">
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                                <div
+                                    class="absolute inset-0 bg-[#0A192F]/20 group-hover:bg-transparent transition-colors duration-500">
                                 </div>
                                 <span
-                                    class="absolute top-4 left-4 text-[10px] font-black px-3 py-1 rounded-full bg-white text-[#0A192F] border border-slate-200 uppercase tracking-widest shadow-sm">
+                                    class="absolute top-6 left-6 text-[10px] font-black px-4 py-1.5 rounded-full bg-white text-[#0A192F] border border-slate-100 uppercase tracking-widest shadow-lg">
                                     {{ $kabinet['periode'] }}
                                 </span>
                             </div>
 
-                            <div class="p-8">
+                            <div class="p-10">
                                 <h3
-                                    class="text-xl font-black text-[#0A192F] mb-3 group-hover:text-[#457B9D] transition-colors">
+                                    class="text-2xl font-black text-[#0A192F] mb-4 group-hover:text-[#457B9D] transition-colors">
                                     {{ $kabinet['nama'] }}
                                 </h3>
-                                <p class="text-sm text-slate-500 leading-relaxed font-medium line-clamp-2 mb-6">
+                                <p class="text-slate-500 leading-relaxed font-medium mb-8">
                                     {{ $kabinet['deskripsi'] }}
                                 </p>
 
                                 <a href="{{ $pastDetailUrl }}"
-                                    class="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-[#E63946] hover:text-[#0A192F] transition-colors">
-                                    Lihat Detail
+                                    class="inline-flex items-center text-[11px] font-black uppercase tracking-widest text-[#E63946] hover:text-[#0A192F] transition-colors group/link">
+                                    Explore Archive
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform"
+                                        class="h-4 w-4 ml-2 group-hover/link:translate-x-2 transition-transform"
                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17 8l4 4m0 0l-4 4m4-4H3" />

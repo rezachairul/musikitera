@@ -11,4 +11,8 @@ class LegislativeController extends Controller
     {
         return view('public.legislative.index');
     }
+    public function kabinet()
+    {
+        return view('public.legislative.show');
+    }
 }

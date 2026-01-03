@@ -159,6 +159,7 @@ Route::get('/dokumen', [DocumentController::class, 'index'])->name('document');
 Route::get('/pengurus', [ExecutiveController::class, 'index'])->name('executive');
 Route::get('/pengurus/kabinet', [ExecutiveController::class, 'kabinet'])->name('kabinet');
 Route::get('/pengawas', [LegislativeController::class, 'index'])->name('legislative');
+Route::get('/pengawas/contohpengawas', [LegislativeController::class, 'kabinet'])->name('contohdpo');
 Route::get('/kontak/internal', [ContactInternalController::class, 'index'])->name('internal');
 Route::get('/kontak/eksternal', [ContactExternalController::class, 'index'])->name('external');
 

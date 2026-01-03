@@ -1,12 +1,17 @@
 <x-public.layouts>
     <x-slot:title>Alumni</x-slot:title>
 
-    <section class="bg-white py-16 md:py-24 relative overflow-hidden">
-        {{-- Dekorasi Garis Musik (Background) --}}
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-[#0A192F]">
-                <path d="M0 20 L100 20 M0 30 L100 30 M0 40 L100 40 M0 50 L100 50 M0 60 L100 60" fill="none"
-                    stroke="currentColor" stroke-width="0.5" />
+    <section class="bg-white py-16 md:py-24 relative overflow-hidden font-sans">
+        {{-- BACKGROUND ELEMENT: Full Music Staff Lines --}}
+        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="alumniStaff" width="100" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 8 L100 8 M0 16 L100 16 M0 24 L100 24 M0 32 L100 32 M0 40 L100 40" stroke="#0A192F"
+                            stroke-width="0.5" fill="none" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#alumniStaff)" />
             </svg>
         </div>
 
@@ -31,24 +36,25 @@
                 </p>
             </div>
 
-            {{-- FILTER BOX --}}
-            <div class="bg-slate-50 p-6 md:p-8 rounded-3xl mb-12 border border-slate-100 shadow-sm">
+            {{-- FILTER BOX (With Glassmorphism) --}}
+            <div
+                class="bg-slate-100 backdrop-blur-md p-6 md:p-8 rounded-3xl mb-12 border border-slate-100 shadow-sm ring-1 ring-black/5">
                 <form method="GET" class="grid md:grid-cols-12 gap-4">
                     <div class="md:col-span-7">
-                        <label
-                            class="block text-[10px] font-black uppercase tracking-widest text-[#457B9D] mb-2 px-1">Cari
-                            Nama</label>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-[#457B9D] mb-2 px-1">
+                            Cari Nama
+                        </label>
                         <input type="text" name="q" value="{{ request('q') }}"
                             placeholder="Contoh: Budi Darmawan"
-                            class="w-full rounded-xl border-slate-200 bg-white px-4 py-3 text-sm focus:ring-2 focus:ring-[#457B9D] focus:border-transparent transition-all">
+                            class="w-full rounded-xl border-slate-200 bg-white/80 px-4 py-3 text-sm focus:ring-2 focus:ring-[#457B9D] focus:border-transparent transition-all">
                     </div>
 
                     <div class="md:col-span-2">
-                        <label
-                            class="block text-[10px] font-black uppercase tracking-widest text-[#457B9D] mb-2 px-1">Tahun
-                            Lulus</label>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-[#457B9D] mb-2 px-1">
+                            Tahun Lulus
+                        </label>
                         <input type="text" name="tahun" value="{{ request('tahun') }}" placeholder="2024"
-                            class="w-full rounded-xl border-slate-200 bg-white px-4 py-3 text-sm focus:ring-2 focus:ring-[#457B9D] focus:border-transparent transition-all text-center">
+                            class="w-full rounded-xl border-slate-200 bg-white/80 px-4 py-3 text-sm focus:ring-2 focus:ring-[#457B9D] focus:border-transparent transition-all text-center">
                     </div>
 
                     <div class="md:col-span-3 flex items-end gap-2">
@@ -91,7 +97,7 @@
                     @endphp
 
                     <div
-                        class="group bg-white rounded-2xl border border-slate-100 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden">
+                        class="group bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-100 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden">
                         {{-- Hover Accent Line --}}
                         <div
                             class="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1.5 bg-[#E63946] transition-all duration-300">
@@ -128,23 +134,18 @@
                                             d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                     </svg>
 
-                                    @if ($alumni->quote)
-                                        <p
-                                            class="text-sm text-slate-500 font-medium leading-relaxed italic line-clamp-3 pl-4">
-                                            {{ $alumni->quote }}
-                                        </p>
-                                    @else
-                                        <p class="text-xs text-slate-300 italic pl-4">
-                                            No testimonial shared.
-                                        </p>
-                                    @endif
+                                    <p
+                                        class="text-sm {{ $alumni->quote ? 'text-slate-500 font-medium italic' : 'text-slate-300 italic' }} leading-relaxed line-clamp-3 pl-4">
+                                        {{ $alumni->quote ?? 'No testimonial shared.' }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @empty
+                    {{-- EMPTY STATE --}}
                     <div
-                        class="col-span-full py-12 px-6 rounded-3xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center">
+                        class="col-span-full py-16 bg-white/50 backdrop-blur-sm rounded-3xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center">
                         <div
                             class="h-16 w-16 bg-slate-50 rounded-full flex items-center justify-center mb-4 text-slate-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
@@ -155,7 +156,7 @@
                         </div>
                         <h3 class="text-sm font-black text-[#0A192F] uppercase tracking-widest">Data Tidak Ditemukan
                         </h3>
-                        <p class="text-xs text-slate-400 mt-1">Gunakan kata kunci atau tahun yang berbeda.</p>
+                        <p class="text-xs text-slate-400 mt-1">Coba kata kunci lain atau periksa filter tahun.</p>
                     </div>
                 @endforelse
             </div>

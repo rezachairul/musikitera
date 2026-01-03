@@ -3,11 +3,16 @@
     <x-slot:title>Dewan Pengawas</x-slot:title>
 
     <section class="bg-white py-16 md:py-24 relative overflow-hidden">
-        {{-- Music Staff Background Decoration --}}
-        <div class="absolute top-0 left-0 w-1/4 h-full opacity-[0.03] pointer-events-none -scale-x-100">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-[#0A192F]">
-                <path d="M0 10 L100 10 M0 20 L100 20 M0 30 L100 30 M0 40 L100 40 M0 50 L100 50" fill="none"
-                    stroke="currentColor" stroke-width="0.5" />
+        {{-- BACKGROUND ELEMENT: Full Music Staff Lines (Consistent with Executive) --}}
+        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="legStaff" width="100" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 8 L100 8 M0 16 L100 16 M0 24 L100 24 M0 32 L100 32 M0 40 L100 40" stroke="#0A192F"
+                            stroke-width="0.5" fill="none" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#legStaff)" />
             </svg>
         </div>
 
@@ -148,7 +153,7 @@
                                         Pengawasan Aktif</p>
                                 </div>
 
-                                <a href="{{ \Illuminate\Support\Facades\Route::has($currentKabinet['route_detail']) ? route($currentKabinet['route_detail'], $currentKabinet['id']) : '#' }}"
+                                <a href="/pengawas/contohpengawas"
                                     class="inline-flex items-center justify-center rounded-xl bg-[#0A192F] text-white px-6 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#E63946] transition-all duration-300 whitespace-nowrap">
                                     Lihat Detail →
                                 </a>
@@ -193,7 +198,7 @@
                                 </div>
                             </div>
 
-                            <a href="{{ $detailUrl }}"
+                            <a href="/pengawas/contohpengawas"
                                 class="p-2 rounded-full hover:bg-slate-50 text-[#E63946] transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
