@@ -122,7 +122,7 @@
                                     : '#';
                             @endphp
 
-                            <a href="{{ $detailUrl }}"
+                            <a href="/pengurus/kabinet"
                                 class="group/btn inline-flex items-center justify-between rounded-2xl bg-[#0A192F] text-white px-8 py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-[#E63946] transition-all duration-300 shadow-xl shadow-blue-900/20">
                                 <span>Lihat Detail Kabinet</span>
                                 <svg xmlns="http://www.w3.org/2000/svg"

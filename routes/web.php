@@ -153,9 +153,11 @@ Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni');
 
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('announcement');
+Route::get('/pengumuman/contohpengumuman', [AnnouncementController::class, 'pengumuman'])->name('contohannouncement');
 Route::get('/kegiatan', [ActivityController::class, 'index'])->name('activity');
 Route::get('/dokumen', [DocumentController::class, 'index'])->name('document');
 Route::get('/pengurus', [ExecutiveController::class, 'index'])->name('executive');
+Route::get('/pengurus/kabinet', [ExecutiveController::class, 'kabinet'])->name('kabinet');
 Route::get('/pengawas', [LegislativeController::class, 'index'])->name('legislative');
 Route::get('/kontak/internal', [ContactInternalController::class, 'index'])->name('internal');
 Route::get('/kontak/eksternal', [ContactExternalController::class, 'index'])->name('external');

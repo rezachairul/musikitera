@@ -201,7 +201,7 @@
                                     <p class="text-white/70 text-sm leading-relaxed mb-6 line-clamp-3">
                                         {{ $latest['excerpt'] }}
                                     </p>
-                                    <a href="#"
+                                    <a href="/pengumuman/contohpengumuman"
                                         class="inline-flex items-center gap-3 text-white font-black text-xs uppercase tracking-widest group/link">
                                         Baca Selengkapnya
                                         <span class="w-8 h-[2px] bg-white group-hover/link:w-12 transition-all"></span>
@@ -249,7 +249,7 @@
 
                                     {{-- Play-like Icon button --}}
                                     <div class="hidden sm:flex items-center">
-                                        <div
+                                        <a href="/pengumuman/contohpengumuman"
                                             class="w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center group-hover:bg-[#457B9D] group-hover:border-[#457B9D] transition-all">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="h-5 w-5 text-slate-300 group-hover:text-white transition-colors"
@@ -257,7 +257,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M9 5l7 7-7 7" />
                                             </svg>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </article>

@@ -11,4 +11,8 @@ class ExecutiveController extends Controller
     {
         return view('public.executive.index');
     }
+    public function kabinet()
+    {
+        return view('public.executive.kabinet');
+    }
 }

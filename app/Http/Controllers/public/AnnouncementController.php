@@ -11,4 +11,8 @@ class AnnouncementController extends Controller
     {
         return view('public.announcement.index');
     }
+    public function pengumuman()
+    {
+        return view('public.announcement.pengumuman');
+    }
 }
