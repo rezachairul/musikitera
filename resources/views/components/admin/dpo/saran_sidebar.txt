@@ -1,0 +1,75 @@
+saran sidebar:
+1. Administrator
+
+👉 Fokus ke sistem, user, dan pengaturan global.
+Sidebar:
+Dashboard Admin
+    Ringkasan user (jumlah BPH, Pengawas, Pembina, Anggota)
+    Statistik login & aktivitas
+Manajemen User
+    Semua User (list & role)
+    Tambah User Baru
+    Role & Permissions
+Pengaturan Website
+    Branding (logo, warna, favicon)
+    Media Sosial
+    Kontak
+
+2. Badan Pengurus
+Dashboard BPH
+    Statistik anggota aktif, kegiatan, galeri terbaru
+Manajemen Anggota
+    Anggota Aktif
+    Badan Pengurus
+    Alumni
+Manajemen Konten
+    Hero
+    Profil Organisasi
+    Layanan
+    Galeri Kegiatan
+    Highlight Kegiatan
+    Apa Kata Mereka?
+    CTA Oprec
+Publikasi & Informasi
+    Pengumuman Penting
+    Kegiatan
+    Dokumen
+Kerjasama & Mitra
+    Internal
+    Eksternal
+
+3. Dewan Pengawas
+
+👉 Lebih ke monitoring & evaluasi, bukan CRUD penuh.
+Sidebar:
+Dashboard Pengawas
+    Statistik ringkas (anggota, kegiatan, laporan keuangan)
+Laporan & Monitoring
+    Laporan Keuangan (view + download)
+    Laporan Kegiatan (view + download)
+    Kolom Aspirasi
+    Laporan Anggota (rekap anggota & alumni)
+Monitoring Publikasi
+    Berita & Pengumuman
+    Galeri & Dokumentasi
+Evaluasi & Feedback
+    Catatan Pengawas
+    Rekomendasi untuk BPH
+
+4. Pembina
+
+👉 Lebih ringan, fokus ke pembinaan & dokumen penting.
+Sidebar:
+Dashboard Pembina
+    Ringkasan kegiatan terbaru & laporan singkat
+Dokumen & Arsip
+    AD/ART
+    Program Kerja & Proposal
+    Laporan Tahunan
+Monitoring Ringan
+    Kegiatan (view)
+    Publikasi (view)
+    Galeri Dokumentasi
+Bimbingan & Saran
+    Forum Saran untuk BPH
+    Catatan Pembina
