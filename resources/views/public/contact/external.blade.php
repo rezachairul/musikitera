@@ -87,11 +87,11 @@
                         <div
                             class="flex-1 w-full lg:ml-10 flex flex-col justify-center transition-all duration-700 text-center lg:text-left">
                             <div class="max-w-xl mx-auto lg:mx-0">
-                                <div class="flex items-center gap-4 mb-4 md:mb-6">
+                                <div class="flex flex-col items-center md:flex-row gap-4 mb-4 md:mb-6">
                                     <span
                                         class="text-[9px] md:text-[10px] font-black bg-[#0A192F] text-white px-3 py-1 rounded-full uppercase tracking-[0.2em] shrink-0">External
                                         Channel</span>
-                                    <div class="h-[1px] flex-1 bg-slate-100"></div>
+                                    <div class="h-[1px] w-full md:flex-1 bg-slate-100"></div>
                                 </div>
 
                                 <h2
