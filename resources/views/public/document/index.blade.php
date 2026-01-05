@@ -35,16 +35,17 @@
         ];
     @endphp
 
-    <div class="min-h-screen bg-white py-16 md:py-24 relative overflow-hidden">
-        {{-- Background Pattern: Music Sheet Lines --}}
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+    <div class="relative min-h-screen bg-white py-8 md:py-16 overflow-hidden font-sans">
+        {{-- Background Element: Garis Musik (Staff Lines) Full Page --}}
+        <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <pattern id="music-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#0A192F" stroke-width="0.5" />
+                    <pattern id="staff-full-document" width="100" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 8 L100 8 M0 16 L100 16 M0 24 L100 24 M0 32 L100 32" stroke="#0A192F" stroke-width="1"
+                            fill="none" />
                     </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#music-grid)" />
+                <rect width="100%" height="100%" fill="url(#staff-full-document)" />
             </svg>
         </div>
 

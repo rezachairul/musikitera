@@ -98,11 +98,16 @@
     @endphp
 
     <div class="min-h-screen bg-white py-16 md:py-24 relative overflow-hidden">
-        {{-- Music Staff Background --}}
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-[#0A192F]">
-                <path d="M0 10 L100 10 M0 20 L100 20 M0 30 L100 30 M0 40 L100 40 M0 50 L100 50" fill="none"
-                    stroke="currentColor" stroke-width="0.5" />
+        {{-- Background Element: Garis Musik (Staff Lines) Full Page --}}
+        <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="staff-full-gallery" width="100" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 8 L100 8 M0 16 L100 16 M0 24 L100 24 M0 32 L100 32" stroke="#0A192F" stroke-width="1"
+                            fill="none" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#staff-full-gallery)" />
             </svg>
         </div>
 
