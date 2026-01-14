@@ -193,7 +193,6 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
-        Route::get('/export',  'export')->name('export');
     });
 
     // Manage dpo
@@ -202,7 +201,6 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
-        Route::get('/export',  'export')->name('export');
     });
 
 });

@@ -1,4 +1,10 @@
-<x-admin.administrator.layouts>
+<!-- Dashbaord Administrator -->
+
+<x-admin.administrator.layouts
+    :title="$title"
+    :description="$description"
+    :author="$author"
+    >
     <x-slot:title>Dashboard {{ $title }}</x-slot:title>
 
     <div class="p-8 rounded-xl shadow-md w-full max-w-screen text-center justify-center border border-gray-200">

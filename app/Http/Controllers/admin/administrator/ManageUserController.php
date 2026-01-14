@@ -18,6 +18,9 @@ class ManageUserController extends Controller
     public function index(Request $request)
     {
         $title   = 'Users';
+        $description = 'Manage user accounts within the UKMBSM ITERA Administrator Panel. Add, edit, and delete administrator, BPH, DPO, and Pembina accounts to maintain secure access to the music community management system.';
+        $author = 'UKMBSM ITERA';
+
         $search  = $request->input('search', '');
         $filter  = $request->query('filter', 'all');
         $perPage = $request->query('perPage', 10); // default 10
@@ -127,7 +130,7 @@ class ManageUserController extends Controller
         }
 
         // Normal response
-        return view('admin.administrator.manage-user.index', compact('title', 'users', 'totals', 'roleLabels'));
+        return view('admin.administrator.manage-user.index', compact('title', 'users', 'totals', 'roleLabels', 'description', 'author'));
     }
 
     /**

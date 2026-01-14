@@ -14,9 +14,13 @@ class AdminManageBPHController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $title = 'Manage BPH Administrator';
+        $description = 'Manage BPH accounts within the UKMBSM ITERA Administrator Panel. Add, edit, and delete BPH accounts to maintain secure access to the music community management system.';
+        $author = 'UKMBSM ITERA';
 
+        return view('admin.administrator.manage-bph.index', compact('title', 'description', 'author'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

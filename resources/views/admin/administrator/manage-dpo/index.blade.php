@@ -1,4 +1,10 @@
-<x-admin.administrator.layouts>
+<!-- Manage DPO Administrator -->
+
+<x-admin.administrator.layouts
+    :title="$title"
+    :description="$description"
+    :author="$author"
+    >
     <x-slot:title>Kelola {{ $title }}</x-slot:title>
 
     <!-- Cards -->
