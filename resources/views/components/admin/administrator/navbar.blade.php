@@ -1,3 +1,5 @@
+<!-- Navbar Administrator -->
+
 <nav class="bg-white shadow sticky top-0 z-50">
   <div class="w-full max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-end space-x-6">
 

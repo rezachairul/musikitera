@@ -187,6 +187,24 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
         Route::get('/export',  'export')->name('export');
     });
 
+    // Manage bph
+    Route::controller(ManageUserController::class)->prefix('manage-bph')->name('manage-bph.')->group(function () {
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Manage dpo
+    Route::controller(ManageUserController::class)->prefix('manage-dpo')->name('manage-dpo.')->group(function () {
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
 });
 
 // Admins Badan Pengurus Routes
