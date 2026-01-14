@@ -1,6 +1,10 @@
 <!-- Halaman home, include semua section -->
 
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author">
     <x-slot:title>{{ $title }}</x-slot:title>
 
     {{-- Hero Section --}}

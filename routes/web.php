@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 // ==========================
 // Auths
 // ==========================
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\public\HomeController;
 
 
@@ -13,27 +13,27 @@ use App\Http\Controllers\public\HomeController;
 // Adnmins
 // ==========================
 // Administrator
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Public\AlumniController;
+use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\public\AlumniController;
 
 // Badan Pengurus
 // BPH
-use App\Http\Controllers\Public\StudioController;
-use App\Http\Controllers\Public\GalleryController;
+use App\Http\Controllers\public\StudioController;
+use App\Http\Controllers\public\GalleryController;
 use App\Http\Controllers\public\HistoryController;
 use App\Http\Controllers\public\ProfileController;
-use App\Http\Controllers\Public\ActivityController;
+use App\Http\Controllers\public\ActivityController;
 
-use App\Http\Controllers\Public\DocumentController;
-use App\Http\Controllers\Public\ExecutiveController;
-use App\Http\Controllers\Public\LegislativeController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Public\AnnouncementController;
+use App\Http\Controllers\public\DocumentController;
+use App\Http\Controllers\public\ExecutiveController;
+use App\Http\Controllers\public\LegislativeController;
+use App\Http\Controllers\auth\ForgotPasswordController;
+use App\Http\Controllers\public\AnnouncementController;
 
 use App\Http\Controllers\admin\bph\DashboardBPHController;
 use App\Http\Controllers\admin\dpo\DashboardDPOController;
-use App\Http\Controllers\Public\ContactExternalController;
-use App\Http\Controllers\Public\ContactInternalController;
+use App\Http\Controllers\public\ContactExternalController;
+use App\Http\Controllers\public\ContactInternalController;
 use App\Http\Controllers\admin\administrator\DashboardController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\HeroController;
 use App\Http\Controllers\admin\administrator\ManageUserController;

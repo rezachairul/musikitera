@@ -15,9 +15,12 @@ class HomeController extends Controller
     public function index()
     {
         $title = 'Home Page';
-        $showHeader = false; // kasih flag biar header ngga muncul
+        $description = 'Welcome to UKMBSM ITERA, the official music community of Institut Teknologi Sumatera (ITERA). Explore our events, activities, and musical journey.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+        $showHeader = false;
 
-        return view('public.home.index', compact('title', 'showHeader'));
+        return view('public.home.index', compact('title', 'description', 'keywords', 'author', 'showHeader'));
     }
 
     /**

@@ -1,4 +1,9 @@
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>About - UKM Seni Musik ITERA</x-slot:title>
 
     <div class="bg-white min-h-screen font-sans">

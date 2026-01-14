@@ -15,8 +15,11 @@ class RegisterController extends Controller
      */
     public function register()
     {
-        $title = 'Register';
-        return view('auth.register.index', compact('title'));
+        $title = 'Register - UKMBSM ITERA';
+        $description = 'UKMBSM ITERA - Unit Kegiatan Mahasiswa Bidang Seni Musik Institut Teknologi Sumatera. Bergabunglah dengan komunitas musik kami dan ikuti berbagai acara musik seru di ITERA.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+        return view('auth.register.index', compact('title', 'description', 'keywords', 'author'));
     }
 
     /**

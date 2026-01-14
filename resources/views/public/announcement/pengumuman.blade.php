@@ -1,5 +1,10 @@
 {{-- resources/views/public/announcements/show.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>{{ $announcement['judul'] ?? 'Detail Pengumuman' }}</x-slot:title>
 
     <div class="min-h-screen bg-white py-16 md:py-24 relative overflow-hidden">

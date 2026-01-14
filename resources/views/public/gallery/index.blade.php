@@ -1,5 +1,10 @@
 {{-- resources/views/public/gallery/index.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Gallery</x-slot:title>
 
     @php

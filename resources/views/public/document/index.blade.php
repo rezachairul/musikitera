@@ -1,4 +1,9 @@
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Dokumen</x-slot:title>
 
     @php

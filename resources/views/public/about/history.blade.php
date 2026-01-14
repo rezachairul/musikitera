@@ -1,4 +1,9 @@
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Sejarah - UKM Seni Musik ITERA</x-slot:title>
 
     <section class="bg-white py-24 overflow-hidden font-sans relative">

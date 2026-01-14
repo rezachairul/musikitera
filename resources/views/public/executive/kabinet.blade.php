@@ -1,5 +1,10 @@
 {{-- resources/views/public/executive/show.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Kabinet Daniswara - Struktur Organisasi</x-slot:title>
 
     <style>

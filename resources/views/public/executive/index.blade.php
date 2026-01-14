@@ -1,5 +1,10 @@
 {{-- resources/views/public/executive/index.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Badan Pengurus</x-slot:title>
 
     <section class="bg-white py-16 md:py-24 relative overflow-hidden font-sans">

@@ -1,5 +1,10 @@
 {{-- resources/views/auth/login.blade.php --}}
-<x-auth.layouts>
+<x-auth.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>{{ $title }}</x-slot:title>
 
     {{-- Custom Animation for Ocean Effect --}}
@@ -167,7 +172,7 @@
                 </div>
 
                 <p class="text-center mt-8 text-slate-500 text-[9px] font-black uppercase tracking-[0.3em]">
-                    &copy; 2026 UKM BSM ITERA
+                    &copy; {{ date('Y') }} UKMBSM ITERA
                 </p>
             </div>
         </div>

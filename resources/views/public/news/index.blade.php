@@ -1,4 +1,9 @@
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>News</x-slot:title>
 
     <div class="max-w-6xl mx-auto px-6 py-10">

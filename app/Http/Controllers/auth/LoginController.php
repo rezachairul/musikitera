@@ -15,8 +15,12 @@ class LoginController extends Controller
      */
     public function login()
     {
-        $title = 'Login';
-        return view('auth.login.index', compact('title'));
+        $title = 'Login Page - UKMBSM ITERA';
+        $description = 'UKMBSM ITERA - Unit Kegiatan Mahasiswa Bidang Seni Musik Institut Teknologi Sumatera. Bergabunglah dengan komunitas musik kami dan ikuti berbagai acara musik seru di ITERA.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+
+        return view('auth.login.index', compact('title', 'description', 'keywords', 'author'));
     }
 
     /**

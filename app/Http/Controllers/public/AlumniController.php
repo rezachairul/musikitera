@@ -10,6 +10,11 @@ class AlumniController extends Controller
 {
     public function index(Request $request)
     {
+        $title = 'Alumni Page';
+        $description = 'Connect with the alumni of UKMBSM ITERA, the vibrant music community at Institut Teknologi Sumatera (ITERA). Explore the achievements and contributions of our former members who continue to inspire and support our organization.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+
         $alumnis = ManageAlumni::query()
             ->with(['anggota:id,nama'])
             ->when($request->q, function ($query) use ($request) {
@@ -25,6 +30,6 @@ class AlumniController extends Controller
             ->paginate(24)
             ->withQueryString();
 
-        return view('public.about.alumni', compact('alumnis'));
+        return view('public.about.alumni', compact('alumnis', 'title', 'description', 'keywords', 'author'));
     }
 }

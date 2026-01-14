@@ -1,5 +1,10 @@
 {{-- resources/views/public/executive/dpo.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Dewan Pengawas</x-slot:title>
 
     <section class="bg-white py-16 md:py-24 relative overflow-hidden">

@@ -1,5 +1,10 @@
 {{-- resources/views/public/activity.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Kegiatan UKM Seni Musik</x-slot:title>
 
     @php

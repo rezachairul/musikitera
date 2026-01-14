@@ -1,5 +1,10 @@
 {{-- resources/views/public/executive/dpo_detail.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>DPO Kabinet Daniswara 2025/2026</x-slot:title>
 
     @php

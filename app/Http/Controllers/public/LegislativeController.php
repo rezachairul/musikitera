@@ -9,10 +9,20 @@ class LegislativeController extends Controller
 {
     public function index()
     {
-        return view('public.legislative.index');
+        $title = 'Organization Manager Page';
+        $description = 'Discover the profile of UKMBSM ITERA, the vibrant music community at Institut Teknologi Sumatera (ITERA). Learn about our mission, vision, and the passionate members who make up our organization.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+
+        return view('public.legislative.index', compact('title', 'description', 'keywords', 'author'));
     }
     public function kabinet()
     {
-        return view('public.legislative.show');
+        $title = 'Cabinet Page';
+        $description = 'Discover the profile of UKMBSM ITERA, the vibrant music community at Institut Teknologi Sumatera (ITERA). Learn about our mission, vision, and the passionate members who make up our organization.';
+        $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
+        $author = 'UKMBSM ITERA';
+
+        return view('public.legislative.show', compact('title', 'description', 'keywords', 'author'));
     }
 }

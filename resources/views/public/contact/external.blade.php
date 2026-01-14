@@ -1,4 +1,9 @@
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Contact - External & Global Inquiry</x-slot:title>
 
     {{-- Container Utama: Background Kertas Full 1 Halaman --}}

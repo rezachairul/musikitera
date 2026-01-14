@@ -1,5 +1,10 @@
 {{-- resources/views/auth/register.blade.php --}}
-<x-auth.layouts>
+<x-auth.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <section
@@ -134,7 +139,7 @@
                 </div>
 
                 <p class="text-center mt-6 text-slate-500 text-[9px] font-black uppercase tracking-[0.3em]">
-                    &copy; 2026 UKM BSM ITERA
+                    &copy; {{ date('Y') }} UKMBSM ITERA
                 </p>
             </div>
         </div>

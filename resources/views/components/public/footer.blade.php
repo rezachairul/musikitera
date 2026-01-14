@@ -130,7 +130,7 @@
         </div>
 
         <div class="text-[10px] text-slate-300/40 uppercase tracking-[0.32em] font-black">
-            © {{ date('Y') }} UKMBSM ITERA • All Rights Reserved
+            &copy; {{ date('Y') }} UKMBSM ITERA • All Rights Reserved
         </div>
 
         <div class="mt-4 flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-xs">

@@ -1,5 +1,10 @@
 {{-- resources/views/public/studio.blade.php --}}
-<x-public.layouts>
+<x-public.layouts
+    :title="$title"
+    :description="$description"
+    :keywords="$keywords"
+    :author="$author"
+    >
     <x-slot:title>Studio Musik</x-slot:title>
 
     <div class="bg-white min-h-screen font-sans">

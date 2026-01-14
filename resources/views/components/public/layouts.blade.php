@@ -8,6 +8,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link id="favicon" rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" type="image/x-icon">
 
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="{{ $description }}">
+        <meta name="keywords" content="{{ $keywords }}">
+        <meta name="author" content="UKMBSM ITERA">
+
         <!-- SwiperJS CDN -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
