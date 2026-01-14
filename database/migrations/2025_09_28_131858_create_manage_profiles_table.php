@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('manage_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('akronim')->nullable();
+            $table->string('jenis_organisasi')->nullable();
+            $table->string('tagline')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->text('alamat')->nullable();
+            $table->json('kontak_internal')->nullable(); // Simpan nama & nomor internal
+            $table->json('kontak_eksternal')->nullable(); // Simpan nama & nomor eksternal
             $table->timestamps();
         });
     }

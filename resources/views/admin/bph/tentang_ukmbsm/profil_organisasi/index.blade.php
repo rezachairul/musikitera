@@ -15,11 +15,27 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Nama Organisasi -->
-                <div>
+                <div class="md:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama Organisasi</label>
                     <input type="text" name="nama" value="{{ old('nama', $profile->nama ?? '') }}"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg"
                         placeholder="Masukkan nama organisasi" required>
+                </div>
+
+                <!-- Akronim/Singkatan -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Akronim/Singkatan</label>
+                    <input type="text" name="akronim" value="{{ old('akronim', $profile->akronim ?? '') }}"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                        placeholder="Contoh: UKMBSM ITERA">
+                </div>
+
+                <!-- Jenis Organisasi -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Organisasi</label>
+                    <input type="text" name="jenis_organisasi" value="{{ old('jenis_organisasi', $profile->jenis_organisasi ?? '') }}"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                        placeholder="Contoh: UKM, Komunitas, Yayasan, dsb.">
                 </div>
 
                 <!-- Tagline -->
@@ -27,7 +43,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Tagline</label>
                     <input type="text" name="tagline" value="{{ old('tagline', $profile->tagline ?? '') }}"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Contoh: Bersama Membangun Negeri">
+                        placeholder="Contoh: #AsikinAJa">
                 </div>
 
                 <!-- Deskripsi -->
@@ -51,14 +67,32 @@
                 <div class="space-y-3 w-full md:pl-6">
                     <h3 class="font-semibold text-gray-800 text-center">Kontak Internal</h3>
                     <div id="kontak-internal" class="space-y-2">
-                        <div class="flex items-center gap-2">
-                        <input type="text" name="kontak_internal_nama[]"
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
-                            placeholder="Nama">
-                        <input type="text" name="kontak_internal_no[]"
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
-                            placeholder="08xxx">
-                        </div>
+                        @php
+                            $kontakInternal = old('kontak_internal', $profile->kontak_internal ?? []);
+                        @endphp
+                        @if(!empty($kontakInternal))
+                            @foreach($kontakInternal as $item)
+                                <div class="flex items-center gap-2">
+                                    <input type="text" name="kontak_internal_nama[]" 
+                                        value="{{ old('kontak_internal_nama[]', $item['nama'] ?? '') }}"
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                        placeholder="Nama">
+                                    <input type="text" name="kontak_internal_no[]" 
+                                        value="{{ old('kontak_internal_no[]', $item['no'] ?? '') }}"
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                        placeholder="08xxx">
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="flex items-center gap-2">
+                                <input type="text" name="kontak_internal_nama[]" 
+                                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="Nama">
+                                <input type="text" name="kontak_internal_no[]" 
+                                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="08xxx">
+                            </div>
+                        @endif
                     </div>
                     <button type="button" id="add-internal"
                         class="block text-sm text-blue-600 hover:underline text-center mx-auto">
@@ -70,29 +104,37 @@
                 <div class="space-y-3 w-full md:pr-6">
                     <h3 class="font-semibold text-gray-800 text-center">Kontak Eksternal</h3>
                     <div id="kontak-eksternal" class="space-y-2">
-                        <div class="flex items-center gap-2">
-                        <input type="text" name="kontak_eksternal_nama[]"
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
-                            placeholder="Nama">
-                        <input type="text" name="kontak_eksternal_no[]"
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
-                            placeholder="08xxx">
-                        </div>
+                        @php
+                            $kontakEksternal = old('kontak_eksternal', $profile->kontak_eksternal ?? []);
+                        @endphp
+                        @if(!empty($kontakEksternal))
+                            @foreach($kontakEksternal as $item)
+                                <div class="flex items-center gap-2">
+                                    <input type="text" name="kontak_eksternal_nama[]" 
+                                        value="{{ old('kontak_eksternal_nama[]', $item['nama'] ?? '') }}"
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                        placeholder="Nama">
+                                    <input type="text" name="kontak_eksternal_no[]" 
+                                        value="{{ old('kontak_eksternal_no[]', $item['no'] ?? '') }}"
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                        placeholder="08xxx">
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="flex items-center gap-2">
+                                <input type="text" name="kontak_eksternal_nama[]" 
+                                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="Nama">
+                                <input type="text" name="kontak_eksternal_no[]" 
+                                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="08xxx">
+                            </div>
+                        @endif
                     </div>
                     <button type="button" id="add-eksternal"
                         class="block text-sm text-blue-600 hover:underline text-center mx-auto">
                         + Tambah Kontak Eksternal
                     </button>
-                </div>
-
-                <!-- Foto -->
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Foto Profile</label>
-                    @if(isset($profile->foto))
-                        <img src="{{ asset('storage/'.$profile->foto) }}" class="w-32 h-32 mb-2 rounded-lg object-cover">
-                    @endif
-                    <input type="file" name="foto" accept="image/*"
-                        class="w-full text-sm border border-gray-300 rounded-lg">
                 </div>
             </div>
 

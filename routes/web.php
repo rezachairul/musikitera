@@ -247,7 +247,6 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
-        Route::get('/export',  'export')->name('export');
     });
     
     // Visi Misi
