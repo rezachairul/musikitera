@@ -7,6 +7,17 @@
     >
     <x-slot:title>Kelola {{ $title }}</x-slot:title>
 
+    <!-- Bentuk Struktural (Tree Model) -->
+    <section class="pb-10 overflow-x-auto">
+        <div class="min-w-[1200px] tree-container">
+            <ul>
+                @foreach ($bphTree as $node)
+                    @include('admin.administrator.manage-bph.partials.tree-node', ['node' => $node])
+                @endforeach
+            </ul>
+        </div>
+    </section>
+
     <!-- Table Management Area -->
     <div class="bg-white rounded-xl border border-gray-200 p-3 sm:p-6 m-3 sm:m-6 shadow-sm">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-3 sm:gap-2">

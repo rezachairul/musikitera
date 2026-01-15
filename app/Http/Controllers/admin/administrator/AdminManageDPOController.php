@@ -66,13 +66,19 @@ class AdminManageDPOController extends Controller
             ->orderBy('urutan')
             ->get();
 
+        // Bentuk Struktural (Tree Model)
+        $dpoTree = AdminManageDPO::with('children.children.children')
+            ->whereNull('parent_id')
+            ->orderBy('urutan')
+            ->get();
+
         // AJAX RESPONSE
         if ($request->ajax()) {
             return view('admin.administrator.manage-dpo.partials.table_body',compact('title', 'description', 'author', 'dpos', 'totals', 'search', 'filter', 'perPage', 'parentJabatans'))->render();
         }
 
         return view(
-            'admin.administrator.manage-dpo.index', compact('title', 'description', 'author', 'dpos', 'totals', 'search', 'filter', 'perPage', 'parentJabatans')
+            'admin.administrator.manage-dpo.index', compact('title', 'description', 'author', 'dpos', 'totals', 'search', 'filter', 'perPage', 'parentJabatans', 'dpoTree')
         );
     }
 

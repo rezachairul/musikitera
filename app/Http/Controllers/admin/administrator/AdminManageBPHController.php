@@ -66,13 +66,19 @@ class AdminManageBPHController extends Controller
             ->orderBy('urutan')
             ->get();
 
+        // Bentuk Struktural (Tree Model)
+        $bphTree = AdminManageBPH::with('children.children.children')
+            ->whereNull('parent_id')
+            ->orderBy('urutan')
+            ->get();
+
         // AJAX RESPONSE
         if ($request->ajax()) {
             return view('admin.administrator.manage-bph.partials.table_body',compact('title', 'description', 'author', 'bphs', 'totals', 'search', 'filter', 'perPage', 'parentJabatans'))->render();
         }
 
         return view(
-            'admin.administrator.manage-bph.index', compact('title', 'description', 'author', 'bphs', 'totals', 'search', 'filter', 'perPage', 'parentJabatans')
+            'admin.administrator.manage-bph.index', compact('title', 'description', 'author', 'bphs', 'totals', 'search', 'filter', 'perPage', 'parentJabatans', 'bphTree')
         );
     }
 
