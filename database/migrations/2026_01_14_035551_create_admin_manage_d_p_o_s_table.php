@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('admin_manage_d_p_o_s', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('jenis');
+            $table->foreignId('parent_id')->nullable()->constrained('admin_manage_d_p_o_s')->cascadeOnDelete();
+            $table->unsignedTinyInteger('level');
+            $table->unsignedInteger('urutan')->default(0);
             $table->timestamps();
         });
     }
