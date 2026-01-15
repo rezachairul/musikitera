@@ -4,52 +4,87 @@
         <!-- Header -->
         <div class="flex items-center gap-2 mb-4">
             <svg  xmlns="http://www.w3.org/2000/svg"  fill="none"  viewBox="0 0 24 24"  stroke-width="1.5"  stroke="currentColor"  class="size-6 text-gray-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
             </svg>
             <h2 id="modalTitle" class="text-lg font-semibold text-gray-800">Tambah {{ $title }}</h2>
         </div>
 
         <!-- Form Create -->
-        <form id="addForm" method="POST" action="{{ route('manage-user.store') }}" enctype="multipart/form-data">
+        <form id="addJabatanForm" method="POST" action="{{ route('manage-bph.store') }}">
             @csrf
-            <!-- Nama -->
+
+            <!-- Nama Jabatan -->
             <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                <input type="text" name="name" id="name"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Masukan Nama" required>
-            </div>
-            <!-- Role -->
-            <div class="mb-4">
-                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                <select name="role" id="role"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">
+                    Nama Jabatan
+                </label>
+                <input type="text" name="nama" id="nama"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: Ketua Umum, Sekretaris Umum 1, dsb."
                     required>
-                    <option value="">-- Pilih Role --</option>
-                    <option value="admin">Administrator</option>
-                    <option value="bph">Badan Pengurus</option>
-                    <option value="dpo">Dewan Pengawas</option>
-                    <option value="pembina">Pembina</option>
+                <p class="text-xs text-gray-500 mt-1">
+                    Nama Jabatan Tidak Boleh Disingkat. Contoh: Ketua Umum, Sekretaris Umum 1, dsb.
+                </p>
+            </div>
+
+            <!-- Jenis Jabatan -->
+            <div class="mb-4">
+                <label for="jenis" class="block text-sm font-medium text-gray-700 mb-2">
+                    Jenis Jabatan
+                </label>
+                <select name="jenis" id="jenis"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    required>
+                    <option value="">-- Pilih Jenis Jabatan --</option>
+                    <option value="ketum">Ketua Umum</option>
+                    <option value="sekjen">Sekretaris Jenderal</option>
+                    <option value="sekum">Sekretaris Umum</option>
+                    <option value="bendum">Bendahara Umum</option>
+                    <option value="kadep">Kepala Departemen</option>
+                    <option value="sekdep">Sekretaris Departemen (opsional)</option>
+                    <option value="kadiv">Kepala Divisi</option>
+                    <option value="sekdiv">Sekretaris Divisi (opsional)</option>
+                    <option value="staff">Staff</option>
                 </select>
+                <p class="text-xs text-gray-500 mt-1">
+                    Jenis menentukan posisi & aturan struktur jabatan.
+                </p>
             </div>
-            <!-- Email -->
+
+            <!-- Parent Jabatan -->
             <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input type="email" name="email" id="email" readonly
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Email akan terisi otomatis" required>
+                <label for="parent_id" class="block text-sm font-medium text-gray-700 mb-2">
+                    Parent Jabatan
+                </label>
+                <select name="parent_id" id="parent_id"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+
+                    <option value="">-- Tidak Ada (jabatan paling atas) --</option>
+
+                    @foreach ($parentJabatans as $parent)
+                        <option value="{{ $parent->id }}">
+                            {{ str_repeat('— ', $parent->level - 1) }}{{ $parent->nama }}
+                        </option>
+                    @endforeach
+                </select>
+                <p class="text-xs text-gray-500 mt-1">
+                    Pilih parent untuk membentuk struktur organisasi.
+                </p>
             </div>
-            <!-- Password -->
+
+            <!-- Urutan -->
             <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                <input type="password" name="password" id="password"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="********" required>
+                <label for="urutan" class="block text-sm font-medium text-gray-700 mb-2">
+                    Urutan
+                </label>
+                <input type="number" name="urutan" id="urutan" min="0"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Urutan tampilan (semakin kecil, semakin atas)">
             </div>
 
             <!-- Tombol -->
             <div class="flex justify-end space-x-2 mt-6">
-                <!-- Tombol Batal -->
                 <button type="button" onclick="closeAddModal()"
                     class="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                     <!-- Icon X -->
@@ -60,7 +95,6 @@
                     Batal
                 </button>
 
-                <!-- Tombol Simpan -->
                 <button type="submit"
                     class="flex items-center gap-1 px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                     <!-- Icon Save -->
@@ -71,25 +105,8 @@
                     Simpan
                 </button>
             </div>
-            <!-- Script untuk mengisi email otomatis berdasarkan nama dan role -->
-            <script>
-                const nameInput = document.getElementById('name');
-                const roleSelect = document.getElementById('role');
-                const emailInput = document.getElementById('email');
-
-                function generateEmail() {
-                    const nameValue = nameInput.value.trim().split(" ")[0].toLowerCase(); // ambil nama depan
-                    const roleValue = roleSelect.value;
-                    if (nameValue && roleValue) {
-                        emailInput.value = `${nameValue}.${roleValue}@ukmbsm.itera.ac.id`;
-                    } else {
-                        emailInput.value = '';
-                    }
-                }
-                nameInput.addEventListener('input', generateEmail);
-                roleSelect.addEventListener('change', generateEmail);
-            </script>
         </form>
+
         <!-- Tombol X di pojok -->
         <button onclick="closeAddModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

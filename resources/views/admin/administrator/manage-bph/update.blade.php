@@ -1,119 +1,135 @@
-<!-- Modal Edit Data -->
-@foreach($users as $user)
-<div id="UpdateModal-{{ $user->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
+<!-- Modal Edit Manage BPH Data -->
+@foreach($bphs as $bph)
+<div id="UpdateModal-{{ $bph->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
     <div class="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
         <!-- Header -->
         <div class="flex items-center gap-2 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            <svg  xmlns="http://www.w3.org/2000/svg"  fill="none"  viewBox="0 0 24 24"  stroke-width="1.5"  stroke="currentColor"  class="size-6 text-gray-500">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
             </svg>
-
             <h2 id="modalTitle" class="text-lg font-semibold text-gray-800">Tambah {{ $title }}</h2>
         </div>
 
-        <!-- Form Update -->
-        <form method="POST" action="{{ route('manage-user.update', $user->id) }}" enctype="multipart/form-data">
+        <!-- Form Edit -->
+        <form id="editJabatanForm"
+            method="POST"
+            action="{{ route('manage-bph.update', $bph->id) }}">
             @csrf
             @method('PUT')
 
-            <!-- Nama -->
+            <!-- Nama Jabatan -->
             <div class="mb-4">
-                <label for="name-{{ $user->id }}" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                <input type="text" name="name" id="name-update-{{ $user->id }}"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value="{{ $user->name }}" required>
-            </div>
-            <!-- Role -->
-            <div class="mb-4">
-                <label for="role-{{ $user->id }}" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                <select name="role" id="role-update-{{ $user->id }}"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">
+                    Nama Jabatan
+                </label>
+                <input type="text" name="nama" id="nama"
+                    value="{{ old('nama', $bph->nama) }}"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required>
-                    <option value="">-- Pilih Role --</option>
-                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Administrator</option>
-                    <option value="bph" {{ $user->role == 'bph' ? 'selected' : '' }}>Badan Pengurus</option>
-                    <option value="dpo" {{ $user->role == 'dpo' ? 'selected' : '' }}>Dewan Pengawas</option>
-                    <option value="pembina" {{ $user->role == 'pembina' ? 'selected' : '' }}>Pembina</option>
+                <p class="text-xs text-gray-500 mt-1">
+                    Nama Jabatan Tidak Boleh Disingkat.
+                </p>
+            </div>
+
+            <!-- Jenis Jabatan -->
+            <div class="mb-4">
+                <label for="jenis" class="block text-sm font-medium text-gray-700 mb-2">
+                    Jenis Jabatan
+                </label>
+                <select name="jenis" id="jenis"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    required>
+                    <option value="">-- Pilih Jenis Jabatan --</option>
+
+                    @php
+                        $jenisList = [
+                            'ketum' => 'Ketua Umum',
+                            'sekjen' => 'Sekretaris Jenderal',
+                            'sekum' => 'Sekretaris Umum',
+                            'bendum' => 'Bendahara Umum',
+                            'kadep' => 'Kepala Departemen',
+                            'sekdep' => 'Sekretaris Departemen',
+                            'kadiv' => 'Kepala Divisi',
+                            'sekdiv' => 'Sekretaris Divisi',
+                            'staff' => 'Staff',
+                        ];
+                    @endphp
+
+                    @foreach ($jenisList as $value => $label)
+                        <option value="{{ $value }}"
+                            {{ old('jenis', $bph->jenis) === $value ? 'selected' : '' }}>
+                            {{ $label }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
-            <!-- Email -->
+
+            <!-- Parent Jabatan -->
             <div class="mb-4">
-                <label for="email-{{ $user->id }}" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input type="email" name="email" id="email-update-{{ $user->id }}"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value="{{ $user->email }}" required>
+                <label for="parent_id" class="block text-sm font-medium text-gray-700 mb-2">
+                    Parent Jabatan
+                </label>
+                <select name="parent_id" id="parent_id"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+
+                    <option value="">-- Tidak Ada (jabatan paling atas) --</option>
+
+                    @foreach ($parentJabatans as $parent)
+                        @if ($parent->id !== $bph->id)
+                            <option value="{{ $parent->id }}"
+                                {{ old('parent_id', $bph->parent_id) == $parent->id ? 'selected' : '' }}>
+                                {{ str_repeat('— ', $parent->level - 1) }}{{ $parent->nama }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+                <p class="text-xs text-gray-500 mt-1">
+                    Parent tidak boleh diri sendiri.
+                </p>
             </div>
-            <!-- Password (Optional / Kosongkan jika tidak diubah) -->
+
+            <!-- Urutan -->
             <div class="mb-4">
-                <label for="password-{{ $user->id }}" class="block text-sm font-medium text-gray-700 mb-2">Password (kosongkan jika tidak diubah)</label>
-                <input type="password" name="password" id="password-{{ $user->id }}"
-                    class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Masukan password baru">
+                <label for="urutan" class="block text-sm font-medium text-gray-700 mb-2">
+                    Urutan
+                </label>
+                <input type="number" name="urutan" id="urutan" min="0"
+                    value="{{ old('urutan', $bph->urutan) }}"
+                    class="w-full px-3 py-2 border border-gray-200 rounded-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <!-- Tombol -->
             <div class="flex justify-end space-x-2 mt-6">
-                <!-- Tombol Batal -->
-                <button type="button" onclick="closeUpdateModal('{{ $user->id }}')"
+                <button type="button" onclick="closeUpdateModal('{{ $bph->id }}')"
                     class="flex items-center gap-1 px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                     <!-- Icon X -->
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                     Batal
                 </button>
 
-                <!-- Tombol Update -->
                 <button type="submit"
-                    class="flex items-center gap-1 px-4 py-2 text-sm text-white bg-amber-600 rounded-lg hover:bg-amber-700 transition">
-                    <!-- Icon Update -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0  3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1  13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    class="flex items-center gap-1 px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                    <!-- Icon Save -->
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 13l4 4L19 7" />
                     </svg>
-                    Update
+                    Simpan
                 </button>
             </div>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    const nameUpdate = document.getElementById('name-update-{{ $user->id }}');
-                    const roleUpdate = document.getElementById('role-update-{{ $user->id }}');
-                    const emailUpdate = document.getElementById('email-update-{{ $user->id }}');
-
-                    function generateEmailUpdate() {
-                        const nameValue = nameUpdate.value.trim().split(" ")[0].toLowerCase();
-                        const roleValue = roleUpdate.value;
-                        if (nameValue && roleValue) {
-                            emailUpdate.value = `${nameValue}.${roleValue}@ukmbsm.itera.ac.id`;
-                        } else {
-                            emailUpdate.value = '';
-                        }
-                    }
-
-                    // Event ketika modal dibuka → trigger update email
-                    const observer = new MutationObserver(() => {
-                        if (!nameUpdate || !roleUpdate) return;
-                        generateEmailUpdate();
-                    });
-
-                    const modal = document.getElementById('UpdateModal-{{ $user->id }}');
-                    if (modal) {
-                        observer.observe(modal, {
-                            attributes: true,
-                            attributeFilter: ['class']
-                        });
-                    }
-
-                    nameUpdate.addEventListener('input', generateEmailUpdate);
-                    roleUpdate.addEventListener('change', generateEmailUpdate);
-                });
-            </script>
         </form>
 
         <!-- Tombol X di pojok -->
-        <button onclick="closeUpdateModal('{{ $user->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+        <button onclick="closeUpdateModal('{{ $bph->id }}')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>

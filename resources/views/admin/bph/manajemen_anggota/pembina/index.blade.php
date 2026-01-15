@@ -149,7 +149,7 @@
                 sampai 
                 <span class="font-medium">{{ $manage_pembinas->lastItem() }}</span> 
                 dari 
-                <span class="font-medium">{{ $manage_pembinas->total() }}</span> {{ $title }}
+                <span class="font-medium">{{ $manage_pembinas->total() }}</span> {{ $title }}.
             </div>
 
             <!-- Tombol Pagination -->
@@ -174,8 +174,7 @@
                                 {{ $page }}
                             </span>
                         @else
-                            <a href="{{ $url }}" 
-                            class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                            <a href="{{ $url }}" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
                                 {{ $page }}
                             </a>
                         @endif

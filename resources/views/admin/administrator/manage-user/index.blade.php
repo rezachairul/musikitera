@@ -214,13 +214,11 @@
 
                     {{-- Tombol Sebelumnya --}}
                     @if ($users->onFirstPage())
-                        <span
-                            class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
+                        <span class="px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed flex items-center gap-1">
                             <span class="hidden sm:inline">Sebelumnya</span>
                         </span>
                     @else
-                        <a href="{{ $users->previousPageUrl() }}" 
-                        class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                        <a href="{{ $users->previousPageUrl() }}" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
                             <span class="hidden sm:inline">Sebelumnya</span>
                         </a>
                     @endif
@@ -233,8 +231,7 @@
                                 {{ $page }}
                             </span>
                         @else
-                            <a href="{{ $url }}" 
-                            class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                            <a href="{{ $url }}" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
                                 {{ $page }}
                             </a>
                         @endif
@@ -242,8 +239,7 @@
 
                     {{-- Tombol Selanjutnya --}}
                     @if ($users->hasMorePages())
-                        <a href="{{ $users->nextPageUrl() }}" 
-                        class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                        <a href="{{ $users->nextPageUrl() }}" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
                             <span class="hidden sm:inline">Selanjutnya</span>
                         </a>
                     @else

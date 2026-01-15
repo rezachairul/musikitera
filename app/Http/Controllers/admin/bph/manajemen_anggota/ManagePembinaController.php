@@ -18,7 +18,7 @@ class ManagePembinaController extends Controller
         $title    = 'Pembina';
         $search   = $request->input('search', '');
         $filter   = $request->query('filter', 'all');
-        $perPage  = $request->query('perPage', 10); // ✅ perbaikan
+        $perPage  = $request->query('perPage', 10);
 
         // Pisahkan multi keyword search
         $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
@@ -30,7 +30,7 @@ class ManagePembinaController extends Controller
                 foreach ($keywords as $word) {
                     $q->where(function ($q) use ($word) {
                         $q->where('nama', 'like', "%{$word}%")
-                            ->orWhere('nip_nidn', 'like', "%{$word}%") // ✅ fix typo
+                            ->orWhere('nip_nidn', 'like', "%{$word}%")
                             ->orWhere('jabatan', 'like', "%{$word}%")
                             ->orWhere('awal_periode', 'like', "%{$word}%")
                             ->orWhere('akhir_periode', 'like', "%{$word}%")

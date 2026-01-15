@@ -14,7 +14,7 @@ class AdminManageDPOController extends Controller
      */
     public function index()
     {
-        $title = 'Manage DPO Administrator';
+        $title = 'Position DPO Management';
         $description = 'Manage DPO accounts within the UKMBSM ITERA Administrator Panel. Add, edit, and delete DPO accounts to maintain secure access to the music community management system.';
         $author = 'UKMBSM ITERA';
 

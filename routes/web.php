@@ -13,6 +13,8 @@ use App\Http\Controllers\public\HomeController;
 // Adnmins
 // ==========================
 // Administrator
+use App\Http\Controllers\admin\administrator\AdminManageBPHController;
+use App\Http\Controllers\admin\administrator\AdminManageDPOController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\public\AlumniController;
 
@@ -188,19 +190,21 @@ Route::middleware(['auth:web', 'role:admin'])->prefix('administrator')->group(fu
     });
 
     // Manage bph
-    Route::controller(ManageUserController::class)->prefix('manage-bph')->name('manage-bph.')->group(function () {
+    Route::controller(AdminManageBPHController::class)->prefix('manage-bph')->name('manage-bph.')->group(function () {
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
     });
 
     // Manage dpo
-    Route::controller(ManageUserController::class)->prefix('manage-dpo')->name('manage-dpo.')->group(function () {
+    Route::controller(AdminManageDPOController::class)->prefix('manage-dpo')->name('manage-dpo.')->group(function () {
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
     });
 
 });

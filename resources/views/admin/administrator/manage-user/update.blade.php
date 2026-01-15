@@ -1,4 +1,4 @@
-<!-- Modal Edit Data -->
+<!-- Modal Edit User Data -->
 @foreach($users as $user)
 <div id="UpdateModal-{{ $user->id }}" class="hidden fixed inset-0 z-50 bg-black/50 items-center justify-center px-4">
     <div class="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
