@@ -20,37 +20,27 @@
 
     <!-- Nama + Prodi + Angkatan + NIA -->
     <td class="px-6 py-4 whitespace-nowrap">
-        <div class="font-semibold text-gray-900">{{ $alumni->anggota->nama ?? '-' }}</div>
+        <div class="font-semibold text-gray-900">{{ $alumni->anggota->nama ?? 'N/A' }}</div>
         <div class="text-gray-600 text-[11px]">
             {{ $alumni->anggota->prodi ?? '-' }} • 
-            Angkatan {{ $alumni->anggota->angkatan ?? '-' }} <br>
-            NIA: {{ $alumni->anggota->nia ?? '-' }}
+            Angkatan {{ $alumni->anggota->angkatan ?? 'N/A' }} <br>
+            NIA: {{ $alumni->anggota->nia ?? 'N/A' }}
         </div>
     </td>
 
     <!-- Tahun Lulus -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $alumni->tahun_lulus ?? '-' }}
+        {{ $alumni->tahun_lulus ?? 'N/A' }}
     </td>
 
     <!-- Pekerjaan -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $alumni->pekerjaan ?? '-' }}
+        {{ $alumni->pekerjaan ?? 'N/A' }}
     </td>
 
     <!-- Quote -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $alumni->quote ?? '-' }}
-    </td>
-
-    <!-- Status -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        @php 
-            $status = $statusLabels[$alumni->anggota->status ?? 'graduate']; 
-        @endphp
-        <span class="px-2 py-1 text-xs rounded-lg {{ $status['color'] }}">
-            {{ $status['label'] }}
-        </span>
+        {{ $alumni->quote ?? 'N/A' }}
     </td>
 
     <!-- Aksi -->

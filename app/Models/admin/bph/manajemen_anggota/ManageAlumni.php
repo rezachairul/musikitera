@@ -16,9 +16,12 @@ class ManageAlumni extends Model
     protected $table = 'manage_alumnis';
 
     protected $fillable = [
-        'anggota_id',    // relasi ke anggota_aktifs
-        'quote',         // opsional
-        'tahun_lulus',   // opsional
+        'anggota_id',
+        'tahun_lulus',
+        'url',
+        'pekerjaan',
+        'quote',
+        'foto',
     ];
 
     public function anggota(): BelongsTo
@@ -26,10 +29,6 @@ class ManageAlumni extends Model
         return $this->belongsTo(AnggotaAktif::class, 'anggota_id');
     }
 
-    /**
-     * Asumsi: tabel manage_testimonis punya kolom anggota_id.
-     * Kalau nantinya kolomnya beda, foreignKey/localKey tinggal disesuaikan.
-     */
     public function testimoni(): HasMany
     {
         return $this->hasMany(ManageTestimoni::class, 'anggota_id', 'anggota_id');

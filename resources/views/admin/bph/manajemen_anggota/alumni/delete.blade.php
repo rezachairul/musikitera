@@ -21,11 +21,39 @@
                     </div>
                 </div>
 
-                <!-- Detail Anggota -->
-                <div class="bg-gray-50 w-full border-2 border-red-500 rounded-lg p-4 text-sm text-left italic text-gray-500 space-y-1">
-                    <p><span class="font-lg">Nama: </span>{{ $alumni->nama }}</p>
-                    <p><span class="font-lg">NIA: </span>{{ $alumni->nia }}</p>
-                    <p><span class="font-lg">Angkatan: </span>{{ $alumni->angkatan }}</p>
+                <!-- Detail Alumni -->
+                <div class="bg-gray-50 w-full border rounded-lg p-4 text-sm text-gray-700 space-y-3">
+                    <div class="flex items-center space-x-4">
+
+                        <!-- Foto Alumni -->
+                        <div class="w-20 h-20 rounded-lg overflow-hidden border bg-white">
+                            @if ($alumni->foto)
+                                <img src="{{ asset('storage/' . $alumni->foto) }}"
+                                    alt="Foto {{ $alumni->anggota->nama ?? 'Alumni' }}"
+                                    class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 text-xs">
+                                    No Photo
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Info Alumni -->
+                        <div class="text-left space-y-1">
+                            <p> <span class="font-semibold">Nama:</span> {{ $alumni->anggota->nama ?? 'N/A' }} </p>
+                            <p> <span class="font-semibold">NIA:</span> {{ $alumni->anggota->nia ?? 'N/A' }} </p>
+                            <p> <span class="font-semibold">Angkatan:</span> {{ $alumni->anggota->angkatan ?? 'N/A' }} </p>
+                            <p> <span class="font-semibold">Tahun Lulus:</span> {{ $alumni->tahun_lulus ?? 'N/A' }} </p>
+                            <p> <span class="font-semibold">Pekerjaan:</span> {{ $alumni->pekerjaan ?? 'N/A' }} </p>
+                        </div>
+                        
+                    </div>
+                    <!-- Quote -->
+                    @if ($alumni->quote)
+                        <p class="italic text-justify text-gray-500 pt-2 border-t">
+                            “{{ $alumni->quote }}”
+                        </p>
+                    @endif
                 </div>
 
                 <!-- Form Hapus -->

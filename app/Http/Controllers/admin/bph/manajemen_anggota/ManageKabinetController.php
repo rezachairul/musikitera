@@ -211,11 +211,19 @@ class ManageKabinetController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        // dd($id);
         $manageKabinet = ManageKabinet::findOrFail($id);
 
         if ($manageKabinet->is_active) {
             return back()->with('error', 'Kabinet aktif tidak boleh dihapus.');
+        }
+
+        // hapus logo & banner kalau ada
+        if ($manageKabinet->logo && Storage::disk('public')->exists($manageKabinet->logo)) {
+            Storage::disk('public')->delete($manageKabinet->logo);
+        }
+        if ($manageKabinet->banner && Storage::disk('public')->exists($manageKabinet->banner)) {
+            Storage::disk('public')->delete($manageKabinet->banner);
         }
 
         $manageKabinet->delete();

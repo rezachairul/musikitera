@@ -10,100 +10,94 @@
                 <h2 class="text-lg font-semibold text-gray-800">Edit {{ $title }}</h2>
             </div>
 
-           <!-- Form Update Anggota Aktif -->
-            <form id="editForm-{{ $alumni->id }}" method="POST" action="{{ route('manage-alumni.update', $alumni->id) }}">
+            <!-- Form Update Anggota Aktif -->
+            <form id="editForm-{{ $alumni->id }}" method="POST" action="{{ route('manage-alumni.update', $alumni->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Nama -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Pilih Alumni -->
                     <div>
-                        <label for="edit_nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                        <input type="text" name="nama" id="edit_nama"
-                            value="{{ old('nama', $alumni->nama) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Alumni</label>
+                        <select name="anggota_id"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm"
                             required>
-                    </div>
-
-                    <!-- NIM -->
-                    <div>
-                        <label for="edit_nim" class="block text-sm font-medium text-gray-700 mb-2">NIM</label>
-                        <input type="text" name="nim" id="edit_nim"
-                            value="{{ old('nim', $alumni->nim) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Angkatan Kampus -->
-                    <div>
-                        <label for="edit_angkatan" class="block text-sm font-medium text-gray-700 mb-2">Angkatan Kampus</label>
-                        <input type="number" name="angkatan" id="edit_angkatan"
-                            value="{{ old('angkatan', $alumni->angkatan) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Prodi -->
-                    <div>
-                        <label for="edit_prodi" class="block text-sm font-medium text-gray-700 mb-2">Program Studi</label>
-                        <input type="text" name="prodi" id="edit_prodi"
-                            value="{{ old('prodi', $alumni->prodi) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Nomor Urut -->
-                    <div>
-                        <label for="edit_nomor_urut" class="block text-sm font-medium text-gray-700 mb-2">Nomor Urut</label>
-                        <input type="number" name="nomor_urut" id="edit_nomor_urut"
-                            value="{{ old('nomor_urut', $alumni->nomor_urut) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-                    <!-- Angkatan UKM -->
-                    <div>
-                        <label for="edit_angkatan_ukm" class="block text-sm font-medium text-gray-700 mb-2">Angkatan UKM</label>
-                        <input type="number" name="angkatan_ukm" id="edit_angkatan_ukm"
-                            value="{{ old('angkatan_ukm', $alumni->angkatan_ukm) }}"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    </div>
-
-                    <!-- Pendiri -->
-                    <div>
-                        <span class="block text-sm font-medium text-gray-700 mb-2">Pendiri</span>
-                        <div class="flex items-center gap-6">
-                            <!-- Ya -->
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="pendiri" value="1" id="edit_pendiri_yes"
-                                    class="hidden peer"
-                                    {{ old('pendiri', $alumni->pendiri) == 1 ? 'checked' : '' }}>
-                                <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                            peer-checked:border-blue-600 peer-checked:bg-blue-600 transition"></span>
-                                <span class="ml-2 text-sm text-gray-700">Ya</span>
-                            </label>
-                            <!-- Tidak -->
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="pendiri" value="0" id="edit_pendiri_no"
-                                    class="hidden peer"
-                                    {{ old('pendiri', $alumni->pendiri) == 0 ? 'checked' : '' }}>
-                                <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                            peer-checked:border-red-600 peer-checked:bg-red-600 transition"></span>
-                                <span class="ml-2 text-sm text-gray-700">Tidak</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Status -->
-                    <div>
-                        <label for="edit_status" class="block text-sm font-medium text-gray-700 mb-2">Status Perkuliahan</label>
-                        <select name="status" id="edit_status"
-                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm">
-                            <option value="on_going" {{ old('status', $alumni->status) == 'on_going' ? 'selected' : '' }}>On Going</option>
-                            <option value="graduate" {{ old('status', $alumni->status) == 'graduate' ? 'selected' : '' }}>Graduate</option>
-                            <option value="drop_out" {{ old('status', $alumni->status) == 'drop_out' ? 'selected' : '' }}>Drop Out</option>
-                            <option value="exit" {{ old('status', $alumni->status) == 'exit' ? 'selected' : '' }}>Exit</option>
+                            <option value="">-- Pilih Alumni --</option>
+                            @foreach (\App\Models\admin\bph\manajemen_anggota\AnggotaAktif::where('status','graduate')->get() as $anggota)
+                                <option value="{{ $anggota->id }}"
+                                    {{ old('anggota_id', $alumni->anggota_id) == $anggota->id ? 'selected' : '' }}>
+                                    {{ $anggota->nama }} ({{ $anggota->nia }})
+                                </option>
+                            @endforeach
                         </select>
+                    </div>
+
+                    <!-- Tahun Lulus -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tahun Lulus</label>
+                        <input type="number" name="tahun_lulus"
+                            value="{{ old('tahun_lulus', $alumni->tahun_lulus) }}"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            required>
+                    </div>
+
+                    <!-- Pekerjaan -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Pekerjaan</label>
+                        <input type="text" name="pekerjaan"
+                            value="{{ old('pekerjaan', $alumni->pekerjaan) }}"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <span class="text-xs text-red-500">Kosongkan jika tidak ada</span>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">LinkedIn</label>
+                        <input type="text" name="url"
+                            value="{{ old('url', $alumni->url) }}"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <span class="text-xs text-red-500">Kosongkan jika tidak ada</span>
+                    </div>
+
+                    <!-- Quote -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Quote / Kesan</label>
+                        <textarea name="quote" rows="3"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500">{{ old('quote', $alumni->quote) }}</textarea>
+                    </div>
+
+                    <!-- Upload Foto -->
+                    <div class="md:col-span-2">
+                        <label for="foto_input" class="block text-sm font-medium text-gray-700 mb-2">
+                            Foto Alumni <br>
+                            <span class="text-xs text-gray-500">(Kosongkan jika tidak diganti)</span>
+                        </label>
+
+                        <div class="flex items-center space-x-4">
+                            <!-- Foto Lama -->
+                            <div id="currentImagePreview-{{ $alumni->id }}">
+                                @if($alumni->foto)
+                                <img src="{{ asset('storage/'.$alumni->foto) }}" alt="Foto" class="w-24 h-24 object-cover rounded-lg border shadow-sm">
+                                @else
+                                <p class="text-gray-500 text-sm">Tidak ada gambar</p>
+                                @endif
+                            </div>
+
+                            <!-- Upload area -->
+                            <div class="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-gray-50 transition">
+                                <label for="foto_input_{{ $alumni->id }}" class="cursor-pointer flex flex-col items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" class="size-12 text-gray-300 mb-1">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Z" />
+                                    </svg>
+                                    <span class="text-xs text-gray-500">Klik untuk upload baru</span>
+                                </label>
+                            </div>
+
+                            <input id="foto_input_{{ $alumni->id }}" name="foto" type="file" accept=".jpg,.jpeg,.png" class="hidden preview-edit-input" data-id="{{ $alumni->id }}" onchange="previewEditImage(this)">
+                        </div>
+                        <p id="image-error" class="mt-2 text-sm text-red-600 hidden"></p>
                     </div>
                 </div>
 

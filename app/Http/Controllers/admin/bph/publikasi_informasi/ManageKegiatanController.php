@@ -142,22 +142,6 @@ class ManageKegiatanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(ManageKegiatan $manageKegiatan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ManageKegiatan $manageKegiatan)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
 

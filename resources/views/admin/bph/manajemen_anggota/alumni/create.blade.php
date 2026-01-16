@@ -16,7 +16,7 @@
             enctype="multipart/form-data">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Pilih Alumni (AnggotaAktif) -->
                 <div>
                     <label for="anggota_id" class="block text-sm font-medium text-gray-700 mb-2">Pilih Alumni</label>
@@ -46,10 +46,20 @@
                     <input type="text" name="pekerjaan" id="pekerjaan"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
                         placeholder="Masukan pekerjaan (opsional)">
+                    <span class="text-xs text-red-500">Kosongkan Jika Tidak Ada</span>
+                </div>
+
+                 <!-- LinkedIn (opsional) -->
+                <div>
+                    <label for="url" class="block text-sm font-medium text-gray-700 mb-2">LinkedIn</label>
+                    <input type="text" name="url" id="url"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Masukan URL LinkedIn (opsional)">
+                    <span class="text-xs text-red-500">Kosongkan Jika Tidak Ada</span>
                 </div>
 
                 <!-- Quote / Kesan (opsional) -->
-                <div class="md:col-span-3">
+                <div class="md:col-span-2">
                     <label for="quote" class="block text-sm font-medium text-gray-700 mb-2">Quote / Kesan</label>
                     <textarea name="quote" id="quote" rows="3"
                         class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -57,12 +67,35 @@
                 </div>
 
                 <!-- Upload Foto -->
-                <div>
-                    <label for="foto" class="block text-sm font-medium text-gray-700 mb-2">Foto Alumni</label>
-                    <input type="file" name="foto" id="foto"
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
-                        accept="image/png, image/jpeg">
-                    <small class="text-gray-500">Format JPG/PNG, maksimal 2MB</small>
+                <div class="md:col-span-2">
+                    <label for="foto_input" class="block text-sm font-medium text-gray-700 mb-2">
+                        Foto Alumni <br>
+                        <span class="text-xs text-gray-500">(Format: JPG, JPEG, PNG • Maks 2MB)</span>
+                    </label>
+
+                    <div class="flex items-center space-x-4">
+                        <!-- Preview -->
+                        <div id="photo-preview" class="hidden">
+                            <img id="preview-img" src="" alt="Preview" 
+                                class="w-24 h-24 object-cover rounded-lg border shadow-sm">
+                        </div>
+
+                        <!-- Upload area -->
+                        <div class="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-gray-50 transition">
+                            <label for="foto_input" class="cursor-pointer flex flex-col items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-gray-300 mb-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                </svg>
+                                <span id="upload-text" class="text-xs text-gray-500">Klik untuk upload</span>
+                            </label>
+                        </div>
+
+                        <!-- File input (dipisah dari label) -->
+                        <input id="foto_input" name="foto" type="file" accept=".jpg,.jpeg,.png" class="hidden" onchange="previewImage(this)">
+                    </div>
+
+                    <!-- Pesan error -->
+                    <p id="foto-error" class="mt-2 text-sm text-red-600 hidden"></p>
                 </div>
             </div>
 

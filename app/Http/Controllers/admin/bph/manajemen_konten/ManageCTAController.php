@@ -115,22 +115,6 @@ class ManageCTAController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(ManageCTA $manageCTA)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ManageCTA $manageCTA)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
