@@ -20,6 +20,7 @@ Dashboard BPH
     Statistik anggota aktif, kegiatan, galeri terbaru
 Manajemen Anggota
     Anggota Aktif
+    Kabinet
     Badan Pengurus
     Alumni
 Manajemen Konten

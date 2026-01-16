@@ -98,10 +98,7 @@
                             </div>
 
                             <!-- File input (dipisah dari label) -->
-                            <input id="foto_input" name="foto" type="file"
-                                accept=".jpg,.jpeg,.png"
-                                class="hidden"
-                                onchange="previewImage(this)">
+                            <input id="foto_input" name="foto" type="file" accept=".jpg,.jpeg,.png" class="hidden" onchange="previewImage(this)">
                         </div>
 
                         <!-- Pesan error -->

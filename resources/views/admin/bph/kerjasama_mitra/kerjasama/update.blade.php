@@ -196,13 +196,7 @@
                                 </div>
                             </div>
 
-                            <input 
-                                id="poster-{{ $kerjasama->id }}" 
-                                type="file" 
-                                name="poster" 
-                                class="hidden preview-edit-input" 
-                                data-id="{{ $kerjasama->id }}" 
-                                accept=".jpg,.jpeg,.png">
+                            <input id="poster-{{ $kerjasama->id }}" type="file" name="poster" class="hidden preview-edit-input" data-id="{{ $kerjasama->id }}" accept=".jpg,.jpeg,.png" onchange="previewEditImage(this)">
 
                             <p id="image-error-{{ $kerjasama->id }}" class="text-sm text-red-600 hidden mt-1"></p>
                         </div>

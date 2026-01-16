@@ -104,10 +104,7 @@
                                 </div>
 
                                 <!-- File input -->
-                                <input id="logo_input_{{ $mitra->id }}" name="logo" type="file" 
-                                    accept=".jpg,.jpeg,.png"
-                                    class="hidden preview-edit-input" 
-                                    data-id="{{ $mitra->id }}">
+                                <input id="logo_input_{{ $mitra->id }}" name="logo" type="file" accept=".jpg,.jpeg,.png"class="hidden preview-edit-input" data-id="{{ $mitra->id }}" onchange="previewEditImage(this)">
                             </div>
                             <p id="image-error-{{ $mitra->id }}" class="mt-2 text-sm text-red-600 hidden"></p>
                         </div>

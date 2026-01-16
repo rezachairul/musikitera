@@ -59,6 +59,7 @@ use App\Http\Controllers\admin\bph\manajemen_konten\ManageGaleriController;
 // ==========================
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageVisiMisiController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\AnggotaAktifController;
+use App\Http\Controllers\admin\bph\manajemen_anggota\ManageKabinetController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
@@ -222,6 +223,14 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
+    });
+
+    // Manajemen Kabinet
+    Route::controller(ManageKabinetController::class)->prefix('manage-kabinet')->name('manage-kabinet.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
     });
 
     // Manajemen Badan Pengurus

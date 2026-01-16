@@ -17,6 +17,10 @@ class AnggotaAktifController extends Controller
     public function index(Request $request)
     {
         $title   = 'Anggota';
+        $decription = '';
+        $keywords = '';
+        $author = 'UKMBSM ITERA';
+        
         $search  = $request->input('search', '');
         $filter  = $request->query('filter', 'all');
         $perPage = $request->query('perPage', 10);

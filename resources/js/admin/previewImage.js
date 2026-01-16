@@ -1,121 +1,192 @@
-// =============================
-// Preview uploaded image + Validasi
-// =============================
+// PreviewImage.js
+
+// HYBRID PREVIEW IMAGE (CREATE)
 function previewImage(input) {
-    const preview = document.getElementById("preview-img");
-    const previewContainer = document.getElementById("photo-preview");
-    const errorMsg = document.getElementById("foto-error"); // <p id="foto-error">
-    const uploadText = document.getElementById("upload-text"); // span teks di bawah ikon
+    const file = input.files?.[0];
+    if (!file) return;
 
-    if (input.files && input.files[0]) {
-        const file = input.files[0];
+    // VALIDASI (DIPAKAI SEMUA MODE)
+    const maxSize = 2 * 1024 * 1024;
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
-        // ✅ Validasi ukuran (max 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            errorMsg.textContent = "Foto lebih dari 2MB, silakan pilih ulang.";
-            errorMsg.classList.remove("hidden");
+    // MODE MULTI (PAKAI DATA ATTRIBUTE)
+    const wrapper = input.closest('[data-preview-wrapper]');
+    if (wrapper) {
+        const previewImg  = wrapper.querySelector('[data-preview-img]');
+        const previewBox  = wrapper.querySelector('[data-preview-box]');
+        const uploadText  = wrapper.querySelector('[data-upload-text]');
+        const errorMsg    = wrapper.querySelector('[data-error-msg]');
 
-            input.value = ""; // reset input
-            preview.src = "";
-            previewContainer.classList.add("hidden");
-            uploadText.textContent = "Klik untuk upload";
+        if (file.size > maxSize) {
+            errorMsg.textContent = 'Gambar lebih dari 2MB.';
+            errorMsg.classList.remove('hidden');
+            input.value = '';
+            previewBox.classList.add('hidden');
             return;
         }
 
-        // ✅ Validasi format file
-        const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
         if (!allowedTypes.includes(file.type)) {
-            errorMsg.textContent = "Format tidak valid! Hanya JPG, JPEG, PNG.";
-            errorMsg.classList.remove("hidden");
-
-            input.value = ""; // reset input
-            preview.src = "";
-            previewContainer.classList.add("hidden");
-            uploadText.textContent = "Klik untuk upload";
+            errorMsg.textContent = 'Format tidak valid.';
+            errorMsg.classList.remove('hidden');
+            input.value = '';
+            previewBox.classList.add('hidden');
             return;
         }
 
-        // ✅ Bersihkan error jika valid
-        errorMsg.textContent = "";
-        errorMsg.classList.add("hidden");
+        errorMsg.textContent = '';
+        errorMsg.classList.add('hidden');
 
-        // ✅ Preview gambar
         const reader = new FileReader();
-        reader.onload = function (e) {
-            preview.src = e.target.result;
-            previewContainer.classList.remove("hidden");
-            uploadText.textContent = "Ganti Foto"; // ubah teks
+        reader.onload = e => {
+            previewImg.src = e.target.result;
+            previewBox.classList.remove('hidden');
+            if (uploadText) uploadText.textContent = 'Ganti Foto';
         };
         reader.readAsDataURL(file);
-    } else {
-        // Kalau file dihapus
-        preview.src = "";
-        previewContainer.classList.add("hidden");
-        uploadText.textContent = "Klik untuk upload";
-
-        errorMsg.textContent = "";
-        errorMsg.classList.add("hidden");
+        return;
     }
+
+    // MODE LEGACY (PAKAI ID)
+    const preview          = document.getElementById('preview-img');
+    const previewContainer = document.getElementById('photo-preview');
+    const errorMsg         = document.getElementById('foto-error');
+    const uploadText       = document.getElementById('upload-text');
+
+    if (!preview || !previewContainer) return;
+
+    if (file.size > maxSize) {
+        errorMsg.textContent = 'Foto lebih dari 2MB, silakan pilih ulang.';
+        errorMsg.classList.remove('hidden');
+        input.value = '';
+        preview.src = '';
+        previewContainer.classList.add('hidden');
+        uploadText.textContent = 'Klik untuk upload';
+        return;
+    }
+
+    if (!allowedTypes.includes(file.type)) {
+        errorMsg.textContent = 'Format tidak valid! (JPG / PNG / WebP)';
+        errorMsg.classList.remove('hidden');
+        input.value = '';
+        preview.src = '';
+        previewContainer.classList.add('hidden');
+        uploadText.textContent = 'Klik untuk upload';
+        return;
+    }
+
+    errorMsg.textContent = '';
+    errorMsg.classList.add('hidden');
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        preview.src = e.target.result;
+        previewContainer.classList.remove('hidden');
+        uploadText.textContent = 'Ganti Foto';
+    };
+    reader.readAsDataURL(file);
 }
 
-// =============================
-// Preview Edit Image (pakai data-id)
-// =============================
-function previewEditImage(event, id) {
-    const file = event.target.files[0];
+// HYBRID PREVIEW EDIT (UPDATE)
+function previewEditImage(input) {
+    const file = input.files?.[0];
+    if (!file) return;
+
+    const maxSize = 2 * 1024 * 1024;
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+    /* =========================
+       MODE 1 — WRAPPER (MULTI)
+    ========================= */
+    const wrapper = input.closest('[data-edit-preview-wrapper]');
+    if (wrapper) {
+        const previewImg = wrapper.querySelector('[data-edit-preview-img]');
+        const previewBox = wrapper.querySelector('[data-edit-preview-box]');
+        const errorMsg   = wrapper.querySelector('[data-edit-error-msg]');
+        const uploadText = wrapper.querySelector('[data-edit-upload-text]');
+
+        if (!previewImg || !previewBox) return;
+
+        // VALIDASI
+        if (file.size > maxSize) {
+            errorMsg.textContent = 'Gambar lebih dari 2MB.';
+            errorMsg.classList.remove('hidden');
+            input.value = '';
+            return;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+            errorMsg.textContent = 'Format tidak valid.';
+            errorMsg.classList.remove('hidden');
+            input.value = '';
+            return;
+        }
+
+        errorMsg.textContent = '';
+        errorMsg.classList.add('hidden');
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            previewImg.src = e.target.result;
+            previewBox.classList.remove('hidden');
+            if (uploadText) uploadText.textContent = 'Ganti Foto';
+        };
+        reader.readAsDataURL(file);
+
+        return; // ⛔ STOP — jangan lanjut ke mode ID
+    }
+
+    /* =========================
+       MODE 2 — LEGACY (ID)
+    ========================= */
+    const id = input.dataset.id;
+    if (!id) return;
+
     const previewContainer = document.getElementById(`currentImagePreview-${id}`);
     const errorMsg = document.getElementById(`image-error-${id}`);
 
-    if (file) {
-        // ✅ Validasi ukuran (max 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            errorMsg.innerHTML = `<span class="text-red-500">Foto lebih dari 2MB, silakan pilih ulang.</span>`;
-            errorMsg.classList.remove("hidden");
+    if (!previewContainer) return;
 
-            event.target.value = ""; // reset input
-            previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
-            return;
+    // VALIDASI
+    if (file.size > maxSize) {
+        if (errorMsg) {
+            errorMsg.textContent = 'Gambar lebih dari 2MB.';
+            errorMsg.classList.remove('hidden');
         }
-
-        // ✅ Validasi format
-        const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
-        if (!allowedTypes.includes(file.type)) {
-            errorMsg.innerHTML = `<span class="text-red-500">Format tidak valid! Hanya JPG, JPEG, PNG.</span>`;
-            errorMsg.classList.remove("hidden");
-
-            event.target.value = "";
-            previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
-            return;
-        }
-
-        // ✅ Bersihkan error kalau valid
-        errorMsg.textContent = "";
-        errorMsg.classList.add("hidden");
-
-        // ✅ Preview gambar baru
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            previewContainer.innerHTML = `
-                <img src="${e.target.result}" 
-                     alt="Preview" 
-                     class="w-24 h-24 object-cover rounded-lg border shadow-sm">`;
-        };
-        reader.readAsDataURL(file);
-    } else {
-        previewContainer.innerHTML = `<p class="text-gray-500 text-sm">Tidak ada gambar</p>`;
+        input.value = '';
+        return;
     }
+
+    if (!allowedTypes.includes(file.type)) {
+        if (errorMsg) {
+            errorMsg.textContent = 'Format tidak valid.';
+            errorMsg.classList.remove('hidden');
+        }
+        input.value = '';
+        return;
+    }
+
+    if (errorMsg) {
+        errorMsg.textContent = '';
+        errorMsg.classList.add('hidden');
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        previewContainer.innerHTML = `
+            <img src="${e.target.result}"
+                 class="w-24 h-24 object-cover rounded-lg border shadow-sm">
+        `;
+    };
+    reader.readAsDataURL(file);
 }
 
-// =============================
-// Binding event listener (biar tanpa inline onchange)
-// =============================
+// AUTO BIND (EDIT)
 document.querySelectorAll('.preview-edit-input').forEach(input => {
-    input.addEventListener('change', (event) => {
-        const id = event.target.dataset.id;
-        previewEditImage(event, id);
+    input.addEventListener('change', event => {
+        previewEditImage(event, input.dataset.id);
     });
 });
 
-
+// GLOBAL
 window.previewImage = previewImage;
 window.previewEditImage = previewEditImage;

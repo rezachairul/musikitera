@@ -187,7 +187,7 @@
 
                     <!-- Link Dokumentasi -->
                     <div class="col-span-2">
-                        <label for="link_dokumentasi" class="block text-sm font-medium text-gray-700 mb-2">Link Dokumentasi</label>
+                        <label for="link_dokumentasi" class="block text-sm font-medium text-gray-700 mb-2 mt-2">Link Dokumentasi</label>
                         <input type="url" name="link_dokumentasi" id="link_dokumentasi" value="{{ old('link_dokumentasi') }}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                             placeholder="https://example.com">
@@ -198,7 +198,7 @@
 
                     <!-- Deskripsi -->
                     <div class="col-span-2">
-                        <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                        <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2 mt-2">Deskripsi</label>
                         <textarea name="deskripsi" id="deskripsi" rows="3"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                             placeholder="Tuliskan deskripsi kerjasama">{{ old('deskripsi') }}</textarea>

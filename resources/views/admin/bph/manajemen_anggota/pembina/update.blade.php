@@ -108,14 +108,10 @@
                                 </div>
 
                                 <!-- File input -->
-                                <input id="foto_input_{{ $manage_pembina->id }}" name="foto" type="file" 
-                                    accept=".jpg,.jpeg,.png"
-                                    class="hidden preview-edit-input" 
-                                    data-id="{{ $manage_pembina->id }}"
-                                    >
+                                <input id="foto_input_{{ $manage_pembina->id }}" name="foto" type="file"  accept=".jpg,.jpeg,.png" class="hidden preview-edit-input"  data-id="{{ $manage_pembina->id }}" onchange="previewEditImage(this)">
                             </div>
 
-                            <p id="foto-error" class="mt-2 text-sm text-red-600 hidden"></p>
+                            <p id="image-error" class="mt-2 text-sm text-red-600 hidden"></p>
                         </div>
                     </div>
 

@@ -65,28 +65,28 @@
 
                 <!-- Pendiri -->
                 <div>
-                <span class="block text-sm font-medium text-gray-700 mb-2">Pendiri</span>
-                <div class="flex items-center gap-6">
-                    
-                    <!-- Ya -->
-                    <label class="flex items-center cursor-pointer">
-                    <input type="radio" name="pendiri" value="1"
-                            class="hidden peer">
-                    <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                peer-checked:border-blue-600 peer-checked:bg-blue-600 transition"></span>
-                    <span class="ml-2 text-sm text-gray-700">Ya</span>
-                    </label>
+                    <span class="block text-sm font-medium text-gray-700 mb-2">Pendiri</span>
+                    <div class="flex items-center gap-6">
+                        
+                        <!-- Ya -->
+                        <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="pendiri" value="1"
+                                class="hidden peer">
+                        <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
+                                    peer-checked:border-blue-600 peer-checked:bg-blue-600 transition"></span>
+                        <span class="ml-2 text-sm text-gray-700">Ya</span>
+                        </label>
 
-                    <!-- Tidak -->
-                    <label class="flex items-center cursor-pointer">
-                    <input type="radio" name="pendiri" value="0"
-                            class="hidden peer">
-                    <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
-                                peer-checked:border-red-600 peer-checked:bg-red-600 transition"></span>
-                    <span class="ml-2 text-sm text-gray-700">Tidak</span>
-                    </label>
+                        <!-- Tidak -->
+                        <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="pendiri" value="0"
+                                class="hidden peer">
+                        <span class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center 
+                                    peer-checked:border-red-600 peer-checked:bg-red-600 transition"></span>
+                        <span class="ml-2 text-sm text-gray-700">Tidak</span>
+                        </label>
 
-                </div>
+                    </div>
                 </div>
 
                 <!-- Status -->

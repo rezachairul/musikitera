@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
     container_name: musikitera-app
     volumes:
       - ./:/var/www
