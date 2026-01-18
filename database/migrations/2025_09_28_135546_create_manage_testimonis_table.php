@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             // Relasi ke Alumni
             $table->unsignedBigInteger('alumni_id')->index(); // Foreign Key
+            $table->string('foto')->nullable();   // Kolom foto
             $table->text('kesan')->nullable();    // Kolom kesan
             $table->text('pesan')->nullable();    // Kolom pesan
-
-            $table->foreign('alumni_id')
-                ->references('id')
-                ->on('manage_alumnis')
-                ->onDelete('cascade'); // kalau data alumni dihapus, testimoninya ikut hilang
+            
+            $table->foreign('alumni_id')->references('id')->on('manage_alumnis')->onDelete('cascade'); // kalau data alumni dihapus, testimoninya ikut hilang
             $table->timestamps();
         });
     }
