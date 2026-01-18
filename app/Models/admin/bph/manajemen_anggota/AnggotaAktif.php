@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\admin\bph\manajemen_konten\ManageTestimoni;
 use App\Models\admin\bph\manajemen_anggota\ManageAlumni;
+use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 
 class AnggotaAktif extends Model
 {
@@ -30,10 +31,7 @@ class AnggotaAktif extends Model
         'organisasi' => 'BSM',
     ];
 
-    /* -----------------------------
-     * Utility NIA & nomor urut
-     * ----------------------------- */
-
+    // Utility NIA & nomor urut
     private function toRoman($number)
     {
         $map = [
@@ -82,9 +80,7 @@ class AnggotaAktif extends Model
         return "{$nomorUrut}/{$this->organisasi}/{$angkatanRomawi}";
     }
 
-    /* -----------------------------
-     * Relasi
-     * ----------------------------- */
+    // Relasi
 
     // 1 anggota = 1 alumni (karena anggota_id di manage_alumnis itu unique)
     public function alumni()
@@ -103,12 +99,16 @@ class AnggotaAktif extends Model
         return $this->hasMany(ManageTestimoni::class, 'anggota_id');
     }
 
-    /* -----------------------------
-     * Scope helper
-     * ----------------------------- */
+    // Scope helper
 
     public function scopeGraduate($query)
     {
         return $query->where('status', 'graduate');
+    }
+
+    // Relasi ke Manage Badan Pengurus
+    public function badanPengurus()
+    {
+        return $this->hasMany(ManageBadanPengurus::class, 'anggota_aktif_id');
     }
 }

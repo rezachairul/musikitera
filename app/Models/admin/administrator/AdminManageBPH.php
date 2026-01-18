@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models\Admin\Administrator;
+namespace App\Models\admin\Administrator;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 
 class AdminManageBPH extends Model
 {
@@ -64,5 +65,11 @@ class AdminManageBPH extends Model
     public static function levelOf(string $jenis): int
     {
         return self::LEVEL_MAP[$jenis];
+    }
+
+    // Relasi ke Manage Badan Pengurus
+    public function pengurus()
+    {
+        return $this->hasMany(ManageBadanPengurus::class, 'jabatan_id');
     }
 }

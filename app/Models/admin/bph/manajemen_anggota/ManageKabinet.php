@@ -4,6 +4,7 @@ namespace App\Models\admin\bph\manajemen_anggota;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 
 class ManageKabinet extends Model
 {
@@ -27,4 +28,10 @@ class ManageKabinet extends Model
         'periode_awal' => 'integer',
         'periode_akhir' => 'integer',
     ];
+
+    // Relasi ke model Manage Badan Pengurus
+    public function badanPengurus()
+    {
+        return $this->hasMany(ManageBadanPengurus::class, 'manage_kabinet_id');
+    }
 }
