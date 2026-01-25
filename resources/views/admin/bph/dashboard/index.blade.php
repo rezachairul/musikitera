@@ -25,7 +25,7 @@
             </div>
             <div class="text-left">
                 <h2 class="text-sm font-semibold text-gray-800">Anggota Aktif</h2>
-                <p class="text-gray-700 font-bold text-sm mt-1">Total: 120</p>
+                <p class="text-gray-700 font-bold text-sm mt-1">Total: {{ $anggotaAktif }}</p>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
             </div>
             <div class="text-left">
                 <h2 class="text-sm font-semibold text-gray-800">Alumni</h2>
-                <p class="text-gray-700 font-bold text-sm mt-1">Total: 85</p>
+                <p class="text-gray-700 font-bold text-sm mt-1">Total: {{ $anggotaLulus }}</p>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             </div>
             <div class="text-left">
                 <h2 class="text-sm font-semibold text-gray-800">Badan Pengurus</h2>
-                <p class="text-gray-700 font-bold text-sm mt-1">Total: 25</p>
+                <p class="text-gray-700 font-bold text-sm mt-1">Total: {{ $totalPengurus }}</p>
             </div>
         </div>
 
