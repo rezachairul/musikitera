@@ -18,16 +18,17 @@ class ManageVisiMisiController extends Controller
     {
         $title = "Visi & Misi";
 
-        $visis = ManageVisi::with('misis')->get();
+        $visi = ManageVisi::with('misis')->first();
 
-        return view('admin.bph.tentang_ukmbsm.visi_misi.index', compact( 'title', 'visis'));
+        return view('admin.bph.tentang_ukmbsm.visi_misi.index', compact( 'title', 'visi'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'visi'   => 'required|string',
             'misi'   => 'required|array|min:1',
@@ -57,6 +58,7 @@ class ManageVisiMisiController extends Controller
      */
      public function update(Request $request, $id)
     {
+        dd($request->all());
         $request->validate([
             'visi'   => 'required|string',
             'misi'   => 'required|array|min:1',

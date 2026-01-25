@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\bph\tentang_ukmbsm\ManageProfile;
+use App\Models\admin\bph\tentang_ukmbsm\ManageVisi;
+use App\Models\admin\bph\tentang_ukmbsm\ManageMisi;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -16,7 +18,8 @@ class ProfileController extends Controller
         $author = 'UKMBSM ITERA';
 
         $profile = ManageProfile::first();
+        $visi = ManageVisi::with('misis')->first();
 
-        return view('public.about.profile', compact('title', 'description', 'keywords', 'author', 'profile'));
+        return view('public.about.profile', compact('title', 'description', 'keywords', 'author', 'profile', 'visi'));
     }
 }

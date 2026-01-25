@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\ManageMisi;
+use App\Models\admin\bph\tentang_ukmbsm\ManageMisi;
 use App\Models\admin\administrator\User;
 use Illuminate\Auth\Access\Response;
 

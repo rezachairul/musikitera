@@ -8,6 +8,7 @@
 
     <div class="bg-white min-h-screen font-sans">
 
+        <!-- PROFILE -->
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 flex flex-col justify-center gap-4 opacity-[0.03] pointer-events-none">
                 @for ($i = 0; $i < 5; $i++)
@@ -30,7 +31,7 @@
                         <div class="absolute -left-6 top-0 bottom-0 w-[4px] bg-[#E63946]"></div>
                         <p class="text-xl text-slate-600 leading-relaxed font-medium text-justify">
                             <span class="text-[#0A192F] font-bold">{{ $profile->nama ?? 'UKMBSM ITERA' }}</span>
-                            atau yang lebih sering dikenal sebagai {{ $profile->akronim ? "{$profile->akronim}" : 'UKMBSM ITERA' }}
+                            atau yang lebih sering dikenal sebagai {{ $profile->akronim ?? 'UKMBSM ITERA' }}
                             {{ $profile->deskripsi ?? '#AsikinAja' }}
                         </p>
                     </div>
@@ -38,6 +39,7 @@
             </div>
         </section>
 
+        <!-- VISI & MISI -->
         <section class="py-20 bg-slate-50">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-12">
@@ -52,10 +54,12 @@
                             </svg>
                         </div>
                         <h3 class="text-2xl font-black text-[#0A192F] uppercase mb-4 tracking-tight">Visi</h3>
-                        <p class="text-slate-600 font-medium leading-relaxed">
-                            Menjadi pusat pengembangan bakat musik mahasiswa yang unggul, berintegritas, dan mampu
-                            berkontribusi dalam melestarikan serta memajukan budaya musik di lingkungan kampus dan
-                            nasional.
+                        <p class="text-slate-600 font-medium leading-relaxed text-justify">
+                            {{ 
+                                $visi->visi ?? 'Menjadi UKM seni musik terdepan yang menginspirasi dan berkontribusi
+                                positif bagi komunitas kampus dan masyarakat luas melalui inovasi dan kreativitas dalam berkarya
+                                musik.'
+                            }}
                         </p>
                     </div>
 
@@ -69,18 +73,18 @@
                         </div>
                         <h3 class="text-2xl font-black text-[#0A192F] uppercase mb-4 tracking-tight">Misi</h3>
                         <ul class="space-y-3 text-slate-600 font-medium">
-                            <li class="flex items-start gap-3">
-                                <span class="text-[#E63946] font-bold">01.</span> Menyelenggarakan pelatihan musik rutin
-                                bagi anggota.
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-[#E63946] font-bold">02.</span> Menciptakan ruang kolaborasi kreatif
-                                antar musisi ITERA.
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-[#E63946] font-bold">03.</span> Aktif berpartisipasi dalam kegiatan
-                                internal dan eksternal kampus.
-                            </li>
+                            @forelse ($visi->misis as $index => $misi)
+                                <li class="flex items-start gap-3">
+                                    <span class="text-[#E63946] font-bold">
+                                        {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}.
+                                    </span>
+                                    {{ $misi->misi }}
+                                </li>
+                            @empty
+                                <li class="text-slate-400 italic">
+                                    Misi belum tersedia.
+                                </li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
