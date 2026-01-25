@@ -46,7 +46,7 @@ class ManageGaleriController extends Controller
             $query->orderBy('kegiatan_date', 'desc');
         } else {
             // default 'all' -> urut berdasarkan title
-            $query->orderBy('title', 'asc');
+            $query->orderBy('created_at', 'asc');
         }
 
         // Kalau ada search, tambahin urut title supaya konsisten

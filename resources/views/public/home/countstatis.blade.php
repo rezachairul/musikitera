@@ -22,8 +22,8 @@
             <div class="relative flex flex-col items-center">
                 <div class="mb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Members</div>
                 <div class="flex items-baseline">
-                    <h2 class="counter text-5xl md:text-7xl font-black text-[#E63946] tracking-tighter" data-target="{{ $totalAnggota }}">{
-                        { $totalAnggota }}
+                    <h2 class="counter text-5xl md:text-7xl font-black text-[#E63946] tracking-tighter" data-target="{{ $totalAnggota }}">
+                        {{ $totalAnggota }}
                     </h2>
                     <span class="text-2xl font-black text-[#E63946] ml-1">+</span>
                 </div>

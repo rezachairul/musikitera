@@ -113,7 +113,7 @@
                                 <div class="grid grid-cols-1 gap-3">
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         {{-- Email --}}
-                                        <a href="mailto:musik@itera.ac.id"
+                                        <a href="mailto:musikitera@gmail.com"
                                             class="p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-[#457B9D] hover:bg-white hover:shadow-lg transition-all flex items-center gap-4 group/item">
                                             <div
                                                 class="p-2 bg-white rounded-lg shadow-sm text-[#457B9D] group-hover/item:bg-[#457B9D] group-hover/item:text-white transition-colors">
@@ -128,7 +128,7 @@
                                                 <p
                                                     class="text-[8px] font-bold text-[#457B9D] uppercase tracking-widest leading-none mb-1">
                                                     Electronic Mail</p>
-                                                <h4 class="text-[#0A192F] font-bold text-sm">musik@itera.ac.id</h4>
+                                                <h4 class="text-[#0A192F] font-bold text-sm">musikitera@gmail.com</h4>
                                             </div>
                                         </a>
 
@@ -141,7 +141,7 @@
                                                     viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
-                                                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 00-2 2z" />
+                                                        d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9.75 1.25a.75.75 0 100 1.5.75.75 0 000-1.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
                                                 </svg>
                                             </div>
                                             <div class="text-left">
@@ -153,8 +153,9 @@
                                         </a>
                                     </div>
 
-                                    {{-- WhatsApp Mumung (Warna Navy Konsisten) --}}
-                                    <a href="https://wa.me/62834299329239432" target="_blank"
+                                    {{-- WhatsApp (Warna Navy Konsisten) --}}
+                                    @forelse($kontakEksternal as $item)
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item['no']) }}" target="_blank"
                                         class="p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-[#0A192F] hover:bg-white hover:shadow-lg transition-all flex items-center gap-4 group/item">
                                         <div
                                             class="p-2 bg-white rounded-lg shadow-sm text-[#0A192F] group-hover/item:bg-[#0A192F] group-hover/item:text-white transition-colors">
@@ -165,12 +166,15 @@
                                             </svg>
                                         </div>
                                         <div class="text-left">
-                                            <p
-                                                class="text-[8px] font-bold text-[#0A192F] uppercase tracking-widest leading-none mb-1">
-                                                WhatsApp // Mumung</p>
-                                            <h4 class="text-[#0A192F] font-bold text-sm">62834299329239432</h4>
+                                            <p class="text-[8px] font-bold text-[#0A192F] uppercase tracking-widest leading-none mb-1">
+                                                WhatsApp // {{ $item['nama'] }}
+                                            </p>
+                                            <h4 class="text-[#0A192F] font-bold text-sm">{{ $item['no'] }}</h4>
                                         </div>
                                     </a>
+                                    @empty
+                                        <p class="text-gray-500">Belum ada kontak eksternal.</p>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>

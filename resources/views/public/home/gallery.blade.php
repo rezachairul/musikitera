@@ -46,63 +46,28 @@
 
         <div class="swiper gallery-kegiatan-swiper">
             <div class="swiper-wrapper">
-                @php
-                    $galleries = [
-                        [
-                            'img' => 'https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg',
-                            'tag' => 'CONCERT',
-                            'title' => 'Main Stage',
-                        ],
-                        [
-                            'img' => 'https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg',
-                            'tag' => 'SESSION',
-                            'title' => 'Studio Rec',
-                        ],
-                        [
-                            'img' => 'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg',
-                            'tag' => 'WORKSHOP',
-                            'title' => 'Music Class',
-                        ],
-                        [
-                            'img' => 'https://images.pexels.com/photos/164716/pexels-photo-164716.jpeg',
-                            'tag' => 'BEHIND',
-                            'title' => 'Gear Set',
-                        ],
-                        [
-                            'img' => 'https://images.pexels.com/photos/167446/pexels-photo-167446.jpeg',
-                            'tag' => 'LIVE',
-                            'title' => 'Acoustic Night',
-                        ],
-                    ];
-                @endphp
-
-                @foreach ($galleries as $item)
+                @forelse ($galeris as $item)
                     <div class="swiper-slide">
                         <div class="group relative overflow-hidden rounded-2xl bg-[#112240] border border-white/5">
                             <div class="h-[300px] w-full relative overflow-hidden">
-                                <img src="{{ $item['img'] }}"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                    alt="Gallery">
-
-                                <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none"
-                                    style="background-image: url('https://www.transparenttextures.com/patterns/denim.png');">
-                                </div>
-
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent opacity-80">
-                                </div>
+                                <img src="{{ asset('storage/' . $item->image) }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" alt="{{ $item->title }}">
+                                <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/denim.png');"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent opacity-80"></div>
                             </div>
 
                             <div class="absolute inset-0 flex flex-col justify-end p-6">
-                                <span
-                                    class="text-[#E63946] text-[9px] font-black uppercase tracking-widest mb-1">{{ $item['tag'] }}</span>
+                                <span class="text-[#E63946] text-[9px] font-black uppercase tracking-widest mb-1">
+                                    {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::slug($item->title, ' ')) }}
+                                </span>
                                 <h3 class="text-white text-base font-bold uppercase tracking-tighter">
-                                    {{ $item['title'] }}
+                                    {{ $item->title }}
                                 </h3>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-white">Belum ada galeri.</p>
+                @endforelse
             </div>
 
             <div class="swiper-pagination gallery-pagi !static mt-8"></div>
@@ -110,24 +75,35 @@
     </div>
 
     <style>
-        /* Biar tinggi flexibel */
-        .gallery-kegiatan-swiper .swiper-wrapper {
-            align-items: stretch;
+        .gallery-kegiatan-swiper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Let Swiper manage widths via slidesPerView */
+        /* JANGAN override display / width swiper */
         .gallery-kegiatan-swiper .swiper-slide {
             height: auto;
+        }
+
+        .gallery-kegiatan-swiper .swiper-slide > div {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* pagination */
+        .gallery-pagi {
             display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
         }
 
         .gallery-pagi .swiper-pagination-bullet {
             width: 25px;
             height: 3px;
             border-radius: 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             opacity: 1;
         }
 
@@ -141,7 +117,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const bsmGallery = new Swiper('.gallery-kegiatan-swiper', {
                 slidesPerView: 3,
-                slidesPerGroup: 3,
+                slidesPerGroup: 1,
                 spaceBetween: 20,
                 loop: true,
                 grabCursor: true,
@@ -150,15 +126,12 @@
                 breakpoints: {
                     0: {
                         slidesPerView: 1,
-                        slidesPerGroup: 1,
                     },
                     768: {
                         slidesPerView: 2,
-                        slidesPerGroup: 2,
                     },
                     1024: {
                         slidesPerView: 3,
-                        slidesPerGroup: 3,
                     },
                 },
 

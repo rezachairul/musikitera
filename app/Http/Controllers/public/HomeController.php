@@ -7,6 +7,9 @@ use App\Models\public\Home;
 use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
 use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 use App\Models\admin\bph\manajemen_anggota\ManageKabinet;
+
+use App\Models\admin\bph\manajemen_konten\ManageGaleri;
+
 use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHomeRequest;
@@ -41,6 +44,13 @@ class HomeController extends Controller
         $totalKabinet = ManageKabinet::count();
         $kabinetAktif = ManageKabinet::where('is_active', 1)->first();
 
+        // ================= GALLERY =================
+        $galeris = ManageGaleri::whereNotNull('image')
+            ->orderByDesc('kegiatan_date')
+            ->orderByDesc('created_at')
+            ->limit(9)
+            ->get();
+
         // ================= MITRA =================
         $totalMitras = ManageMitra::count();
         // Ambil mitra internal + logo
@@ -64,6 +74,7 @@ class HomeController extends Controller
             'internalMitras', 'eksternalMitras', 'totalMitras', 
             'totalAnggota', 'anggotaAktif', 'anggotaLulus', 'anggotaDO', 'anggotaExit',
             'totalPengurus', 'pengurusAktif', 'pengurusDemisioner',
+            'galeris',
             'totalKabinet', 'kabinetAktif'
             ));
     }

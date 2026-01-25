@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\bph\tentang_ukmbsm\ManageProfile;
 use Illuminate\Http\Request;
 
 class ContactExternalController extends Controller
@@ -14,6 +15,9 @@ class ContactExternalController extends Controller
         $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
         $author = 'UKMBSM ITERA';
 
-        return view('public.contact.external', compact('title', 'description', 'keywords', 'author'));
+        $profile = ManageProfile::first();
+        $kontakEksternal = $profile?->kontak_eksternal ?? [];
+
+        return view('public.contact.external', compact('title', 'description', 'keywords', 'author', 'kontakEksternal'));
     }
 }
