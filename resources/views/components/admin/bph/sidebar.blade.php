@@ -101,6 +101,11 @@
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-sejarah.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Sejarah
                 </a>
+
+                <a href="{{ route('manage-studio-musik.index') }}"
+                    class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-studio-musik.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
+                    Studio Musik
+                </a>
             </div>
         </div>
         

@@ -46,6 +46,7 @@ use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
 
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
+use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageStudioMusikController;
 
 // Dewan Pengawas
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
@@ -289,6 +290,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     
     // Sejarah
     Route::controller(ManageSejarahController::class)->prefix('manage-sejarah')->name('manage-sejarah.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });
+
+    // Studio Musik
+    Route::controller(ManageStudioMusikController::class)->prefix('manage-studio-musik')->name('manage-studio-musik.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
