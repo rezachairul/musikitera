@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\public;
 
 use App\Models\public\Home;
+
+use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHomeRequest;
 use App\Http\Requests\UpdateHomeRequest;
@@ -20,7 +22,23 @@ class HomeController extends Controller
         $author = 'UKMBSM ITERA';
         $showHeader = false;
 
-        return view('public.home.index', compact('title', 'description', 'keywords', 'author', 'showHeader'));
+        // Ambil mitra internal + logo
+        $internalMitras = ManageMitra::where('type', 'internal')
+            ->whereNotNull('logo')
+            ->where('logo', '!=', '')
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->groupBy('sub_type');
+
+            // Ambil mitra eksternal + logo
+        $eksternalMitras = ManageMitra::where('type', 'eksternal')
+            ->whereNotNull('logo')
+            ->where('logo', '!=', '')
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->groupBy('sub_type');
+
+        return view('public.home.index', compact('title', 'description', 'keywords', 'author', 'showHeader', 'internalMitras', 'eksternalMitras'));
     }
 
     /**

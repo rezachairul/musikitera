@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Form Hapus -->
-                <form id="deleteForm-{{ $kabinet->id }}" method="POST" action="{{ route('anggota-aktif.destroy', $kabinet->id ) }}">
+                <form id="deleteForm-{{ $kabinet->id }}" method="POST" action="{{ route('manage-kabinet.destroy', $kabinet->id ) }}">
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-center space-x-3 mt-4">

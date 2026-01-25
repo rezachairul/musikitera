@@ -120,7 +120,7 @@
             </div>
             <div class="text-left">
                 <h2 class="text-sm font-semibold text-gray-800">Mitra</h2>
-                <p class="text-gray-700 font-bold text-sm mt-1">Total: 10</p>
+                <p class="text-gray-700 font-bold text-sm mt-1">Total: {{ $totalMitras }}</p>
             </div>
         </div>
 

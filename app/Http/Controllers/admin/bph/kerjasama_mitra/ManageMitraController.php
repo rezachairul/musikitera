@@ -80,7 +80,7 @@ class ManageMitraController extends Controller
                 WHEN 'komunitas' THEN 5
                 ELSE 6
             END
-        ")->orderBy('name', 'asc');
+        ")->orderBy('created_at', 'asc');
 
         // 📌 Pagination
         $mitras = $query->paginate(
