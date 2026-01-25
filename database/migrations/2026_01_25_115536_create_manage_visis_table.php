@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manage_visi_misis', function (Blueprint $table) {
+        Schema::create('manage_visis', function (Blueprint $table) {
             $table->id();
+            $table->text('visi');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manage_visi_misis');
+        Schema::dropIfExists('manage_visis');
     }
 };

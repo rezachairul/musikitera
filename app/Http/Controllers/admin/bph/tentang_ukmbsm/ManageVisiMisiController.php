@@ -4,10 +4,10 @@ namespace App\Http\Controllers\admin\bph\tentang_ukmbsm;
 
 use Illuminate\Http\Request;
 
-use App\Models\admin\bph\tentang_ukmbsm\ManageVisiMisi;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\admin\bph\tentang_ukmbsm\ManageVisi;
+use App\Models\admin\bph\tentang_ukmbsm\ManageMisi;
+use Illuminate\Support\Facades\DB;
 
 class ManageVisiMisiController extends Controller
 {
@@ -18,54 +18,83 @@ class ManageVisiMisiController extends Controller
     {
         $title = "Visi & Misi";
 
-        return view('admin.bph.tentang_ukmbsm.visi_misi.index', compact( 'title'));
-    }
+        $visis = ManageVisi::with('misis')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('admin.bph.tentang_ukmbsm.visi_misi.index', compact( 'title', 'visis'));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'visi'   => 'required|string',
+            'misi'   => 'required|array|min:1',
+            'misi.*' => 'required|string'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ManageVisiMisi $manageVisiMisi)
-    {
-        //
-    }
+        DB::transaction(function () use ($request) {
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ManageVisiMisi $manageVisiMisi)
-    {
-        //
+            $visi = ManageVisi::create([
+                'visi' => $request->visi,
+            ]);
+
+            foreach ($request->misi as $item) {
+                ManageMisi::create([
+                    'manage_visi_id' => $visi->id,
+                    'misi' => $item
+                ]);
+            }
+
+        });
+
+        return redirect()->back()->with('success', 'Visi & Misi berhasil disimpan');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ManageVisiMisi $manageVisiMisi)
+     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'visi'   => 'required|string',
+            'misi'   => 'required|array|min:1',
+            'misi.*' => 'required|string'
+        ]);
+
+        DB::transaction(function () use ($request, $id) {
+
+            $visi = ManageVisi::findOrFail($id);
+
+            $visi->update([
+                'visi' => $request->visi
+            ]);
+
+            // hapus semua misi lama
+            $visi->misis()->delete();
+
+            // simpan ulang misi
+            foreach ($request->misi as $item) {
+                ManageMisi::create([
+                    'manage_visi_id' => $visi->id,
+                    'misi' => $item
+                ]);
+            }
+
+        });
+
+        return redirect()->back()->with('success', 'Visi & Misi berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ManageVisiMisi $manageVisiMisi)
+    public function destroy($id)
     {
-        //
+        $visi = ManageVisi::findOrFail($id);
+        $visi->delete(); // misi otomatis kehapus (cascade)
+
+        return redirect()->back()->with('success', 'Visi & Misi berhasil dihapus');
     }
 }

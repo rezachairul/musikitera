@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 use App\Models\admin\bph\tentang_ukmbsm\ManageProfile;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class ManageProfileController extends Controller
 {
@@ -65,9 +63,12 @@ class ManageProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ManageProfile $manageProfile)
+    public function update(Request $request, $id)
     {
         // dd(request()->all());
+
+        $manageProfile = ManageProfile::findOrFail($id);
+
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'akronim' => 'nullable|string|max:50',
@@ -93,7 +94,7 @@ class ManageProfileController extends Controller
             $request->kontak_eksternal_no ?? []
         );
 
-        ManageProfile::create($validated);
+        $manageProfile->update($validated);
 
         return redirect()->back()->with('success', 'Profile berhasil diupdate!');
     }

@@ -28,11 +28,10 @@
                     </div>
                     <div class="relative">
                         <div class="absolute -left-6 top-0 bottom-0 w-[4px] bg-[#E63946]"></div>
-                        <p class="text-xl text-slate-600 leading-relaxed font-medium">
-                            <span class="text-[#0A192F] font-bold">UKM Seni Musik ITERA</span> adalah wadah kreativitas
-                            mahasiswa Institut Teknologi Sumatera dalam mengeksplorasi harmoni, teknik, dan ekspresi
-                            melalui nada. Kami percaya bahwa musik adalah bahasa universal yang menyatukan sains dan
-                            seni.
+                        <p class="text-xl text-slate-600 leading-relaxed font-medium text-justify">
+                            <span class="text-[#0A192F] font-bold">{{ $profile->nama ?? 'UKMBSM ITERA' }}</span>
+                            atau yang lebih sering dikenal sebagai {{ $profile->akronim ? "{$profile->akronim}" : 'UKMBSM ITERA' }}
+                            {{ $profile->deskripsi ?? '#AsikinAja' }}
                         </p>
                     </div>
                 </div>

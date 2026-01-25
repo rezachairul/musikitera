@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\admin\bph\manajemen_konten\ManageVisiMisi;
-use App\Models\User;
+use App\Models\ManageMisi;
+use App\Models\admin\administrator\User;
 use Illuminate\Auth\Access\Response;
 
-class ManageVisiMisiPolicy
+class ManageMisiPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class ManageVisiMisiPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ManageVisiMisi $manageVisiMisi): bool
+    public function view(User $user, ManageMisi $manageMisi): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class ManageVisiMisiPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ManageVisiMisi $manageVisiMisi): bool
+    public function update(User $user, ManageMisi $manageMisi): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class ManageVisiMisiPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ManageVisiMisi $manageVisiMisi): bool
+    public function delete(User $user, ManageMisi $manageMisi): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class ManageVisiMisiPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ManageVisiMisi $manageVisiMisi): bool
+    public function restore(User $user, ManageMisi $manageMisi): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class ManageVisiMisiPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ManageVisiMisi $manageVisiMisi): bool
+    public function forceDelete(User $user, ManageMisi $manageMisi): bool
     {
         return false;
     }
