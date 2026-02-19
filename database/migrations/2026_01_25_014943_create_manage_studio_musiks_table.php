@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('manage_studio_musiks', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_studio');
+            $table->text('deskripsi');
+
+            // jam buka
+            $table->time('weekday_open');
+            $table->time('weekday_close');
+            $table->time('weekend_open');
+            $table->time('weekend_close');
+
+            // lokasi
+            $table->string('ruang');
+            $table->string('lantai');
+            $table->string('gedung');
+            $table->string('lokasi');
             $table->timestamps();
         });
     }

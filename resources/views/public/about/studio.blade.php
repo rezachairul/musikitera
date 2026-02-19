@@ -46,26 +46,10 @@
 
                     <div class="relative pt-2">
                         <div class="absolute -left-6 top-0 bottom-0 w-[4px] bg-[#E63946]"></div>
-                        <div class="space-y-4 text-slate-600 font-medium leading-relaxed">
+                        <div class="space-y-4 text-slate-600 font-medium leading-relaxed text-justify">
                             <p>
-                                Studio Musik UKMBSM ITERA merupakan fasilitas unggulan yang dimiliki oleh Unit Kegiatan
-                                Mahasiswa
-                                Bidang Seni Musik (UKMBSM) Institut Teknologi Sumatera, diresmikan pada 22 Februari
-                                2018.
-                            </p>
-                            <p>
-                                Studio ini tidak hanya menjadi ruang kreativitas bagi anggota UKMBSM, tetapi juga
-                                terbuka bagi
-                                seluruh mahasiswa ITERA melalui prosedur peminjaman yang terorganisir. Selain studio,
-                                alat musik
-                                yang tersedia juga dapat dipinjam untuk mendukung eksplorasi seni mahasiswa.
-                            </p>
-                            <p>
-                                UKMBSM terus aktif menggelar berbagai kegiatan, termasuk
-                                <span class="text-[#0A192F] font-bold">Funcoustic</span>,
-                                <span class="text-[#0A192F] font-bold">Coaching Clinic</span>, dan
-                                <span class="text-[#0A192F] font-bold">Sound Engineering</span>,
-                                menjadikan studio musik ini sebagai pusat pengembangan talenta musik di kampus.
+                                {{ $studio->deskripsi ?? 
+                                'Studio Musik UKMBSM ITERA merupakan fasilitas unggulan yang digunakan sebagai ruang latihan, eksplorasi, dan pengembangan kreativitas musik mahasiswa Institut Teknologi Sumatera.' }}
                             </p>
                         </div>
                     </div>
@@ -92,9 +76,11 @@
                             </div>
                             <h2 class="text-sm font-black tracking-[0.2em] uppercase text-[#0A192F]">Lokasi Studio</h2>
                         </div>
-                        <p class="text-base font-bold text-slate-900 mb-1">Ruang D301, Gedung D Lantai 3</p>
+                        <p class="text-base font-bold text-slate-900 mb-1">
+                            Ruang {{ $studio->ruang ?? 'D301' }}, Gedung {{ $studio->gedung ?? 'D' }}, Lantai {{ $studio->lantai ?? '3' }}.
+                        </p>
                         <p class="text-sm text-slate-500 font-medium leading-relaxed">
-                            Institut Teknologi Sumatera (ITERA), Lampung Selatan.
+                            {{ $studio->lokasi }}.
                         </p>
                     </div>
 
@@ -115,11 +101,11 @@
                         <ul class="text-sm text-slate-700 space-y-2 font-medium">
                             <li class="flex justify-between border-b border-slate-50 pb-1">
                                 <span>Senin – Jumat</span>
-                                <span class="font-bold text-[#0A192F]">16.00 – 21.00 WIB</span>
+                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekday_open, 0,5) ?? '00:00' }} – {{ substr($studio->weekday_close, 0, 5) ?? '00:00' }} WIB</span>
                             </li>
                             <li class="flex justify-between border-b border-slate-50 pb-1">
-                                <span>Sabtu</span>
-                                <span class="font-bold text-[#0A192F]">10.00 – 21.00 WIB</span>
+                                <span>Sabtu - Minggu</span>
+                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekend_open, 0, 5) ?? '00:00' }} – {{ substr($studio->weekend_close, 0, 5) ?? '00:00' }} WIB</span>
                             </li>
                             <li class="text-[10px] text-slate-400 italic mt-2">
                                 *Jadwal dapat menyesuaikan agenda kegiatan UKMBSM / By Request.
@@ -138,8 +124,8 @@
                         <h2 class="text-3xl font-black text-[#0A192F] uppercase tracking-tighter">
                             Fasilitas & <span class="text-[#E63946]">Suasana</span>
                         </h2>
-                        <p class="text-[#457B9D] font-bold tracking-[0.2em] uppercase text-xs mt-2">Explore Our
-                            Workspace</p>
+                        <p class="text-[#457B9D] font-bold tracking-[0.2em] uppercase text-xs mt-2">Explore Our Workspace
+                        </p>
                     </div>
 
                     <div class="flex gap-3">
@@ -147,94 +133,74 @@
                             class="h-12 w-12 flex items-center justify-center rounded-full border-2 border-slate-200 text-[#0A192F] hover:border-[#E63946] hover:text-[#E63946] transition-all duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 19l-7-7 7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
                         <button id="studio-next"
                             class="h-12 w-12 flex items-center justify-center rounded-full border-2 border-slate-200 text-[#0A192F] hover:border-[#E63946] hover:text-[#E63946] transition-all duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5l7 7-7 7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                         </button>
                     </div>
                 </div>
 
-                @php
-                    $slides = [
-                        [
-                            'title' => 'Ruang Studio Utama',
-                            'desc' =>
-                                'Ruang utama untuk latihan band, jamming, dan sesi rekaman sederhana. Dilengkapi drum set, ampli gitar & bass, serta sistem PA.',
-                        ],
-                        [
-                            'title' => 'Peralatan Drum & Rhythm',
-                            'desc' =>
-                                'Set drum akustik dan perkusi yang siap dipakai untuk latihan intens maupun persiapan lomba.',
-                        ],
-                        [
-                            'title' => 'Ruang Mixing & Sound',
-                            'desc' =>
-                                'Area pengaturan sound, mixer, dan monitoring yang digunakan dalam kegiatan pelatihan sound engineering.',
-                        ],
-                        [
-                            'title' => 'Gitar, Bass & Keyboard',
-                            'desc' =>
-                                'Berbagai instrumen untuk menunjang kebutuhan aransemen musik, bisa dipinjam sesuai prosedur peminjaman.',
-                        ],
-                        [
-                            'title' => 'Kegiatan Funcoustic & Coaching',
-                            'desc' =>
-                                'Studio juga digunakan sebagai tempat intimate gig, sesi coaching, dan sharing seputar musik.',
-                        ],
-                    ];
-                @endphp
+                <div id="studio-carousel"  class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6 no-scrollbar">
+                    @forelse ($facilities as $index => $facility)
+                        <div class="snap-start min-w-[260px] md:min-w-[320px]">
+                            {{-- SHADOW WRAPPER --}}
+                            <div
+                                class="group rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
 
-                <div id="studio-carousel"
-                    class="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 no-scrollbar">
-                    @foreach ($slides as $index => $slide)
-                        <div
-                            class="group snap-start min-w-[300px] md:min-w-[400px] bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 relative">
+                                {{-- CARD --}}
+                                <div class="bg-white rounded-xl border border-slate-100 overflow-hidden">
 
-                            {{-- Image Area with Hover Equalizer --}}
-                            <div class="relative h-64 bg-slate-900 flex items-center justify-center overflow-hidden">
-                                {{-- Placeholder Gradient --}}
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#457B9D] to-[#E63946] opacity-60">
-                                </div>
+                                    {{-- IMAGE --}}
+                                    <div class="relative h-44 md:h-48 overflow-hidden">
+                                        @if ($facility->image)
+                                            <img
+                                                src="{{ asset('storage/' . $facility->image) }}"
+                                                alt="{{ $facility->nama }}"
+                                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            >
+                                            <div class="absolute inset-0 bg-black/35"></div>
+                                        @else
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#457B9D] to-[#E63946] opacity-65">
+                                            </div>
+                                        @endif
 
-                                <div
-                                    class="relative z-10 text-white/50 text-[10px] font-black uppercase tracking-[0.3em]">
-                                    Fasilitas {{ $index + 1 }}
-                                </div>
-
-                                {{-- Hover Equalizer Overlay --}}
-                                <div
-                                    class="absolute bottom-0 left-0 right-0 h-16 flex items-end justify-center gap-1.5 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-black/80 to-transparent">
-                                    @for ($i = 0; $i < 8; $i++)
                                         <div
-                                            class="w-1.5 bg-[#E63946] rounded-full animate-eq-{{ $i % 2 == 0 ? 'slow' : 'fast' }}">
+                                            class="relative z-10 h-full flex items-center justify-center text-white/70 text-[9px] font-black uppercase tracking-[0.25em]">
+                                            Fasilitas {{ $index + 1 }}
                                         </div>
-                                    @endfor
-                                </div>
-                            </div>
+                                    </div>
 
-                            {{-- Content --}}
-                            <div class="p-8">
-                                <p class="text-[10px] font-black text-[#457B9D] uppercase tracking-[0.3em] mb-2">
-                                    Workspace</p>
-                                <h3
-                                    class="text-xl font-bold text-[#0A192F] group-hover:text-[#E63946] transition-colors duration-300">
-                                    {{ $slide['title'] }}
-                                </h3>
-                                <p class="mt-4 text-sm text-slate-500 font-medium leading-relaxed">
-                                    {{ $slide['desc'] }}
-                                </p>
+                                    {{-- CONTENT --}}
+                                    <div class="p-5">
+                                        <p class="text-[9px] font-black text-[#457B9D] uppercase tracking-[0.25em] mb-1">
+                                            Workspace
+                                        </p>
+                                        <h3
+                                            class="text-lg font-bold text-[#0A192F] group-hover:text-[#E63946] transition-colors duration-300">
+                                            {{ $facility->nama }}
+                                        </h3>
+                                        <p class="mt-2 text-xs text-slate-500 leading-relaxed line-clamp-3">
+                                            {{ $facility->deskripsi }}
+                                        </p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="w-full py-16 text-center">
+                            <p class="text-xs text-slate-400 italic">
+                                Belum ada fasilitas yang tersedia saat ini.
+                            </p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </section>

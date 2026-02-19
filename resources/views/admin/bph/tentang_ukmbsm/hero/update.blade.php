@@ -47,7 +47,7 @@
 
                         <!-- Foto (full width di bawah quotes) -->
                         <div>
-                            <label for="image_input_{{ $hero->id }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="image_input" class="block text-sm font-medium text-gray-700 mb-2">
                                 Foto <span class="text-xs text-gray-500">(JPG, JPEG, PNG • Maks 2MB)</span>
                             </label>
 
@@ -76,6 +76,7 @@
                                     accept=".jpg,.jpeg,.png"
                                     class="hidden preview-edit-input" 
                                     data-id="{{ $hero->id }}"
+                                    onchange="previewEditImage(this)"
                                     >
                             </div>
                             <p id="image-error-{{ $hero->id }}" class="mt-2 text-sm text-red-600 hidden"></p>

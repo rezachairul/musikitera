@@ -299,11 +299,18 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
 
     // Studio Musik
     Route::controller(ManageStudioMusikController::class)->prefix('manage-studio-musik')->name('manage-studio-musik.')->group(function(){
+        // Profile Studio Musik
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
+
+        // Facilities Studio Musik
+        Route::post('/facilities', 'storeFacility')->name('facilities.store');
+        Route::put('/facilities/{id}', 'updateFacility')->name('facilities.update');
+        Route::delete('/facilities/{id}', 'destroyFacility')->name('facilities.destroy');        
+
     });
 
     // Manajemen Konten    

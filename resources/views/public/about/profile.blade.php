@@ -73,7 +73,7 @@
                         </div>
                         <h3 class="text-2xl font-black text-[#0A192F] uppercase mb-4 tracking-tight">Misi</h3>
                         <ul class="space-y-3 text-slate-600 font-medium">
-                            @forelse ($visi->misis as $index => $misi)
+                            @forelse (optional($visi)->misis ?? [] as $index => $misi)
                                 <li class="flex items-start gap-3">
                                     <span class="text-[#E63946] font-bold">
                                         {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}.
