@@ -165,7 +165,7 @@ class ManagePembinaController extends Controller
 
         // Hapus foto kalau ada
         if ($pembina->foto && Storage::exists($pembina->foto)) {
-            Storage::delete($pembina->foto);
+            Storage::disk('public')->delete($pembina->foto);
         }
 
         // Hapus data pembina
