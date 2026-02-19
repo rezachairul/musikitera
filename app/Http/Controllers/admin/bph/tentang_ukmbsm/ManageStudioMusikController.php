@@ -15,55 +15,71 @@ class ManageStudioMusikController extends Controller
     // Studio and Studio Facilities Methods
     public function index(Request $request)
     {
-        $title = "Studio Musik";
-        $decription = '';
-        $keywords = '';
-        $author = 'UKMBSM ITERA';
+        $title       = "Studio Musik";
+        $description = '';
+        $author      = 'UKMBSM ITERA';
 
-        $studio = ManageStudioMusik::first(); // SINGLE ENTRY
+        // Ambil studio (single entry)
+        $studio = ManageStudioMusik::first();
 
-        $search  = $request->input('search', '');
+        // Request params
+        $search  = trim($request->input('search', ''));
         $filter  = $request->query('filter', 'all');
         $perPage = $request->query('perPage', 10);
 
-        // Pisahkan multi keyword search
-        $keywords = !empty($search) ? preg_split('/\s+/', (string) $search) : [];
+        // Base query
+        $query = ManageStudioFacilities::query()
+            ->where('manage_studio_musik_id', $studio?->id);
+        
+        // SEARCH (multi keyword)        
+        if (!empty($search)) {
+            $keywords = preg_split('/\s+/', $search);
 
-        $query = ManageStudioFacilities::query()->where('manage_studio_musik_id', $studio?->id);
-
-        if ($search){
             $query->where(function ($q) use ($keywords) {
                 foreach ($keywords as $word) {
-                    $q->where(function ($q) use ($word) {
-                        $q->where('nama', 'like', "%{$word}%")
-                        ->orWhere('deskripsi', 'like', "%{$word}%");
+                    $q->where(function ($sub) use ($word) {
+                        $sub->where('nama', 'like', "%{$word}%")
+                            ->orWhere('deskripsi', 'like', "%{$word}%");
                     });
                 }
             });
         }
-
-        // filter status kalau bukan all
+        
+        // FILTER STATUS        
         if ($filter !== 'all') {
             $query->where('is_active', $filter === 'active' ? 1 : 0);
         }
+        
+        // PER PAGE HANDLER      
+        if ($perPage === 'all') {
+            // Ambil semua data (hindari paginate(0))
+            $perPage = $query->count() ?: 1;
+        }
 
-        // Paginate
-        $facilities = $query->orderBy('urutan')->paginate($perPage);
+        $perPage = (int) $perPage;
 
-        // Total fasilitas
+        // PAGINATION        
+        $facilities = $query
+            ->orderBy('urutan')
+            ->paginate($perPage)
+            ->withQueryString();
+
+        // TOTAL DATA       
         $total_facilities = [
             'all' => $facilities->total(),
         ];
-
-        // AJAX response
+        
+        // AJAX RESPONSE        
         if ($request->ajax()) {
             return view(
                 'admin.bph.tentang_ukmbsm.studio_musik.partials.table_body',
                 compact('facilities', 'total_facilities')
             )->render();
         }
-
-        return view('admin.bph.tentang_ukmbsm.studio_musik.index', compact('title', 'studio', 'facilities', 'total_facilities'));
+        
+        // NORMAL VIEW        
+        return view( 'admin.bph.tentang_ukmbsm.studio_musik.index', compact('title', 'studio', 'facilities', 'total_facilities')
+        );
     }
 
     //  Studio Profile

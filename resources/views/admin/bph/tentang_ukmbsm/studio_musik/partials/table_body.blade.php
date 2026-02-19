@@ -73,7 +73,6 @@
         </div>
     </td>
 </tr>
-
 @empty
 <tr class="hover:bg-gray-50">
     <td colspan="7" class="px-6 py-4 text-center text-gray-500 italic">
