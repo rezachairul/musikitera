@@ -47,6 +47,7 @@ use App\Http\Controllers\admin\bph\manajemen_konten\ManageCTAController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageMitraController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageProfileController;
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageStudioMusikController;
+use App\Http\Controllers\admin\bph\manajemen_konten\ShortlinkController;
 
 // Dewan Pengawas
 use App\Http\Controllers\admin\bph\tentang_ukmbsm\ManageSejarahController;
@@ -108,6 +109,11 @@ Route::get('/test-error/500', function () {
     return response()->view('errors.500', compact('title'), 500);
 })->name('errors.500');
 
+
+// ==========================
+// REDIRECT SHOR LINK
+// ==========================
+Route::get('/r/{slug}', [ShortlinkController::class, 'redirect'])->name('shortlink.redirect');
 
 /*
 |--------------------------------------------------------------------------
@@ -376,6 +382,15 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
     });
+
+    // Short-Links
+    Route::controller(ShortlinkController::class)->prefix('manage-shortlink')->name('manage-shortlink.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/','store')->name('store');
+        Route::put('/{id}','update')->name('update');
+        Route::delete('/{id}','destroy')->name('destroy');
+        Route::get('/export',  'export')->name('export');
+    });    
     
     
     // Publikasi dan Dokumentasi

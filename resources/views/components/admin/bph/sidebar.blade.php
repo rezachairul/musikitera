@@ -111,7 +111,7 @@
         
         <!-- Manajemen Konten -->
         <div>
-            <button @click="openMenu = (openMenu === 'konten' ? null : 'konten')" class="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors {{ request()->routeIs('manage-layanan.*') || request()->routeIs('manage-statistik.*') || request()->routeIs('manage-galeri.*') || request()->routeIs('manage-highlight.*') || request()->routeIs('manage-testimoni.*') || request()->routeIs('manage-cta.*') || request()->routeIs('manage-link.*') ? 'bg-gray-100 text-amber-600 font-medium' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
+            <button @click="openMenu = (openMenu === 'konten' ? null : 'konten')" class="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors {{ request()->routeIs('manage-layanan.*') || request()->routeIs('manage-statistik.*') || request()->routeIs('manage-galeri.*') || request()->routeIs('manage-highlight.*') || request()->routeIs('manage-testimoni.*') || request()->routeIs('manage-cta.*') || request()->routeIs('manage-link.*') || request()->routeIs('manage-shortlink.*') ? 'bg-gray-100 text-amber-600 font-medium' : 'text-gray-700 hover:bg-gray-100 hover:text-amber-600' }}">
                 
                 <div class="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -159,6 +159,11 @@
                 <a href="{{ route('manage-link.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-link.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Links
+                </a>
+
+                <a href="{{ route('manage-shortlink.index') }}"
+                    class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-shortlink.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
+                    Shortlink
                 </a>
             </div>
         </div>

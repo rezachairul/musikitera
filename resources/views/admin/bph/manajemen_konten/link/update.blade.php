@@ -104,7 +104,7 @@
 
                     <!-- Tombol Aksi -->
                     <div class="flex justify-end space-x-2 mt-6">
-                        <button type="button" onclick="closeEditModal()"
+                        <button type="button" onclick="closeUpdateModal('{{ $link->id }}')"
                             class="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">
                             Batal
                         </button>
