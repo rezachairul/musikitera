@@ -14,7 +14,9 @@
             @csrf
 
             <!-- hidden FK -->
-            <input type="hidden" name="manage_studio_musik_id" value="{{ $studio->id }}">
+            @if($studio)
+                <input type="hidden" name="manage_studio_musik_id" value="{{ $studio->id }}">
+            @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

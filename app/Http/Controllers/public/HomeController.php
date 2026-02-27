@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\public;
 
 use App\Models\public\Home;
+use Carbon\Carbon;
 
 use App\Models\admin\bph\manajemen_anggota\AnggotaAktif;
 use App\Models\admin\bph\manajemen_anggota\ManageBadanPengurus;
 use App\Models\admin\bph\manajemen_anggota\ManageKabinet;
 
 use App\Models\admin\bph\manajemen_konten\ManageGaleri;
+use App\Models\admin\bph\manajemen_konten\OprecSetting;
 
 use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use App\Http\Controllers\Controller;
@@ -51,6 +53,26 @@ class HomeController extends Controller
             ->limit(9)
             ->get();
 
+        // ================= CTA OPREC =================
+        $oprec = OprecSetting::first();
+        $status = null;
+
+        if ($oprec && (int)$oprec->is_active === 1) {
+            $now = now();
+
+            if ($oprec->start_at && $now->lt($oprec->start_at)) {
+                $status = 'coming_soon';
+            } elseif (
+                (!$oprec->start_at || $now->gte($oprec->start_at)) &&
+                (!$oprec->end_at || $now->lte($oprec->end_at))
+            ) {
+                $status = 'open';
+            } else {
+                $status = 'closed';
+            }
+        }
+
+
         // ================= MITRA =================
         $totalMitras = ManageMitra::count();
         // Ambil mitra internal + logo
@@ -75,55 +97,9 @@ class HomeController extends Controller
             'totalAnggota', 'anggotaAktif', 'anggotaLulus', 'anggotaDO', 'anggotaExit',
             'totalPengurus', 'pengurusAktif', 'pengurusDemisioner',
             'galeris',
+            'oprec', 'status',
             'totalKabinet', 'kabinetAktif'
             ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreHomeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Home $home)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Home $home)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateHomeRequest $request, Home $home)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Home $home)
-    {
-        //
-    }
 }

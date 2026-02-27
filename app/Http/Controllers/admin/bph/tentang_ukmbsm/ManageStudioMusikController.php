@@ -194,7 +194,7 @@ class ManageStudioMusikController extends Controller
 
         ManageStudioFacilities::create($data);
 
-        return back()->with('success', 'Fasilitas berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Fasilitas berhasil ditambahkan.');
     }
 
     public function updateFacility(Request $request, $id)
@@ -245,7 +245,7 @@ class ManageStudioMusikController extends Controller
 
         $facility->update($data);
 
-        return back()->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Fasilitas berhasil diperbarui.');
     }
 
     public function destroyFacility($id)
@@ -258,6 +258,6 @@ class ManageStudioMusikController extends Controller
 
         $facility->delete();
 
-        return back()->with('success', 'Fasilitas berhasil dihapus.');
+        return redirect()->back()->with('success', 'Fasilitas berhasil dihapus.');
     }
 }

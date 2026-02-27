@@ -367,11 +367,16 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     
     // CTA (Oprec)
     Route::controller(ManageCTAController::class)->prefix('manage-cta')->name('manage-cta.')->group(function(){
+        // CRUD Opreec CTA
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');
         Route::delete('/{id}','destroy')->name('destroy');
         Route::get('/export',  'export')->name('export');
+
+        // ===== OPREC SETTING (Single Entry) =====
+        Route::post('/setting', 'storeSetting')->name('setting.store');
+        Route::put('/setting/{id}', 'updateSetting')->name('setting.update');
     });
     
     // Links

@@ -86,7 +86,11 @@
         </div>
 
         <div class="flex justify-end mt-6">
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            <button
+                class="{{ isset($shortlink) 
+                    ? 'bg-amber-500 hover:bg-amber-600' 
+                    : 'bg-blue-600 hover:bg-blue-700' 
+                }} text-white px-4 py-2 rounded-lg transition">
                 {{ isset($shortlink) ? 'Update Shortlink' : 'Simpan Shortlink' }}
             </button>
         </div>
@@ -157,9 +161,7 @@
                 }
             });
         </script>
-    </form>
-
-    
+    </form>    
 </div>
 
 <!-- Table Management Area -->

@@ -75,7 +75,11 @@
         </div>
 
         <div class="flex justify-end mt-6">
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg pointer-hover hover:bg-blue-700 transition-colors duration-200">
+            <button
+                class="{{ $studio 
+                    ? 'bg-amber-500 hover:bg-amber-600' 
+                    : 'bg-blue-600 hover:bg-blue-700' 
+                }} text-white px-4 py-2 rounded-lg pointer-hover transition-colors duration-200">
                 {{ $studio ? 'Update Profil Studio Musik' : 'Simpan Profil Studio Musik' }}
             </button>
         </div>

@@ -15,15 +15,13 @@
         <header class="flex items-center justify-between mb-6 px-4">
             <!-- Logo kiri -->
             <div class="flex-shrink-0">
-                <img src="{{ asset('assets/img/logo/internal/institusi/logo-itera.png') }}" 
-                    alt="Logo ITERA" 
-                    class="h-20 w-auto">
+                <img src="{{ asset('assets/img/logo/internal/institusi/logo-itera.png') }}" alt="Logo ITERA" class="h-20 w-auto">
             </div>
 
             <!-- Teks tengah -->
             <div class="flex-1 text-center">
                 <h1 class="text-2xl font-bold text-gray-800 tracking-wide">
-                    {{ $title }}
+                    {{ $settings->title ?? 'Open Recruitment Calon Anggota UKMBSM ITERA' }}
                 </h1>
                 <p class="text-sm text-gray-600 mt-2 italic leading-snug">
                     Bergabunglah bersama 
@@ -49,6 +47,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 items-stretch">
                 <!-- FOTO -->
                 <div class="flex flex-col items-center h-full w-full">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Foto <span class="text-xs text-gray-500">(Format: JPG, JPEG, PNG • Maks 2MB)</span>
+                    </label>
                     <!-- Preview + Tombol Upload -->
                     <div class="flex items-center justify-center gap-6">
                         <!-- Preview Gambar -->
@@ -84,8 +85,6 @@
                     <!-- Pesan Error -->
                     <p id="foto-error-public" class="text-xs text-red-600 mt-2 text-center hidden"></p>
                 </div>
-
-
 
                 <!-- Identitas -->
                 <div class="space-y-4">
@@ -136,7 +135,7 @@
                 </div>
 
                 <div>
-                    <label for="nomor_telepon" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                    <label for="nomor_telepon" class="block text-sm font-medium text-gray-700">Nomor Telepon/WhatsApp</label>
                     <input type="text" name="nomor_telepon" id="nomor_telepon" value="{{ old('nomor_telepon') }}"
                         class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-green-500 focus:border-green-500"
                         required>
@@ -149,7 +148,7 @@
                 </div>
 
                 <div>
-                    <label for="alasan_gabung" class="block text-sm font-medium text-gray-700">Alasan Gabung</label>
+                    <label for="alasan_gabung" class="block text-sm font-medium text-gray-700">Alasan Bergabung</label>
                     <textarea name="alasan_gabung" id="alasan_gabung" rows="3"
                         class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-green-500 focus:border-green-500"
                         required>{{ old('alasan_gabung') }}</textarea>
