@@ -41,46 +41,6 @@
                 </p>
             </div>
 
-            @php
-                $sejarah = [
-                    [
-                        'year' => '201X',
-                        'title' => 'The Foundation',
-                        'title_id' => 'Babak Awal Terbentuk',
-                        'desc' => 'Para pendiri berkumpul, menyatukan visi untuk membangun fondasi musik di kampus.',
-                        'photo_url' => 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800',
-                    ],
-                    [
-                        'year' => '201X',
-                        'title' => 'Campus Resonance',
-                        'title_id' => 'Eksistensi Kampus',
-                        'desc' => 'Mulai mengisi panggung-panggung besar di ITERA, menjadi detak jantung setiap acara.',
-                        'photo_url' => 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800',
-                    ],
-                    [
-                        'year' => '202X',
-                        'title' => 'Beyond Borders',
-                        'title_id' => 'Panggung Nasional',
-                        'desc' => 'Membawa bendera ITERA berkompetisi di luar kampus dan meraih prestasi.',
-                        'photo_url' => 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800',
-                    ],
-                    [
-                        'year' => '202X',
-                        'title' => 'Beyond Borders',
-                        'title_id' => 'Panggung Nasional',
-                        'desc' => 'Membawa bendera ITERA berkompetisi di luar kampus dan meraih prestasi.',
-                        'photo_url' => 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800',
-                    ],
-                    [
-                        'year' => '202X',
-                        'title' => 'Beyond Borders',
-                        'title_id' => 'Panggung Nasional',
-                        'desc' => 'Membawa bendera ITERA berkompetisi di luar kampus dan meraih prestasi.',
-                        'photo_url' => 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800',
-                    ],
-                ];
-            @endphp
-
             <div class="relative">
                 {{-- TIMELINE VERTICAL LINE --}}
                 <div
@@ -91,7 +51,7 @@
                 </div>
 
                 <div class="space-y-48 md:space-y-60">
-                    @foreach ($sejarah as $index => $item)
+                    @foreach ($histories as $index => $history)
                         <div class="history-card relative flex flex-col lg:flex-row items-center gap-16 group"
                             data-index="{{ $index }}">
 
@@ -101,22 +61,22 @@
                                 <div class="mb-2">
                                     <span
                                         class="text-6xl md:text-7xl font-black text-[#0A192F]/10 block group-hover:text-[#E63946]/10 transition-colors duration-500">
-                                        {{ $item['year'] }}
+                                        {{ $history->tahun_mulai }} - {{ $history->tahun_akhir ?? 'Sekarang' }}
                                     </span>
                                 </div>
 
                                 <h2
                                     class="text-2xl md:text-3xl font-black text-[#0A192F] mb-2 uppercase tracking-tight">
-                                    {{ $item['title'] }}
+                                    {{ $history->nama_ukm }}
                                 </h2>
                                 <p
                                     class="text-[#457B9D] text-sm font-bold uppercase tracking-widest mb-6 border-b-2 border-[#E63946] inline-block pb-1">
-                                    {{ $item['title_id'] }}
+                                    {{ $history->title_id }}
                                 </p>
 
                                 <p
-                                    class="text-slate-600 leading-relaxed text-base md:text-lg font-medium bg-white/50 backdrop-blur-sm p-4 md:p-0 rounded-lg">
-                                    {{ $item['desc'] }}
+                                    class="text-slate-600 leading-relaxed text-justify text-base md:text-lg font-medium bg-white/50 backdrop-blur-sm p-4 md:p-0 rounded-lg">
+                                    {{ $history->deskripsi }}
                                 </p>
                             </div>
 
@@ -145,7 +105,7 @@
                                         Dokumentasi ASLI
                                     </div>
 
-                                    <img src="{{ $item['photo_url'] }}" alt="{{ $item['title_id'] }}"
+                                    <img src="{{ asset('storage/' . $history->logo) }}" alt="{{ $history->title_id }}"
                                         class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
                                 </div>
                             </div>

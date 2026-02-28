@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\bph\tentang_ukmbsm\ManageSejarah;
 
 class HistoryController extends Controller
 {
@@ -14,6 +15,9 @@ class HistoryController extends Controller
         $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
         $author = 'UKMBSM ITERA';
 
-        return view('public.about.history', compact('title', 'description', 'keywords', 'author'));
+        // Ambil data sejarah, urut dari tahun mulai terlama ke terbaru
+        $histories = ManageSejarah::orderBy('tahun_mulai', 'desc')->get();
+
+        return view('public.about.history', compact('title', 'description', 'keywords', 'author', 'histories'));
     }
 }

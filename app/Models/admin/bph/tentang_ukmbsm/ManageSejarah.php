@@ -9,4 +9,17 @@ class ManageSejarah extends Model
 {
     /** @use HasFactory<\Database\Factories\ManageSejarahFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nama_ukm',
+        'logo',
+        'deskripsi',
+        'tahun_mulai',
+        'tahun_akhir',
+    ];
+
+    protected $casts = [
+        'tahun_mulai' => 'integer',
+        'tahun_akhir' => 'integer',
+    ];
 }
