@@ -9,4 +9,8 @@ class ManageStatistik extends Model
 {
     /** @use HasFactory<\Database\Factories\ManageStatistikFactory> */
     use HasFactory;
+    protected $fillable = [
+        'date',
+        'total_visit',
+    ];
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('manage_statistiks', function (Blueprint $table) {
             $table->id();
+            $table->date('date')->unique();
+            $table->unsignedInteger('total_visit')->default(0);
             $table->timestamps();
         });
     }
