@@ -12,7 +12,7 @@
 
     <!-- Deskripsi -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->deskripsi }}
+        {{ str($kegiatan->deskripsi)->limit(100) }}
     </td>
 
     <!-- Kategori -->
@@ -20,14 +20,14 @@
         {{ $kegiatan->kategori ?? '-' }}
     </td>
 
-    <!-- Tanggal -->
+    <!-- Tanggal format dd-mm-yyyy-->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->tanggal_mulai }} - {{ $kegiatan->tanggal_selesai }}
+        {{ \Carbon\Carbon::parse($kegiatan->tanggal_mulai)->format('d-m-Y') }} - {{ \Carbon\Carbon::parse($kegiatan->tanggal_selesai)->format('d-m-Y') }}
     </td>
 
-    <!-- Waktu -->
+    <!-- Waktu format HH:mm -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $kegiatan->jam_mulai }} - {{ $kegiatan->jam_selesai }}
+        {{ \Carbon\Carbon::parse($kegiatan->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($kegiatan->jam_selesai)->format('H:i') }}
     </td>
 
     <!-- Lokasi -->

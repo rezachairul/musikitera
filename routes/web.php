@@ -66,7 +66,6 @@ use App\Http\Controllers\admin\bph\manajemen_anggota\ManageAlumniController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageLayananController;
 use App\Http\Controllers\admin\bph\kerjasama_mitra\ManageKerjasamaController;
 use App\Http\Controllers\admin\bph\manajemen_anggota\ManagePembinaController;
-use App\Http\Controllers\admin\bph\manajemen_konten\ManageHighlightController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageStatistikController;
 use App\Http\Controllers\admin\bph\manajemen_konten\ManageTestimoniController;
 use App\Http\Controllers\admin\bph\publikasi_informasi\ManageDokumenController;
@@ -163,7 +162,7 @@ Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni');
 
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('announcement');
-Route::get('/pengumuman/contohpengumuman', [AnnouncementController::class, 'pengumuman'])->name('contohannouncement');
+Route::get('/pengumuman/{id}', [AnnouncementController::class, 'pengumuman'])->name('announcement.detail');
 Route::get('/kegiatan', [ActivityController::class, 'index'])->name('activity');
 Route::get('/dokumen', [DocumentController::class, 'index'])->name('document');
 Route::get('/pengurus', [ExecutiveController::class, 'index'])->name('executive');
@@ -340,15 +339,6 @@ Route::middleware(['auth', 'role:bph'])->prefix('badan-pengurus')->group(functio
     
     // Galeri
     Route::controller(ManageGaleriController::class)->prefix('manage-galeri')->name('manage-galeri.')->group(function(){
-        Route::get('/','index')->name('index');
-        Route::post('/','store')->name('store');
-        Route::put('/{id}','update')->name('update');
-        Route::delete('/{id}','destroy')->name('destroy');
-        Route::get('/export',  'export')->name('export');
-    });
-    
-    // Highlight Kegiatan
-    Route::controller(ManageHighlightController::class)->prefix('manage-highlight')->name('manage-highlight.')->group(function(){
         Route::get('/','index')->name('index');
         Route::post('/','store')->name('store');
         Route::put('/{id}','update')->name('update');

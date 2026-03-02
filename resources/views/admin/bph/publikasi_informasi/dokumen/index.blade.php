@@ -125,7 +125,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status Dokumen
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th class="px-6 py-3 text-cente text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>

@@ -138,6 +138,7 @@
 
                     <!-- Highlight -->
                     <div class="flex items-center space-x-2 mt-6">
+                        <input type="hidden" name="is_highlight" value="0">
                         <input type="checkbox" name="is_highlight" id="is_highlight" value="1" {{ old('is_highlight') ? 'checked' : '' }}>
                         <label for="is_highlight" class="text-sm text-gray-700">Tandai sebagai kegiatan unggulan</label>
                     </div>

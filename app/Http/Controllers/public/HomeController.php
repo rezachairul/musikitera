@@ -11,6 +11,7 @@ use App\Models\admin\bph\manajemen_anggota\ManageKabinet;
 
 use App\Models\admin\bph\manajemen_konten\ManageGaleri;
 use App\Models\admin\bph\manajemen_konten\OprecSetting;
+use App\Models\admin\bph\publikasi_informasi\ManageKegiatan;
 
 use App\Models\admin\bph\kerjasama_mitra\ManageMitra;
 use App\Http\Controllers\Controller;
@@ -52,6 +53,29 @@ class HomeController extends Controller
             ->orderByDesc('created_at')
             ->limit(9)
             ->get();
+        
+        // ================= HIGHLIGHT EVENT =================
+        $highlights = ManageKegiatan::whereIn('status', ['published', 'done'])
+            ->where('is_highlight', true)
+            ->orderBy('tanggal_mulai', 'desc')
+            ->get()
+            ->map(function ($act) {
+                $now = Carbon::now();
+                $start = Carbon::parse($act->tanggal_mulai);
+                $end = $act->tanggal_selesai 
+                        ? Carbon::parse($act->tanggal_selesai) 
+                        : $start;
+
+                if ($now->lt($start)) {
+                    $act->time_label = 'Coming Soon';
+                } elseif ($now->between($start, $end)) {
+                    $act->time_label = 'Now';
+                } else {
+                    $act->time_label = 'Done';
+                }
+
+                return $act;
+            });
 
         // ================= CTA OPREC =================
         $oprec = OprecSetting::first();
@@ -71,7 +95,6 @@ class HomeController extends Controller
                 $status = 'closed';
             }
         }
-
 
         // ================= MITRA =================
         $totalMitras = ManageMitra::count();
@@ -96,7 +119,7 @@ class HomeController extends Controller
             'internalMitras', 'eksternalMitras', 'totalMitras', 
             'totalAnggota', 'anggotaAktif', 'anggotaLulus', 'anggotaDO', 'anggotaExit',
             'totalPengurus', 'pengurusAktif', 'pengurusDemisioner',
-            'galeris',
+            'galeris', 'highlights',
             'oprec', 'status',
             'totalKabinet', 'kabinetAktif'
             ));

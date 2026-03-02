@@ -2,7 +2,7 @@
 
 namespace App\Models\admin\bph\publikasi_informasi;
 
-use App\Models\User;
+use App\Models\admin\administrator\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -29,6 +29,10 @@ class ManagePengumuman extends Model
         'tanggal_pengumuman',
         'status',
         'user_id',
+    ];
+
+    protected $casts = [
+        'tanggal_pengumuman' => 'datetime',
     ];
 
     // Relasi ke User (opsional)

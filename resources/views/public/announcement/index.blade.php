@@ -6,125 +6,6 @@
     >
     <x-slot:title>Pengumuman</x-slot:title>
 
-    @php
-        // Dummy data tetap sama, hanya gambar diarahkan ke Unsplash agar visual lebih "hidup"
-        $announcements = collect([
-            [
-                'judul' => 'Workshop Gitar Jazz Pemula',
-                'excerpt' =>
-                    'Belajar teknik dasar gitar jazz bersama pemateri berpengalaman dari industri musik nasional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=800',
-                'date' => '25 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Panggung Ekspresi Malam Jumat',
-                'excerpt' => 'Sesi open mic untuk semua anggota, bawa karya terbaikmu dan tunjukkan bakatmu...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=800',
-                'date' => '22 Nov 2025',
-                'category' => 'Event',
-            ],
-            [
-                'judul' => 'Latihan Umum Paduan Suara',
-                'excerpt' => 'Persiapan penampilan konser akhir semester di gedung serbaguna kampus ITERA...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1527529482837-459821950b41?auto=format&fit=crop&q=80&w=800',
-                'date' => '20 Nov 2025',
-                'category' => 'Latihan',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-            [
-                'judul' => 'Kelas Produksi Musik Digital',
-                'excerpt' => 'Kenalan dengan DAW, basic mixing, dan workflow produksi musik profesional...',
-                'image' =>
-                    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800',
-                'date' => '18 Nov 2025',
-                'category' => 'Workshop',
-            ],
-        ]);
-
-        $perPage = 3;
-        $currentPage = request('page', 1);
-        $latest = $announcements->first();
-        $others = $announcements->slice(1);
-        $totalPages = ceil($others->count() / $perPage);
-        $paginatedOthers = $others->slice(($currentPage - 1) * $perPage, $perPage);
-
-        $limit = 3;
-        $start = max(1, $currentPage - floor($limit / 2));
-        $end = min($totalPages, $start + $limit - 1);
-
-        // Geser start jika end sudah mentok di total halaman
-        if ($end - $start + 1 < $limit) {
-            $start = max(1, $end - $limit + 1);
-        }
-    @endphp
-
     <div class="min-h-screen bg-white py-16 md:py-24 relative overflow-hidden">
         {{-- Background Element: Music Lines --}}
         <div class="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none">
@@ -179,9 +60,11 @@
                     <div class="sticky top-10">
                         <article class="group relative overflow-hidden rounded-[2.5rem] bg-[#0A192F] shadow-2xl">
                             <div class="aspect-[4/5] relative overflow-hidden">
-                                <img src="{{ $latest['image'] }}" alt="{{ $latest['judul'] }}"
-                                    class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 group-hover:blur-[2px]">
-
+                                @if (!empty($latest) && data_get($latest, 'gambar_path'))
+                                    <img src="{{ asset('storage/' . data_get($latest, 'gambar_path')) }}" alt="{{ $latest->judul }}" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 group-hover:blur-[2px]">
+                                @else
+                                    <img src="{{ asset('assets/img/dummy/dummy.png') }}" alt="Dummy Image" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 group-hover:blur-[2px]">
+                                @endif
                                 {{-- Overlay --}}
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/40 to-transparent">
@@ -191,23 +74,22 @@
                                 <div class="absolute top-8 left-8">
                                     <span
                                         class="px-5 py-2 bg-[#E63946] text-white text-[10px] font-black uppercase tracking-widest rounded-full">
-                                        {{ $latest['category'] }}
+                                        {{ $latest->sifat ?? 'Event' }}
                                     </span>
                                 </div>
 
                                 {{-- Content --}}
                                 <div class="absolute bottom-0 left-0 p-10">
                                     <p class="text-white/60 text-xs font-bold mb-3 tracking-widest uppercase">
-                                        {{ $latest['date'] }}</p>
-                                    <h2
-                                        class="text-3xl font-black text-white uppercase tracking-tighter leading-tight mb-4 group-hover:text-[#A8DADC] transition-colors">
-                                        {{ $latest['judul'] }}
-                                    </h2>
-                                    <p class="text-white/70 text-sm leading-relaxed mb-6 line-clamp-3">
-                                        {{ $latest['excerpt'] }}
+                                        {{ \Carbon\Carbon::parse($latest->tanggal_pengumuman ?? 'now')->format('d M Y') }}
                                     </p>
-                                    <a href="/pengumuman/contohpengumuman"
-                                        class="inline-flex items-center gap-3 text-white font-black text-xs uppercase tracking-widest group/link">
+                                    <h2 class="text-3xl font-black text-left text-white uppercase tracking-tighter leading-tight mb-4 group-hover:text-[#A8DADC] transition-colors">
+                                        {{ $latest->judul ?? 'Judul Pengumuman Terbaru' }}
+                                    </h2>
+                                    <p class="text-white/70 text-justify text-sm leading-relaxed mb-6 line-clamp-3">
+                                       {{ str($latest->isi ?? 'Isi pengumuman tidak tersedia')->limit(150) }}
+                                    </p>
+                                    <a href="/pengumuman/{{ $latest->id ?? '1'}}" target="_blank" class="inline-flex items-center gap-3 text-white font-black text-xs uppercase tracking-widest group/link">
                                         Baca Selengkapnya
                                         <span class="w-8 h-[2px] bg-white group-hover/link:w-12 transition-all"></span>
                                     </a>
@@ -227,40 +109,38 @@
                                     {{-- Thumbnail --}}
                                     <div
                                         class="w-full sm:w-40 h-32 flex-shrink-0 rounded-2xl overflow-hidden relative shadow-md">
-                                        <img src="{{ $item['image'] }}" alt="{{ $item['judul'] }}"
-                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                        <div
-                                            class="absolute inset-0 bg-[#0A192F]/10 group-hover:bg-transparent transition-colors">
+                                        @if ($item->gambar_path)
+                                            <img src="{{ asset('storage/' . $item->gambar_path) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        @else
+                                            <img src="{{ asset('img/dummy/dummy.png') }}" alt="{{ $item->judul }}" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 group-hover:blur-[2px]">
+                                        @endif
+                                        <div class="absolute inset-0 bg-[#0A192F]/10 group-hover:bg-transparent transition-colors">
                                         </div>
                                     </div>
 
                                     {{-- Info --}}
                                     <div class="flex-1">
                                         <div class="flex items-center gap-3 mb-2">
-                                            <span
-                                                class="text-[#E63946] text-[10px] font-black uppercase tracking-widest">{{ $item['category'] }}</span>
+                                            <span class="text-[#E63946] text-[10px] font-black uppercase tracking-widest">{{ $item->sifat }}</span>
                                             <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
                                             <span
-                                                class="text-slate-400 text-[10px] font-bold uppercase">{{ $item['date'] }}</span>
+                                                class="text-slate-400 text-[10px] font-bold uppercase">{{ \Carbon\Carbon::parse($item->tanggal_pengumuman)->format('d M Y') }}</span>
                                         </div>
                                         <h3
                                             class="text-xl font-black text-[#0A192F] uppercase tracking-tighter mb-2 group-hover:text-[#457B9D] transition-colors">
-                                            {{ $item['judul'] }}
+                                            {{ $item->judul }}
                                         </h3>
                                         <p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
-                                            {{ $item['excerpt'] }}
+                                            {{ str($item->isi)->limit(150) }}
                                         </p>
                                     </div>
 
                                     {{-- Play-like Icon button --}}
                                     <div class="hidden sm:flex items-center">
-                                        <a href="/pengumuman/contohpengumuman"
+                                        <a href="/pengumuman/{{ $item->id }}" target="_blank"
                                             class="w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center group-hover:bg-[#457B9D] group-hover:border-[#457B9D] transition-all">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 text-slate-300 group-hover:text-white transition-colors"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 5l7 7-7 7" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                             </svg>
                                         </a>
                                     </div>
@@ -276,18 +156,15 @@
                             {{-- Tombol Previous --}}
                             <a href="?page={{ max(1, $currentPage - 1) }}"
                                 class="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-slate-100 text-[#0A192F] hover:bg-slate-50 transition-all {{ $currentPage == 1 ? 'opacity-30 pointer-events-none' : '' }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 19l-7-7 7-7" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M15 19l-7-7 7-7" />
                                 </svg>
                             </a>
 
                             <div class="flex gap-2">
                                 {{-- Loop hanya dari $start sampai $end --}}
                                 @for ($i = $start; $i <= $end; $i++)
-                                    <a href="?page={{ $i }}"
-                                        class="w-12 h-12 flex items-center justify-center rounded-xl font-black text-xs transition-all {{ $currentPage == $i ? 'bg-[#0A192F] text-white shadow-lg shadow-[#0A192F]/20' : 'bg-white border-2 border-slate-100 text-slate-400 hover:border-[#457B9D] hover:text-[#457B9D]' }}">
+                                    <a href="?page={{ $i }}" class="w-12 h-12 flex items-center justify-center rounded-xl font-black text-xs transition-all {{ $currentPage == $i ? 'bg-[#0A192F] text-white shadow-lg shadow-[#0A192F]/20' : 'bg-white border-2 border-slate-100 text-slate-400 hover:border-[#457B9D] hover:text-[#457B9D]' }}">
                                         {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
                                     </a>
                                 @endfor
@@ -296,10 +173,8 @@
                             {{-- Tombol Next --}}
                             <a href="?page={{ min($totalPages, $currentPage + 1) }}"
                                 class="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-slate-100 text-[#0A192F] hover:bg-slate-50 transition-all {{ $currentPage == $totalPages ? 'opacity-30 pointer-events-none' : '' }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
                         </div>

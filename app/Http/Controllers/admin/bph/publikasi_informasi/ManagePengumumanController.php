@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Exports\ManagePengumumanExport;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\admin\bph\publikasi_informasi\ManagePengumuman;
 use Illuminate\Support\Facades\Auth;
 

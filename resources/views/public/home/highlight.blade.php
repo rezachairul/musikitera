@@ -18,14 +18,14 @@
 
         {{-- Grid Highlights - Kompak --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @for ($i = 1; $i <= 6; $i++)
+            @forelse ($highlights as $i => $highlight)
                 <div class="group relative bg-[#0A192F] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 h-[280px] animate-fade-up"
-                    style="animation-delay: {{ $i * 0.1 }}s; animation-fill-mode: both;">
+                    style="animation-delay: {{ ($i + 1) * 0.1 }}s; animation-fill-mode: both;">
 
                     {{-- Image --}}
-                    <img src="https://picsum.photos/600/400?random={{ $i }}"
+                    <img src="{{ asset('storage/' . $highlight->poster) }}"
                         class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0"
-                        alt="Highlight {{ $i }}">
+                        alt="Highlight {{ $highlight->nama_kegiatan }}">
 
                     {{-- Denim Overlay --}}
                     <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity"
@@ -39,18 +39,19 @@
                         <div class="overflow-hidden mb-2">
                             <span
                                 class="inline-block px-2 py-0.5 bg-[#E63946] text-white text-[8px] font-black tracking-widest uppercase transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500">
-                                Feature
+                                {{ $highlight->kategori }} • {{ $highlight->time_label }}
                             </span>
                         </div>
 
                         <h3 class="text-white font-black text-xl uppercase tracking-tighter leading-none mb-2">
-                            Kegiatan <span class="text-[#457B9D]">{{ $i }}</span>
+                            <span class="text-[#457B9D]">{{ $highlight->nama_kegiatan }}</span>
                         </h3>
+                        <h4 class="text-slate-200 text-sm font-medium mb-2">{{ \Carbon\Carbon::parse($highlight->tanggal_mulai)->format('d M Y') }} - {{ \Carbon\Carbon::parse($highlight->tanggal_selesai)->format('d M Y') }} | {{ $highlight->lokasi }}</h4>
 
                         {{-- Deskripsi pendek --}}
                         <p
                             class="text-slate-300 text-[11px] leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 mb-4">
-                            Eksplorasi kreativitas tanpa batas di setiap kegiatan UKMBSM.
+                            {{ str($highlight->deskripsi)->limit(50) }}
                         </p>
 
                         {{-- Link --}}
@@ -64,10 +65,12 @@
                     {{-- Decorative Number (Lebih kecil) --}}
                     <div
                         class="absolute top-2 right-4 text-white/5 font-black text-5xl select-none group-hover:text-[#E63946]/10 transition-colors">
-                        0{{ $i }}
+                        0{{ $i + 1 }}
                     </div>
                 </div>
-            @endfor
+            @empty
+                <p class="col-span-full text-center text-gray-500 italic">Tidak ada kegiatan yang di-highlight saat ini.</p>
+            @endforelse
         </div>
     </div>
 </section>

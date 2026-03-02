@@ -82,8 +82,7 @@
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Lampiran Dokumen (PDF/Word/Excel/PPT)</label>
 
-                        <input type="file" id="file" name="file_dokumen" class="w-full border rounded-lg px-3 py-2" 
-                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                        <input type="file" id="file" name="file_dokumen" class="w-full border rounded-lg px-3 py-2" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
                         <p id="fileError" class="text-sm text-red-600 hidden mt-1"></p>
 
                         <div id="filePreview" class="hidden mt-2 border rounded-lg p-2">

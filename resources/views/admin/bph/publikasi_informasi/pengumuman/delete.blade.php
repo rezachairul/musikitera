@@ -52,9 +52,7 @@
                             </p>
                             <p>
                                 <span class="font-semibold">Tanggal Pengumuman:</span>
-                                {{ $pengumuman->tanggal_pengumuman 
-                                    ? \Carbon\Carbon::parse($pengumuman->tanggal_pengumuman)->translatedFormat('d M Y')
-                                    : '-' }}
+                                {{ $pengumuman->tanggal_pengumuman ? \Carbon\Carbon::parse($pengumuman->tanggal_pengumuman)->translatedFormat('d M Y'): '-' }}
                             </p>
                         </div>
                     </div>
@@ -62,7 +60,7 @@
                     <!-- Isi pengumuman -->
                     <div class="pt-3 border-t border-red-300">
                         <p class="font-semibold mb-1">Isi Pengumuman:</p>
-                        <div class="bg-white border rounded p-2 text-gray-800">
+                        <div class="bg-white border rounded p-2 text-gray-800 text-justify">
                             {!! nl2br(e($pengumuman->isi ?? '-')) !!}
                         </div>
                     </div>

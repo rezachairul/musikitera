@@ -235,6 +235,7 @@
 
                         <!-- Highlight -->
                         <div class="col-span-1 flex items-center mt-6">
+                            <input type="hidden" name="is_highlight" value="0">
                             <input type="checkbox" name="is_highlight" id="edit_is_highlight_{{ $kegiatan->id }}" 
                                 value="1" {{ old('is_highlight', $kegiatan->is_highlight) ? 'checked' : '' }}
                                 class="h-4 w-4 text-blue-600 border-gray-300 rounded">

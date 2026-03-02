@@ -17,7 +17,7 @@
 
     <!-- Deskripsi -->
     <td class="px-6 py-4 whitespace-nowrap">
-        {{ $manage_dokumen->deskripsi }}
+        {{ str($manage_dokumen->deskripsi)->limit(100) }}
     </td>
 
     <!-- File -->

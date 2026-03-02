@@ -7,55 +7,6 @@
     >
     <x-slot:title>Kegiatan UKM Seni Musik</x-slot:title>
 
-    @php
-        $activities = [
-            [
-                'title' => 'Latihan Rutin',
-                'subtitle' => 'THE DAILY RHYTHM',
-                'description' =>
-                    'Sesi asah skill mingguan untuk setiap divisi (vokal, gitar, bass, drum, keyboard). Di sini kita belajar teknik dasar hingga improvisasi bersama.',
-                'icon' =>
-                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" /></svg>',
-                'image' =>
-                    'https://images.unsplash.com/photo-1511735111819-9a3f7709049c?auto=format&fit=crop&q=80&w=800',
-                'color' => '#457B9D',
-            ],
-            [
-                'title' => 'Bahas Musik Bareng',
-                'subtitle' => 'SHARING SESSION',
-                'description' =>
-                    'Ruang diskusi santai tentang teori musik, bedah lirik, hingga perkembangan industri musik terkini. Tempat bertukar referensi lagu!',
-                'icon' =>
-                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>',
-                'image' =>
-                    'https://images.unsplash.com/photo-1525362035658-c13005cc290c?auto=format&fit=crop&q=80&w=800',
-                'color' => '#E63946',
-            ],
-            [
-                'title' => 'Jamming Session',
-                'subtitle' => 'FREE EXPRESSION',
-                'description' =>
-                    'Sesi improvisasi tanpa batasan. Gabungan antar divisi untuk menciptakan nada baru secara spontan di studio kebanggaan kita.',
-                'icon' =>
-                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>',
-                'image' =>
-                    'https://images.unsplash.com/photo-1514525253361-bee8718a342b?auto=format&fit=crop&q=80&w=800',
-                'color' => '#0A192F',
-            ],
-            [
-                'title' => 'Masterclass & Workshop',
-                'subtitle' => 'SKILL UPGRADE',
-                'description' =>
-                    'Mengundang musisi profesional untuk berbagi ilmu teknis yang mendalam, mulai dari sound engineering hingga manajemen panggung.',
-                'icon' =>
-                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>',
-                'image' =>
-                    'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=800',
-                'color' => '#457B9D',
-            ],
-        ];
-    @endphp
-
     <div class="min-h-screen bg-white py-16 md:py-24 relative overflow-hidden">
         {{-- Background Element: Garis Musik (Staff Lines) Full Page --}}
         <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
@@ -94,7 +45,7 @@
                             {{-- Image Square --}}
                             <div
                                 class="w-full md:w-48 h-48 flex-shrink-0 relative overflow-hidden rounded-[2.5rem] shadow-xl">
-                                <img src="{{ $act['image'] }}" alt="{{ $act['title'] }}"
+                                <img src="{{ asset('storage/' . $act->poster) }}" alt="{{ $act->nama_kegiatan }}"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                                 <div
                                     class="absolute inset-0 bg-[#0A192F]/20 group-hover:bg-transparent transition-colors">
@@ -104,20 +55,48 @@
                             {{-- Text Content --}}
                             <div class="flex-1">
                                 <div class="mb-4 flex items-center justify-between md:justify-start gap-4">
-                                    <div
-                                        class="p-3 bg-slate-50 rounded-2xl text-[#0A192F] group-hover:bg-[#E63946] group-hover:text-white transition-all duration-300">
-                                        {!! $act['icon'] !!}
+                                    @php
+                                        $icons = [
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 7.5 16.5-4.125M12 6.75c-2.708 0-5.363.224-7.948.655C2.999 7.58 2.25 8.507 2.25 9.574v9.176A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V9.574c0-1.067-.75-1.994-1.802-2.169A48.329 48.329 0 0 0 12 6.75Zm-1.683 6.443-.005.005-.006-.005.006-.005.005.005Zm-.005 2.127-.005-.006.005-.005.005.005-.005.005Zm-2.116-.006-.005.006-.006-.006.005-.005.006.005Zm-.005-2.116-.006-.005.006-.005.005.005-.005.005ZM9.255 10.5v.008h-.008V10.5h.008Zm3.249 1.88-.007.004-.003-.007.006-.003.004.006Zm-1.38 5.126-.003-.006.006-.004.004.007-.006.003Zm.007-6.501-.003.006-.007-.003.004-.007.006.004Zm1.37 5.129-.007-.004.004-.006.006.003-.004.007Zm.504-1.877h-.008v-.007h.008v.007ZM9.255 18v.008h-.008V18h.008Zm-3.246-1.87-.007.004L6 16.127l.006-.003.004.006Zm1.366-5.119-.004-.006.006-.004.004.007-.006.003ZM7.38 17.5l-.003.006-.007-.003.004-.007.006.004Zm-1.376-5.116L6 12.38l.003-.007.007.004-.004.007Zm-.5 1.873h-.008v-.007h.008v.007ZM17.25 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Zm0 4.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                            </svg>',
+                                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                            </svg>',
+                                        ];
+
+                                        $randomIcon = $icons[array_rand($icons)];
+                                    @endphp
+
+                                    <div class="p-3 bg-slate-50 rounded-2xl text-[#0A192F] group-hover:bg-[#E63946] group-hover:text-white transition-all duration-300">
+                                        <!-- Icons -->
+                                        {!! $randomIcon !!}
                                     </div>
-                                    <span
-                                        class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 group-hover:text-[#457B9D]">
-                                        {{ $act['subtitle'] }}
+                                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 group-hover:text-[#457B9D]">
+                                        {{ $act->kategori }} • {{ $act->time_label }}
                                     </span>
                                 </div>
                                 <h3 class="text-2xl font-black text-[#0A192F] uppercase tracking-tighter mb-3">
-                                    {{ $act['title'] }}
+                                    {{ $act->nama_kegiatan}}
                                 </h3>
-                                <p class="text-slate-500 text-sm leading-relaxed mb-4">
-                                    {{ $act['description'] }}
+                                <h4 class="text-slate-700 text-sm font-medium mb-2">{{ \Carbon\Carbon::parse($act->tanggal_mulai)->format('d M Y') }} - {{ \Carbon\Carbon::parse($act->tanggal_selesai)->format('d M Y') }} | {{ $act->lokasi }}</h4>
+                                <p class="text-slate-500 text-sm text-justify leading-relaxed mb-4 mt-4">
+                                    {{ $act->deskripsi }}
                                 </p>
                                 <div
                                     class="h-1 w-12 bg-slate-100 group-hover:w-24 group-hover:bg-[#E63946] transition-all duration-500">
@@ -126,6 +105,16 @@
                         </div>
                     </div>
                 @endforeach
+                <!-- Jika Tidak ada Kegiatan -->
+                @php
+                    $visibleActivities = $activities->whereNotIn('status', ['draft']);
+                @endphp
+
+                @if ($visibleActivities->isEmpty())
+                    <div class="col-span-1 md:col-span-2 text-center py-12">
+                        <p class="text-slate-500 italic">Tidak ada kegiatan yang tersedia saat ini.</p>
+                    </div>
+                @endif
             </div>
 
             {{-- CTA / JOIN SECTION --}}

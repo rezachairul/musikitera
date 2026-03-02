@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\admin\bph\publikasi_informasi\ManageKegiatan;
 
 class ActivityController extends Controller
 {
@@ -14,6 +16,27 @@ class ActivityController extends Controller
         $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
         $author = 'UKMBSM ITERA';
 
-        return view('public.activity.index', compact('title', 'description', 'keywords', 'author'));
+        $activities = ManageKegiatan::whereIn('status', ['published', 'done'])
+            ->orderBy('tanggal_mulai', 'desc')
+            ->get()
+            ->map(function ($act) {
+                $now = Carbon::now();
+                $start = Carbon::parse($act->tanggal_mulai);
+                $end = $act->tanggal_selesai 
+                        ? Carbon::parse($act->tanggal_selesai) 
+                        : $start;
+
+                if ($now->lt($start)) {
+                    $act->time_label = 'Coming Soon';
+                } elseif ($now->between($start, $end)) {
+                    $act->time_label = 'Now';
+                } else {
+                    $act->time_label = 'Done';
+                }
+
+                return $act;
+            });
+
+        return view('public.activity.index', compact('title', 'description', 'keywords', 'author', 'activities'));
     }
 }

@@ -6,40 +6,6 @@
     >
     <x-slot:title>Dokumen</x-slot:title>
 
-    @php
-        // Dummy dokumen
-        $documents = [
-            [
-                'title' => 'Panduan Umum Anggota UKM Seni Musik',
-                'category' => 'PEDOMAN',
-                'summary' => 'Gambaran singkat mengenai hak, kewajiban, dan etika bagi anggota UKM.',
-                'description' =>
-                    'Dokumen ini berisi penjelasan lengkap mengenai aturan dasar keanggotaan, tata tertib latihan, serta kebijakan internal.',
-                'drive_url' => 'https://drive.google.com/file/d/xxxxxxxx/view',
-                'type' => 'PDF',
-            ],
-            [
-                'title' => 'Proposal Kegiatan Konser Akhir Tahun',
-                'category' => 'PROPOSAL',
-                'summary' => 'Rancangan acara konser penutup tahun periode kepengurusan berjalan.',
-                'description' =>
-                    'Meliputi konsep acara, susunan panitia, rundown singkat, kebutuhan peralatan, serta estimasi anggaran.',
-                'drive_url' => 'https://drive.google.com/file/d/yyyyyyyy/view',
-                'type' => 'DOCX',
-            ],
-            [
-                'title' => 'Laporan Pertanggungjawaban Workshop Vokal',
-                'category' => 'LAPORAN',
-                'summary' => 'Ringkasan pelaksanaan workshop vokal beserta evaluasi dan rekomendasi.',
-                'description' =>
-                    'Memuat data peserta, dokumentasi kegiatan, penilaian keberhasilan acara, dan masukan untuk masa mendatang.',
-                'drive_url' => 'https://drive.google.com/file/d/zzzzzzzz/view',
-                'type' => 'PDF',
-            ],
-            // Tambahkan dokumen lainnya...
-        ];
-    @endphp
-
     <div class="relative min-h-screen bg-white py-8 md:py-16 overflow-hidden font-sans">
         {{-- Background Element: Garis Musik (Staff Lines) Full Page --}}
         <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
@@ -97,40 +63,86 @@
                     <article
                         class="group bg-white rounded-[2rem] border-2 border-slate-100 p-8 hover:border-[#457B9D] hover:shadow-2xl hover:shadow-[#457B9D]/10 transition-all duration-500 flex flex-col justify-between relative overflow-hidden">
 
-                        <div>
-                            <div class="flex items-center justify-between mb-6">
-                                <span
-                                    class="px-4 py-1.5 bg-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-lg group-hover:bg-[#457B9D] group-hover:text-white transition-colors">
-                                    {{ $doc['category'] }}
-                                </span>
-                                <div class="flex items-center gap-1">
-                                    <span
-                                        class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{{ $doc['type'] }}</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-300"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                </div>
-                            </div>
+                        {{-- HEADER META --}}
+                        <div class="flex items-center justify-between mb-6 text-[11px] font-bold uppercase tracking-widest">
+                            {{-- Created At (Left) --}}
+                            <span class="text-slate-400">
+                                {{ $doc->created_at?->format('d M Y') }}
+                            </span>
 
+                            {{-- Category (Right) --}}
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg group-hover:bg-[#457B9D] group-hover:text-white transition-colors">
+                                {{ $doc->kategori ?? 'Tanpa Kategori' }}
+                            </span>
+                        </div>
+
+                        {{-- FILE TYPE PREVIEW ICON --}}
+                        <div class="flex items-center justify-center mb-6">
+                            <div
+                                class="w-20 h-24 rounded-xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center group-hover:scale-105 transition-transform relative">
+                                {{-- Badge Type --}}
+                                <span class="absolute -top-2 -right-2 {{ $doc->badge_color }} text-white text-[9px] font-black px-2 py-1 rounded-md shadow">
+                                    {{ strtoupper($doc->file_type) }}
+                                </span>
+
+                                {{-- Icon File --}}
+                                @switch($doc->icon_type)
+                                    @case('pdf')
+                                        {{-- ICON PDF --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                        </svg>
+                                        @break
+                                    @case('doc')
+                                        {{-- ICON DOC --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> 
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /> 
+                                        </svg>
+                                        @break
+                                    @case('xls')
+                                        {{-- ICON XLS --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> 
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0 1 12 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" /> 
+                                        </svg>
+                                        @break
+                                    @case('ppt')
+                                        {{-- ICON PPT --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> 
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /> 
+                                        </svg>
+                                        @break
+                                    @case('txt')
+                                        {{-- ICON TXT --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> 
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" /> 
+                                        </svg>
+                                        @break
+                                    @default
+                                        {{-- ICON DEFAULT --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> 
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" /> 
+                                        </svg>
+                                @endswitch                                
+                            </div>
+                        </div>
+
+                        {{-- CONTENT --}}
+                        <div class="flex-1">
                             <h3
-                                class="text-xl font-black text-[#0A192F] uppercase tracking-tighter leading-tight mb-4 group-hover:text-[#457B9D] transition-colors line-clamp-2">
-                                {{ $doc['title'] }}
+                                class="text-lg font-black text-[#0A192F] uppercase tracking-tight leading-tight mb-3 group-hover:text-[#457B9D] transition-colors line-clamp-2">
+                                {{ $doc->judul ?? 'Judul Tidak Tersedia' }}
                             </h3>
 
-                            <p class="text-[#E63946] text-xs font-bold mb-3 uppercase tracking-wider italic">
-                                {{ $doc['summary'] }}
-                            </p>
-
                             <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 mb-8">
-                                {{ $doc['description'] }}
+                                {{ $doc->deskripsi ?? 'Deskripsi Tidak Tersedia' }}
                             </p>
                         </div>
 
-                        <a href="{{ $doc['drive_url'] }}" target="_blank"
+                        {{-- ACTION --}}
+                        <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank"
                             class="flex items-center justify-center gap-3 w-full py-4 bg-slate-50 text-[#0A192F] text-xs font-black uppercase tracking-[0.2em] rounded-xl group-hover:bg-[#0A192F] group-hover:text-white transition-all duration-300">
-                            Buka di Drive
+                            Lihat Dokumen
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="h-4 w-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,16 +152,12 @@
                         </a>
                     </article>
                 @endforeach
+                <!-- Jika Tidak ada Dokumen -->
+                @if ($documents->isEmpty())
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-slate-500 text-lg">Tidak ada dokumen tersedia saat ini.</p>
+                    </div>
+                @endif
             </div>
-
-            {{-- EMPTY STATE (Jika nanti dinamis) --}}
-            @if (count($documents) == 0)
-                <div class="py-20 text-center border-2 border-dashed border-slate-100 rounded-[2rem]">
-                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Arsip belum tersedia saat ini.
-                    </p>
-                </div>
-            @endif
-
-        </div>
     </div>
 </x-public.layouts>

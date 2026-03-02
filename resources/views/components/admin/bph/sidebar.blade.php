@@ -141,11 +141,6 @@
                     Galeri Kegiatan
                 </a>
 
-                <a href="{{ route('manage-highlight.index') }}"
-                    class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-highlight.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
-                    Highlight Kegiatan
-                </a>
-
                 <a href="{{ route('manage-testimoni.index') }}"
                     class="px-3 py-1 rounded-md transition-colors {{ request()->routeIs('manage-testimoni.*') ? 'text-amber-600 font-medium bg-gray-100' : 'text-gray-600 hover:text-amber-600' }}">
                     Apa Kata Mereka
