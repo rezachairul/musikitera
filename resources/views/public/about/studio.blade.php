@@ -80,7 +80,7 @@
                             Ruang {{ $studio->ruang ?? 'D301' }}, Gedung {{ $studio->gedung ?? 'D' }}, Lantai {{ $studio->lantai ?? '3' }}.
                         </p>
                         <p class="text-sm text-slate-500 font-medium leading-relaxed">
-                            {{ $studio->lokasi }}.
+                            {{ $studio->lokasi ?? 'Lokasi studio tidak tersedia.' }}
                         </p>
                     </div>
 
@@ -101,11 +101,11 @@
                         <ul class="text-sm text-slate-700 space-y-2 font-medium">
                             <li class="flex justify-between border-b border-slate-50 pb-1">
                                 <span>Senin – Jumat</span>
-                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekday_open, 0,5) ?? '00:00' }} – {{ substr($studio->weekday_close, 0, 5) ?? '00:00' }} WIB</span>
+                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekday_open ?? '00:00', 0,5) }} – {{ substr($studio->weekday_close ?? '00:00', 0, 5) }} WIB</span>
                             </li>
                             <li class="flex justify-between border-b border-slate-50 pb-1">
                                 <span>Sabtu - Minggu</span>
-                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekend_open, 0, 5) ?? '00:00' }} – {{ substr($studio->weekend_close, 0, 5) ?? '00:00' }} WIB</span>
+                                <span class="font-bold text-[#0A192F]">{{ substr($studio->weekend_open ?? '00:00', 0, 5) ?? '00:00' }} – {{ substr($studio->weekend_close ?? '00:00', 0, 5) }} WIB</span>
                             </li>
                             <li class="text-[10px] text-slate-400 italic mt-2">
                                 *Jadwal dapat menyesuaikan agenda kegiatan UKMBSM / By Request.
@@ -184,10 +184,10 @@
                                         </p>
                                         <h3
                                             class="text-lg font-bold text-[#0A192F] group-hover:text-[#E63946] transition-colors duration-300">
-                                            {{ $facility->nama }}
+                                            {{ $facility->nama ?? 'Nama Fasilitas' }}
                                         </h3>
                                         <p class="mt-2 text-xs text-slate-500 leading-relaxed line-clamp-3">
-                                            {{ $facility->deskripsi }}
+                                            {{ $facility->deskripsi ?? 'Deskripsi singkat tentang fasilitas ini. Jelaskan keunggulan dan fitur utama yang dimiliki.' }}
                                         </p>
                                     </div>
 

@@ -38,17 +38,6 @@ class LoginController extends Controller
 
             $user = Auth::user();
 
-            // // Tambah log untuk debug
-            // Log::info('User login berhasil', [
-            //     'user_id' => $user->id,
-            //     'email'   => $user->email,
-            //     'session_id' => $request->session()->getId(),
-            // ]);
-
-            // // Cek juga langsung ke DB (opsional)
-            // $lastSession = DB::table('sessions')->latest('last_activity')->first();
-            // Log::info('Last session row:', (array) $lastSession);
-
             // Cek role user dan redirect sesuai dashboard
             switch ($user->role) {
                 case 'admin':

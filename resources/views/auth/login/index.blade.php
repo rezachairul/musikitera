@@ -163,7 +163,7 @@
                     <div class="mt-8 pt-6 border-t border-white/10 text-center">
                         <p class="text-[11px] text-slate-400 font-bold uppercase tracking-tight">
                             Belum terdaftar?
-                            <a href="{{ route('register') }}"
+                            <a href="#"
                                 class="text-[#E63946] hover:text-white transition-colors ml-1">
                                 Buat Akun Baru
                             </a>
