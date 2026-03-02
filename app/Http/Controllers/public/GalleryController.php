@@ -15,7 +15,8 @@ class GalleryController extends Controller
         $keywords = 'UKMBSM, ITERA, music community, student organization, music events, ITERA music club';
         $author = 'UKMBSM ITERA';
 
-        $galleries = ManageGaleri::orderBy('created_at', 'desc')->get();
+        $galleries = ManageGaleri::orderBy('created_at', 'desc')
+                    ->paginate(10);
 
         return view('public.gallery.index', compact('title', 'description', 'keywords', 'author', 'galleries'));
     }

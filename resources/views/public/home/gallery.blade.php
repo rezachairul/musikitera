@@ -44,17 +44,30 @@
             </div>
         </div>
 
-        <div class="swiper gallery-kegiatan-swiper">
-            <div class="swiper-wrapper">
+        {{-- Galeri Slider --}}
+        <div class="relative overflow-hidden">
+            <div 
+                id="gallery-track"
+                class="flex transition-transform duration-700 ease-in-out gap-8"
+            >
                 @forelse ($galeris as $item)
-                    <div class="swiper-slide">
-                        <div class="group relative overflow-hidden rounded-2xl bg-[#112240] border border-white/5">
+                    <div class="gallery-item shrink-0 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)]">
+                        <div class="group relative rounded-2xl bg-[#112240] border border-white/5 overflow-hidden">
+                            
+                            {{-- Image --}}
                             <div class="h-[300px] w-full relative overflow-hidden">
-                                <img src="{{ asset('storage/' . $item->image) }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" alt="{{ $item->title }}">
-                                <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/denim.png');"></div>
+                                <img 
+                                    src="{{ asset('storage/' . $item->image) }}"
+                                    alt="{{ $item->title }}"
+                                    class="w-full h-full object-cover grayscale 
+                                        group-hover:grayscale-0 
+                                        group-hover:scale-110 
+                                        transition-all duration-700"
+                                >
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent opacity-80"></div>
                             </div>
 
+                            {{-- Overlay Text --}}
                             <div class="absolute inset-0 flex flex-col justify-end p-6">
                                 <span class="text-[#E63946] text-[9px] font-black uppercase tracking-widest mb-1">
                                     {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::slug($item->title, ' ')) }}
@@ -66,88 +79,50 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-white">Belum ada galeri.</p>
+                    <p class="text-center text-white/70 py-10 w-full">
+                        Belum ada galeri kegiatan.
+                    </p>
                 @endforelse
             </div>
-
-            <div class="swiper-pagination gallery-pagi !static mt-8"></div>
         </div>
     </div>
 
-    <style>
-        .gallery-kegiatan-swiper {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* JANGAN override display / width swiper */
-        .gallery-kegiatan-swiper .swiper-slide {
-            height: auto;
-        }
-
-        .gallery-kegiatan-swiper .swiper-slide > div {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* pagination */
-        .gallery-pagi {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .gallery-pagi .swiper-pagination-bullet {
-            width: 25px;
-            height: 3px;
-            border-radius: 0;
-            background: rgba(255, 255, 255, 0.25);
-            opacity: 1;
-        }
-
-        .gallery-pagi .swiper-pagination-bullet-active {
-            background: #E63946 !important;
-            width: 50px;
-        }
-    </style>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const bsmGallery = new Swiper('.gallery-kegiatan-swiper', {
-                slidesPerView: 3,
-                slidesPerGroup: 1,
-                spaceBetween: 20,
-                loop: true,
-                grabCursor: true,
-                centeredSlides: false,
+        const track = document.getElementById('gallery-track');
+        const prevBtn = document.getElementById('prev-gallery');
+        const nextBtn = document.getElementById('next-gallery');
 
-                breakpoints: {
-                    0: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                },
+        let index = 0;
 
-                navigation: {
-                    nextEl: '#next-gallery',
-                    prevEl: '#prev-gallery',
-                },
-                pagination: {
-                    el: '.gallery-pagi',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-            });
+        function itemsPerView() {
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        function slideGallery() {
+            const itemWidth = track.children[0].offsetWidth + 32; // gap-8 = 32px
+            track.style.transform = `translateX(-${index * itemWidth}px)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = track.children.length - itemsPerView();
+            if (index < maxIndex) {
+                index++;
+                slideGallery();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (index > 0) {
+                index--;
+                slideGallery();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            index = 0;
+            slideGallery();
         });
     </script>
 
